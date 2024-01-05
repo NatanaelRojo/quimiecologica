@@ -2,11 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PurchaseOrderResource\Pages;
-use App\Filament\Resources\PurchaseOrderResource\RelationManagers;
-use App\Models\Product;
-use App\Models\PurchaseOrder;
-use App\Models\Service;
+use App\Filament\Resources\PendingOrderResource\Pages;
+use App\Filament\Resources\PendingOrderResource\RelationManagers;
+use App\Models\PendingOrder;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -14,11 +12,10 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Laravel\Prompts\SearchPrompt;
 
-class PurchaseOrderResource extends Resource
+class PendingOrderResource extends Resource
 {
-    protected static ?string $model = PurchaseOrder::class;
+    protected static ?string $model = PendingOrder::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -59,24 +56,21 @@ class PurchaseOrderResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('owner_city')->label('Owner city')
                 ->required(),
-            Forms\Components\TextInput::make('reference_number')->label('Reference')
+            Forms\Components\Select::make('product_id')
+                ->label('Product')
+                ->relationship(
+                    name: 'product',
+                    titleAttribute: 'name',
+                )->preload()
+                ->searchable()
                 ->required(),
-            Forms\Components\FileUpload::make('image')->label('Baucher')
-                ->acceptedFileTypes(['application/pdf', 'image/png', 'image/jpeg']),
-            Forms\Components\TextInput::make('total_price')->label('Total price')
-                ->required()->numeric()
-                ->prefix('$'),
-            Forms\Components\CheckboxList::make('products')->label('Products')
-                ->relationship(titleAttribute: 'name')
-                ->searchable()->noSearchResultsMessage('No products found')->SearchPrompt('Search products')
-                ->columns(2)
-                ->bulkToggleable(),
         ];
     }
 
     public static function form(Form $form): Form
     {
-        return $form->schema(PurchaseOrderResource::inputForm());
+        return $form
+            ->schema(PendingOrderResource::inputForm());
     }
 
     public static function table(Table $table): Table
@@ -108,9 +102,9 @@ class PurchaseOrderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPurchaseOrders::route('/'),
-            'create' => Pages\CreatePurchaseOrder::route('/create'),
-            'edit' => Pages\EditPurchaseOrder::route('/{record}/edit'),
+            'index' => Pages\ListPendingOrders::route('/'),
+            'create' => Pages\CreatePendingOrder::route('/create'),
+            'edit' => Pages\EditPendingOrder::route('/{record}/edit'),
         ];
     }
 }

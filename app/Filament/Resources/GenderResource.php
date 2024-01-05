@@ -19,12 +19,17 @@ class GenderResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function inputForm(): array
+    {
+        return [
+            Forms\Components\TextInput::make('name')->autofocus()->label('Gender name')
+                ->required()->maxLength(20),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')->autofocus()->label('Gender name')->required()->maxLength(20),
-            ]);
+        return $form->schema(GenderResource::inputForm());
     }
 
     public static function table(Table $table): Table

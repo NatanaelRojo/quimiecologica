@@ -19,13 +19,18 @@ class ServiceResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function inputForm(): array
+    {
+        return [
+            Forms\Components\TextInput::make('name')->autofocus()->label('Service name')
+                ->required()->maxLength(20),
+            Forms\Components\Textarea::make('description')->label('Service description'),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')->autofocus()->label('Service name')->required()->maxLength(20),
-                Forms\Components\Textarea::make('description')->label('Service description'),
-            ]);
+        return $form->schema(ServiceResource::inputForm());
     }
 
     public static function table(Table $table): Table

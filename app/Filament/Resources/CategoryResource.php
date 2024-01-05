@@ -19,12 +19,17 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function inputForm(): array
+    {
+        return [
+            Forms\Components\TextInput::make('name')->autofocus()->label('Category name')
+                ->required()->maxLength(20)->alpha(),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')->autofocus()->label('Category name')->required()->maxLength(20),
-            ]);
+        return $form->schema(CategoryResource::inputForm());
     }
 
     public static function table(Table $table): Table

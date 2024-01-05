@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->string('name');
                 $table->text('description');
                 $table->unsignedBigInteger('price');
-                $table->json('image_urls');
+                $table->jsonb('image_urls');
                 $table->foreignId('category_id')->constrained();
                 $table->foreignId('service_id')->constrained();
                 $table->foreignId('gender_id')->constrained();

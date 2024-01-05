@@ -4,6 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
+use App\Filament\Resources\ProductResource\RelationManagers\ImagesRelationManager;
+use App\Filament\Resources\PurchaseOrderResource\RelationManagers\ProductsRelationManager;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -19,25 +21,38 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function inputForm(): array
+    {
+        return [
+            Forms\Components\Select::make('service_id')->label('Service')
+                ->relationship('service', 'name')->searchable()->preload()
+                ->createOptionForm(ServiceResource::inputForm()),
+            Forms\Components\Select::make('category_id')->label('Category')
+                ->relationship('category', 'name')->searchable()->preload()
+                ->createOptionForm(CategoryResource::inputForm()),
+            Forms\Components\Select::make('gender_id')->label('Gender')
+                ->relationship('gender', 'name')->searchable()->preload()
+                ->createOptionForm(GenderResource::inputForm()),
+            Forms\Components\TextInput::make('name')->autofocus()->label('Product name')
+                ->required()->maxLength(255)->minLength(4)
+                ->columnSpan('full'),
+            Forms\Components\Textarea::make('description')->label('Product description')
+                ->columnSpan('full'),
+            Forms\Components\TextInput::make('price')->label('Product price')
+                ->required()->numeric()
+                ->prefix('$'),
+            Forms\Components\FileUpload::make('image_urls')
+                ->label('Product images')
+                ->multiple()
+                ->image()
+                ->minFiles(1)
+                ->maxFiles(5),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\Select::make('service_id')->label('Service')->relationship('service', 'name')->searchable()->preload()->createOptionForm([
-                    Forms\Components\TextInput::make('name')->autofocus()->label('Service name')->required()->maxLength(20),
-                    Forms\Components\Textarea::make('description')->label('Service description'),
-                ]),
-                Forms\Components\Select::make('category_id')->label('Category')->relationship('category', 'name')->createOptionForm([
-                    Forms\Components\TextInput::make('name')->autofocus()->label('Category name')->required()->maxLength(20),
-                ]),
-                Forms\Components\Select::make('gender_id')->label('Gender')->relationship('gender', 'name')->createOptionForm([
-                    Forms\Components\TextInput::make('name')->autofocus()->label('Gender name')->required()->maxLength(20),
-                ]),
-                Forms\Components\TextInput::make('name')->autofocus()->label('Product name')->required()->maxLength(255)->columnSpan('full'),
-                Forms\Components\Textarea::make('description')->label('Product description')->columnSpan('full'),
-                Forms\Components\TextInput::make('price')->label('Product price')->required()->numeric()->prefix('$'),
-                Forms\Components\FileUpload::make('image_urls')->multiple()->image(),
-            ]);
+        return $form->schema(ProductResource::inputForm());
     }
 
     public static function table(Table $table): Table
@@ -63,7 +78,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // ImagesRelationManager::class,
         ];
     }
 
