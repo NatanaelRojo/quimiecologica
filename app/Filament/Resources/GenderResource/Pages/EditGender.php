@@ -10,6 +10,11 @@ class EditGender extends EditRecord
 {
     protected static string $resource = GenderResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
     protected function getHeaderActions(): array
     {
         return [

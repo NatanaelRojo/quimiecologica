@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Category;
+use App\Models\Gender;
+use App\Models\Service;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,9 +21,9 @@ return new class extends Migration
                 $table->text('description');
                 $table->unsignedBigInteger('price');
                 $table->jsonb('image_urls');
-                $table->foreignId('category_id')->constrained();
-                $table->foreignId('service_id')->constrained();
-                $table->foreignId('gender_id')->constrained();
+                $table->foreignIdFor(Service::class);
+                $table->foreignIdFor(Gender::class);
+                $table->foreignIdFor(Category::class);
                 $table->timestamps();
             });
         }

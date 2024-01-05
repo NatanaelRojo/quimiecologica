@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePendingOrder extends CreateRecord
 {
     protected static string $resource = PendingOrderResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -19,7 +19,7 @@ class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
     public static function inputForm(): array
     {
@@ -59,7 +59,9 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Name'),
+                Tables\Columns\TextColumn::make('name')->label('Product name'),
+                Tables\Columns\TextColumn::make('description')->label('Product description')
+                    ->words(20),
                 Tables\Columns\TextColumn::make('price')->money('DOL')->sortable(),
             ])
             ->filters([

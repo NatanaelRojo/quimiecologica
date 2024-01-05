@@ -20,7 +20,7 @@ class PurchaseOrderResource extends Resource
 {
     protected static ?string $model = PurchaseOrder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
 
     public static function inputForm(): array
     {
@@ -83,7 +83,10 @@ class PurchaseOrderResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')->label('Product name'),
+                Tables\Columns\TextColumn::make('owner_firstname')->label('Owner first name'),
+                Tables\Columns\TextColumn::make('owner_lastname')->label('Owner last name'),
+                Tables\Columns\TextColumn::make('reference')->label('Baucher reference'),
             ])
             ->filters([
                 //

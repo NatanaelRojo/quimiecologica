@@ -15,8 +15,11 @@ class PendingOrder extends Model
         'gender_id',
         'category_id',
         'product_id',
-        'owner_name',
+        'owner_firstname',
         'owner_lastname',
+        'owner_phone_number',
+        'owner_state',
+        'owner_city',
     ];
 
     public function service(): BelongsTo
