@@ -19,11 +19,32 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
+    protected static ?string $navigationGroup = 'Base Settings';
+
     public static function inputForm(): array
     {
         return [
             Forms\Components\TextInput::make('name')->autofocus()->label('Category name')
-                ->required()->maxLength(20)->alpha(),
+                ->required()->maxLength(20),
+        ];
+    }
+
+    public static function tableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('name')->label('Category name')
+                ->searchable(query: function (Builder $query, string $search) {
+                    return $query->where('name', 'like', "%{$search}%");
+                }),
+        ];
+    }
+
+    public static function tableActions(): array
+    {
+        return [
+            Tables\Actions\ViewAction::make(),
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
         ];
     }
 
@@ -35,17 +56,11 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Category name'),
-            ])
+            ->columns(CategoryResource::tableColumns())
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
+            ->actions(CategoryResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

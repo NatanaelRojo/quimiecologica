@@ -14,17 +14,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('purchase_orders')) {
-            Schema::create('purchase_orders', function (Blueprint $table) {
+        if (!Schema::hasTable('purchase_retail_orders')) {
+            Schema::create('purchase_retail_orders', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Service::class);
-                $table->foreignIdFor(Gender::class);
-                $table->foreignIdFor(Category::class);
+                // $table->foreignIdFor(Service::class);
+                // $table->foreignIdFor(Gender::class);
+                // $table->foreignIdFor(Category::class);
                 $table->string('owner_firstname', 30);
                 $table->string('owner_lastname');
-                $table->string('owner_phone_number', 10);
+                $table->string('owner_id');
+                $table->string('owner_phone_number');
                 $table->string('owner_city');
                 $table->string('owner_state');
+                $table->string('owner_address');
                 $table->string('reference_number');
                 $table->string('image')->nullable();
                 $table->unsignedBigInteger('total_price');

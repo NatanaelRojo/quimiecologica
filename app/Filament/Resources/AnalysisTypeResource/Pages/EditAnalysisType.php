@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\PurchaseOrderResource\Pages;
+namespace App\Filament\Resources\AnalysisTypeResource\Pages;
 
-use App\Filament\Resources\PurchaseOrderResource;
+use App\Filament\Resources\AnalysisTypeResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditPurchaseOrder extends EditRecord
+class EditAnalysisType extends EditRecord
 {
-    protected static string $resource = PurchaseOrderResource::class;
+    protected static string $resource = AnalysisTypeResource::class;
 
     protected function getRedirectUrl(): string
     {

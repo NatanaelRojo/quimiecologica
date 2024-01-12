@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Product;
+use App\Models\PurchaseRetailOrder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('product_purchase_order')) {
-            Schema::create('product_purchase_order', function (Blueprint $table) {
+        if (!Schema::hasTable('product_purchase_retail_order')) {
+            Schema::create('product_purchase_retail_order', function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('product_id')->constrained();
-                $table->foreignId('purchase_order_id')->constrained();
+                $table->foreignIdFor(Product::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->foreignIdFor(PurchaseRetailOrder::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->timestamps();
             });
         }

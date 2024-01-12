@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -21,25 +22,29 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
+    protected static ?string $navigationGroup = 'Base Elements';
+
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Select::make('service_id')->label('Service')
-                ->relationship('service', 'name')->searchable()->preload()
-                ->createOptionForm(ServiceResource::inputForm()),
-            Forms\Components\Select::make('category_id')->label('Category')
-                ->relationship('category', 'name')->searchable()->preload()
+            // Forms\Components\Select::make('service_id')->label('Service')
+            //     ->relationship('service', 'name')->searchable()->preload()
+            //     ->createOptionForm(ServiceResource::inputForm()),
+            Forms\Components\Select::make('category_id.name')->label('Category')
+                ->multiple()->relationship('categories', 'name')->searchable()->preload()
                 ->createOptionForm(CategoryResource::inputForm()),
             Forms\Components\Select::make('gender_id')->label('Gender')
-                ->relationship('gender', 'name')->searchable()->preload()
+                ->relationship('genders', 'name')
+                ->multiple()->searchable()->preload()
                 ->createOptionForm(GenderResource::inputForm()),
             Forms\Components\TextInput::make('name')->autofocus()->label('Product name')
                 ->required()->maxLength(255)->minLength(4)
                 ->columnSpan('full'),
             Forms\Components\Textarea::make('description')->label('Product description')
+                ->required()
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('price')->label('Product price')
-                ->required()->numeric()
+                ->required()->numeric()->minValue(1)
                 ->prefix('$'),
             Forms\Components\FileUpload::make('image_urls')
                 ->label('Product images')
@@ -47,6 +52,30 @@ class ProductResource extends Resource
                 ->image()
                 ->minFiles(1)
                 ->maxFiles(5),
+        ];
+    }
+
+    public static function tableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('gender.name')->label('Gender product')->searchable(),
+            Tables\Columns\TextColumn::make('category.name')->label('Category product')->searchable(),
+            Tables\Columns\TextColumn::make('name')->label('Product name')
+                ->searchable(query: function (Builder $query, string $search) {
+                    return $query->where('name', 'like', "%{$search}%");
+                }),
+            Tables\Columns\TextColumn::make('description')->label('Product description')
+                ->words(20),
+            Tables\Columns\TextColumn::make('price')->money('USD')->sortable(),
+        ];
+    }
+
+    public static function tableActions(): array
+    {
+        return [
+            Tables\Actions\ViewAction::make(),
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
         ];
     }
 
@@ -58,18 +87,11 @@ class ProductResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Product name'),
-                Tables\Columns\TextColumn::make('description')->label('Product description')
-                    ->words(20),
-                Tables\Columns\TextColumn::make('price')->money('DOL')->sortable(),
-            ])
+            ->columns(ProductResource::tableColumns())
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
+            ->actions(ProductResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

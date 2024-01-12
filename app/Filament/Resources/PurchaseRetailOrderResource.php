@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PendingOrderResource\Pages;
-use App\Filament\Resources\PendingOrderResource\RelationManagers;
-use App\Models\PendingOrder;
+use App\Filament\Resources\PurchaseRetailOrderResource\Pages;
+use App\Filament\Resources\PurchaseRetailOrderResource\RelationManagers;
+use App\Models\PurchaseRetailOrder;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,13 +13,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PendingOrderResource extends Resource
+class PurchaseRetailOrderResource extends Resource
 {
-    protected static ?string $model = PendingOrder::class;
+    protected static ?string $model = PurchaseRetailOrder::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
+    protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
 
-    protected static ?string $navigationLabel = 'Pending';
+    protected static ?string $navigationLabel = 'Retail';
 
     protected static ?string $navigationGroup = 'Orders';
 
@@ -55,9 +55,7 @@ class PendingOrderResource extends Resource
             Forms\Components\TextInput::make('owner_lastname')->label('Owner lastname')
                 ->required()->maxLength(30),
             Forms\Components\TextInput::make('owner_id')->label('Owner ID')
-                ->required()->maxLength(20),
-            Forms\Components\TextInput::make('owner_email')->label('Owner e-mail')
-                ->email()->required(),
+                ->required(),
             Forms\Components\TextInput::make('owner_phone_number')->label('Owner phone number')
                 ->tel()->required(),
             Forms\Components\TextInput::make('owner_state')->label('Owner state')
@@ -66,16 +64,18 @@ class PendingOrderResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('owner_address')->label('Owner address')
                 ->required(),
-            Forms\Components\TextInput::make('owner_request')->label('What product would you like to create')
+            Forms\Components\TextInput::make('reference_number')->label('Reference')
                 ->required(),
-            // Forms\Components\Select::make('product_id')
-            //     ->label('Product')
-            //     ->relationship(
-            //         name: 'product',
-            //         titleAttribute: 'name',
-            //     )->preload()
-            //     ->searchable()
-            //     ->required(),
+            Forms\Components\FileUpload::make('image')->label('Baucher')
+                ->acceptedFileTypes(['application/pdf', 'image/png', 'image/jpeg']),
+            Forms\Components\TextInput::make('total_price')->label('Total price')
+                ->required()->numeric()->minValue(1)
+                ->prefix('$'),
+            Forms\Components\CheckboxList::make('products')->label('Products')
+                ->relationship(titleAttribute: 'name')
+                ->searchable()->noSearchResultsMessage('No products found')->SearchPrompt('Search products')
+                ->columns(2)
+                ->bulkToggleable(),
         ];
     }
 
@@ -91,16 +91,14 @@ class PendingOrderResource extends Resource
                     return $query->where('owner_lastname', 'like', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('owner_id')->label('Owner ID')
-                ->copyable()
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_id', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_email')->label('Owner e-mail')
-                ->copyable()
-                ->searchable(query: function (Builder $query, string $search) {
-                    return $query->where('owner_email', 'like', "%{$search}%");
-                }),
-            Tables\Columns\TextColumn::make('owner_request')->label('Owner request')->words(10),
+            Tables\Columns\TextColumn::make('reference_number')->label('Baucher reference')
+                ->copyable(),
+            Tables\Columns\TextColumn::make('total_price')->label('Total price')
+                ->money('USD')
+                ->sortable(),
         ];
     }
 
@@ -109,24 +107,23 @@ class PendingOrderResource extends Resource
         return [
             Tables\Actions\ViewAction::make(),
             Tables\Actions\EditAction::make(),
-            Tables\Actions\DeleteAction::make()
+            Tables\Actions\DeleteAction::make(),
         ];
     }
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema(PendingOrderResource::inputForm());
+        return $form->schema(PurchaseRetailOrderResource::inputForm());
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns(PendingOrderResource::tableColumns())
+            ->columns(PurchaseRetailOrderResource::tableColumns())
             ->filters([
                 //
             ])
-            ->actions(PendingOrderResource::tableActions())
+            ->actions(PurchaseRetailOrderResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -144,9 +141,9 @@ class PendingOrderResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPendingOrders::route('/'),
-            'create' => Pages\CreatePendingOrder::route('/create'),
-            'edit' => Pages\EditPendingOrder::route('/{record}/edit'),
+            'index' => Pages\ListPurchaseRetailOrders::route('/'),
+            'create' => Pages\CreatePurchaseRetailOrder::route('/create'),
+            'edit' => Pages\EditPurchaseRetailOrder::route('/{record}/edit'),
         ];
     }
 }

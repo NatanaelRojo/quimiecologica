@@ -21,9 +21,9 @@ return new class extends Migration
                 $table->text('description');
                 $table->unsignedBigInteger('price');
                 $table->jsonb('image_urls');
-                $table->foreignIdFor(Service::class);
-                $table->foreignIdFor(Gender::class);
-                $table->foreignIdFor(Category::class);
+                // $table->foreignIdFor(Service::class);
+                // $table->foreignIdFor(Gender::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                // $table->foreignIdFor(Category::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->timestamps();
             });
         }

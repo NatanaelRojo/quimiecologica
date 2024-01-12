@@ -23,9 +23,9 @@ class Product extends Model
         'description',
         'price',
         'image_urls',
-        'service_id',
-        'gender_id',
-        'category_id',
+        // 'service_id',
+        // 'gender_id',
+        // 'category_id',
     ];
 
     public function pendingOrders(): HasMany
@@ -33,23 +33,28 @@ class Product extends Model
         return $this->hasMany(PendingOrder::class);
     }
 
-    public function service(): BelongsTo
+    // public function service(): BelongsTo
+    // {
+    //     return $this->belongsTo(Service::class);
+    // }
+
+    public function genders(): BelongsToMany
     {
-        return $this->belongsTo(Service::class);
+        return $this->belongsToMany(Gender::class);
     }
 
-    public function gender(): BelongsTo
+    public function categories(): BelongsToMany
     {
-        return $this->belongsTo(Gender::class);
+        return $this->belongsToMany(Category::class);
     }
 
-    public function category(): BelongsTo
+    public function purchaseWholesaleOrders(): HasMany
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(PurchaseWholesaleOrder::class);
     }
 
-    public function purchaseOrders(): BelongsToMany
+    public function purchaseRetailOrders(): BelongsToMany
     {
-        return $this->belongsToMany(PurchaseOrder::class, 'product_purchase_order');
+        return $this->belongsToMany(PurchaseRetailOrder::class, 'product_purchase_order');
     }
 }

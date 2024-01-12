@@ -2,27 +2,34 @@
 
 namespace App\Models;
 
+use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class PurchaseOrder extends Model
+class PurchaseRetailOrder extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'service_id',
-        'gender_id',
-        'category_id',
+        // 'service_id',
+        // 'gender_id',
+        // 'category_id',
         'owner_firstname',
         'owner_lastname',
+        'owner_id',
         'owner_phone_number',
         'owner_state',
         'owner_city',
+        'owner_address',
         'reference_number',
         'image',
         'total_price',
+    ];
+
+    protected $casts = [
+        'total_price' => MoneyCast::class,
     ];
 
     public function service(): BelongsTo
@@ -42,6 +49,6 @@ class PurchaseOrder extends Model
 
     public function products(): BelongsToMany
     {
-        return $this->belongsToMany(Product::class, 'product_purchase_order');
+        return $this->belongsToMany(Product::class);
     }
 }

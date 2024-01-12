@@ -18,7 +18,9 @@ class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
+
+    protected static ?string $navigationGroup = 'Base Settings';
 
     public static function inputForm(): array
     {
@@ -26,6 +28,27 @@ class ServiceResource extends Resource
             Forms\Components\TextInput::make('name')->autofocus()->label('Service name')
                 ->required()->maxLength(20),
             Forms\Components\Textarea::make('description')->label('Service description'),
+        ];
+    }
+
+    public static function tableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('name')->label('Service name')
+                ->searchable(query: function (Builder $query, string $search) {
+                    return $query->where('name', 'like', "%{$search}%");
+                }),
+            Tables\Columns\TextColumn::make('description')->label('Service description')
+                ->words(20),
+        ];
+    }
+
+    public static function tableActions(): array
+    {
+        return [
+            Tables\Actions\ViewAction::make(),
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
         ];
     }
 
@@ -37,19 +60,11 @@ class ServiceResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Service name'),
-                Tables\Columns\TextColumn::make('description')->label('Service description')
-                    ->words(20),
-            ])
+            ->columns(ServiceResource::tableColumns())
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
-            ])
+            ->actions(ServiceResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
