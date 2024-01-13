@@ -8,6 +8,8 @@ use App\Models\Post;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -29,6 +31,9 @@ class PostResource extends Resource
             Forms\Components\Toggle::make('published')
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full'),
+            Forms\Components\FileUpload::make('thumbnail')->label('Post thumbnail')
+                ->image()
+                ->columnSpan('full'),
             Forms\Components\Select::make('category_id')->label('Post category')
                 ->relationship(name: 'categories', titleAttribute: 'name')->preload()->searchable()
                 ->multiple()
@@ -43,13 +48,34 @@ class PostResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('slug')->label('Post slug')
                 ->disabled()->hidden(),
-            Forms\Components\FileUpload::make('thumbnail')->label('Post thumbnail')
-                ->image(),
+
             Forms\Components\RichEditor::make('body')->label('Post body')
                 ->required()
                 ->columnSpan('full')
                 ->fileAttachmentsDirectory('posts')
                 ->fileAttachmentsVisibility('public'),
+        ];
+    }
+
+    public static function tableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('categories.name')->label('Post category')->searchable(),
+            Tables\Columns\TextColumn::make('genders.name')->label('Post category')->searchable(),
+            Tables\Columns\ToggleColumn::make('published')->label('Is published'),
+            Tables\Columns\TextColumn::make('title')->label('Post title')
+                ->searchable(query: function (Builder $query, string $search) {
+                    return $query->where('name', 'like', "%{$search}%");
+                }),
+        ];
+    }
+
+    public static function tableActions(): array
+    {
+        return [
+            Tables\Actions\ViewAction::make(),
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
         ];
     }
 
@@ -59,18 +85,30 @@ class PostResource extends Resource
         // ->columns(1);
     }
 
+    public static function infolist(InfoList $infolist): Infolist
+    {
+        return $infolist
+            ->schema([
+                Infolists\Components\ImageEntry::make('thumbnail')->label('')
+                    ->width(1200)
+                    ->height(350)
+                    ->square(),
+                Infolists\Components\TextEntry::make('title')->label('')
+                    ->columnSpan('full'),
+                Infolists\Components\TextEntry::make('body')->label('')
+                    ->html()
+                    ->columnSpan('full'),
+            ]);
+    }
+
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                //
-            ])
+            ->columns(PostResource::tableColumns())
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
+            ->actions(PostResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -90,6 +128,7 @@ class PostResource extends Resource
         return [
             'index' => Pages\ListPosts::route('/'),
             'create' => Pages\CreatePost::route('/create'),
+            'view' => Pages\ViewPost::route('/{record}'),
             'edit' => Pages\EditPost::route('/{record}/edit'),
         ];
     }
