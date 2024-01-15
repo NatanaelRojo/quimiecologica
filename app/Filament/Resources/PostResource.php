@@ -11,6 +11,7 @@ use Filament\Forms\Set;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
@@ -23,17 +24,27 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
 
-    protected static ?string $navigationGroup = 'Base Elements';
+    protected static ?string $navigationGroup = 'Elementos Base';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/post.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/post.plural_label');
+    }
 
     public static function inputForm(): array
     {
         return [
             Forms\Components\Toggle::make('published')
                 ->onColor('success')->offColor('danger')
-                ->columnSpan('full'),
+                ->columnSpan(2),
             Forms\Components\FileUpload::make('thumbnail')->label('Post thumbnail')
                 ->image()
-                ->columnSpan('full'),
+                ->columnSpan(2),
             Forms\Components\Select::make('category_id')->label('Post category')
                 ->relationship(name: 'categories', titleAttribute: 'name')->preload()->searchable()
                 ->multiple()
@@ -42,14 +53,14 @@ class PostResource extends Resource
                 ->relationship(name: 'genders', titleAttribute: 'name')->preload()->searchable()
                 ->multiple()
                 ->createOptionForm(GenderResource::inputForm()),
-            Forms\Components\TextInput::make('title')->label('Post title')->autofocus()
+            Forms\Components\TextInput::make('title')->label('Post title')
                 ->live(onBlur: true)
                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
-                ->required(),
+                ->required()
+                ->columnSpan(2),
             Forms\Components\TextInput::make('slug')->label('Post slug')
                 ->disabled()->hidden(),
-
-            Forms\Components\RichEditor::make('body')->label('Post body')
+            Forms\Components\RichEditor::make('body')->label('Post body')->autofocus(false)
                 ->required()
                 ->columnSpan('full')
                 ->fileAttachmentsDirectory('posts')
@@ -73,7 +84,7 @@ class PostResource extends Resource
     public static function tableActions(): array
     {
         return [
-            Tables\Actions\ViewAction::make(),
+            Tables\Actions\ViewAction::make()->modalAlignment(Alignment::Justify),
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make(),
         ];
@@ -90,14 +101,14 @@ class PostResource extends Resource
         return $infolist
             ->schema([
                 Infolists\Components\ImageEntry::make('thumbnail')->label('')
-                    ->width(1200)
                     ->height(350)
+                    ->width(1200)
                     ->square(),
                 Infolists\Components\TextEntry::make('title')->label('')
                     ->columnSpan('full'),
                 Infolists\Components\TextEntry::make('body')->label('')
-                    ->html()
-                    ->columnSpan('full'),
+                    ->columnSpan('full')
+                    ->html(),
             ]);
     }
 

@@ -17,36 +17,51 @@ class AnalysisParameterResource extends Resource
 {
     protected static ?string $model = AnalysisParameter::class;
 
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     protected static ?string $navigationIcon = 'heroicon-o-adjustments-horizontal';
 
-    protected static ?string $navigationLabel = 'Parameters';
+    protected static ?string $navigationLabel = 'Parámetros';
 
-    protected static ?string $navigationGroup = 'Analysis Settings';
+    protected static ?string $navigationGroup = 'Ajustes de los Análisis';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/service.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/service.plural_label');
+    }
+
+    public static function getStringAttribute(string $attribute): string
+    {
+        return __("filament/resources/analysis_parameter.{$attribute}");
+    }
 
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Select::make('analysis_id')->label('Analysis')
+            Forms\Components\Select::make('analysis_id')->label(static::getStringAttribute('analysis'))
                 ->relationship(
                     name: 'analysis',
                     titleAttribute: 'name'
                 )->preload()->searchable()
                 ->required()
                 ->createOptionForm(AnalysisResource::inputForm()),
-            Forms\Components\Select::make('analysis_type_id')->label('Analysis type')
+            Forms\Components\Select::make('analysis_type_id')->label(static::getStringAttribute('analysis_type'))
                 ->relationship(
                     name: 'analysisType',
                     titleAttribute: 'name'
                 )->preload()->searchable()
                 ->required()
                 ->createOptionForm(AnalysisTypeResource::inputForm()),
-            Forms\Components\TextInput::make('name')->label('Analysis parameter name')
+            Forms\Components\TextInput::make('name')->label(static::getStringAttribute('name'))->autofocus()
                 ->required()->maxLength(20),
-            Forms\Components\Textarea::make('description')->label('Analysis parameter description')
+            Forms\Components\Textarea::make('description')->label(static::getStringAttribute('description'))
                 ->maxLength(255),
-            Forms\Components\TextInput::make('price_per_hour')->label('Price per hour')
+            Forms\Components\TextInput::make('price_per_hour')->label(static::getStringAttribute('price_per_hour'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
         ];
@@ -55,15 +70,15 @@ class AnalysisParameterResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('analysis.name')->label('Analysis name')->searchable(),
-            Tables\Columns\TextColumn::make('analysisType.name')->label('Analysis type name')->searchable(),
-            Tables\Columns\TextColumn::make('name')->label('Parameter name')
+            Tables\Columns\TextColumn::make('analysis.name')->label(static::getStringAttribute('analysis'))->searchable(),
+            Tables\Columns\TextColumn::make('analysisType.name')->label(static::getStringAttribute('type'))->searchable(),
+            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label('Parameter description')
+            Tables\Columns\TextColumn::make('description')->label(static::getStringAttribute('description'))
                 ->words(20),
-            Tables\Columns\TextColumn::make('price_per_hour')->label('Price per hour')
+            Tables\Columns\TextColumn::make('price_per_hour')->label(static::getStringAttribute('price_per_hour'))
                 ->money('USD')->sortable(),
         ];
     }

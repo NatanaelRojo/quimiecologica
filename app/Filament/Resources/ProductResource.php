@@ -22,7 +22,17 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
-    protected static ?string $navigationGroup = 'Base Elements';
+    protected static ?string $navigationGroup = 'Elementos Base';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/product.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/product.plural_label');
+    }
 
     public static function inputForm(): array
     {

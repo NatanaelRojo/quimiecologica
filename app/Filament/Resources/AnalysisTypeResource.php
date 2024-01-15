@@ -17,27 +17,42 @@ class AnalysisTypeResource extends Resource
 {
     protected static ?string $model = AnalysisType::class;
 
-    protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
 
-    protected static ?string $navigationLabel = 'Types';
+    protected static ?string $navigationLabel = 'Tipos';
 
-    protected static ?string $navigationGroup = 'Analysis Settings';
+    protected static ?string $navigationGroup = 'Ajustes de los Análisis';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/analysis_type.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/analysis_type.plural_label');
+    }
+
+    public static function getStringAttribute(string $attribute): string
+    {
+        return __("filament/resources/analysis_type.{$attribute}");
+    }
 
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Select::make('analysis_id')->label('Analysis')
+            Forms\Components\Select::make('analysis_id')->label(static::getStringAttribute('analysis'))
                 ->relationship(
                     name: 'analysis',
                     titleAttribute: 'name'
                 )->preload()->searchable()
                 ->required()
                 ->createOptionForm(AnalysisResource::inputForm()),
-            Forms\Components\TextInput::make('name')->label('Analysis type name')
+            Forms\Components\TextInput::make('name')->label(static::getStringAttribute('name'))->autofocus()
                 ->required()->maxLength(20),
-            Forms\Components\Textarea::make('description')->label('Analysis type description')
+            Forms\Components\Textarea::make('description')->label(static::getStringAttribute('description'))
                 ->maxLength(255),
         ];
     }
@@ -45,12 +60,12 @@ class AnalysisTypeResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('analysis.name')->label('Analysis name')->searchable(),
-            Tables\Columns\TextColumn::make('name')->label('Analysis type name')
+            Tables\Columns\TextColumn::make('analysis.name')->label(static::getStringAttribute('analysis'))->searchable(),
+            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label('analysis type description')
+            Tables\Columns\TextColumn::make('description')->label(static::getStringAttribute('description'))
                 ->words(20),
         ];
     }

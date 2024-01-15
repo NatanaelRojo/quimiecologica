@@ -19,12 +19,27 @@ class GenderResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    protected static ?string $navigationGroup = 'Base Settings';
+    protected static ?string $navigationGroup = 'Ajustes Base';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/gender.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/gender.plural_label');
+    }
+
+    public static function getStringAttribute(string $attribute): string
+    {
+        return __("filament/resources/gender.{$attribute}");
+    }
 
     public static function inputForm(): array
     {
         return [
-            Forms\Components\TextInput::make('name')->autofocus()->label('Gender name')
+            Forms\Components\TextInput::make('name')->autofocus()->label(static::getStringAttribute('name'))
                 ->required()->maxLength(20),
         ];
     }
@@ -32,12 +47,10 @@ class GenderResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')->label('Gender name')
+            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label('Gender description')
-                ->words(20)
         ];
     }
 

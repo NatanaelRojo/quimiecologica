@@ -22,16 +22,31 @@ class AnalysisResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
 
-    protected static ?string $navigationLabel = 'Names';
+    protected static ?string $navigationLabel = 'Nombres';
 
-    protected static ?string $navigationGroup = 'Analysis Settings';
+    protected static ?string $navigationGroup = 'Ajustes de los Análisis';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/analysis.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/analysis.plural_label');
+    }
+
+    public static function getStringAttribute(string $attribute): string
+    {
+        return __("filament/resources/analysis.{$attribute}");
+    }
 
     public static function inputForm(): array
     {
         return [
-            Forms\Components\TextInput::make('name')->label('Analysis name')->autofocus()
+            Forms\Components\TextInput::make('name')->label(static::getStringAttribute('name'))->autofocus()
                 ->required()->maxLength(20),
-            Forms\Components\Textarea::make('description')->label('Analysis description')
+            Forms\Components\Textarea::make('description')->label(static::getStringAttribute('description'))
                 ->maxLength(255),
         ];
     }
@@ -39,11 +54,11 @@ class AnalysisResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')->label('Analysis name')
+            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label('analysis description')
+            Tables\Columns\TextColumn::make('description')->label(static::getStringAttribute('description'))
                 ->words(20),
         ];
     }

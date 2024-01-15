@@ -17,11 +17,23 @@ class PurchaseRetailOrderResource extends Resource
 {
     protected static ?string $model = PurchaseRetailOrder::class;
 
+    protected static ?int $navigationSort = 0;
+
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
 
-    protected static ?string $navigationLabel = 'Retail';
+    protected static ?string $navigationLabel = 'Al detal';
 
-    protected static ?string $navigationGroup = 'Orders';
+    protected static ?string $navigationGroup = 'Órdenes';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/purchase_retail_order.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/purchase_retail_order.plural_label');
+    }
 
     public static function inputForm(): array
     {

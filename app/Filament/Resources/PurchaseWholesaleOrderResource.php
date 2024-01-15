@@ -17,11 +17,23 @@ class PurchaseWholesaleOrderResource extends Resource
 {
     protected static ?string $model = PurchaseWholesaleOrder::class;
 
+    public static ?int $navigationSort = 1;
+
     protected static ?string $navigationIcon = 'heroicon-o-cube';
 
-    protected static ?string $navigationLabel = 'Wholesale';
+    protected static ?string $navigationLabel = 'Al mayor';
 
-    protected static ?string $navigationGroup = 'Orders';
+    protected static ?string $navigationGroup = 'Órdenes';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/purchase_wholesale_order.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/purchase_wholesale_order.plural_label');
+    }
 
     public static function inputForm(): array
     {

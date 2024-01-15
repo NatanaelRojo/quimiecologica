@@ -19,12 +19,27 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
-    protected static ?string $navigationGroup = 'Base Settings';
+    protected static ?string $navigationGroup = 'Ajustes Base';
+
+    public static function getModelLabel(): string
+    {
+        return __('filament/resources/category.label');
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return __('filament/resources/category.plural_label');
+    }
+
+    public static function getStringAttribute(string $attribute): string
+    {
+        return __("filament/resources/category.{$attribute}");
+    }
 
     public static function inputForm(): array
     {
         return [
-            Forms\Components\TextInput::make('name')->autofocus()->label('Category name')
+            Forms\Components\TextInput::make('name')->autofocus()->label(static::getStringAttribute('name'))
                 ->required()->maxLength(20),
         ];
     }
@@ -32,7 +47,7 @@ class CategoryResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')->label('Category name')
+            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
