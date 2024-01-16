@@ -1,10 +1,8 @@
 <?php
 
-// declare(strict_types=1);
-
 return [
-    'label' => "publicación",
-    'plural_label' => "publicaciones",
+    'label' => "Publicación",
+    'plural_label' => "Publicaciones",
     'categories' => 'Categorías',
     'genders' => 'Géneros',
     'title' => 'Título',

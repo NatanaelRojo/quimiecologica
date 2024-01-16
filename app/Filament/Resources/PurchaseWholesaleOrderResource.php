@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PurchaseWholesaleOrderResource\Pages;
 use App\Filament\Resources\PurchaseWholesaleOrderResource\RelationManagers;
 use App\Models\PurchaseWholesaleOrder;
+use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -70,10 +71,8 @@ class PurchaseWholesaleOrderResource extends Resource
                 ->searchable()->noSearchResultsMessage('No products found')->SearchPrompt('Search product')
                 ->createOptionForm(ProductResource::inputForm()),
             Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
-                ->options([
-                    'Litro',
-                    'Kilo',
-                ])->required(),
+                ->options(Unit::all('name'))
+                ->required(),
             Forms\Components\TextInput::make('product_quantity')->label(static::getAttributeLabel('product_quantity'))
                 ->required()->minValue(1)->numeric(),
         ];

@@ -75,7 +75,7 @@ class ProductResource extends Resource
             Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
             Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
-                ->searchable(query: function (Builder $query, string $search) {
+                ->searchable(query: function (Builder $query, string $search): Builder {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
