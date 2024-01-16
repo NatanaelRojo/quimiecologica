@@ -31,7 +31,7 @@ class CategoryResource extends Resource
         return __('filament/resources/category.plural_label');
     }
 
-    public static function getStringAttribute(string $attribute): string
+    public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/category.{$attribute}");
     }
@@ -39,7 +39,7 @@ class CategoryResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\TextInput::make('name')->autofocus()->label(static::getStringAttribute('name'))
+            Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20),
         ];
     }
@@ -47,7 +47,7 @@ class CategoryResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
+            Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),

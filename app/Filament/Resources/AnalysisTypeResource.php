@@ -35,7 +35,7 @@ class AnalysisTypeResource extends Resource
         return __('filament/resources/analysis_type.plural_label');
     }
 
-    public static function getStringAttribute(string $attribute): string
+    public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/analysis_type.{$attribute}");
     }
@@ -43,16 +43,16 @@ class AnalysisTypeResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Select::make('analysis_id')->label(static::getStringAttribute('analysis'))
+            Forms\Components\Select::make('analysis_id')->label(static::getAttributeLabel('analysis'))
                 ->relationship(
                     name: 'analysis',
                     titleAttribute: 'name'
                 )->preload()->searchable()
                 ->required()
                 ->createOptionForm(AnalysisResource::inputForm()),
-            Forms\Components\TextInput::make('name')->label(static::getStringAttribute('name'))->autofocus()
+            Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))->autofocus()
                 ->required()->maxLength(20),
-            Forms\Components\Textarea::make('description')->label(static::getStringAttribute('description'))
+            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
                 ->maxLength(255),
         ];
     }
@@ -60,12 +60,12 @@ class AnalysisTypeResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('analysis.name')->label(static::getStringAttribute('analysis'))->searchable(),
-            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
+            Tables\Columns\TextColumn::make('analysis.name')->label(static::getAttributeLabel('analysis'))->searchable(),
+            Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label(static::getStringAttribute('description'))
+            Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
                 ->words(20),
         ];
     }

@@ -35,6 +35,11 @@ class PurchaseRetailOrderResource extends Resource
         return __('filament/resources/purchase_retail_order.plural_label');
     }
 
+    public static function getAttributeLabel(string $attribute): string
+    {
+        return __("filament/resources/purchase_retail_order.{$attribute}");
+    }
+
     public static function inputForm(): array
     {
         return [
@@ -62,28 +67,28 @@ class PurchaseRetailOrderResource extends Resource
             //     ->searchable()
             //     ->required()
             //     ->createOptionForm(CategoryResource::inputForm()),
-            Forms\Components\TextInput::make('owner_firstname')->label('Owner firstname')->autofocus()
+            Forms\Components\TextInput::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))->autofocus()
                 ->required()->maxLength(30),
-            Forms\Components\TextInput::make('owner_lastname')->label('Owner lastname')
+            Forms\Components\TextInput::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
                 ->required()->maxLength(30),
-            Forms\Components\TextInput::make('owner_id')->label('Owner ID')
+            Forms\Components\TextInput::make('owner_id')->label(static::getAttributeLabel('owner_id'))
                 ->required(),
-            Forms\Components\TextInput::make('owner_phone_number')->label('Owner phone number')
+            Forms\Components\TextInput::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number'))
                 ->tel()->required(),
-            Forms\Components\TextInput::make('owner_state')->label('Owner state')
+            Forms\Components\TextInput::make('owner_state')->label(static::getAttributeLabel('owner_state'))
                 ->required(),
-            Forms\Components\TextInput::make('owner_city')->label('Owner city')
+            Forms\Components\TextInput::make('owner_city')->label(static::getAttributeLabel('owner_city'))
                 ->required(),
-            Forms\Components\TextInput::make('owner_address')->label('Owner address')
+            Forms\Components\TextInput::make('owner_address')->label(static::getAttributeLabel('owner_address'))
                 ->required(),
-            Forms\Components\TextInput::make('reference_number')->label('Reference')
+            Forms\Components\TextInput::make('reference_number')->label(static::getAttributeLabel('reference_number'))
                 ->required(),
-            Forms\Components\FileUpload::make('image')->label('Baucher')
+            Forms\Components\FileUpload::make('image')->label(static::getAttributeLabel('baucher'))
                 ->acceptedFileTypes(['application/pdf', 'image/png', 'image/jpeg']),
-            Forms\Components\TextInput::make('total_price')->label('Total price')
+            Forms\Components\TextInput::make('total_price')->label(static::getAttributeLabel('total_price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
-            Forms\Components\CheckboxList::make('products')->label('Products')
+            Forms\Components\CheckboxList::make('products')->label(static::getAttributeLabel('products'))
                 ->relationship(titleAttribute: 'name')
                 ->searchable()->noSearchResultsMessage('No products found')->SearchPrompt('Search products')
                 ->columns(2)
@@ -94,21 +99,21 @@ class PurchaseRetailOrderResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('owner_firstname')->label('Owner first name')
+            Tables\Columns\TextColumn::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_firstname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_lastname')->label('Owner last name')
+            Tables\Columns\TextColumn::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_lastname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_id')->label('Owner ID')
+            Tables\Columns\TextColumn::make('owner_id')->label(static::getAttributeLabel('owner_id'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_id', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('reference_number')->label('Baucher reference')
+            Tables\Columns\TextColumn::make('reference_number')->label(static::getAttributeLabel('reference_number'))
                 ->copyable(),
-            Tables\Columns\TextColumn::make('total_price')->label('Total price')
+            Tables\Columns\TextColumn::make('total_price')->label(static::getAttributeLabel('total_price'))
                 ->money('USD')
                 ->sortable(),
         ];

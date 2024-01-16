@@ -35,7 +35,7 @@ class PendingOrderResource extends Resource
         return __('filament/resources/pending_order.plural_label');
     }
 
-    public static function getStringAttribute(string $attribute): string
+    public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/pending_order.{$attribute}");
     }
@@ -67,23 +67,23 @@ class PendingOrderResource extends Resource
             //     ->searchable()
             //     ->required()
             //     ->createOptionForm(CategoryResource::inputForm()),
-            Forms\Components\TextInput::make('owner_firstname')->label(static::getStringAttribute('owner_firstname'))->autofocus()
+            Forms\Components\TextInput::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))->autofocus()
                 ->required()->maxLength(30),
-            Forms\Components\TextInput::make('owner_lastname')->label(static::getStringAttribute('owner_lastname'))
+            Forms\Components\TextInput::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
                 ->required()->maxLength(30),
-            Forms\Components\TextInput::make('owner_id')->label(static::getStringAttribute('owner_id'))
+            Forms\Components\TextInput::make('owner_id')->label(static::getAttributeLabel('owner_id'))
                 ->required()->maxLength(20),
-            Forms\Components\TextInput::make('owner_email')->label(static::getStringAttribute('owner_email'))
+            Forms\Components\TextInput::make('owner_email')->label(static::getAttributeLabel('owner_email'))
                 ->email()->required(),
-            Forms\Components\TextInput::make('owner_phone_number')->label(static::getStringAttribute('owner_phone_number'))
+            Forms\Components\TextInput::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number'))
                 ->tel()->required(),
-            Forms\Components\TextInput::make('owner_state')->label(static::getStringAttribute('owner_state'))
+            Forms\Components\TextInput::make('owner_state')->label(static::getAttributeLabel('owner_state'))
                 ->required(),
-            Forms\Components\TextInput::make('owner_city')->label(static::getStringAttribute('owner_city'))
+            Forms\Components\TextInput::make('owner_city')->label(static::getAttributeLabel('owner_city'))
                 ->required(),
-            Forms\Components\TextInput::make('owner_address')->label(static::getStringAttribute('owner_address'))
+            Forms\Components\TextInput::make('owner_address')->label(static::getAttributeLabel('owner_address'))
                 ->required(),
-            Forms\Components\TextInput::make('owner_request')->label(static::getStringAttribute('owner_request'))
+            Forms\Components\TextInput::make('owner_request')->label(static::getAttributeLabel('owner_request'))
                 ->required(),
             // Forms\Components\Select::make('product_id')
             //     ->label('Product')
@@ -99,25 +99,25 @@ class PendingOrderResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('owner_firstname')->label(static::getStringAttribute('owner_firstname'))
+            Tables\Columns\TextColumn::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_firstname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_lastname')->label(static::getStringAttribute('owner_lastname'))
+            Tables\Columns\TextColumn::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_lastname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_id')->label(static::getStringAttribute('owner_id'))
+            Tables\Columns\TextColumn::make('owner_id')->label(static::getAttributeLabel('owner_id'))
                 ->copyable()
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_id', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_email')->label(static::getStringAttribute('owner_email'))
+            Tables\Columns\TextColumn::make('owner_email')->label(static::getAttributeLabel('owner_email'))
                 ->copyable()
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_email', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_request')->label(static::getStringAttribute('owner_request'))->words(10),
+            Tables\Columns\TextColumn::make('owner_request')->label(static::getAttributeLabel('owner_request'))->words(10),
         ];
     }
 

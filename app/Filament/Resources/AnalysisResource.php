@@ -36,7 +36,7 @@ class AnalysisResource extends Resource
         return __('filament/resources/analysis.plural_label');
     }
 
-    public static function getStringAttribute(string $attribute): string
+    public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/analysis.{$attribute}");
     }
@@ -44,9 +44,9 @@ class AnalysisResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\TextInput::make('name')->label(static::getStringAttribute('name'))->autofocus()
+            Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))->autofocus()
                 ->required()->maxLength(20),
-            Forms\Components\Textarea::make('description')->label(static::getStringAttribute('description'))
+            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
                 ->maxLength(255),
         ];
     }
@@ -54,11 +54,11 @@ class AnalysisResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('name')->label(static::getStringAttribute('name'))
+            Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label(static::getStringAttribute('description'))
+            Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
                 ->words(20),
         ];
     }

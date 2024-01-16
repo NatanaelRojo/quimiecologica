@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'label' => "órden de pedido",
-    'plural_label' => "órdenes de pedido",
+    'label' => "Orden de pedido",
+    'plural_label' => "Órdenes de pedido",
     'owner_firstname' => 'Nombre del titular',
     'owner_lastname' => 'Apellido del titular',
     'owner_id' => 'Cédula de identidad del titular',

@@ -36,31 +36,36 @@ class PostResource extends Resource
         return __('filament/resources/post.plural_label');
     }
 
+    public static function getAttributeLabel(string $attribute): string
+    {
+        return __("filament/resources/post.{$attribute}");
+    }
+
     public static function inputForm(): array
     {
         return [
             Forms\Components\Toggle::make('published')
                 ->onColor('success')->offColor('danger')
                 ->columnSpan(2),
-            Forms\Components\FileUpload::make('thumbnail')->label('Post thumbnail')
+            Forms\Components\FileUpload::make('thumbnail')->label(static::getAttributeLabel('thumbnail'))
                 ->image()
                 ->columnSpan(2),
-            Forms\Components\Select::make('category_id')->label('Post category')
+            Forms\Components\Select::make('category_id')->label(static::getAttributeLabel('categories'))
                 ->relationship(name: 'categories', titleAttribute: 'name')->preload()->searchable()
                 ->multiple()
                 ->createOptionForm(CategoryResource::inputForm()),
-            Forms\Components\Select::make('gender_id')->label('Post category')
+            Forms\Components\Select::make('gender_id')->label(static::getAttributeLabel('genders'))
                 ->relationship(name: 'genders', titleAttribute: 'name')->preload()->searchable()
                 ->multiple()
                 ->createOptionForm(GenderResource::inputForm()),
-            Forms\Components\TextInput::make('title')->label('Post title')
+            Forms\Components\TextInput::make('title')->label(static::getAttributeLabel('title'))->autofocus()
                 ->live(onBlur: true)
                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                 ->required()
                 ->columnSpan(2),
             Forms\Components\TextInput::make('slug')->label('Post slug')
                 ->disabled()->hidden(),
-            Forms\Components\RichEditor::make('body')->label('Post body')->autofocus(false)
+            Forms\Components\RichEditor::make('body')->label(static::getAttributeLabel('body'))
                 ->required()
                 ->columnSpan('full')
                 ->fileAttachmentsDirectory('posts')
@@ -71,10 +76,10 @@ class PostResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('categories.name')->label('Post category')->searchable(),
-            Tables\Columns\TextColumn::make('genders.name')->label('Post category')->searchable(),
-            Tables\Columns\ToggleColumn::make('published')->label('Is published'),
-            Tables\Columns\TextColumn::make('title')->label('Post title')
+            Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
+            Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
+            Tables\Columns\ToggleColumn::make('published')->label(static::getAttributeLabel('published')),
+            Tables\Columns\TextColumn::make('title')->label(static::getAttributeLabel('title'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),

@@ -34,30 +34,34 @@ class ProductResource extends Resource
         return __('filament/resources/product.plural_label');
     }
 
+    public static function getAttributeLabel(string $attribute): string
+    {
+        return __("filament/resources/product.{$attribute}");
+    }
+
     public static function inputForm(): array
     {
         return [
             // Forms\Components\Select::make('service_id')->label('Service')
             //     ->relationship('service', 'name')->searchable()->preload()
             //     ->createOptionForm(ServiceResource::inputForm()),
-            Forms\Components\Select::make('category_id.name')->label('Category')
+            Forms\Components\Select::make('category_id.name')->label(static::getAttributeLabel('categories'))
                 ->multiple()->relationship('categories', 'name')->searchable()->preload()
                 ->createOptionForm(CategoryResource::inputForm()),
-            Forms\Components\Select::make('gender_id')->label('Gender')
+            Forms\Components\Select::make('gender_id')->label(static::getAttributeLabel('genders'))
                 ->relationship('genders', 'name')
                 ->multiple()->searchable()->preload()
                 ->createOptionForm(GenderResource::inputForm()),
-            Forms\Components\TextInput::make('name')->autofocus()->label('Product name')
+            Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(255)->minLength(4)
                 ->columnSpan('full'),
-            Forms\Components\Textarea::make('description')->label('Product description')
+            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
                 ->required()
                 ->columnSpan('full'),
-            Forms\Components\TextInput::make('price')->label('Product price')
+            Forms\Components\TextInput::make('price')->label(static::getAttributeLabel('price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
-            Forms\Components\FileUpload::make('image_urls')
-                ->label('Product images')
+            Forms\Components\FileUpload::make('image_urls')->label(static::getAttributeLabel('images'))
                 ->multiple()
                 ->image()
                 ->minFiles(1)
@@ -68,15 +72,16 @@ class ProductResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('gender.name')->label('Gender product')->searchable(),
-            Tables\Columns\TextColumn::make('category.name')->label('Category product')->searchable(),
-            Tables\Columns\TextColumn::make('name')->label('Product name')
+            Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
+            Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
+            Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('description')->label('Product description')
+            Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
                 ->words(20),
-            Tables\Columns\TextColumn::make('price')->money('USD')->sortable(),
+            Tables\Columns\TextColumn::make('price')->label(static::getAttributeLabel('price'))
+                ->money('USD')->sortable(),
         ];
     }
 
