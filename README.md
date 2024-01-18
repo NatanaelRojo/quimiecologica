@@ -6,9 +6,27 @@
 
 ## Versiones requeridas:
 
-    -Versión de PHP requerida: 8.1 a 8.3
+    -Versión de PHP requerida: 8.1
     -Versión de NodeJS requerida: v20.11.0
     -Versión de NPM requerida: v10.2.4
+
+## Instalar los siguientes paquetes del sistema operativo:
+
+    php = 8.1.x
+    php-xml
+    php-gd
+    php-mbstring
+    php-tokenizer
+    php-zip
+    php-cli
+    php-curl
+    php-pgsql
+    postgresql
+    curl
+    zip
+    unzip
+    intl
+    bcmath
 
 ## Instalar las dependencias de php del proyecto:
 
@@ -25,10 +43,6 @@
 ## Generar un identificador único para la aplicación:
 
     $ php artisan key:generate
-
-## Compilar los archivos javascript y css de la aplicación:
-
-    $ npm run dev
 
 ## Crear una base de datos y configurar las credenciales de acceso a la base de datos de PostgreSQL en el archivo .env:
 
@@ -47,20 +61,25 @@
 
     $ php artisan migrate
 
-## Probar la aplicación:
+## Crear un usuario administrador en la base de datos:
+
+    $ php artisan make:filament-user
+
+## Probar la aplicación, se usarán 2 consolas a la vez:
+
+En una consola ejecutar:
+
+    $ npm run dev
+
+Esto levantará el servidor local de Vite
+
+En otra consola ejecutar:
 
     $ php artisan serve
 
 Este comando levanta un servidor en la dirección ip 127.0.0.1 o localhost y en
 el puerto 8000, para verificarlo puedes acceder a el enlace http://127.0.0.1:8000/
 
-Para evitar inconvenientes o errores de origines cruzados de peticiones en la
-aplicación al registrar datos, se debe configurar en el archivo .env la url
-correcta de la aplicación en la variable APP_URL, bien sea http://127.0.0.1 o
-http://localhost según se necesite.
+## Autenticarse con el usuario creado con filament
 
-De igual forma se puede levantar el servidor con una dirección IP y un puerto
-diferente, esta dirección IP también se debe configurar en la variable APP_URL
-del archivo .env:
-
-    $ php artisan serve --host=192.168.0.100 --port=8000
+Navegar a: http://127.0.0.1:8000/admin/login
