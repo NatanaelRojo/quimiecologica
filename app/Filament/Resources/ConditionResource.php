@@ -4,7 +4,9 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ConditionResource\Pages;
 use App\Filament\Resources\ConditionResource\RelationManagers;
+use App\Models\AnalysisParameter;
 use App\Models\Condition;
+use App\Models\Service;
 use DragonCode\Support\Concerns\Makeable;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -40,6 +42,14 @@ class ConditionResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\MorphToSelect::make('conditionable')
+                ->types([
+                    Forms\Components\MorphToSelect\Type::make(Service::class)->titleAttribute('name')
+                        ->label(static::getAttributeLabel('services')),
+                    Forms\Components\MorphToSelect\Type::make(AnalysisParameter::class)->titleAttribute('name')
+                        ->label(static::getAttributeLabel('analysis_parameters')),
+                ])->searchable()->preload()
+                ->required(),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))->autofocus()
                 ->required(),
             Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
