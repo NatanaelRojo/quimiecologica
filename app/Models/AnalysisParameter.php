@@ -6,6 +6,7 @@ use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class AnalysisParameter extends Model
 {
@@ -31,5 +32,10 @@ class AnalysisParameter extends Model
     public function analysisType(): BelongsTo
     {
         return $this->belongsTo(AnalysisType::class);
+    }
+
+    public function conditions(): MorphMany
+    {
+        return $this->morphMany(Condition::class, 'conditionable');
     }
 }

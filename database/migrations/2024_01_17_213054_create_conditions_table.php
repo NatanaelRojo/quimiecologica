@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('services')) {
-            Schema::create('services', function (Blueprint $table) {
+        if (!Schema::hasTable('conditions')) {
+            Schema::create('conditions', function (Blueprint $table) {
                 $table->id();
-                $table->string('name', 20);
-                $table->string('description')->nullable();
-                $table->string('considerations');
+                $table->string('name');
+                $table->text('description');
+                $table->unsignedBigInteger('conditionable_id');
+                $table->string('conditionable_type');
                 $table->timestamps();
             });
         }
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('conditions');
     }
 };
