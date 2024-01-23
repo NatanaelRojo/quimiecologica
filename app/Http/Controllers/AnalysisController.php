@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ServiceResource;
-use App\Models\Service;
+use App\Http\Resources\AnalysisResource;
+use App\Models\Analysis;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ServiceController extends Controller
+class AnalysisController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        $services = Service::all();
-        return response()->json(ServiceResource::collection($services), 200);
+        $analysis = Analysis::all();
+
+        return response()->json(AnalysisResource::collection($analysis), 200);
     }
 
     /**
@@ -32,20 +32,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $newService = Service::create([
+        $newAnalysis = Analysis::create([
             'name' => $request->name,
             'description' => $request->description,
         ]);
 
-        return response()->json(new ServiceResource($newService), 201);
+        return response()->json(new AnalysisResource($newAnalysis), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Service $service): JsonResponse
+    public function show(Analysis  $analysis): JsonResponse
     {
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new AnalysisResource($analysis));
     }
 
     /**
@@ -59,22 +59,22 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service): JsonResponse
+    public function update(Request $request, Analysis $analysis): JsonResponse
     {
-        $service->update([
+        $analysis->update([
             'name' => $request->name,
             'description' => $request->description,
         ]);
 
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new AnalysisResource($analysis), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service): JsonResponse
+    public function destroy(Analysis $analysis): JsonResponse
     {
-        $service->delete();
+        $analysis->delete();
 
         return response()->json()->setStatusCode(204);
     }

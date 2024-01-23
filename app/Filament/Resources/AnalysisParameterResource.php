@@ -71,7 +71,7 @@ class AnalysisParameterResource extends Resource
     {
         return [
             Tables\Columns\TextColumn::make('analysis.name')->label(static::getAttributeLabel('analysis'))->searchable(),
-            Tables\Columns\TextColumn::make('analysisType.name')->label(static::getAttributeLabel('type'))->searchable(),
+            Tables\Columns\TextColumn::make('analysisType.name')->label(static::getAttributeLabel('analysis_type'))->searchable(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
@@ -115,7 +115,7 @@ class AnalysisParameterResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ConditionsRelationManager::class,
         ];
     }
 

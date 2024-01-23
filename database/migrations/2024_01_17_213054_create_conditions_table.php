@@ -16,8 +16,8 @@ return new class extends Migration
                 $table->id();
                 $table->string('name');
                 $table->text('description');
-                $table->unsignedBigInteger('conditionable_id');
-                $table->string('conditionable_type');
+                $table->unsignedBigInteger('conditionable_id')->nullable();
+                $table->string('conditionable_type')->nullable();
                 $table->timestamps();
             });
         }

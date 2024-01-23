@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ServiceResource;
-use App\Models\Service;
+use App\Http\Resources\UnitResource;
+use App\Models\Unit;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ServiceController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        $services = Service::all();
-        return response()->json(ServiceResource::collection($services), 200);
+        $units = Unit::all();
+
+        return response()->json(UnitResource::collection($units), 200);
     }
 
     /**
@@ -32,20 +32,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $newService = Service::create([
+        $newUnit = Unit::create([
             'name' => $request->name,
-            'description' => $request->description,
+            'abbreviation' => $request->abbreviation,
         ]);
 
-        return response()->json(new ServiceResource($newService), 201);
+        return response()->json(new UnitResource($newUnit), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Service $service): JsonResponse
+    public function show(Unit $unit): JsonResponse
     {
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new UnitResource($unit), 200);
     }
 
     /**
@@ -59,22 +59,22 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service): JsonResponse
+    public function update(Request $request, Unit $unit): JsonResponse
     {
-        $service->update([
+        $unit->update([
             'name' => $request->name,
-            'description' => $request->description,
+            'abbreviation' => $request->abbreviation,
         ]);
 
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new UnitResource($unit), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service): JsonResponse
+    public function destroy(Unit $unit): JsonResponse
     {
-        $service->delete();
+        $unit->delete();
 
         return response()->json()->setStatusCode(204);
     }

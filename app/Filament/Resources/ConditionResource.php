@@ -47,9 +47,11 @@ class ConditionResource extends Resource
                     Forms\Components\MorphToSelect\Type::make(Service::class)->titleAttribute('name')
                         ->label(static::getAttributeLabel('services')),
                     Forms\Components\MorphToSelect\Type::make(AnalysisParameter::class)->titleAttribute('name')
-                        ->label(static::getAttributeLabel('analysis_parameters')),
-                ])->searchable()->preload()
-                ->required(),
+                        ->label(static::getAttributeLabel('analysis_parameters'))
+                        ->getOptionLabelFromRecordUsing(function (AnalysisParameter $record): string {
+                            return "{$record->name} ({$record->analysis->name})";
+                        }),
+                ])->searchable()->preload(),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))->autofocus()
                 ->required(),
             Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
@@ -57,7 +59,26 @@ class ConditionResource extends Resource
         ];
     }
 
+    public static function relationManagerInputForm(): array
+    {
+        return [
+            Forms\Components\TextInput::make('name')->label(ConditionResource::getAttributeLabel('name'))
+                ->required()
+                ->maxLength(255),
+            Forms\Components\Textarea::make('description')->label(ConditionResource::getAttributeLabel('description'))
+                ->required()
+        ];
+    }
+
     public static function tableColumns(): array
+    {
+        return [
+            Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name')),
+            Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description')),
+        ];
+    }
+
+    public static function relationManagerTableColumns(): array
     {
         return [
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name')),

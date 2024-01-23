@@ -13,6 +13,8 @@ class Condition extends Model
     protected $fillable = [
         'name',
         'description',
+        'conditionable_id',
+        'conditionable_type',
     ];
 
     public function conditionable(): MorphTo

@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ServiceResource;
-use App\Models\Service;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ServiceController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        $services = Service::all();
-        return response()->json(ServiceResource::collection($services), 200);
+        $categories = Category::all();
+
+        return response()->json(CategoryResource::collection($categories), 200);
     }
 
     /**
@@ -32,20 +32,19 @@ class ServiceController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $newService = Service::create([
+        $newCategory = Category::create([
             'name' => $request->name,
-            'description' => $request->description,
         ]);
 
-        return response()->json(new ServiceResource($newService), 201);
+        return response()->json(new CategoryResource($newCategory), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Service $service): JsonResponse
+    public function show(Category $category): JsonResponse
     {
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new CategoryResource($category), 200);
     }
 
     /**
@@ -59,22 +58,21 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service): JsonResponse
+    public function update(Request $request, Category $category): JsonResponse
     {
-        $service->update([
+        $category->update([
             'name' => $request->name,
-            'description' => $request->description,
         ]);
 
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new CategoryResource($category), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service): JsonResponse
+    public function destroy(Category $category): JsonResponse
     {
-        $service->delete();
+        $category->delete();
 
         return response()->json()->setStatusCode(204);
     }

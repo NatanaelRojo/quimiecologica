@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ServiceResource;
-use App\Models\Service;
+use App\Http\Resources\GenderResource;
+use App\Models\Gender;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class ServiceController extends Controller
+class GenderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(): JsonResponse
     {
-        $services = Service::all();
-        return response()->json(ServiceResource::collection($services), 200);
+        $genders = Gender::all();
+
+        return response()->json(GenderResource::collection($genders), 200);
     }
 
     /**
@@ -32,20 +32,19 @@ class ServiceController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $newService = Service::create([
+        $newGender = Gender::create([
             'name' => $request->name,
-            'description' => $request->description,
         ]);
 
-        return response()->json(new ServiceResource($newService), 201);
+        return response()->json(new GenderResource($newGender), 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Service $service): JsonResponse
+    public function show(Gender $gender): JsonResponse
     {
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new GenderResource($gender), 200);
     }
 
     /**
@@ -59,22 +58,21 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service): JsonResponse
+    public function update(Request $request, Gender $gender): JsonResponse
     {
-        $service->update([
+        $gender->update([
             'name' => $request->name,
-            'description' => $request->description,
         ]);
 
-        return response()->json(new ServiceResource($service), 200);
+        return response()->json(new GenderResource($gender), 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service): JsonResponse
+    public function destroy(Gender $gender): JsonResponse
     {
-        $service->delete();
+        $gender->delete();
 
         return response()->json()->setStatusCode(204);
     }

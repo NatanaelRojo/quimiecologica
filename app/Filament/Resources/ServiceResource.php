@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ServiceResource\Pages;
 use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Models\Condition;
 use App\Models\Service;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -90,7 +91,7 @@ class ServiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ConditionsRelationManager::class,
         ];
     }
 

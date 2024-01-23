@@ -44,7 +44,7 @@ class PostResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Toggle::make('published')
+            Forms\Components\Toggle::make('published')->label(static::getAttributeLabel('published'))
                 ->onColor('success')->offColor('danger')
                 ->columnSpan(2),
             Forms\Components\FileUpload::make('thumbnail')->label(static::getAttributeLabel('thumbnail'))
@@ -64,7 +64,7 @@ class PostResource extends Resource
                 ->required()
                 ->columnSpan(2),
             Forms\Components\TextInput::make('slug')->label('Post slug')
-                ->disabled()->hidden(),
+                ->disabled()->dehydrated(),
             Forms\Components\RichEditor::make('body')->label(static::getAttributeLabel('body'))
                 ->required()
                 ->columnSpan('full')
