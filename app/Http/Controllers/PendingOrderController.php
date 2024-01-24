@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PendingOrder\StorePendingOrderRequest;
+use App\Http\Requests\PendingOrder\UpdatePendingOrderRequest;
 use App\Http\Resources\PendingOrderResource;
 use App\Models\PendingOrder;
 use Illuminate\Http\JsonResponse;
@@ -30,9 +32,9 @@ class PendingOrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): JsonResponse
+    public function store(StorePendingOrderRequest $request): JsonResponse
     {
-        $newPendingOrder = PendingOrder::create($request->all());
+        $newPendingOrder = PendingOrder::create($request->validated());
 
         return response()->json(new PendingOrderResource($newPendingOrder), 201);
     }
@@ -56,9 +58,9 @@ class PendingOrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PendingOrder $pending_order): JsonResponse
+    public function update(UpdatePendingOrderRequest $request, PendingOrder $pending_order): JsonResponse
     {
-        $pending_order->update($request->all());
+        $pending_order->update($request->validated());
 
         return response()->json(new PendingOrderResource($pending_order), 200);
     }

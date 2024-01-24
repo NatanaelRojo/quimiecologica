@@ -25,7 +25,7 @@ return new class extends Migration
                 // $table->foreignIdFor(Product::class);
                 $table->string('owner_firstname', 30);
                 $table->string('owner_lastname');
-                $table->string('owner_id', '20');
+                $table->string('owner_id', 20);
                 $table->string('owner_email');
                 $table->string('owner_phone_number');
                 $table->string('owner_state');
