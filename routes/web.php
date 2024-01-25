@@ -20,6 +20,10 @@ Route::get('/test', function () {
     return Inertia::render('Test');
 });
 
+Route::get('/about-us', function () {
+    return Inertia::render('AboutUs');
+});
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
