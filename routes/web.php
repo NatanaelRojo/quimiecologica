@@ -16,14 +16,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/test', function () {
-    return Inertia::render('Test');
-});
-
-Route::get('/about-us', function () {
-    return Inertia::render('AboutUs');
-});
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -32,6 +24,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/about-us', function () {
+    return Inertia::render('AboutUs');
+})->name('about-us');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -42,5 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+/*
+Route::get('/test', function () {
+    return Inertia::render('Test');
+});
+*/
 
 require __DIR__ . '/auth.php';

@@ -13,36 +13,36 @@
         @inertiaHead
     </head>
     <body class="gradient leading-relaxed tracking-wide flex flex-col font-sans antialiased">
+        @include('layouts.navbar')
         @inertia
+        @include('layouts.footer')
     </body>
 
     <script>
-    // Cargar métodos después que se haya cargado el DOM.
-    document.addEventListener("DOMContentLoaded", function () {
-        var app = document.getElementById("app");
+        /*Toggle dropdown list*/
+        var navMenuDiv = document.getElementById("nav-content");
+        var navMenu = document.getElementById("nav-toggle");
 
-        if (app) {
-            app.addEventListener("click", function (e) {
-                var target = e.target;
+        document.onclick = check;
+        function check(e) {
+            var target = (e && e.target) || (event && event.srcElement);
 
-                // Obtener la referencia a los elementos dentro del componente Vue
-                var navMenuDiv = app.querySelector("#nav-content");
-                var navMenu = app.querySelector("#nav-toggle");
-
-                if (!checkParent(target, navMenuDiv)) {
-                    if (checkParent(target, navMenu)) {
-                        if (navMenuDiv.classList.contains("hidden")) {
-                            navMenuDiv.classList.remove("hidden");
-                        } else {
-                            navMenuDiv.classList.add("hidden");
-                        }
+            //Nav Menu
+            if (!checkParent(target, navMenuDiv)) {
+                // click NOT on the menu
+                if (checkParent(target, navMenu)) {
+                    // click on the link
+                    if (navMenuDiv.classList.contains("hidden")) {
+                        navMenuDiv.classList.remove("hidden");
                     } else {
                         navMenuDiv.classList.add("hidden");
                     }
+                } else {
+                    // click both outside link and outside menu, hide menu
+                    navMenuDiv.classList.add("hidden");
                 }
-            });
+            }
         }
-
         function checkParent(t, elm) {
             while (t.parentNode) {
                 if (t == elm) {
@@ -52,6 +52,5 @@
             }
             return false;
         }
-    });
     </script>
 </html>
