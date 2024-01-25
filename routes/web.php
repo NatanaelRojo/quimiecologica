@@ -25,9 +25,30 @@ Route::get('/', function () {
     ]);
 });
 
+// Página de Acerca de nosotros
 Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
 })->name('about-us');
+
+// Página de Productos
+Route::get('/products', function () {
+    return Inertia::render('Products');
+})->name('products');
+
+// Página de Servicios
+Route::get('/services', function () {
+    return Inertia::render('Services');
+})->name('services');
+
+// Página de Blog
+Route::get('/blog', function () {
+    return Inertia::render('Blog');
+})->name('blog');
+
+// Página de Contacto
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+})->name('contact');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

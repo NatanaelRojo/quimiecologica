@@ -59,7 +59,7 @@
                 <li class="mr-3">
                     <a
                         class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                        href="#"
+                        href="/products"
                     >
                         Productos
                     </a>
@@ -67,7 +67,7 @@
                 <li class="mr-3">
                     <a
                         class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                        href="#"
+                        href="/services"
                     >
                         Servicios
                     </a>
@@ -75,7 +75,7 @@
                 <li class="mr-3">
                     <a
                         class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                        href="#"
+                        href="/blog"
                     >
                         Blog
                     </a>
@@ -83,7 +83,7 @@
                 <li class="mr-3">
                     <a
                         class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                        href="#"
+                        href="/contact"
                     >
                         Contacto
                     </a>
