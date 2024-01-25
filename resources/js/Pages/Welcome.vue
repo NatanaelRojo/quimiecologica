@@ -19,10 +19,10 @@ import { Head, Link } from '@inertiajs/vue3';
             </div>
         </div>
         <div class="w-full font-bold text-xl text-gray-800 px-6 text-center">
-            GETTING STARTED
+            Fabricación de productos químicos
         </div>
         <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 text-center">
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+            Quimiecologi C.A. Línea Facial BASTT®
         </p>
     </div>
     <!-- Final Sección 1 -->
