@@ -3,6 +3,10 @@ import { Head, Link } from '@inertiajs/vue3';
 
 const message = "Hello!!!";
 
+function myMethod() {
+    console.log("Ejecutando myMethod");
+}
+
 /*
 const btn = document.getElementById('menu-btn')
 const nav = document.getElementById('menu')
@@ -84,6 +88,7 @@ btn.addEventListener('click', () => {
             <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
                 Manage makes it simple for software teams to plan day-to-day tasks
                 while keeping the larger team goals in view.
+                <button @click="myMethod">Ejecutar Método</button>
             </p>
             <div class="flex justify-center md:justify-start">
                 <a
