@@ -42,7 +42,7 @@ class ConditionResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\MorphToSelect::make('conditionable')
+            Forms\Components\MorphToSelect::make('conditionable')->label(static::getAttributeLabel('conditionable'))
                 ->types([
                     Forms\Components\MorphToSelect\Type::make(Service::class)->titleAttribute('name')
                         ->label(static::getAttributeLabel('services')),

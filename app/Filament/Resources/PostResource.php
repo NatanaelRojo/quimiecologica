@@ -63,7 +63,7 @@ class PostResource extends Resource
                 ->afterStateUpdated(fn (Set $set, ?string $state) => $set('slug', Str::slug($state)))
                 ->required()
                 ->columnSpan(2),
-            Forms\Components\TextInput::make('slug')->label('Post slug')
+            Forms\Components\TextInput::make('slug')->label(static::getAttributeLabel('slug'))
                 ->disabled()->dehydrated(),
             Forms\Components\RichEditor::make('body')->label(static::getAttributeLabel('body'))
                 ->required()

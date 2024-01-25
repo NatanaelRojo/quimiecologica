@@ -7,6 +7,7 @@ return [
     'categories' => 'Categorías',
     'genders' => 'Géneros',
     'title' => 'Título',
+    'slug' => 'Alias',
     'body' => 'Cuerpo',
     'published' => 'Publicado',
 ];

@@ -6,6 +6,10 @@ use App\Http\Controllers\AnalysisTypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\GenderController;
+use App\Http\Controllers\PendingOrderController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseRetailOrderController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Http\Request;
@@ -30,6 +34,10 @@ Route::resource('/analysis-types', AnalysisTypeController::class);
 Route::resource('/analysis-parameters', AnalysisParameterController::class);
 Route::resource('/conditions', ConditionController::class);
 Route::resource('/units', UnitController::class);
+Route::resource('/pending-orders', PendingOrderController::class);
+Route::apiResource('/posts', PostController::class);
+Route::apiResource('/products', ProductController::class);
+Route::resource('/purchase-retail-orders', PurchaseRetailOrderController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
