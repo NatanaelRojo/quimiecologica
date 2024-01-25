@@ -1,5 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+
+const message = "Hello!!!";
 </script>
 
 <template>
@@ -20,7 +22,7 @@ import { Head, Link } from '@inertiajs/vue3';
     <section class="bg-white py-16">
         <div class="container mx-auto">
         <!-- Contenido de la sección 1 -->
-        <h1 class="text-4xl font-bold mb-4">Welcome</h1>
+        <h1 class="text-4xl font-bold mb-4">{{ message }}</h1>
         <p class="text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
     </section>
