@@ -21,7 +21,7 @@ return new class extends Migration
                 // $table->foreignIdFor(Gender::class);
                 // $table->foreignIdFor(Category::class);
                 $table->string('owner_firstname', 30);
-                $table->string('owner_lastname');
+                $table->string('owner_lastname', 30);
                 $table->string('owner_id');
                 $table->string('owner_phone_number');
                 $table->string('owner_city');

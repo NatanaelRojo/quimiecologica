@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Post;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class UpdatePostRequest extends FormRequest
 {
@@ -11,7 +13,12 @@ class UpdatePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->validationErrorResponse($validator->errors()));
     }
 
     /**
@@ -22,7 +29,12 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['bail', 'nullable', 'string', 'min:4', 'max:255'],
+            'thumbnail' => ['bail', 'nullable', 'string'],
+            'body' => ['bail', 'nullable', 'string'],
+            'published' => ['bail', 'nullable', 'boolean'],
+            'category_id' => ['bail', 'nullable', 'numeric'],
+            'gender_id' => ['bail', 'nullable', 'numeric'],
         ];
     }
 }
