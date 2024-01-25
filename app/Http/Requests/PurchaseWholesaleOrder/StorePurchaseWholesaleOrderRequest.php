@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\PurchaseRetailOrder;
+namespace App\Http\Requests\PurchaseWholesaleOrder;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StorePurchaseRetailOrderRequest extends FormRequest
+class StorePurchaseWholesaleOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -40,6 +40,9 @@ class StorePurchaseRetailOrderRequest extends FormRequest
             'reference_number' => ['bail', 'required', 'string', 'regex:/^[0-9]+$/'],
             'image' => ['bail', 'nullable', 'file', 'mimes:png,jpeg,pdf'],
             'total_price' => ['bail', 'required', 'numeric', 'integer', 'min:0'],
+            'unit' => ['bail', 'required', 'string'],
+            'product_quantity' => ['bail', 'required', 'numeric', 'integer'],
+            'product_id' => ['bail', 'required', 'numeric', 'integer', 'min:0'],
         ];
     }
 }
