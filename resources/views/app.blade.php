@@ -8,7 +8,6 @@
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
         @routes
@@ -16,7 +15,46 @@
         {{-- @vite('resources/js/app.js') --}}
         @inertiaHead
     </head>
-    <body class="font-sans antialiased">
+    <body class="gradient leading-relaxed tracking-wide flex flex-col font-sans antialiased">
         @inertia
     </body>
+
+    <script>
+    // Cargar métodos después que se haya cargado el DOM.
+    document.addEventListener("DOMContentLoaded", function () {
+        var app = document.getElementById("app");
+
+        if (app) {
+            app.addEventListener("click", function (e) {
+                var target = e.target;
+
+                // Obtener la referencia a los elementos dentro del componente Vue
+                var navMenuDiv = app.querySelector("#nav-content");
+                var navMenu = app.querySelector("#nav-toggle");
+
+                if (!checkParent(target, navMenuDiv)) {
+                    if (checkParent(target, navMenu)) {
+                        if (navMenuDiv.classList.contains("hidden")) {
+                            navMenuDiv.classList.remove("hidden");
+                        } else {
+                            navMenuDiv.classList.add("hidden");
+                        }
+                    } else {
+                        navMenuDiv.classList.add("hidden");
+                    }
+                }
+            });
+        }
+
+        function checkParent(t, elm) {
+            while (t.parentNode) {
+                if (t == elm) {
+                    return true;
+                }
+                t = t.parentNode;
+            }
+            return false;
+        }
+    });
+    </script>
 </html>
