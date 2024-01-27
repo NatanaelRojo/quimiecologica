@@ -65,7 +65,8 @@ class ProductResource extends Resource
                 ->multiple()
                 ->image()
                 ->minFiles(1)
-                ->maxFiles(5),
+                ->maxFiles(5)
+                ->reorderable(),
         ];
     }
 
