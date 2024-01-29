@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -17,6 +19,23 @@ class ProductController extends Controller
         $products = Product::all();
 
         return response()->json(ProductResource::collection($products), 200);
+    }
+
+    /**
+     * Filter products by a given category or gender
+     */
+    public function filter(Request $request): JsonResponse
+    {
+        $categories = $request->input('categories') ? explode(',', $request->input('categories')) : [];
+        $genders = $request->input('genders') ? explode(',', $request->input('genders')) : [];
+
+        if (empty($categories) && empty($genders)) {
+            return response()->json(['message' => 'no hay parametros'], 200);
+        }
+
+        $filteredProducts = Product::filterBy($categories, $genders)->get();
+
+        return response()->json(ProductResource::collection($filteredProducts->unique('id')), 200);
     }
 
     /**

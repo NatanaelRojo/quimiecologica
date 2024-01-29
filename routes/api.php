@@ -36,6 +36,7 @@ Route::resource('/conditions', ConditionController::class);
 Route::resource('/units', UnitController::class);
 Route::resource('/pending-orders', PendingOrderController::class);
 Route::apiResource('/posts', PostController::class);
+Route::get('/products/filter/', [ProductController::class, 'filter'])->name('filter');
 Route::apiResource('/products', ProductController::class);
 Route::resource('/purchase-retail-orders', PurchaseRetailOrderController::class);
 

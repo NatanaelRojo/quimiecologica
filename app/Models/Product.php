@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Casts\MoneyCast;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -56,5 +57,14 @@ class Product extends Model
     public function purchaseRetailOrders(): BelongsToMany
     {
         return $this->belongsToMany(PurchaseRetailOrder::class, 'product_purchase_order');
+    }
+
+    public function scopeFilterBy(Builder $query, array $categories, array $genders): void
+    {
+        $query->when(!empty($categories), function (Builder $query) use ($categories): void {
+            $query->whereHas('categories', fn (Builder $q) => $q->whereIn('name', $categories));
+        })->when(!empty($genders), function (Builder $query) use ($genders): void {
+            $query->whereHas('genders', fn (Builder $q) => $q->whereIn('name', $genders));
+        });
     }
 }
