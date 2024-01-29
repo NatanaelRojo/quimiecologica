@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ProductController extends Controller
 {
@@ -49,11 +51,22 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Return the specified resource.
      */
     public function show(Product $product): JsonResponse
     {
-        return response()->json(new ProductResource($product), 200);
+        return response()->json(new ProductResource($product));
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showDetail(Product $product): Response
+    {
+        $product = Product::where('id', $product->id)->with(['categories', 'genders'])->first();
+        return Inertia::render('ProductDetail', [
+            'product' => $product,
+        ]);
     }
 
     /**
