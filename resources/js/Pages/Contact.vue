@@ -1,9 +1,12 @@
 <script setup>
+import NavBar from '@/Layouts/NavBar.vue';
 import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
     <Head title="Contacto" />
+
+    <NavBar />
 
     <!-- Sección -->
     <section class="bg-white border-b py-12 ">
