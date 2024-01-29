@@ -1,68 +1,67 @@
 <template>
-    <div>
+    <Head title="Productos" />
 
-        <Head title="Productos" />
+    <NavBar />
 
-        <!-- Sección Productos -->
-        <section class="bg-white border-b py-12">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
-                    Nuestros Productos
-                </h2>
+    <!-- Sección Productos -->
+    <section class="bg-white border-b py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
+                Nuestros Productos
+            </h2>
 
-                <!-- Grid de productos -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Itera sobre los productos -->
-                    <template v-for="product in products" :key="product.id">
-                        <div
-                            class="bg-white p-4 border border-gray-200 rounded-lg shadow-md transition-transform hover:transform hover:scale-105">
-                            <!-- Información a la izquierda -->
-                            <div class="flex flex-col items-start">
-                                <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
-                                    class="w-full h-40 object-cover mb-4 rounded-md">
-                                <div>
-                                    <Link :href="route('products.showDetail', product.id)">
-                                    <h3 class="text-lg font-semibold mb-2 text-gray-800">{{ product.name }}</h3>
-                                    </Link>
+            <!-- Grid de productos -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Itera sobre los productos -->
+                <template v-for="product in products" :key="product.id">
+                    <div
+                        class="bg-white p-4 border border-gray-200 rounded-lg shadow-md transition-transform hover:transform hover:scale-105">
+                        <!-- Información a la izquierda -->
+                        <div class="flex flex-col items-start">
+                            <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
+                                class="w-full h-40 object-cover mb-4 rounded-md">
+                            <div>
+                                <Link :href="route('products.showDetail', product.id)">
+                                <h3 class="text-lg font-semibold mb-2 text-gray-800">{{ product.name }}</h3>
+                                </Link>
 
-                                    <p class="text-gray-600 mb-4">{{ product.description }}</p>
-                                    <div class="flex space-x-2">
-                                        <div v-for="(category, index) of product.categories" :key="index"
-                                            class="text-gray-600">
-                                            {{ category.name }}
-                                        </div>
-                                    </div>
-                                    <div class="flex space-x-2 mt-2">
-                                        <div v-for="(gender, index) of product.genders" :key="index" class="text-gray-600">
-                                            {{ gender.name }}
-                                        </div>
+                                <p class="text-gray-600 mb-4">{{ product.description }}</p>
+                                <div class="flex space-x-2">
+                                    <div v-for="(category, index) of product.categories" :key="index"
+                                        class="text-gray-600">
+                                        {{ category.name }}
                                     </div>
                                 </div>
-
-                                <!-- Precio y botón a la derecha -->
-                                <div class="flex flex-col items-end">
-                                    <p class="text-gray-700 font-semibold mb-2 text-xl">${{ product.price }}</p>
-                                    <button
-                                        class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200">
-                                        Añadir al carrito
-                                    </button>
+                                <div class="flex space-x-2 mt-2">
+                                    <div v-for="(gender, index) of product.genders" :key="index" class="text-gray-600">
+                                        {{ gender.name }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </template>
-                    <!-- Fin de la iteración de productos -->
-                </div>
 
-                <!-- Fin del grid de productos -->
+                            <!-- Precio y botón a la derecha -->
+                            <div class="flex flex-col items-end">
+                                <p class="text-gray-700 font-semibold mb-2 text-xl">${{ product.price }}</p>
+                                <button
+                                    class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200">
+                                    Añadir al carrito
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <!-- Fin de la iteración de productos -->
             </div>
-        </section>
-        <!-- Final Sección Productos -->
-    </div>
+
+            <!-- Fin del grid de productos -->
+        </div>
+    </section>
+    <!-- Final Sección Productos -->
 </template>
-  
+
 <script setup>
 import NavBar from '@/Layouts/NavBar.vue';
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 
 const products = ref([]);
@@ -72,46 +71,3 @@ onMounted(async () => {
     products.value = response.data;
 });
 </script>
-<<<<<<< HEAD
-  
-=======
-
-<template>
-    <Head title="Productos" />
-
-    <NavBar />
-
-    <!-- Sección Productos -->
-    <section class="bg-white border-b py-12 ">
-        <div class="container max-w-5xl mx-auto m-8">
-            <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
-                Productos
-            </h2>
-        </div>
-        <div v-if="products.length > 0">
-            <template v-for="product in products" :key="product.id">
-                <h3>{{ product.name }}</h3>
-                <h4>{{ product.description }}</h4>
-                <h4>{{ product.price }}</h4>
-                <img :src="`storage/${product.image_urls[0]}`">
-                <div>
-                    <p>Categorias:</p>
-                    <p v-for="(category, index) of product.categories" :key="index">
-                        {{ category.name }}
-                    </p>
-                </div>
-                <div>
-                    <p>Generos</p>
-                    <p v-for="(gender, index) of product.genders" :key="index">
-                        {{ gender.name }}
-                    </p>
-                </div>
-            </template>
-        </div>
-        <div v-else>
-            <p>No hay productos registrados</p>
-        </div>
-    </section>
-    <!-- Final Sección Productos -->
-</template>
->>>>>>> 4f687c2ecc15ca1faf5dbace1eda6d1a33b01d1a
