@@ -25,7 +25,7 @@ onMounted(async () => {
                 Productos
             </h2>
         </div>
-        <div>
+        <div v-if="products.length > 0">
             <template v-for="product in products" :key="product.id">
                 <h3>{{ product.name }}</h3>
                 <h4>{{ product.description }}</h4>
@@ -44,6 +44,9 @@ onMounted(async () => {
                     </p>
                 </div>
             </template>
+        </div>
+        <div v-else>
+            <p>No hay productos registrados</p>
         </div>
     </section>
     <!-- Final Sección Productos -->
