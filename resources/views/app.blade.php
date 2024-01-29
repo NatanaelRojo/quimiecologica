@@ -13,7 +13,6 @@
         @inertiaHead
     </head>
     <body class="gradient leading-relaxed tracking-wide flex flex-col font-sans antialiased">
-        @include('layouts.navbar')
         @inertia
         @include('layouts.footer')
     </body>

@@ -1,4 +1,5 @@
 <script setup>
+import NavBar from '@/Layouts/NavBar.vue';
 import { onMounted, ref } from 'vue'
 import { Head, Link } from '@inertiajs/vue3';
 import axios from 'axios';
@@ -17,6 +18,8 @@ onMounted(async () => {
 
 <template>
     <Head title="Productos" />
+
+    <NavBar />
 
     <!-- Sección Productos -->
     <section class="bg-white border-b py-12 ">

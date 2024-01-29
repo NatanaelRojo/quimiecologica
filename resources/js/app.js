@@ -27,36 +27,35 @@ createInertiaApp({
  * Métodos que permiten desplegar el menú cuando está en modo mobile.
 */
 
-var navMenuDiv = document.getElementById("nav-content");
-var navMenu = document.getElementById("nav-toggle");
-
-document.onclick = check;
-function check(e) {
-    var target = (e && e.target) || (event && event.srcElement);
-
-    // Nav Menu
-    if (!checkParent(target, navMenuDiv)) {
-        // click NOT on the menu
-        if (checkParent(target, navMenu)) {
-            // click on the link
-            if (navMenuDiv.classList.contains("hidden")) {
-                navMenuDiv.classList.remove("hidden");
-            } else {
-                navMenuDiv.classList.add("hidden");
+// Cargar métodos después que se haya cargado el DOM.
+document.addEventListener("DOMContentLoaded", function () {
+    var app = document.getElementById("app");
+    if (app) {
+        app.addEventListener("click", function (e) {
+            var target = e.target;
+            // Obtener la referencia a los elementos dentro del componente Vue
+            var navMenuDiv = app.querySelector("#nav-content");
+            var navMenu = app.querySelector("#nav-toggle");
+            if (!checkParent(target, navMenuDiv)) {
+                if (checkParent(target, navMenu)) {
+                    if (navMenuDiv.classList.contains("hidden")) {
+                        navMenuDiv.classList.remove("hidden");
+                    } else {
+                        navMenuDiv.classList.add("hidden");
+                    }
+                } else {
+                    navMenuDiv.classList.add("hidden");
+                }
             }
-        } else {
-            // click both outside link and outside menu, hide menu
-            navMenuDiv.classList.add("hidden");
-        }
+        });
     }
-}
-
-function checkParent(t, elm) {
-    while (t.parentNode) {
-        if (t == elm) {
-            return true;
+    function checkParent(t, elm) {
+        while (t.parentNode) {
+            if (t == elm) {
+                return true;
+            }
+            t = t.parentNode;
         }
-        t = t.parentNode;
+        return false;
     }
-    return false;
-}
+});

@@ -1,9 +1,12 @@
 <script setup>
+import NavBar from '@/Layouts/NavBar.vue';
 import { Head, Link } from '@inertiajs/vue3';
 </script>
 
 <template>
     <Head title="Inicio" />
+
+    <NavBar />
 
     <!-- Sección 1 -->
     <div class="container mx-auto flex flex-wrap pt-4 pb-12">
@@ -20,6 +23,12 @@ import { Head, Link } from '@inertiajs/vue3';
         </div>
         <div class="w-full font-bold text-xl text-gray-800 px-6 text-center">
             Fabricación de productos químicos
+            <Link
+                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                :href="route('about-us')"
+            >
+                Acerca de nosotros
+            </Link>
         </div>
         <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 text-center">
             Quimiecologi C.A. Línea Facial BASTT®

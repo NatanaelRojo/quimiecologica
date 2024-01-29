@@ -1,9 +1,4 @@
 <script setup>
-defineProps({
-    value: {
-        type: String,
-    },
-});
 </script>
 
 <template>
