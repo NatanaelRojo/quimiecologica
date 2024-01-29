@@ -1,7 +1,14 @@
 <template>
-    <div class="container mx-auto p-4">
-        <div class="lg:flex">
-            <!-- Imagen de portada -->
+    <Head title="Detalle del Producto" />
+
+    <NavBar />
+
+    <section class="bg-white border-b py-12">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
+                Detalle del Producto
+            </h2>
+            <br>
             <div class="lg:w-1/2 lg:mr-8 mb-4">
                 <img :src="`127.0.0.1:8000/storage/${product.image_urls[0]}`" alt="Imagen de portada" class="w-full h-auto">
             </div>
@@ -37,10 +44,13 @@
                 </button>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>
+import NavBar from '@/Layouts/NavBar.vue';
+import { onMounted, ref } from 'vue';
+import { Head, Link } from '@inertiajs/vue3';
 
 const props = defineProps({
     product: { type: Object, required: true },
