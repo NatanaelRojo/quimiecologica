@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::get('/about-us', function () {
 Route::get('/products', function () {
     return Inertia::render('Products');
 })->name('products');
+Route::get('/products/{product}', [ProductController::class, 'showDetail'])->name('products.showDetail');
 
 // Página de Servicios
 Route::get('/services', function () {
