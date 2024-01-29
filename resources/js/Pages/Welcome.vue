@@ -1,6 +1,8 @@
 <script setup>
 import NavBar from '@/Layouts/NavBar.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+const imagePath = '/images/1.jpg';
 </script>
 
 <template>
@@ -9,7 +11,7 @@ import { Head, Link } from '@inertiajs/vue3';
     <NavBar />
 
     <!-- Sección 1 -->
-    <div class="container mx-auto flex flex-wrap pt-4 pb-12">
+    <div class="container mx-auto flex flex-wrap pt-4 pb-5">
         <h2
             class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800"
         >
@@ -30,9 +32,13 @@ import { Head, Link } from '@inertiajs/vue3';
                 Acerca de nosotros
             </Link>
         </div>
-        <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 text-center">
+
+        <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 mb-4 text-center">
             Quimiecologi C.A. Línea Facial BASTT®
         </p>
+
+        <img :src="imagePath" alt="" class="w-full h-auto mx-auto">
+
     </div>
     <!-- Final Sección 1 -->
 
