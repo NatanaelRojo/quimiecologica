@@ -10,7 +10,7 @@
             </h2>
             <br>
             <div class="lg:w-1/2 lg:mr-8 mb-4">
-                <img :src="`127.0.0.1:8000/storage/${product.image_urls[0]}`" alt="Imagen de portada" class="w-full h-auto">
+                <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen de portada" class="w-full h-auto">
             </div>
 
             <!-- Detalles del producto -->

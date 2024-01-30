@@ -33,9 +33,9 @@ Route::get('/about-us', function () {
 
 // Página de Productos
 Route::get('/products', function () {
-    return Inertia::render('Products');
+    return Inertia::render('Product/Index');
 })->name('products');
-Route::get('/products/{product}', [ProductController::class, 'showDetail'])->name('products.showDetail');
+Route::get('/products/{product}', [ProductController::class, 'showDetail'])->name('products.detail');
 
 // Página de Servicios
 Route::get('/services', function () {
