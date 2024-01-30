@@ -30,6 +30,7 @@ return new class extends Migration
                 $table->string('reference_number');
                 $table->string('image')->nullable();
                 $table->unsignedBigInteger('total_price');
+                $table->string('status', 20)->default('En espera');
                 $table->timestamps();
             });
         }

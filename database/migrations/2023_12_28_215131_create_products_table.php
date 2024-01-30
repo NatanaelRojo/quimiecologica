@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->text('description');
                 $table->unsignedBigInteger('price');
                 $table->jsonb('image_urls');
+                $table->unsignedBigInteger('stock');
                 // $table->foreignIdFor(Service::class);
                 // $table->foreignIdFor(Gender::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 // $table->foreignIdFor(Category::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();

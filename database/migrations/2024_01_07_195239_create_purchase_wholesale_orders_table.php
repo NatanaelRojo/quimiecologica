@@ -28,6 +28,7 @@ return new class extends Migration
                 $table->unsignedBigInteger('total_price');
                 $table->unsignedInteger('product_quantity');
                 $table->string('unit');
+                $table->string('status', 20)->default('En espera');
                 $table->timestamps();
             });
         }
