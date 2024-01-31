@@ -35,7 +35,10 @@ Route::get('/about-us', function () {
 Route::get('/products', function () {
     return Inertia::render('Product/Index');
 })->name('products');
+
+// Detalle del Producto
 Route::get('/products/{product}', [ProductController::class, 'showDetail'])->name('products.detail');
+
 Route::get('purchase-pending-orders', function () {
     return Inertia::render('PurchasePendingOrder/Form');
 })->name('purchasePendingOrders.form');
