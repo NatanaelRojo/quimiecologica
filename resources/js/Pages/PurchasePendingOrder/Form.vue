@@ -68,7 +68,6 @@
                         class="w-full px-3 py-2 border rounded">
                     <!-- <span v-if="errors.owner_city" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
                 </div>
-                >>>>>>> a3566191009e697054260c58747a1052a969e8ff
 
                 <div class="mb-4">
                     <label for="owner_address" class="block text-gray-700 text-sm font-bold mb-2">Dirección de domicilio del
