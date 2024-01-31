@@ -4,6 +4,7 @@
     <NavBar />
 
     <section class="bg-white border-b py-12">
+        <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
         <div class="container mx-auto p-4">
             <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
                 Formulario de Registro
@@ -36,14 +37,23 @@
                     <!-- <span v-if="errors.cedula" class="text-red-500 text-sm">{{ errors.cedula }}</span> -->
                 </div>
 
-                <!-- Cédula de identidad del titular -->
-                <div class="mb-4">
-                    <label for="owner_phone_number" class="block text-gray-700 text-sm font-bold mb-2">Número
-                        de teléfono del titular:</label>
+                <!-- Número de teléfono del titular -->
+                <div class="mb-4 flex items-center">
+                    <label for="owner_phone_number" class="block text-gray-700 text-sm font-bold mb-2">Número de teléfono
+                        del titular:</label>
+
+                    <!-- Selector de código de área -->
+                    <select class="mr-2 px-3 py-2 border rounded">
+                        <option value="+58">+58</option>
+                        <!-- Agrega más opciones según sea necesario -->
+                    </select>
+
+                    <!-- Campo de número de teléfono -->
                     <input v-model="pendingOrder.owner_phone_number" type="text" id="owner_phone_number"
                         name="owner_phone_number" class="w-full px-3 py-2 border rounded">
                     <!-- <span v-if="errors.cedula" class="text-red-500 text-sm">{{ errors.cedula }}</span> -->
                 </div>
+
 
                 <div class="mb-4">
                     <label for="owner_email" class="block text-gray-700 text-sm font-bold mb-2">Correo electrónico del
@@ -97,8 +107,9 @@
 
 <script setup>
 import NavBar from '@/Layouts/NavBar.vue';
+import ErrorList from '@/Components/ErrorList.vue';
 import { onMounted, ref } from 'vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 
 const form = ref(null);
 const pendingOrder = ref({
@@ -126,12 +137,16 @@ const scrollMeTo = () => {
     // window.scrollTo({ top: form.offsetTop, left: 0, behavior: "smooth" });
 }
 
+const clearErrors = () => {
+    errors.value = []
+}
+
 const submitForm = async () => {
     try {
         const response = await axios.post('/api/pending-orders', pendingOrder.value);
+        router.visit(route('pending_orders.detail', response.data.id));
     } catch (error) {
         errors.value = error.response.data;
-        // console.error(error.response.data);
         scrollMeTo()
     }
 }

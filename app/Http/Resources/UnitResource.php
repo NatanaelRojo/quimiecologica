@@ -15,6 +15,7 @@ class UnitResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id ' => $this->id,
             'name' => $this->name,
             'abbreviation' => $this->abbreviation,
             'created_at' => $this->created_at,

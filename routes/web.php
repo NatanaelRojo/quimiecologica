@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseWholesaleOrderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -36,12 +38,19 @@ Route::get('/products', function () {
     return Inertia::render('Product/Index');
 })->name('products');
 
-// Detalle del Producto
+// Product detail
 Route::get('/products/{product}', [ProductController::class, 'showDetail'])->name('products.detail');
 
-Route::get('purchase-pending-orders', function () {
-    return Inertia::render('PurchasePendingOrder/Form');
-})->name('purchasePendingOrders.form');
+// Pending orders routes
+Route::get('/pending-orders/create', [PendingOrderController::class, 'create'])->name('pending_orders.create');
+Route::get('/pending-orders/{pending_order}', [PendingOrderController::class, 'showDetail'])->name('pending_orders.detail');
+
+// Purchase wholesale order routes
+Route::get('purchase-wholesale-orders/create', [PurchaseWholesaleOrderController::class, 'create'])->name('purchase_wholesale_orders.create');
+Route::get(
+    '/purchase-wholesale-orders/{purchase_wholesale_order}',
+    [PurchaseWholesaleOrderController::class, 'showDetail']
+)->name('purchase_wholesale_orders.detail');
 
 // Página de Servicios
 Route::get('/services', function () {

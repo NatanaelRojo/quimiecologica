@@ -8,6 +8,8 @@ use App\Http\Resources\PendingOrderResource;
 use App\Models\PendingOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PendingOrderController extends Controller
 {
@@ -24,9 +26,9 @@ class PendingOrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return Inertia::render('PendingOrder/Form');
     }
 
     /**
@@ -37,6 +39,17 @@ class PendingOrderController extends Controller
         $newPendingOrder = PendingOrder::create($request->validated());
 
         return response()->json(new PendingOrderResource($newPendingOrder), 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function showDetail(PendingOrder $pending_order): Response
+    {
+        $pending_order = PendingOrder::where('id', $pending_order->id)->first();
+        return Inertia::render('PendingOrder/Detail', [
+            'pendingOrder' => $pending_order,
+        ]);
     }
 
     /**

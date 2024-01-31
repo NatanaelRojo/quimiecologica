@@ -7,6 +7,8 @@ use App\Http\Resources\PurchaseWholesaleOrderResource;
 use App\Models\PurchaseWholesaleOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PurchaseWholesaleOrderController extends Controller
 {
@@ -23,9 +25,9 @@ class PurchaseWholesaleOrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-        //
+        return Inertia::render('PurchaseWholesaleOrder/Form');
     }
 
     /**
@@ -39,7 +41,7 @@ class PurchaseWholesaleOrderController extends Controller
             $path = $request->image->store('public/images');
         }
 
-        $newPurchaseWholesaleOrder = PurchaseRetailOrder::create([
+        $newPurchaseWholesaleOrder = PurchaseWholesaleOrder::create([
             'owner_firstname' => $request->owner_firstname,
             'owner_lastname' => $request->owner_lastname,
             'owner_id' => $request->owner_id,
@@ -61,6 +63,18 @@ class PurchaseWholesaleOrderController extends Controller
 
     /**
      * Display the specified resource.
+     */
+    public function showDetail(PurchaseWholesaleOrder $purchase_wholesale_order): Response
+    {
+        $purchase_wholesale_order = PurchaseWholesaleOrder::where('id', $purchase_wholesale_order->id)->with(['product'])->first();
+
+        return Inertia::render('PurchaseWholesaleOrder/Detail', [
+            'purchaseWholesaleOrder' => $purchase_wholesale_order,
+        ]);
+    }
+
+    /**
+     * Return the specified resource.
      */
     public function show(PurchaseWholesaleOrder $purchase_wholesale_order): JsonResponse
     {
