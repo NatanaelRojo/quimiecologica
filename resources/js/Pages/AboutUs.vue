@@ -23,6 +23,7 @@ import { Head, Link } from '@inertiajs/vue3';
                     <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
                         Somos Quimiecologi C.A.
                     </h3>
+                    <br>
                     <p class="text-gray-600 mb-8">
                         Una empresa constituida desde
                         el año 2010. Desarrollamos portafolios de consméticos y
