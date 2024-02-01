@@ -87,16 +87,7 @@
                     <!-- <span v-if="errors.owner_address" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
                 </div>
 
-                <!-- Product quantity-->
-                <div class="mb-4">
-                    <label for="product_quantity" class="block text-gray-700 text-sm font-bold mb-2">Precio total del
-                        producto:</label>
-                    <input v-model="purchaseWholesaleOrder.total_price" type="number" id="total_price"
-                        name="product_quantity" disabled class="w-full px-3 py-2 border rounded">
-                    <!-- <span v-if="errors.owner_address" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
-                </div>
-
-                <!-- Product quantity-->
+                <!-- Baucher-->
                 <div class="mb-4">
                     <label for="baucher" class="block text-gray-700 text-sm font-bold mb-2">Comprobante de pago:</label>
                     <input ref="purchaseWholesaleOrder.baucher" type="file" id="baucher" name="baucher"
@@ -104,7 +95,7 @@
                     <!-- <span v-if="errors.owner_address" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
                 </div>
 
-                <!-- Product quantity-->
+                <!-- Reference number-->
                 <div class="mb-4">
                     <label for="reference_number" class="block text-gray-700 text-sm font-bold mb-2">Referencia
                         bancaria:</label>
@@ -113,12 +104,17 @@
                     <!-- <span v-if="errors.owner_address" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
                 </div>
 
+                <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Datos del producto</h1>
+                <h2>{{ product.image_urls[0] }}</h2>
+                <!-- <h2>{{ product.image_urls[0] }}</h2> -->
+                <!-- <img :src="`/storage/${product.image_urls[0]}`" alt="" class="mx-auto w-6/12"> -->
+
                 <!-- Product quantity-->
-                <div class="mb-4">
+                <div class=" mb-4">
                     <label for="product_quantity" class="block text-gray-700 text-sm font-bold mb-2">Cantidad del
                         producto:</label>
-                    <input v-model="purchaseWholesaleOrder.product_quantity" type="number" min="2" default="2" name="
-                    product_quantity" class="w-full px-3 py-2 border rounded">
+                    <input v-model="purchaseWholesaleOrder.product_quantity" type="number" min="2" default="2"
+                        name="product_quantity" class="w-full px-3 py-2 border rounded" @input="calculateTotalPrice">
                     <!-- <span v-if="errors.owner_address" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
                 </div>
 
@@ -130,6 +126,15 @@
                         <option value="" disabled>Seleccione una unidad</option>
                         <option v-for="unit in units" :key="unit.id" :value="unit.id">{{ unit.name }}</option>
                     </select>
+                </div>
+
+                <!-- Total price-->
+                <div class="mb-4">
+                    <label for="product_quantity" class="block text-gray-700 text-sm font-bold mb-2">Precio total del
+                        producto:</label>
+                    <input v-model="purchaseWholesaleOrder.total_price" type="number" id="total_price"
+                        name="product_quantity" disabled class="w-full px-3 py-2 border rounded">
+                    <!-- <span v-if="errors.owner_address" class="text-red-500 text-sm">{{ errors.apellido }}</span> -->
                 </div>
 
                 <!-- Botón de enviar -->
@@ -148,6 +153,7 @@ import NavBar from '@/Layouts/NavBar.vue';
 import ErrorList from '@/Components/ErrorList.vue';
 import { onMounted, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
+import axios from 'axios';
 
 const form = ref(null);
 const units = ref([]);
@@ -168,12 +174,15 @@ const purchaseWholesaleOrder = ref({
     product_id: 1,
     unit: '',
 });
+const product = ref({});
 const errors = ref([]);
 
 onMounted(async () => {
     try {
-        const response = await axios.get('/api/units');
+        let response = await axios.get('/api/units');
         units.value = response.data;
+        response = await axios.get(`/api/products/${purchaseWholesaleOrder.value.product_id}`);
+        product.value = response.data;
     } catch (error) {
         console.error(error);
     }
@@ -186,6 +195,10 @@ const scrollMeTo = () => {
 
 const clearErrors = () => {
     errors.value = []
+}
+
+const calculateTotalPrice = () => {
+    purchaseWholesaleOrder.value.total_price = 1000 * purchaseWholesaleOrder.value.product_quantity;
 }
 
 const submitForm = async () => {
