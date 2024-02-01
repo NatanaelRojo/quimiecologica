@@ -65,6 +65,10 @@
 
     $ php artisan make:filament-user
 
+## Crear un enlace simbólico entre la carpeta de almacenamiento pública y la carpeta de almacenamiento privada:
+
+    $ php artisan storage:link
+
 ## Probar la aplicación, se usarán 2 consolas a la vez:
 
 En una consola ejecutar:
