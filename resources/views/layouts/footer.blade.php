@@ -5,14 +5,13 @@
             <div class="flex-1 mb-6">
                 <a
                     class="text-orange-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                    href="#"
+                    href="/"
                 >
-                <img
-                    src="{{ asset('images/favicon.png') }}"
-                    class="h-12 w-12 inline-block"
-                    alt="Quimiecologi"
-                />
-                    Quimiecologi
+                    <img
+                        src="{{ asset('images/Logo-Quimiecologi-01.png') }}"
+                        class="w-50 inline-block"
+                        alt="Quimiecologi C.A."
+                    />
                 </a>
             </div>
 

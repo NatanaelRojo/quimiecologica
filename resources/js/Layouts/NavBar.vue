@@ -11,7 +11,7 @@ const logoBrand = '/images/favicon.png';
             <div class="pl-4 flex items-center">
                 <a
                     class="text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                    href="#"
+                    href="/"
                 >
                     <img
                         :src="logoBrand"

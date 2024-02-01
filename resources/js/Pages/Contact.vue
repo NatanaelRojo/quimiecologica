@@ -1,6 +1,8 @@
 <script setup>
 import NavBar from '@/Layouts/NavBar.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 </script>
 
 <template>
@@ -17,6 +19,14 @@ import { Head, Link } from '@inertiajs/vue3';
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
+
+            <br>
+
+            <img
+                :src="LogoQuimiecologi01"
+                alt="Quimiecologi C.A."
+                class="max-w-lg block mx-auto h-auto"
+            />
 
             <div class="flex flex-wrap">
                 <div class="mt-5 w-full">

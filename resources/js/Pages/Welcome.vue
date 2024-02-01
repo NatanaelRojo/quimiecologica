@@ -3,6 +3,7 @@ import NavBar from '@/Layouts/NavBar.vue';
 import { Head, Link } from '@inertiajs/vue3';
 
 const imagePath = '/images/1.jpg';
+const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 </script>
 
 <template>
@@ -12,11 +13,12 @@ const imagePath = '/images/1.jpg';
 
     <!-- Sección 1 -->
     <div class="container mx-auto flex flex-wrap pt-4 pb-5">
-        <h2
-            class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800"
-        >
-            Quimiecologi C.A.
-        </h2>
+        <img
+            :src="LogoQuimiecologi01"
+            alt="Quimiecologi C.A."
+            class="max-w-lg block mx-auto h-auto"
+        />
+
         <div class="w-full mb-4">
             <div
                 class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"
@@ -25,16 +27,10 @@ const imagePath = '/images/1.jpg';
         </div>
         <div class="w-full font-bold text-xl text-gray-800 px-6 text-center">
             Fabricación de productos químicos
-            <Link
-                class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                :href="route('about-us')"
-            >
-                Acerca de nosotros
-            </Link>
         </div>
 
         <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 mb-4 text-center">
-            Quimiecologi C.A. Línea Facial BASTT®
+            Línea Facial BASTT®
         </p>
 
         <img :src="imagePath" alt="" class="w-full h-auto mx-auto">

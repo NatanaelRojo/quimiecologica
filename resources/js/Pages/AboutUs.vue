@@ -1,6 +1,8 @@
 <script setup>
 import NavBar from '@/Layouts/NavBar.vue';
 import { Head, Link } from '@inertiajs/vue3';
+
+const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 </script>
 
 <template>
@@ -20,12 +22,14 @@ import { Head, Link } from '@inertiajs/vue3';
 
             <div class="flex flex-wrap">
                 <div class="mt-5 w-full">
-                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                        Somos Quimiecologi C.A.
-                    </h3>
+                    <img
+                        :src="LogoQuimiecologi01"
+                        alt="Quimiecologi C.A."
+                        class="max-w-lg block mx-auto h-auto"
+                    />
                     <br>
                     <p class="text-gray-600 mb-8">
-                        Una empresa constituida desde
+                        Somos una empresa constituida desde
                         el año 2010. Desarrollamos portafolios de consméticos y
                         líneas de productos con características naturales, de
                         origen y propiedades biodegradables.
