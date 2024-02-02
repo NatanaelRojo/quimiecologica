@@ -1,9 +1,24 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { onMounted, onBeforeMount, ref } from 'vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
+const isLoading = ref(false);
+const fullPage = ref(true);
 const imagePath = '/images/1.jpg';
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
+
+onBeforeMount(async () => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
+
+onMounted(async () => {
+    // Finalizar spinner de carga.
+    isLoading.value = false;
+});
 </script>
 
 <template>
@@ -11,6 +26,12 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
     <template #main>
 
       <Head title="Inicio" />
+
+      <loading
+        :active="isLoading"
+        :is-full-page="fullPage"
+      ></loading>
+
       <!-- Sección 1 -->
       <div class="container mx-auto flex flex-wrap pt-4 pb-5">
         <img :src="LogoQuimiecologi01" alt="Quimiecologi C.A." class="max-w-lg block mx-auto h-auto" />
@@ -226,5 +247,3 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
     </template>
   </MainLayout>
 </template>
-
-<style></style>
