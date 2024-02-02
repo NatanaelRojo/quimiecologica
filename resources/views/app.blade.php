@@ -14,6 +14,5 @@
     </head>
     <body class="gradient leading-relaxed tracking-wide flex flex-col font-sans antialiased">
         @inertia
-        @include('layouts.footer')
     </body>
 </html>
