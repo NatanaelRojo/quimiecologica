@@ -7,11 +7,13 @@ use App\Http\Requests\Post\UpdatePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Return a listing of the resource.
      */
     public function index(): JsonResponse
     {
@@ -31,7 +33,27 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     */
+    public function showAll(): Response
+    {
+        return Inertia::render('Post/Index');
+    }
+
+    /**
      * Display the specified resource.
+     */
+    public function showDetail(Post $post): Response
+    {
+        $post = Post::where('id', $post->id)->with(['categories', 'genders'])->first();
+
+        return Inertia::render('Post/Detail', [
+            'post' => $post,
+        ]);
+    }
+
+    /**
+     * Return the specified resource.
      */
     public function show(Post $post): JsonResponse
     {

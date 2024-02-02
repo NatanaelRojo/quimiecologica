@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PendingOrderController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
@@ -51,6 +52,10 @@ Route::get(
     '/purchase-wholesale-orders/{purchase_wholesale_order}',
     [PurchaseWholesaleOrderController::class, 'showDetail']
 )->name('purchase_wholesale_orders.detail');
+
+// Post routes
+Route::get('/posts', [PostController::class, 'showAll'])->name('posts.index');
+Route::get('/posts/{post}', [PostController::class, 'showDetail'])->name('posts.detail');
 
 // Página de Servicios
 Route::get('/services', function () {
