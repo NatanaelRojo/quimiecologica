@@ -22,6 +22,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
+        'stock',
         'price',
         'image_urls',
         // 'service_id',
@@ -57,6 +58,11 @@ class Product extends Model
     public function purchaseRetailOrders(): BelongsToMany
     {
         return $this->belongsToMany(PurchaseRetailOrder::class, 'product_purchase_order');
+    }
+
+    public function typeSales(): BelongsToMany
+    {
+        return $this->belongsToMany(TypeSale::class);
     }
 
     public function scopeFilterBy(Builder $query, array $categories, array $genders): void

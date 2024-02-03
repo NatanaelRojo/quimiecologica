@@ -45,19 +45,28 @@ class ProductResource extends Resource
             // Forms\Components\Select::make('service_id')->label('Service')
             //     ->relationship('service', 'name')->searchable()->preload()
             //     ->createOptionForm(ServiceResource::inputForm()),
-            Forms\Components\Select::make('category_id.name')->label(static::getAttributeLabel('categories'))
+            Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
+                ->required()
                 ->multiple()->relationship('categories', 'name')->searchable()->preload()
                 ->createOptionForm(CategoryResource::inputForm()),
-            Forms\Components\Select::make('gender_id')->label(static::getAttributeLabel('genders'))
+            Forms\Components\Select::make('genders')->label(static::getAttributeLabel('genders'))
+                ->required()
                 ->relationship('genders', 'name')
                 ->multiple()->searchable()->preload()
                 ->createOptionForm(GenderResource::inputForm()),
+            Forms\Components\Select::make('type_sales')->label(static::getAttributeLabel('type_sales'))
+                ->required()
+                ->relationship(name: 'typeSales', titleAttribute: 'name')
+                ->multiple()->searchable()->preload()
+                ->createOptionForm(TypeSaleResource::inputForm()),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(255)->minLength(4)
                 ->columnSpan('full'),
             Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
                 ->required()
                 ->columnSpan('full'),
+            Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
+                ->required()->numeric()->minValue(1),
             Forms\Components\TextInput::make('price')->label(static::getAttributeLabel('price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
@@ -75,12 +84,14 @@ class ProductResource extends Resource
         return [
             Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
             Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
+            Tables\Columns\TextColumn::make('typeSales.name')->label(static::getAttributeLabel('type_sales'))->searchable(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
                 ->words(20),
+            Tables\Columns\TextColumn::make('stock')->label(static::getAttributeLabel('stock')),
             Tables\Columns\TextColumn::make('price')->label(static::getAttributeLabel('price'))
                 ->money('USD')->sortable(),
         ];
