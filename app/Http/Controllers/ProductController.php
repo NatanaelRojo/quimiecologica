@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function showDetail(Product $product): Response
     {
-        $product = Product::where('id', $product->id)->with(['categories', 'genders'])->first();
+        $product = Product::where('id', $product->id)->with(['categories', 'genders', 'typeSales'])->first();
         return Inertia::render('Product/Detail', [
             'product' => $product,
         ]);

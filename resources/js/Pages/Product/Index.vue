@@ -22,7 +22,7 @@
                                     <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
                                         class="w-full h-40 object-cover mb-4 rounded-md">
                                     <div>
-                                        <Link :href="route('products.detail', product.id)">
+                                        <Link :href="route('products.detail', product.slug)">
                                         <h3 class="text-lg font-semibold mb-2 text-gray-800">{{ product.name }}</h3>
                                         </Link>
 

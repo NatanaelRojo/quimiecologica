@@ -25,7 +25,7 @@
                                     <img :src="`/storage/${post.thumbnail}`" alt="Imagen del post"
                                         class="w-full h-40 object-cover mb-4 rounded-md">
                                     <div>
-                                        <Link :href="route('posts.detail', post.id)">
+                                        <Link :href="route('posts.detail', post.slug)">
                                         <h3 class="text-lg font-semibold mb-2 text-gray-800">{{ post.title }}</h3>
                                         </Link>
 

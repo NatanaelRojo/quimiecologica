@@ -21,6 +21,7 @@ class Product extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'stock',
         'price',
@@ -29,6 +30,11 @@ class Product extends Model
         // 'gender_id',
         // 'category_id',
     ];
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function pendingOrders(): HasMany
     {

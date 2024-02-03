@@ -17,12 +17,14 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'description' => $this->description,
             'price' => $this->price,
             'image_urls' => $this->image_urls,
             'created_at' => $this->created_at,
             'categories' => CategoryResource::collection($this->categories),
             'genders' => GenderResource::collection($this->genders),
+            'type_sales' => TypeSaleResource::collection($this->typeSales),
         ];
     }
 }
