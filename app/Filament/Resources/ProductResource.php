@@ -62,7 +62,7 @@ class ProductResource extends Resource
                 ->multiple()->searchable()->preload()
                 ->createOptionForm(TypeSaleResource::inputForm()),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
-                ->required()->maxLength(255)->minLength(4)
+                ->required()->unique()->maxLength(255)->minLength(4)
                 ->columnSpan('full'),
             Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
                 ->required()

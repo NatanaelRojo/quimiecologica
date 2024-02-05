@@ -20,7 +20,7 @@ return new class extends Migration
                 // $table->foreignIdFor(Category::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('title');
                 $table->string('thumbnail')->nullable();
-                $table->string('slug');
+                $table->string('slug')->unique()->nullable();
                 $table->text('body');
                 $table->boolean('published');
                 $table->timestamps();

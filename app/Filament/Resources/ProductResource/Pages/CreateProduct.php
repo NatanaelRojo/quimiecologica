@@ -11,11 +11,11 @@ class CreateProduct extends CreateRecord
 {
     protected static string $resource = ProductResource::class;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        $data['slug'] = str::slug($data['name']);
-        return $data;
-    }
+    // protected function mutateFormDataBeforeCreate(array $data): array
+    // {
+    //     $data['slug'] = str::slug($data['name']);
+    //     return $data;
+    // }
 
     protected function getRedirectUrl(): string
     {

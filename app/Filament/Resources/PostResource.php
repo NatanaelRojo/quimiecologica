@@ -59,7 +59,7 @@ class PostResource extends Resource
                 ->multiple()
                 ->createOptionForm(GenderResource::inputForm()),
             Forms\Components\TextInput::make('title')->label(static::getAttributeLabel('title'))->autofocus()
-                ->required()
+                ->required()->unique()
                 ->columnSpan(2),
             Forms\Components\RichEditor::make('body')->label(static::getAttributeLabel('body'))
                 ->required()
