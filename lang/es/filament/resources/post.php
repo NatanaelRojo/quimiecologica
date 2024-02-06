@@ -10,4 +10,5 @@ return [
     'slug' => 'Alias',
     'body' => 'Cuerpo',
     'published' => 'Publicado',
+    'non-published' => 'Borrador',
 ];

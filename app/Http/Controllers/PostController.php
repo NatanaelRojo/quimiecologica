@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index(): JsonResponse
     {
-        $posts = Post::all();
+        $posts = Post::allPublished()->get();
 
         return response()->json(PostResource::collection($posts), 200);
     }
@@ -45,7 +45,7 @@ class PostController extends Controller
      */
     public function showDetail(Post $post): Response
     {
-        $post = Post::where('id', $post->id)->with(['categories', 'genders'])->first();
+        $post = Post::where('slug', $post->slug)->with(['categories', 'genders'])->first();
 
         return Inertia::render('Post/Detail', [
             'post' => $post,
