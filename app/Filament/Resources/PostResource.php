@@ -44,9 +44,16 @@ class PostResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Toggle::make('published')->label(static::getAttributeLabel('published'))
+            Forms\Components\Toggle::make('published')->label(function (?bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('non-published');
+                }
+
+                return static::getAttributeLabel('published');
+            })
                 ->onColor('success')->offColor('danger')
-                ->columnSpan(2),
+                ->columnSpan(2)
+                ->live(),
             Forms\Components\FileUpload::make('thumbnail')->label(static::getAttributeLabel('thumbnail'))
                 ->image()
                 ->columnSpan(2),

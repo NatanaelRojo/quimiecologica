@@ -42,6 +42,11 @@ class Post extends Model
         ];
     }
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
@@ -50,6 +55,11 @@ class Post extends Model
     public function genders(): BelongsToMany
     {
         return $this->belongsToMany(Gender::class);
+    }
+
+    public function scopeAllPublished(Builder $query): void
+    {
+        $query->where('published',  true);
     }
 
     public function scopeFilterBy(Builder $query, array $categories, array $genders): void

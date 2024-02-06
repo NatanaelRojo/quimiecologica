@@ -36,16 +36,16 @@ class Handler extends ExceptionHandler
      * @param  \Throwable  $e
      * @return \Throwable
      */
-    public  function render($request, Throwable $e)
-    {
-        $response = parent::render($request, $e);
+    // public  function render($request, Throwable $e)
+    // {
+    //     $response = parent::render($request, $e);
 
-        if (in_array($response->status(), [500, 503, 404, 403])) {
-            return Inertia::render('Error', [
-                'status' => $response->status(),
-            ])->toResponse($request)->setStatusCode($response->status());
-        }
+    //     if (in_array($response->status(), [500, 503, 404, 403])) {
+    //         return Inertia::render('Error', [
+    //             'status' => $response->status(),
+    //         ])->toResponse($request)->setStatusCode($response->status());
+    //     }
 
-        return $response;
-    }
+    //     return $response;
+    // }
 }
