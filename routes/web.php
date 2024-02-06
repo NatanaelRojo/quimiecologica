@@ -53,7 +53,7 @@ Route::get(
     [PurchaseWholesaleOrderController::class, 'showDetail']
 )->name('purchase_wholesale_orders.detail');
 
-// Post routes
+// Página de Publicaciones
 Route::get('/posts', [PostController::class, 'showAll'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'showDetail'])->name('posts.detail');
 
@@ -61,11 +61,6 @@ Route::get('/posts/{post}', [PostController::class, 'showDetail'])->name('posts.
 Route::get('/services', function () {
     return Inertia::render('Services');
 })->name('services');
-
-// Página de Blog
-Route::get('/blog', function () {
-    return Inertia::render('Blog');
-})->name('blog');
 
 // Página de Contacto
 Route::get('/contact', function () {

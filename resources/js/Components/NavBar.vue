@@ -82,8 +82,8 @@ const logoBrand = '/images/favicon.png';
                     <li class="mr-3">
                         <a
                             class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
-                            href="{{ route('blog') }}"
-                            @click.prevent="$inertia.visit(route('blog'))"
+                            href="{{ route('posts') }}"
+                            @click.prevent="$inertia.visit(route('posts.index'))"
                         >
                             Blog
                         </a>
