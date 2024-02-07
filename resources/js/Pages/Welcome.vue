@@ -48,7 +48,7 @@ onMounted(async () => {
                 Línea Facial BASTT®
                 </p>
 
-                <img :src="imagePath" class="w-full h-auto mx-auto">
+                <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto">
 
             </div>
             <!-- Final Sección 1 -->
