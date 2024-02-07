@@ -4,6 +4,11 @@
 
             <Head title="Productos" />
 
+            <loading
+                :active="isLoading"
+                :is-full-page="fullPage"
+            ></loading>
+
             <!-- Sección Productos -->
             <section class="bg-white border-b py-12">
                 <div class="container mx-auto">
@@ -65,13 +70,25 @@
 
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted, onBeforeMount, ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
+const isLoading = ref(false);
+const fullPage = ref(true);
 const products = ref([]);
+
+onBeforeMount(async () => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
 
 onMounted(async () => {
     const response = await axios.get("/api/products");
     products.value = response.data;
+    // Finalizar spinner de carga.
+    isLoading.value = false;
+
 });
 </script>
