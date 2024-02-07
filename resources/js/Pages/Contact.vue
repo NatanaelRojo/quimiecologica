@@ -48,9 +48,10 @@ onMounted(async () => {
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">
                             <p class="text-gray-600 mb-8">
-                                Mérida, Mérida
+                                Mérida Edo. Mérida
                                 <br>
-                                Tlf: XXXXX
+                                <br>
+                                Teléfono: 0412-5347169 (Horario de atención: 8:00am a 3:30pm)
                             </p>
                         </div>
                     </div>
