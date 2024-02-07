@@ -1,8 +1,23 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { onMounted, onBeforeMount, ref } from 'vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
+const isLoading = ref(false);
+const fullPage = ref(true);
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
+
+onBeforeMount(async () => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
+
+onMounted(async () => {
+    // Finalizar spinner de carga.
+    isLoading.value = false;
+});
 </script>
 
 <template>
@@ -10,6 +25,11 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
         <template #main>
 
             <Head title="Contacto" />
+
+            <loading
+                :active="isLoading"
+                :is-full-page="fullPage"
+            ></loading>
 
             <!-- Sección -->
             <section class="bg-white border-b py-12 ">

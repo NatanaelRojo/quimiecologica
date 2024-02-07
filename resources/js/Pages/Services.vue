@@ -1,8 +1,23 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { onMounted, onBeforeMount, ref } from 'vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
+const isLoading = ref(false);
+const fullPage = ref(true);
 const imagePath = '/images/1.jpg';
+
+onBeforeMount(async () => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
+
+onMounted(async () => {
+    // Finalizar spinner de carga.
+    isLoading.value = false;
+});
 </script>
 
 <template>
@@ -10,6 +25,11 @@ const imagePath = '/images/1.jpg';
         <template #main>
 
             <Head title="Servicios" />
+
+            <loading
+                :active="isLoading"
+                :is-full-page="fullPage"
+            ></loading>
 
             <!-- Sección Servicios -->
             <section class="bg-gray-100 border-b py-8">

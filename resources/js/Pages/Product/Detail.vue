@@ -4,6 +4,11 @@
 
             <Head title="Detalle del Producto" />
 
+            <loading
+                :active="isLoading"
+                :is-full-page="fullPage"
+            ></loading>
+
             <section class="bg-white border-b py-12">
                 <div class="container mx-auto">
                     <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
@@ -52,10 +57,25 @@
 
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
-import { onMounted, ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
+import { onMounted, onBeforeMount, ref } from 'vue';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+
+const isLoading = ref(false);
+const fullPage = ref(true);
 
 const props = defineProps({
     product: { type: Object, required: true },
+});
+
+onBeforeMount(async () => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
+
+onMounted(async () => {
+    // Finalizar spinner de carga.
+    isLoading.value = false;
 });
 </script>

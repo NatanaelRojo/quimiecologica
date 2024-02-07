@@ -89,6 +89,5 @@ onMounted(async () => {
     products.value = response.data;
     // Finalizar spinner de carga.
     isLoading.value = false;
-
 });
 </script>
