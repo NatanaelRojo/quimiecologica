@@ -33,7 +33,7 @@ onMounted(async () => {
             ></loading>
 
             <!-- Sección 1 -->
-            <div class="container mx-auto flex flex-wrap pb-5">
+            <div class="container mx-auto flex flex-wrap pb-4">
                 <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto mb-6" />
 
                 <div class="w-full font-bold text-xl text-gray-800 px-6 text-center">
@@ -47,7 +47,7 @@ onMounted(async () => {
             <!-- Final Sección 1 -->
 
             <!-- Sección Productos -->
-            <section class="bg-white border-b py-5">
+            <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
                         Productos
@@ -102,7 +102,7 @@ onMounted(async () => {
             <!-- Final Sección Productos -->
 
             <!-- Sección Servicios -->
-            <section class="bg-gray-100 border-b py-5">
+            <section class="bg-gray-100 border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
                         Servicios
