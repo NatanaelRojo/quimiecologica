@@ -43,7 +43,11 @@ onMounted(async () => {
 
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">
-                            <img :src="LogoQuimiecologi01" alt="Quimiecologi C.A." class="max-w-lg block mx-auto h-auto" />
+                            <img
+                                :src="LogoQuimiecologi01"
+                                alt="Quimiecologi C.A."
+                                class="max-w-lg block mx-auto h-auto"
+                            />
                             <br>
                             <p class="text-gray-600 mb-8">
                                 Somos una empresa constituida desde

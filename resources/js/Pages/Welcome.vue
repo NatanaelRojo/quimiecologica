@@ -33,23 +33,16 @@ onMounted(async () => {
             ></loading>
 
             <!-- Sección 1 -->
-            <div class="container mx-auto flex flex-wrap pt-4 pb-5">
-                <img :src="LogoQuimiecologi01" alt="Quimiecologi C.A." class="w-2/3 block mx-auto h-auto" />
+            <div class="container mx-auto flex flex-wrap pb-5">
+                <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto mb-6" />
 
-                <div class="w-full mb-4">
-                <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t">
-                </div>
-                </div>
                 <div class="w-full font-bold text-xl text-gray-800 px-6 text-center">
-                Fabricación de productos químicos
+                    Fabricación de productos químicos
                 </div>
 
                 <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 mb-4 text-center">
-                Línea Facial BASTT®
+                    Línea Facial BASTT®
                 </p>
-
-                <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto">
-
             </div>
             <!-- Final Sección 1 -->
 

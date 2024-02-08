@@ -1,5 +1,5 @@
 <script setup>
-const logoBrand = '/images/favicon.png';
+const logoBrand = '/images/Logo-Quimiecologi-01.png';
 </script>
 
 <template>
@@ -8,7 +8,7 @@ const logoBrand = '/images/favicon.png';
         <div
             class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-2 lg:py-6"
         >
-            <div class="pl-4 flex items-center">
+            <div class="pl-4 items-center">
                 <a
                     class="text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
                     href="/"
@@ -16,9 +16,8 @@ const logoBrand = '/images/favicon.png';
                     <img
                         :src="logoBrand"
                         alt="Quimiecologi C.A."
-                        class="h-10 w-10 inline-block fill-current"
+                        class="w-72"
                     />
-                    Quimiecologi C.A.
                 </a>
             </div>
 
