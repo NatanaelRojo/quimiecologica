@@ -1,5 +1,5 @@
 <script setup>
-const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
+const LogoQblack = '/images/Logo-Q-black.png';
 </script>
 
 <template>
@@ -8,68 +8,13 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
         <div class="container mx-auto mt-8 px-8">
             <div class="w-full flex flex-col md:flex-row py-6">
                 <div class="flex-1 mb-6">
-                    <a
-                        class="text-orange-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                        href="/"
-                    >
+                    <a href="/">
                         <img
-                            :src="LogoQuimiecologi01"
-                            class="w-50 inline-block"
+                            :src="LogoQblack"
+                            class="w-32 inline-block"
                             alt="Quimiecologi C.A."
                         />
                     </a>
-                </div>
-
-                <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">Links</p>
-                    <ul class="list-reset mb-6">
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
-                            >
-                                FAQ
-                            </a>
-                        </li>
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
-                            >
-                                Help
-                            </a>
-                        </li>
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
-                            >
-                                Support
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">Legal</p>
-                    <ul class="list-reset mb-6">
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
-                            >
-                                Terms
-                            </a>
-                        </li>
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                        <a
-                            href="#"
-                            class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
-                        >
-                            Privacy
-                        </a>
-                        </li>
-                    </ul>
                 </div>
 
                 <div class="flex-1">
@@ -78,24 +23,59 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
                                 href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
+                                target="__blank"
+                            >
+                                Instagram
+                            </a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <a
+                                href="#"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
+                                target="__blank"
                             >
                                 Facebook
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="https://ve.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
+                                href="#"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
                                 target="__blank"
                             >
                                 Linkedin
                             </a>
                         </li>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
                                 href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
+                                target="__blank"
                             >
                                 Twitter
                             </a>
@@ -104,37 +84,60 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
-                        Company
-                    </p>
+                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">Interés</p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
+                                href="{{ route('contact') }}"
+                                @click.prevent="$inertia.visit(route('contact'))"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
+                                target="__blank"
                             >
-                                Official Blog
+                                Blog
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
+                                href="{{ route('about-us') }}"
+                                @click.prevent="$inertia.visit(route('about-us'))"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
+                                target="__blank"
                             >
-                                About Us
+                                Acerca de nosotros
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="#"
-                                class="font-light no-underline hover:underline text-gray-800 hover:text-orange-500"
+                                href="{{ route('contact') }}"
+                                class="
+                                    inline-block
+                                    text-black
+                                    no-underline
+                                    hover:text-gray-800
+                                    hover:text-underline
+                                "
+                                target="__blank"
+                                @click.prevent="$inertia.visit(route('contact'))"
                             >
-                                Contact
+                                Contacto
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
+            <p class="text-center text-gray-800">Quimiecologi C.A.</p>
         </div>
     </footer>
     <!-- Final Footer -->
