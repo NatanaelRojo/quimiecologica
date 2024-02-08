@@ -2,7 +2,7 @@
     <MainLayout>
         <template #main>
 
-            <Head title="Productos" />
+            <Head title="Nuestros Productos" />
 
             <loading
                 :active="isLoading"

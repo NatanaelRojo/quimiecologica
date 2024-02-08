@@ -2,15 +2,15 @@
     <MainLayout>
         <template #main>
 
-            <Head title="Servicios" />
+            <Head title="Nuestras Publicaciones" />
 
             <loading
                 :active="isLoading"
                 :is-full-page="fullPage"
             ></loading>
 
-            <!-- Sección Servicios -->
-            <section class="bg-gray-100 border-b py-3">
+            <!-- Sección -->
+            <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2
                         v-if="posts.length > 0"
@@ -128,7 +128,7 @@
                     <!-- End of grid posts -->
                 </div>
             </section>
-            <!-- End of posts section -->
+            <!-- End of section -->
         </template>
     </MainLayout>
 </template>

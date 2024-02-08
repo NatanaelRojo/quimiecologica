@@ -9,8 +9,8 @@
                 :is-full-page="fullPage"
             ></loading>
 
-            <!-- Sección Servicios -->
-            <section class="bg-gray-100 border-b py-3">
+            <!-- Sección-->
+            <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
                         Detalle de la Publicación
@@ -47,6 +47,7 @@
                     </div>
                 </div>
             </section>
+            <!-- Final de la Sección-->
         </template>
     </MainLayout>
 </template>
