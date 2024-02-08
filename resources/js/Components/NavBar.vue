@@ -6,11 +6,30 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
     <!-- Barra de menú -->
     <nav id="header" class="w-full z-30 top-0 text-white py-1 lg:py-6">
         <div
-            class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-2 lg:py-6"
+            class="
+                w-full
+                container
+                mx-auto
+                flex
+                flex-wrap
+                items-center
+                justify-between
+                mt-0
+                px-2
+                py-2
+                lg:py-6
+            "
         >
             <div class="pl-4 items-center">
                 <a
-                    class="text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+                    class="
+                        text-white
+                        no-underline
+                        hover:no-underline
+                        font-bold
+                        text-2xl
+                        lg:text-4xl
+                    "
                     href="/"
                 >
                     <img
@@ -24,7 +43,20 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
             <div class="block lg:hidden pr-4">
                 <button
                     id="nav-toggle"
-                    class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-green-500 appearance-none focus:outline-none"
+                    class="
+                        flex
+                        items-center
+                        px-3
+                        py-2
+                        border
+                        rounded
+                        text-gray-500
+                        border-gray-600
+                        hover:text-gray-800
+                        hover:border-green-500
+                        appearance-none
+                        focus:outline-none
+                    "
                 >
                     <svg
                         class="fill-current h-3 w-3"
@@ -38,13 +70,33 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
             </div>
 
             <div
-                class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 text-black p-4 lg:p-0 z-20"
+                class="
+                    w-full
+                    flex-grow
+                    lg:flex
+                    lg:items-center
+                    lg:w-auto
+                    hidden
+                    lg:block
+                    mt-2
+                    lg:mt-0
+                    text-black
+                    p-4
+                    lg:p-0 z-20
+                "
                 id="nav-content"
             >
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     <li class="mr-3">
                         <a
-                            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2 px-4
+                            "
                             href="{{ route('about-us') }}"
                             @click.prevent="$inertia.visit(route('welcome'))"
                         >
@@ -53,7 +105,15 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                     </li>
                     <li class="mr-3">
                         <a
-                            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2
+                                px-4
+                            "
                             href="{{ route('about-us') }}"
                             @click.prevent="$inertia.visit(route('about-us'))"
                         >
@@ -62,7 +122,15 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                     </li>
                     <li class="mr-3">
                         <a
-                            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2
+                                px-4
+                            "
                             href="{{ route('products') }}"
                             @click.prevent="$inertia.visit(route('products'))"
                         >
@@ -71,7 +139,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                     </li>
                     <li class="mr-3">
                         <a
-                            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2 px-4
+                            "
                             href="{{ route('services') }}"
                             @click.prevent="$inertia.visit(route('services'))"
                         >
@@ -80,7 +155,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                     </li>
                     <li class="mr-3">
                         <a
-                            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2 px-4
+                            "
                             href="{{ route('posts') }}"
                             @click.prevent="$inertia.visit(route('posts.index'))"
                         >
@@ -89,7 +171,15 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                     </li>
                     <li class="mr-3">
                         <a
-                            class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2
+                                px-4
+                            "
                             href="{{ route('contact') }}"
                             @click.prevent="$inertia.visit(route('contact'))"
                         >
@@ -97,12 +187,6 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                         </a>
                     </li>
                 </ul>
-                <!--button
-                    id="navAction"
-                    class="mx-auto lg:mx-0 hover:underline text-gray-800 font-extrabold rounded mt-4 lg:mt-0 py-4 px-8 shadow opacity-75"
-                >
-                    Action
-                </button-->
             </div>
         </div>
     </nav>

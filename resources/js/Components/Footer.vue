@@ -4,7 +4,7 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 
 <template>
     <!-- Footer -->
-    <footer class="bg-gray-100 border-b py-8">
+    <footer class="gradient border-b py-8">
         <div class="container mx-auto mt-8 px-8">
             <div class="w-full flex flex-col md:flex-row py-6">
                 <div class="flex-1 mb-6">
