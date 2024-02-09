@@ -38,7 +38,18 @@ onMounted(async () => {
                         Contacto
                     </h2>
                     <div class="w-full mb-4">
-                        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
                     </div>
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">

@@ -53,48 +53,92 @@ onMounted(async () => {
                         Productos
                     </h2>
                     <div class="w-full mb-4">
-                        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
                     </div>
 
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
-                                Lorem ipsum dolor sit amet
+                                Leche desmaquillante
                             </h3>
                             <p class="text-gray-600">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-96 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
                         </div>
                     </div>
-
+                    <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
-                                Lorem ipsum dolor sit amet
+                                Tónico
                             </h3>
                             <p class="text-gray-600">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-96 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="flex flex-wrap">
+                        <div class="sm:w-1/2 p-6">
+                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                                Exfoliante
+                            </h3>
+                            <p class="text-gray-600">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                at ipsum eu nunc commodo posuere et sit amet ligula.
+                            </p>
+                        </div>
+                        <div class="sm:w-1/2">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="flex flex-wrap">
+                        <div class="sm:w-1/2 p-6">
+                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                                Crema humectante
+                            </h3>
+                            <p class="text-gray-600">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                at ipsum eu nunc commodo posuere et sit amet ligula.
+                            </p>
+                        </div>
+                        <div class="sm:w-1/2">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="flex flex-wrap">
+                        <div class="sm:w-1/2 p-6">
+                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                                Protector Solar, FPS 30
+                            </h3>
+                            <p class="text-gray-600">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                at ipsum eu nunc commodo posuere et sit amet ligula.
+                            </p>
+                        </div>
+                        <div class="sm:w-1/2">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
                         </div>
                     </div>
                 </div>
@@ -108,7 +152,18 @@ onMounted(async () => {
                         Servicios
                     </h2>
                     <div class="w-full mb-4">
-                        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
                     </div>
 
                     <div class="flex flex-wrap">
@@ -119,16 +174,10 @@ onMounted(async () => {
                             <p class="text-gray-600">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-96 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
                         </div>
                     </div>
 
@@ -140,16 +189,10 @@ onMounted(async () => {
                             <p class="text-gray-600">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-96 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto">
                         </div>
                     </div>
                 </div>

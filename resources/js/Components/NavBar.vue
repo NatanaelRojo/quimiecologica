@@ -117,7 +117,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                             href="{{ route('about-us') }}"
                             @click.prevent="$inertia.visit(route('about-us'))"
                         >
-                            Acerca de nosotros
+                            Conócenos
                         </a>
                     </li>
                     <li class="mr-3">
