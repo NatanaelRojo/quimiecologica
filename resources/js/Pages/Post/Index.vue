@@ -7,6 +7,7 @@
             <loading
                 :active="isLoading"
                 :is-full-page="fullPage"
+                color="#82675C"
             ></loading>
 
             <!-- Sección -->
