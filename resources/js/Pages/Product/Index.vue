@@ -2,14 +2,22 @@
     <MainLayout>
         <template #main>
 
-            <Head title="Productos" />
+            <Head title="Nuestros Productos" />
 
-            <loading :active="isLoading" :is-full-page="fullPage"></loading>
+            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
-            <!-- Sección Productos -->
-            <section class="bg-white border-b py-12">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
+            <!-- Sección -->
+            <section class="bg-white border-b py-3">
+                <div class="container max-w-5xl mx-auto m-8">
+                    <h2 class="
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        ">
                         Nuestros Productos
                     </h2>
                     <section>
@@ -28,13 +36,28 @@
                             <h2>Generos:</h2>
                             <select v-model="selectedGenders" multiple>
                                 <option value="" disabled selected>Seleccione</option>
-                                <option v-for="gender in genders" :key="gender.id" :value="gender.name">{{ gender.name }}
+                                <option v-for="gender in genders" :key="gender.id" :value="gender.name">{{ gender.name
+                                }}
                                 </option>
                             </select>
                             <h3>{{ selectedGenders }}</h3>
                             <button type="button" @click="filterProductsByCategoryOrGender">Aplicar</button>
                         </div>
                     </section>
+                    <div class="w-full mb-4">
+                        <div class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "></div>
+                    </div>
+
+                    <br>
 
                     <!-- Grid de productos -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

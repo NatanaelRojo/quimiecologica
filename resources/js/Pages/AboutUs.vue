@@ -24,65 +24,77 @@ onMounted(async () => {
     <MainLayout>
         <template #main>
 
-            <Head title="Acerca de nosotros" />
+            <Head title="Conócenos" />
 
             <loading
                 :active="isLoading"
                 :is-full-page="fullPage"
+                color="#82675C"
             ></loading>
 
             <!-- Sección -->
-            <section class="bg-white border-b py-12 ">
+            <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
-                        Acerca de nosotros
+                    <h2 class="
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
+                        Conócenos
                     </h2>
                     <div class="w-full mb-4">
-                        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
                     </div>
 
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">
-                            <img :src="LogoQuimiecologi01" alt="Quimiecologi C.A." class="max-w-lg block mx-auto h-auto" />
-                            <br>
                             <p class="text-gray-600 mb-8">
-                                Somos una empresa constituida desde
-                                el año 2010. Desarrollamos portafolios de consméticos y
-                                líneas de productos con características naturales, de
-                                origen y propiedades biodegradables.
-                                <br>
-                                <br>
-                                Nuestra estrategia es la Innovación sustentable.
-                                <br>
-                                <br>
+                                Somos una marca nacional que diseña y elabora
+                                productos de cuidado personal, nuestra
+                                estrategia es la innovación sustentable. Prestamos
+                                diversos servicios y asesorías a empresas y/o
+                                personas que lo requieran.
+                            </p>
+                            <p class="text-gray-600 mb-8">
+                                Contamos con una marca registrada de alcance
+                                nacional, <b>BASTT</b>. Actualmente especializada
+                                en el cuidado preventivo del rostro y que está
+                                presente en los más importantes retailers del
+                                país, así como en tiendas particulares a nivel
+                                nacional.
+                            </p>
+                            <p class="text-gray-600 mb-8">
+                                La línea <b>Fusión Elemental</b> tiene en cada
+                                uno de sus productos, al menos un ingrediente
+                                natural y un principio activo, los cuales
+                                permiten al consumidor no solo sentirse
+                                resplandeciente, sino también protegido,
+                                aliviado y colmado de frescura.
+                            </p>
+                            <p class="text-gray-600 mb-8">
                                 Los desarrollos son avalados por laboratorios
-                                certificados, tales como laboratorios de la Universidad
-                                de Los Andes y otros de naturaleza privada.
-                                <br>
-                                <br>
-                                El enfoque central ha sido el cuidado de la piel, tanto
-                                de damas como de caballeros.
-                                <br>
-                                <br>
-                                Contamos una línea principal, bajo la marca registrada
-                                BASTT® diseñada para el cuidado facial femenino, cuyo
-                                portafolio está integrado por 6 productos:
-                                <br>
-                                <br>
-                                - Limpiador y desmaquillante bifásico.
-                                <br>
-                                - 2 tónicos astringentes con ácido salicílico.
-                                <br>
-                                - Exfoliante de semillas de durazno.
-                                <br>
-                                - Crema humectante con cera de abeja.
-                                <br>
-                                - Protector solar con TiO2.
-                                <br>
-                                <br>
-                                La marca BASTT® de Quimiecologi C.A. está presente en
-                                los más importantes retailers de Venezuela, así como en
-                                tiendas particulares a nivel nacional.
+                                certificados, tales como laboratorios de la
+                                Universidad de Los Andes y otros de naturaleza
+                                privada.
+                            </p>
+                            <p class="text-center">
+                                <b>Diseña un mundo de cuidado, con el aliado que te mereces.</b>
                             </p>
                         </div>
                     </div>
