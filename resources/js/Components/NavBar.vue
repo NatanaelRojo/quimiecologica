@@ -186,6 +186,23 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                             Contacto
                         </a>
                     </li>
+                    <li class="mr-3">
+                        <a
+                            class="
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2
+                                px-4
+                            "
+                            href="{{ route('contact') }}"
+                            @click.prevent="$inertia.visit(route('contact'))"
+                        >
+                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
