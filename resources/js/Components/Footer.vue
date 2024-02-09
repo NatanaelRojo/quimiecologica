@@ -18,11 +18,13 @@ const LogoQblack = '/images/Logo-Q-black.png';
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">Social</p>
+                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
+                        Social
+                    </p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="#"
+                                href="https://www.instagram.com/basttvzla/"
                                 class="
                                     inline-block
                                     text-black
@@ -37,7 +39,7 @@ const LogoQblack = '/images/Logo-Q-black.png';
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="#"
+                                href="https://www.tiktok.com/@basttvzla"
                                 class="
                                     inline-block
                                     text-black
@@ -47,12 +49,14 @@ const LogoQblack = '/images/Logo-Q-black.png';
                                 "
                                 target="__blank"
                             >
-                                Facebook
+                                TikTok
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="#"
+                                href="
+                                    https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
+                                "
                                 class="
                                     inline-block
                                     text-black
@@ -65,31 +69,18 @@ const LogoQblack = '/images/Logo-Q-black.png';
                                 Linkedin
                             </a>
                         </li>
-                        <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="#"
-                                class="
-                                    inline-block
-                                    text-black
-                                    no-underline
-                                    hover:text-gray-800
-                                    hover:text-underline
-                                "
-                                target="__blank"
-                            >
-                                Twitter
-                            </a>
-                        </li>
                     </ul>
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">Interés</p>
+                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
+                        Interés
+                    </p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
-                                href="{{ route('contact') }}"
-                                @click.prevent="$inertia.visit(route('contact'))"
+                                href="{{ route('posts') }}"
+                                @click.prevent="$inertia.visit(route('posts.index'))"
                                 class="
                                     inline-block
                                     text-black
