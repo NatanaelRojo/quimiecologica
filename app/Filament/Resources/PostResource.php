@@ -84,7 +84,7 @@ class PostResource extends Resource
             Tables\Columns\ToggleColumn::make('published')->label(static::getAttributeLabel('published')),
             Tables\Columns\TextColumn::make('title')->label(static::getAttributeLabel('title'))
                 ->searchable(query: function (Builder $query, string $search) {
-                    return $query->where('name', 'like', "%{$search}%");
+                    return $query->where('name', 'ilike', "%{$search}%");
                 }),
         ];
     }

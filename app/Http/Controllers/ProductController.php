@@ -16,28 +16,44 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $products = Product::all();
+        $query = Product::query();
+
+        if ($request->has('name')) {
+            $query->filterByName($request->name);
+        }
+        if ($request->has('categories') || $request->has('genders')) {
+            $query->filterByCategoryOrGender($request->categories, $request->genders);
+        }
+        $products = $query->get()->unique();
 
         return response()->json(ProductResource::collection($products), 200);
+    }
+
+    private function filterByName(string $searchTerm): Builder
+    {
+        $query = Product::filterByName();
+
+        return $query;
     }
 
     /**
      * Filter products by a given category or gender
      */
-    public function filter(Request $request): JsonResponse
+    public function filterByCategoryOrGender(string $categories, string $genders): Builder
     {
-        $categories = $request->input('categories') ? explode(',', $request->input('categories')) : [];
-        $genders = $request->input('genders') ? explode(',', $request->input('genders')) : [];
+        $categoriesArray = $categories ? explode(',', $categories) : [];
+        $gendersArray = $genders ? explode(',', $genders) : [];
 
         if (empty($categories) && empty($genders)) {
             return response()->json(['message' => 'no hay parametros'], 200);
         }
 
-        $filteredProducts = Product::filterBy($categories, $genders)->get();
+        $filteredProducts = Product::filterBy($categories, $genders);
 
-        return response()->json(ProductResource::collection($filteredProducts->unique('id')), 200);
+        // return response()->json(ProductResource::collection($filteredProducts->unique('id')), 200);
+        return $query;
     }
 
     /**

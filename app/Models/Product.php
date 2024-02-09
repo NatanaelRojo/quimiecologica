@@ -88,12 +88,24 @@ class Product extends Model
         return $this->belongsToMany(TypeSale::class);
     }
 
-    public function scopeFilterBy(Builder $query, array $categories, array $genders): void
+    public function scopeFilterByName(Builder $query, string $searchTerm): void
     {
-        $query->when(!empty($categories), function (Builder $query) use ($categories): void {
-            $query->whereHas('categories', fn (Builder $q) => $q->whereIn('name', $categories));
-        })->when(!empty($genders), function (Builder $query) use ($genders): void {
-            $query->whereHas('genders', fn (Builder $q) => $q->whereIn('name', $genders));
+        $query->where('name', 'ilike', "%{$searchTerm}%");
+    }
+
+    public function scopeFilterByCategoryOrGender(Builder $query, string $categoriesString, string $gendersString): void
+    {
+        $categories = $categoriesString ? explode(',', $categoriesString) : [];
+        $genders = $gendersString ? explode(',', $gendersString) : [];
+        $query->where(function (Builder $query) use ($categories, $genders): void {
+            foreach (['categories', 'genders'] as $type) {
+                if (!empty($$type)) {
+                    $values = $$type;
+                    $query->orWhereHas($type, function (Builder $q) use ($values): void {
+                        $q->whereIn('name', $values);
+                    });
+                }
+            }
         });
     }
 }

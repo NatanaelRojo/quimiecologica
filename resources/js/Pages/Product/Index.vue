@@ -4,10 +4,7 @@
 
             <Head title="Productos" />
 
-            <loading
-                :active="isLoading"
-                :is-full-page="fullPage"
-            ></loading>
+            <loading :active="isLoading" :is-full-page="fullPage"></loading>
 
             <!-- Sección Productos -->
             <section class="bg-white border-b py-12">
@@ -15,6 +12,29 @@
                     <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
                         Nuestros Productos
                     </h2>
+                    <section>
+                        <h2>Buscar producto:</h2>
+                        <input v-model="productName" type="text" placeholder="Ingrese el nombre de un producto">
+                        <button type="button" @click="filterProductByName">Buscar</button>
+                        <h3>Filtros</h3>
+                        <div>
+                            <h2>Categorias</h2>
+                            <select v-model="selectedCategories" multiple>
+                                <option value="" disabled selected>Seleccione</option>
+                                <option v-for="category in categories" :key="category.id" :value="category.name">{{
+                                    category.name }}</option>
+                            </select>
+                            <h3>{{ selectedCategories }}</h3>
+                            <h2>Generos:</h2>
+                            <select v-model="selectedGenders" multiple>
+                                <option value="" disabled selected>Seleccione</option>
+                                <option v-for="gender in genders" :key="gender.id" :value="gender.name">{{ gender.name }}
+                                </option>
+                            </select>
+                            <h3>{{ selectedGenders }}</h3>
+                            <button type="button" @click="filterProductsByCategoryOrGender">Aplicar</button>
+                        </div>
+                    </section>
 
                     <!-- Grid de productos -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -74,10 +94,16 @@ import { onMounted, onBeforeMount, ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
+import axios from 'axios';
 
 const isLoading = ref(false);
+const selectedCategories = ref([]);
+const selectedGenders = ref([]);
+const productName = ref('');
 const fullPage = ref(true);
 const products = ref([]);
+const categories = ref([]);
+const genders = ref([]);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -85,9 +111,40 @@ onBeforeMount(async () => {
 });
 
 onMounted(async () => {
-    const response = await axios.get("/api/products");
+    let response = await axios.get("/api/products");
     products.value = response.data;
+    response = await axios.get('/api/categories');
+    categories.value = response.data;
+    response = await axios.get('/api/genders');
+    genders.value = response.data;
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
+
+const filterProductByName = async () => {
+    try {
+        const response = await axios.get('/api/products', {
+            params: {
+                name: productName.value,
+            },
+        });
+        products.value = response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const filterProductsByCategoryOrGender = async () => {
+    try {
+        const response = await axios.get('/api/products', {
+            params: {
+                categories: selectedCategories.value.join(','),
+                genders: selectedGenders.value.join(','),
+            },
+        });
+        products.value = response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
 </script>
