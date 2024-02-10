@@ -6,6 +6,8 @@ return [
     'categories' => 'Categorías',
     'genders' => 'Géneros',
     'type_sales' => 'Tipos de venta',
+    'active' => 'Activo',
+    'inactive' => 'Inactivo',
     'name' => 'Nombre',
     'description' => 'Descripción',
     'stock' => 'En existencia',

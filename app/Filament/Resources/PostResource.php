@@ -51,6 +51,7 @@ class PostResource extends Resource
 
                 return static::getAttributeLabel('published');
             })
+                ->required()
                 ->onColor('success')->offColor('danger')
                 ->columnSpan(2)
                 ->live(),

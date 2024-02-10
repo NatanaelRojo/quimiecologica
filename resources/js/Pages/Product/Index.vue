@@ -26,6 +26,16 @@
                         <button type="button" @click="filterProductByName">Buscar</button>
                         <h3>Filtros</h3>
                         <div>
+                            <label for="product-price">Precio</label>
+                            <input type="number" id="product-price" name="product-price" v-model="productPrice"
+                                placeholder="Ingrese el precio del producto" min="1">
+                            <select v-model="selectedProductPriceFilter" id="price-filter">
+                                <option value="" disabled selected>Seleccione un rango de precios...</option>
+                                <option value="gte">Mayor o igual a ${{ productPrice }}</option>
+                                <option value="lte">Menor o igual a ${{ productPrice }}</option>
+                            </select>
+                            <p>{{ selectedProductPriceFilter }}</p>
+
                             <h2>Categorias</h2>
                             <select v-model="selectedCategories" multiple>
                                 <option value="" disabled selected>Seleccione</option>
@@ -41,7 +51,7 @@
                                 </option>
                             </select>
                             <h3>{{ selectedGenders }}</h3>
-                            <button type="button" @click="filterProductsByCategoryOrGender">Aplicar</button>
+                            <button type="button" @click="filterProduct">Aplicar</button>
                         </div>
                     </section>
                     <div class="w-full mb-4">
@@ -122,7 +132,9 @@ import axios from 'axios';
 const isLoading = ref(false);
 const selectedCategories = ref([]);
 const selectedGenders = ref([]);
+const selectedProductPriceFilter = ref('');
 const productName = ref('');
+const productPrice = ref(1);
 const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
@@ -157,12 +169,14 @@ const filterProductByName = async () => {
     }
 }
 
-const filterProductsByCategoryOrGender = async () => {
+const filterProduct = async () => {
     try {
         const response = await axios.get('/api/products', {
             params: {
                 categories: selectedCategories.value.join(','),
                 genders: selectedGenders.value.join(','),
+                productPrice: productPrice.value,
+                priceFilter: selectedProductPriceFilter.value,
             },
         });
         products.value = response.data;

@@ -26,6 +26,11 @@ class ProductController extends Controller
         if ($request->has('categories') || $request->has('genders')) {
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
+        // dd($request->has('productPrice') && $request->has('priceFilter'));
+        if ($request->has('priceFilter') && $request->has('productPrice')) {
+            $operator = $this->parsePriceCriteria($request->priceFilter);
+            $query->filterByPrice($request->productPrice, $operator);
+        }
         $products = $query->get()->unique();
 
         return response()->json(ProductResource::collection($products), 200);
@@ -103,5 +108,13 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->json()->setStatusCode(204);
+    }
+
+    protected function parsePriceCriteria(string $criteria): string
+    {
+        if ($criteria === 'gte') {
+            return '>=';
+        }
+        return  '<=';
     }
 }

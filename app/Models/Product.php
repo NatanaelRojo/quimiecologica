@@ -20,6 +20,7 @@ class Product extends Model
     protected $casts = [
         'price' => MoneyCast::class,
         'image_urls' => 'json',
+        'is_active' => 'boolean',
     ];
 
     protected $fillable = [
@@ -93,7 +94,7 @@ class Product extends Model
         $query->where('name', 'ilike', "%{$searchTerm}%");
     }
 
-    public function scopeFilterByCategoryOrGender(Builder $query, string $categoriesString, string $gendersString): void
+    public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): void
     {
         $categories = $categoriesString ? explode(',', $categoriesString) : [];
         $genders = $gendersString ? explode(',', $gendersString) : [];
@@ -107,5 +108,11 @@ class Product extends Model
                 }
             }
         });
+    }
+
+    public function scopeFilterByPrice(Builder $query, ?string $stringPrice, ?string $operator): void
+    {
+        $productPrice = floatval($stringPrice);
+        $query->where('price', $operator, $productPrice * 100);
     }
 }

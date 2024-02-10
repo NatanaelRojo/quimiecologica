@@ -47,6 +47,15 @@ class ProductResource extends Resource
             // Forms\Components\Select::make('service_id')->label('Service')
             //     ->relationship('service', 'name')->searchable()->preload()
             //     ->createOptionForm(ServiceResource::inputForm()),
+            Forms\Components\Toggle::make('is_active')->label(function (bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('inactive');
+                }
+                return static::getAttributeLabel('active');
+            })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan(2)
+                ->live(),
             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                 ->required()
                 ->multiple()->relationship('categories', 'name')->searchable()->preload()
