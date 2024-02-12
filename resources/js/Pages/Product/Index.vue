@@ -71,6 +71,7 @@
                         >
                             Buscar
                         </button>
+                        <br>
                         <!--div>
                             <label for="product-price">Precio</label>
                             <input type="number" id="product-price" name="product-price" v-model="productPrice"
@@ -185,6 +186,7 @@
                                     </p>
                                     <div class="flex flex-col items-center">
                                         <button
+                                            @click="addProductToCart(product.id)"
                                             class="
                                                 gradient-green
                                                 mt-4
@@ -235,6 +237,8 @@ const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
+var myArray = [];
+var arrayProducts = [];
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -279,5 +283,13 @@ const filterProduct = async () => {
     } catch (error) {
         console.error(error);
     }
+}
+
+/**
+ * Método que recibe el id del producto y lo agrega en el arreglo de Productos.
+*/
+const addProductToCart = (id) => {
+    arrayProducts.push(id);
+    // console.log(arrayProducts);
 }
 </script>
