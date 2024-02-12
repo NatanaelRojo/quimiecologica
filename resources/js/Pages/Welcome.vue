@@ -152,10 +152,7 @@ onMounted(async () => {
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a
-                            href="{{ route('products') }}"
-                            @click.prevent="$inertia.visit(route('products'))"
-                        >
+                        <Link :href="route('products')">
                             <button
                                 class="
                                     gradient-green
@@ -173,7 +170,7 @@ onMounted(async () => {
                             >
                                 Ver todos
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>
@@ -305,10 +302,7 @@ onMounted(async () => {
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
-                        <a
-                            href="{{ route('services') }}"
-                            @click.prevent="$inertia.visit(route('services'))"
-                        >
+                        <Link :href="route('services')">
                             <button
                                 class="
                                     gradient-green
@@ -326,7 +320,7 @@ onMounted(async () => {
                             >
                                 Ver todos
                             </button>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </section>
