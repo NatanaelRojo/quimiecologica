@@ -158,6 +158,7 @@ onMounted(async () => {
                         >
                             <button
                                 class="
+                                    gradient-green
                                     mt-4
                                     bg-blue-500
                                     text-white
@@ -310,6 +311,7 @@ onMounted(async () => {
                         >
                             <button
                                 class="
+                                    gradient-green
                                     mt-4
                                     bg-blue-500
                                     text-white
