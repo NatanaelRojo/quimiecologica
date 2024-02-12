@@ -44,12 +44,34 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section>
-                        <h2>Buscar producto:</h2>
-                        <input v-model="productName" type="text" placeholder="Ingrese el nombre de un producto">
-                        <button type="button" @click="filterProductByName">Buscar</button>
-                        <h3>Filtros</h3>
-                        <div>
+                    <section class="mb-4">
+                        <h2>Buscar por Nombre:</h2>
+                        <TextInput
+                            v-model="productName"
+                            type="text"
+                            placeholder=""
+                        />
+                        <br>
+                        <button
+                            class="
+                                gradient-green
+                                mt-4
+                                bg-blue-500
+                                text-white
+                                py-2 px-4
+                                rounded-md
+                                hover:bg-blue-600
+                                focus:outline-none
+                                focus:border-blue-700
+                                focus:ring
+                                focus:ring-blue-200
+                            "
+                            type="button"
+                            @click="filterProductByName"
+                        >
+                            Buscar
+                        </button>
+                        <!--div>
                             <label for="product-price">Precio</label>
                             <input type="number" id="product-price" name="product-price" v-model="productPrice"
                                 placeholder="Ingrese el precio del producto" min="1">
@@ -76,7 +98,7 @@
                             </select>
                             <h3>{{ selectedGenders }}</h3>
                             <button type="button" @click="filterProduct">Aplicar</button>
-                        </div>
+                        </div-->
                     </section>
                     <!-- Final Buscador y Filtros -->
 
@@ -177,7 +199,8 @@
                                                 focus:ring-blue-200
                                             "
                                         >
-                                            Añadir al carrito
+                                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                                            Añadir al Carrito
                                         </button>
                                     </div>
                                 </div>
@@ -200,6 +223,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import axios from 'axios';
+import TextInput from '@/Components/TextInput.vue';
 
 const isLoading = ref(false);
 const selectedCategories = ref([]);
