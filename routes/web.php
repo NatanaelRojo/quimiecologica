@@ -67,6 +67,11 @@ Route::get('/contact', function () {
     return Inertia::render('Contact');
 })->name('contact');
 
+// Página del Carrito de compras
+Route::get('/shopping-cart', function () {
+    return Inertia::render('ShoppingCart');
+})->name('shopping-cart');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

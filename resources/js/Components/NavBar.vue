@@ -191,8 +191,8 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2
                                 px-4
                             "
-                            href="{{ route('contact') }}"
-                            @click.prevent="$inertia.visit(route('contact'))"
+                            href="{{ route('shopping-cart') }}"
+                            @click.prevent="$inertia.visit(route('shopping-cart'))"
                         >
                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                         </a>
