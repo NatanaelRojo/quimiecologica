@@ -237,7 +237,6 @@ const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
-var myArray = [];
 var arrayProducts = [];
 
 onBeforeMount(async () => {
