@@ -1,5 +1,6 @@
 <script setup>
 const LogoQblack = '/images/Logo-Q-black.png';
+import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
@@ -78,9 +79,8 @@ const LogoQblack = '/images/Logo-Q-black.png';
                     </p>
                     <ul class="list-reset mb-6">
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="{{ route('posts') }}"
-                                @click.prevent="$inertia.visit(route('posts.index'))"
+                            <Link
+                                :href="route('posts.index')"
                                 class="
                                     inline-block
                                     text-black
@@ -88,15 +88,13 @@ const LogoQblack = '/images/Logo-Q-black.png';
                                     hover:text-gray-800
                                     hover:text-underline
                                 "
-                                target="__blank"
                             >
                                 Blog
-                            </a>
+                            </Link>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="{{ route('about-us') }}"
-                                @click.prevent="$inertia.visit(route('about-us'))"
+                            <Link
+                                :href="route('about-us')"
                                 class="
                                     inline-block
                                     text-black
@@ -104,14 +102,14 @@ const LogoQblack = '/images/Logo-Q-black.png';
                                     hover:text-gray-800
                                     hover:text-underline
                                 "
-                                target="__blank"
+
                             >
-                                Acerca de nosotros
-                            </a>
+                                Conócenos
+                            </Link>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                            <a
-                                href="{{ route('contact') }}"
+                            <Link
+                                :href="route('contact')"
                                 class="
                                     inline-block
                                     text-black
@@ -119,11 +117,9 @@ const LogoQblack = '/images/Logo-Q-black.png';
                                     hover:text-gray-800
                                     hover:text-underline
                                 "
-                                target="__blank"
-                                @click.prevent="$inertia.visit(route('contact'))"
                             >
                                 Contacto
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

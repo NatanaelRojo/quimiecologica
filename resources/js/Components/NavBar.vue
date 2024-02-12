@@ -1,11 +1,13 @@
 <script setup>
+import { Link } from '@inertiajs/vue3';
 const logoBrand = '/images/Logo-Quimiecologi-01.png';
 </script>
 
 <template>
     <!-- Barra de menú -->
     <nav id="header" class="w-full z-30 top-0 text-white py-1 lg:py-6">
-        <div class="
+        <div
+            class="
                 w-full
                 container
                 mx-auto
@@ -17,9 +19,11 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                 px-2
                 py-2
                 lg:py-6
-            ">
+            "
+        >
             <div class="pl-4 items-center">
-                <a
+                <Link
+                    :href="route('welcome')"
                     class="
                         text-white
                         no-underline
@@ -28,10 +32,9 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                         text-2xl
                         lg:text-4xl
                     "
-                    href="/"
                 >
                     <img :src="logoBrand" alt="Quimiecologi C.A." class="w-72" />
-                </a>
+                </Link>
             </div>
 
             <div class="block lg:hidden pr-4">
@@ -82,7 +85,8 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
             >
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('welcome')"
                             class="
                                 inline-block
                                 text-black
@@ -91,14 +95,13 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-underline
                                 py-2 px-4
                             "
-                            href="{{ route('about-us') }}"
-                            @click.prevent="$inertia.visit(route('welcome'))"
                         >
                             Inicio
-                        </a>
+                        </Link>
                     </li>
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('about-us')"
                             class="
                                 inline-block
                                 text-black
@@ -108,14 +111,13 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2
                                 px-4
                             "
-                            href="{{ route('about-us') }}"
-                            @click.prevent="$inertia.visit(route('about-us'))"
                         >
                             Conócenos
-                        </a>
+                        </Link>
                     </li>
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('products')"
                             class="
                                 inline-block
                                 text-black
@@ -125,14 +127,13 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2
                                 px-4
                             "
-                            href="{{ route('products') }}"
-                            @click.prevent="$inertia.visit(route('products'))"
                         >
                             Productos
-                        </a>
+                        </Link>
                     </li>
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('services')"
                             class="
                                 inline-block
                                 text-black
@@ -141,14 +142,13 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-underline
                                 py-2 px-4
                             "
-                            href="{{ route('services') }}"
-                            @click.prevent="$inertia.visit(route('services'))"
                         >
                             Servicios
-                        </a>
+                        </Link>
                     </li>
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('posts.index')"
                             class="
                                 inline-block
                                 text-black
@@ -157,14 +157,13 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-underline
                                 py-2 px-4
                             "
-                            href="{{ route('posts') }}"
-                            @click.prevent="$inertia.visit(route('posts.index'))"
                         >
                             Blog
-                        </a>
+                        </Link>
                     </li>
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('contact')"
                             class="
                                 inline-block
                                 text-black
@@ -174,14 +173,13 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2
                                 px-4
                             "
-                            href="{{ route('contact') }}"
-                            @click.prevent="$inertia.visit(route('contact'))"
                         >
                             Contacto
-                        </a>
+                        </Link>
                     </li>
                     <li class="mr-3">
-                        <a
+                        <Link
+                            :href="route('shopping-cart')"
                             class="
                                 inline-block
                                 text-black
@@ -191,11 +189,9 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2
                                 px-4
                             "
-                            href="{{ route('shopping-cart') }}"
-                            @click.prevent="$inertia.visit(route('shopping-cart'))"
                         >
                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
