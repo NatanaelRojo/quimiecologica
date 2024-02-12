@@ -50,7 +50,16 @@ onMounted(async () => {
             <!-- Sección Productos -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+                    <h2
+                        class="
+                                w-full
+                                my-2 text-5xl
+                                font-black
+                                leading-tight
+                                text-center
+                                text-gray-800
+                            "
+                    >
                         Productos
                     </h2>
                     <div class="w-full mb-4">
@@ -142,6 +151,29 @@ onMounted(async () => {
                             <img :src="productOne" class="w-80 h-auto mx-auto">
                         </div>
                     </div>
+                    <div class="flex flex-col items-center">
+                        <a
+                            href="{{ route('products') }}"
+                            @click.prevent="$inertia.visit(route('products'))"
+                        >
+                            <button
+                                class="
+                                    mt-4
+                                    bg-blue-500
+                                    text-white
+                                    py-2 px-4
+                                    rounded-md
+                                    hover:bg-blue-600
+                                    focus:outline-none
+                                    focus:border-blue-700
+                                    focus:ring
+                                    focus:ring-blue-200
+                                "
+                            >
+                                Ver todos
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </section>
             <!-- Final Sección Productos -->
@@ -149,7 +181,17 @@ onMounted(async () => {
             <!-- Sección Servicios -->
             <section class="bg-gray-100 border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+                    <h2
+                        class="
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
                         Servicios
                     </h2>
                     <div class="w-full mb-4">
@@ -260,6 +302,29 @@ onMounted(async () => {
                         <div class="sm:w-1/2">
                             <img :src="productOne" class="w-80 h-auto mx-auto">
                         </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <a
+                            href="{{ route('services') }}"
+                            @click.prevent="$inertia.visit(route('services'))"
+                        >
+                            <button
+                                class="
+                                    mt-4
+                                    bg-blue-500
+                                    text-white
+                                    py-2 px-4
+                                    rounded-md
+                                    hover:bg-blue-600
+                                    focus:outline-none
+                                    focus:border-blue-700
+                                    focus:ring
+                                    focus:ring-blue-200
+                                "
+                            >
+                                Ver todos
+                            </button>
+                        </a>
                     </div>
                 </div>
             </section>
