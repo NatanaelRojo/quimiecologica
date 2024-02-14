@@ -12,6 +12,24 @@
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
+                <!-- Notificación del carrito -->
+                <div
+                    v-if="arrayProducts.length > 0"
+                    class="container max-w-5xl mx-auto m-8"
+                    role="alert"
+                >
+                    <div
+                        class="
+                            relative block w-full p-4 mb-4 text-base
+                            leading-5 text-white gradient-green rounded-lg
+                            opacity-100 font-regular
+                        "
+                    >
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        Ha agregado Productos al Carrito de compras.
+                    </div>
+                </div>
+                <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2
                         class="
