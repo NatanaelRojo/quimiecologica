@@ -8,6 +8,18 @@
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
+                <!-- Notificación del carrito -->
+                <div v-if="arrayProducts.length > 0" class="container max-w-5xl mx-auto m-8" role="alert">
+                    <div class="
+                            relative block w-full p-4 mb-4 text-base
+                            leading-5 text-white gradient-green rounded-lg
+                            opacity-100 font-regular
+                        ">
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        Ha agregado Productos al Carrito de compras.
+                    </div>
+                </div>
+                <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2 class="
                             w-full
@@ -50,7 +62,6 @@
                             <option value="gte">Mayor o igual a ${{ productPrice }}</option>
                             <option value="lte">Menor o igual a ${{ productPrice }}</option>
                         </select>
-
                         <h2>Categorias</h2>
                         <select v-model="selectedCategories" multiple>
                             <option value="" disabled selected>Seleccione</option>
@@ -161,22 +172,26 @@
                                         Precio: ${{ product.price }}
                                     </p>
                                     <div class="flex flex-col items-center">
-                                        <button class="
-                                                gradient-green
-                                                mt-4
-                                                bg-blue-500
-                                                text-white
-                                                py-2 px-4
-                                                rounded-md
-                                                hover:bg-blue-600
-                                                focus:outline-none
-                                                focus:border-blue-700
-                                                focus:ring
-                                                focus:ring-blue-200
-                                            ">
+                                        <<<<<<< HEAD <button class="
+    =======
+                                            <button
+                                                @click=" addProductToCart(product.id)" class="
+    >>>>>>> 6a1e1d9c8a1fcbef18e748b2ef82e4b7557a926d
+                                                    gradient-green
+                                                    mt-4
+                                                    bg-blue-500
+                                                    text-white
+                                                    py-2 px-4
+                                                    rounded-md
+                                                    hover:bg-blue-600
+                                                    focus:outline-none
+                                                    focus:border-blue-700
+                                                    focus:ring
+                                                    focus:ring-blue-200
+                                                ">
                                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                                             Añadir al Carrito
-                                        </button>
+                                            </button>
                                     </div>
                                 </div>
                             </div>
@@ -194,10 +209,37 @@
                         </h2>
                         <!-- Fin de la iteración de productos -->
                     </div>
+                    <<<<<<< HEAD=======<!-- Fin del grid de productos -->
+
+                        <!-- Carrito de Compras -->
+                        <div>
+                            <h2 class="
+                                w-full
+                                my-2
+                                text-5xl
+                                font-black
+                                leading-tight
+                                text-center
+                                text-gray-800
+                            ">
+                                Productos en el Carrito
+                            </h2>
+                            <ul>
+                                <li v-for="(product, index) in arrayProducts" :key="index">
+                                    {{ product.name }} - ${{ product.price }}
+                                    <button @click="removeProductFromCart(product.id)">
+                                        Eliminar
+                                    </button>
+                                </li>
+                            </ul>
+                            <p>Total: ${{ calculateTotalPrice() }}</p>
+                        </div>
+                        <!-- Final del carrito de Compras -->
+                        >>>>>>> 6a1e1d9c8a1fcbef18e748b2ef82e4b7557a926d
                 </div>
                 <!-- Fin del grid de productos -->
             </section>
-            <!-- Final Sección Productos -->
+            <!-- Final Sección -->
         </template>
     </MainLayout>
 </template>
@@ -221,6 +263,7 @@ const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
+const arrayProducts = ref([]);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -268,5 +311,46 @@ const clearFilters = async () => {
     } catch (error) {
         console.error(error);
     }
+}
+
+/**
+ * Método que recibe el id del producto y lo agrega en el arreglo de Productos.
+*/
+const addProductToCart = (id) => {
+    // Obtener los datos del producto con el id especificado
+    const productData = products.value.find(product => product.id === id);
+
+    // Añadir los datos del producto al array de Productos del carrito.
+    arrayProducts.value.push(productData);
+}
+
+/**
+ * Método que permite eliminar un producto del carrito.
+*/
+const removeProductFromCart = (id) => {
+    // Encontrar el índice del producto con el id especificado
+    const index = arrayProducts.value.findIndex(product => product.id === id);
+
+    // Eliminar el producto del array de productos del carrito
+    if (index !== -1) {
+        arrayProducts.value.splice(index, 1);
+    }
+}
+
+/**
+ * Método para calcular el precio total de todos los productos en el carrito.
+*/
+const calculateTotalPrice = () => {
+    // Inicializar el precio total
+    let totalPrice = 0;
+
+    // Iterar sobre todos los productos en el carrito
+    for (let i = 0; i < arrayProducts.value.length; i++) {
+        // Sumar el precio del producto actual al precio total
+        totalPrice += arrayProducts.value[i].price;
+    }
+
+    // Devolver el precio total
+    return totalPrice;
 }
 </script>

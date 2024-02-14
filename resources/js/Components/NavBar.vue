@@ -41,6 +41,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                 <button
                     id="nav-toggle"
                     class="
+                        gradient-green
                         flex
                         items-center
                         px-3
