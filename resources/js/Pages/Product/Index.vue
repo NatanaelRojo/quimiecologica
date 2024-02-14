@@ -211,9 +211,36 @@
                         <!-- Fin de la iteración de productos -->
                     </div>
                     <!-- Fin del grid de productos -->
+
+                    <!-- Carrito de Compras -->
+                    <div>
+                        <h2
+                            class="
+                                w-full
+                                my-2
+                                text-5xl
+                                font-black
+                                leading-tight
+                                text-center
+                                text-gray-800
+                            "
+                        >
+                            Productos en el Carrito
+                        </h2>
+                        <ul>
+                            <li v-for="(product, index) in arrayProducts" :key="index">
+                                {{ product.name }} - ${{ product.price }}
+                                <button @click="removeProductFromCart(product.id)">
+                                    Eliminar
+                                </button>
+                            </li>
+                        </ul>
+                        <p>Total: ${{ calculateTotalPrice() }}</p>
+                    </div>
+                    <!-- Final del carrito de Compras -->
                 </div>
             </section>
-            <!-- Final Sección Productos -->
+            <!-- Final Sección -->
         </template>
     </MainLayout>
 </template>
@@ -237,7 +264,7 @@ const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
-var arrayProducts = [];
+const arrayProducts = ref([]);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -288,7 +315,40 @@ const filterProduct = async () => {
  * Método que recibe el id del producto y lo agrega en el arreglo de Productos.
 */
 const addProductToCart = (id) => {
-    arrayProducts.push(id);
-    // console.log(arrayProducts);
+    // Obtener los datos del producto con el id especificado
+    const productData = products.value.find(product => product.id === id);
+
+    // Añadir los datos del producto al array de Productos del carrito.
+    arrayProducts.value.push(productData);
+}
+
+/**
+ * Método que permite eliminar un producto del carrito.
+*/
+const removeProductFromCart = (id) => {
+    // Encontrar el índice del producto con el id especificado
+    const index = arrayProducts.value.findIndex(product => product.id === id);
+
+    // Eliminar el producto del array de productos del carrito
+    if (index !== -1) {
+        arrayProducts.value.splice(index, 1);
+    }
+}
+
+/**
+ * Método para calcular el precio total de todos los productos en el carrito.
+*/
+const calculateTotalPrice = () => {
+    // Inicializar el precio total
+    let totalPrice = 0;
+
+    // Iterar sobre todos los productos en el carrito
+    for (let i = 0; i < arrayProducts.value.length; i++) {
+        // Sumar el precio del producto actual al precio total
+        totalPrice += arrayProducts.value[i].price;
+    }
+
+    // Devolver el precio total
+    return totalPrice;
 }
 </script>
