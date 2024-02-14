@@ -15,9 +15,18 @@ class PostController extends Controller
     /**
      * Return a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $posts = Post::allPublished()->get();
+        $query = Post::query();
+        $query->allPublished();
+
+        if ($request->has('title')) {
+            $query->filterByTitle($request->title);
+        }
+        if ($request->has('categories' && $request->has('genders'))) {
+            $query->filterByCategoryOrGender($request->categories, $request->genders);
+        }
+        $posts = $query->get()->unique();
 
         return response()->json(PostResource::collection($posts), 200);
     }

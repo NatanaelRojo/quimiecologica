@@ -47,7 +47,7 @@ class ProductResource extends Resource
             // Forms\Components\Select::make('service_id')->label('Service')
             //     ->relationship('service', 'name')->searchable()->preload()
             //     ->createOptionForm(ServiceResource::inputForm()),
-            Forms\Components\Toggle::make('is_active')->label(function (bool $state): string {
+            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
                 if (!$state) {
                     return static::getAttributeLabel('inactive');
                 }

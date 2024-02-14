@@ -24,6 +24,7 @@ class Product extends Model
     ];
 
     protected $fillable = [
+        'is_active',
         'name',
         // 'slug',
         'description',
@@ -89,7 +90,7 @@ class Product extends Model
         return $this->belongsToMany(TypeSale::class);
     }
 
-    public function scopeFilterByName(Builder $query, string $searchTerm): void
+    public function scopeFilterByName(Builder $query, ?string $searchTerm): void
     {
         $query->where('name', 'ilike', "%{$searchTerm}%");
     }
