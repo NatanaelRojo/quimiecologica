@@ -4,24 +4,35 @@
 
             <Head title="Nuestros Productos" />
 
-            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
+            <loading
+                :active="isLoading"
+                :is-full-page="fullPage"
+                color="#82675C"
+            ></loading>
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <!-- Notificación del carrito -->
-                <div v-if="arrayProducts.length > 0" class="container max-w-5xl mx-auto m-8" role="alert">
-                    <div class="
+                <div
+                    v-if="arrayProducts.length > 0"
+                    class="container max-w-5xl mx-auto m-8"
+                    role="alert"
+                >
+                    <div
+                        class="
                             relative block w-full p-4 mb-4 text-base
                             leading-5 text-white gradient-green rounded-lg
                             opacity-100 font-regular
-                        ">
+                        "
+                    >
                         <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                         Ha agregado Productos al Carrito de compras.
                     </div>
                 </div>
                 <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="
+                    <h2
+                        class="
                             w-full
                             my-2
                             text-5xl
@@ -29,11 +40,13 @@
                             leading-tight
                             text-center
                             text-gray-800
-                        ">
+                        "
+                    >
                         Nuestros Productos
                     </h2>
                     <div class="w-full mb-4">
-                        <div class="
+                        <div
+                            class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -42,7 +55,8 @@
                                 my-0
                                 py-0
                                 rounded-t
-                            "></div>
+                            "
+                        ></div>
                     </div>
 
                     <br>
@@ -50,10 +64,12 @@
                     <!-- Buscador y Filtros -->
                     <section class="mb-4">
                         <h2>Buscar por Nombre:</h2>
-                        <TextInput v-model="productName" type="text" placeholder="" />
+                        <TextInput
+                            v-model="productName"
+                            type="text"
+                            placeholder=""
+                        />
                         <br>
-                    </section>
-                    <div>
                         <label for="product-price">Precio</label>
                         <input type="number" id="product-price" name="product-price" v-model="productPrice"
                             placeholder="Ingrese el precio del producto" min="1">
@@ -62,20 +78,23 @@
                             <option value="gte">Mayor o igual a ${{ productPrice }}</option>
                             <option value="lte">Menor o igual a ${{ productPrice }}</option>
                         </select>
-                        <h2>Categorias</h2>
+
+                        <h2>Categorías</h2>
                         <select v-model="selectedCategories" multiple>
                             <option value="" disabled selected>Seleccione</option>
                             <option v-for="category in categories" :key="category.id" :value="category.name">{{
                                 category.name }}</option>
                         </select>
-                        <h2>Generos:</h2>
+                        <h2>Géneros:</h2>
                         <select v-model="selectedGenders" multiple>
                             <option value="" disabled selected>Seleccione</option>
                             <option v-for="gender in genders" :key="gender.id" :value="gender.name">{{ gender.name
                             }}
                             </option>
                         </select>
-                        <button class="
+                        <br>
+                        <button
+                            class="
                                 gradient-green
                                 mt-4
                                 bg-blue-500
@@ -87,12 +106,17 @@
                                 focus:border-blue-700
                                 focus:ring
                                 focus:ring-blue-200
-                            " type="button" @click="filterProducts">
+                            "
+                            type="button"
+                            @click="filterProducts"
+                        >
                             Buscar
                         </button>
-                        <button class="
+                        <button
+                            class="
                                 gradient-green
                                 mt-4
+                                ml-2
                                 bg-blue-500
                                 text-white
                                 py-2 px-4
@@ -102,16 +126,19 @@
                                 focus:border-blue-700
                                 focus:ring
                                 focus:ring-blue-200
-                            " type="button" @click="clearFilters">
+                            "
+                            type="button"
+                            @click="clearFilters"
+                        >
                             Limpiar
                         </button>
-                    </div>
+                    </section>
                     <!-- Final Buscador y Filtros -->
 
                     <!-- Grid de productos -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Itera sobre los productos -->
-                        <template v-if="products.length > 0" v-for="product in products" :key="product.id">
+                        <template v-for="product in products" :key="product.id">
                             <div class="
                                     bg-white
                                     p-4 border
@@ -121,25 +148,33 @@
                                     transition-transform
                                     hover:transform
                                     hover:scale-105
-                                ">
+                                "
+                            >
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
-                                    <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
-                                        class="w-full h-40 object-cover mb-4 rounded-md">
+                                    <img
+                                        :src="`/storage/${product.image_urls[0]}`"
+                                        alt="Imagen del producto"
+                                        class="w-full h-40 object-cover mb-4 rounded-md"
+                                    >
                                     <div>
-                                        <Link :href="route(
-                                            'products.detail',
-                                            product.slug
-                                        )
-                                            ">
-                                        <h3 class="
+                                        <Link
+                                            :href="
+                                                route(
+                                                    'products.detail',
+                                                    product.slug
+                                                )
+                                            "
+                                        >
+                                            <h3 class="
                                                     text-lg
                                                     font-semibold
                                                     mb-2
                                                     text-gray-800
-                                                ">
-                                            {{ product.name }}
-                                        </h3>
+                                                "
+                                            >
+                                                {{ product.name }}
+                                            </h3>
                                         </Link>
 
                                         <p class="text-gray-600 mb-4">
@@ -147,73 +182,72 @@
                                         </p>
 
                                         <div class="flex space-x-2">
-                                            <div v-for="
+                                            <div
+                                                v-for="
                                                     (category, index) of product.categories
-                                                " :key="index" class="text-gray-600">
+                                                "
+                                                :key="index"
+                                                class="text-gray-600"
+                                            >
                                                 Categorías: {{ category.name }}
                                             </div>
                                         </div>
                                         <div class="flex space-x-2 mt-2">
-                                            <div v-for="
+                                            <div
+                                                v-for="
                                                     (gender, index) of product.genders
-                                                " :key="index" class="text-gray-600">
+                                                "
+                                                :key="index"
+                                                class="text-gray-600"
+                                            >
                                                 Géneros: {{ gender.name }}
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- Precio y botón a la derecha -->
-                                    <p class="
+                                    <p
+                                        class="
                                             mt-2
                                             text-gray-700
                                             font-semibold
                                             text-xl
-                                        ">
+                                        "
+                                    >
                                         Precio: ${{ product.price }}
                                     </p>
                                     <div class="flex flex-col items-center">
-                                        <<<<<<< HEAD <button class="
-    =======
-                                            <button
-                                                @click=" addProductToCart(product.id)" class="
-    >>>>>>> 6a1e1d9c8a1fcbef18e748b2ef82e4b7557a926d
-                                                    gradient-green
-                                                    mt-4
-                                                    bg-blue-500
-                                                    text-white
-                                                    py-2 px-4
-                                                    rounded-md
-                                                    hover:bg-blue-600
-                                                    focus:outline-none
-                                                    focus:border-blue-700
-                                                    focus:ring
-                                                    focus:ring-blue-200
-                                                ">
+                                        <button
+                                            @click="addProductToCart(product.id)"
+                                            class="
+                                                gradient-green
+                                                mt-4
+                                                bg-blue-500
+                                                text-white
+                                                py-2 px-4
+                                                rounded-md
+                                                hover:bg-blue-600
+                                                focus:outline-none
+                                                focus:border-blue-700
+                                                focus:ring
+                                                focus:ring-blue-200
+                                            "
+                                        >
                                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                                             Añadir al Carrito
-                                            </button>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </template>
-                        <h2 v-else class="
-                            w-full
-                            my-2
-                            text-5xl
-                            font-black
-                            leading-tight
-                            text-center
-                            text-gray-800
-                        ">
-                            No se encontraron productos
-                        </h2>
                         <!-- Fin de la iteración de productos -->
                     </div>
-                    <<<<<<< HEAD=======<!-- Fin del grid de productos -->
+                    <!-- Fin del grid de productos -->
 
-                        <!-- Carrito de Compras -->
-                        <div>
-                            <h2 class="
+                    <!-- Carrito de Compras -->
+                    <div>
+                        <h2
+                            class="
                                 w-full
                                 my-2
                                 text-5xl
@@ -221,23 +255,22 @@
                                 leading-tight
                                 text-center
                                 text-gray-800
-                            ">
-                                Productos en el Carrito
-                            </h2>
-                            <ul>
-                                <li v-for="(product, index) in arrayProducts" :key="index">
-                                    {{ product.name }} - ${{ product.price }}
-                                    <button @click="removeProductFromCart(product.id)">
-                                        Eliminar
-                                    </button>
-                                </li>
-                            </ul>
-                            <p>Total: ${{ calculateTotalPrice() }}</p>
-                        </div>
-                        <!-- Final del carrito de Compras -->
-                        >>>>>>> 6a1e1d9c8a1fcbef18e748b2ef82e4b7557a926d
+                            "
+                        >
+                            Productos en el Carrito
+                        </h2>
+                        <ul>
+                            <li v-for="(product, index) in arrayProducts" :key="index">
+                                {{ product.name }} - ${{ product.price }}
+                                <button @click="removeProductFromCart(product.id)">
+                                    Eliminar
+                                </button>
+                            </li>
+                        </ul>
+                        <p>Total: ${{ calculateTotalPrice() }}</p>
+                    </div>
+                    <!-- Final del carrito de Compras -->
                 </div>
-                <!-- Fin del grid de productos -->
             </section>
             <!-- Final Sección -->
         </template>

@@ -37,11 +37,32 @@ onMounted(async () => {
             <div class="container mx-auto flex flex-wrap pb-4">
                 <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto mb-6" />
 
-                <div class="w-full font-bold text-xl text-gray-800 px-6 text-center">
+                <div
+                    class="
+                        font-roboto
+                        w-full
+                        font-bold
+                        text-xl
+                        text-gray-800
+                        px-6
+                        text-center
+                    "
+                >
                     Fabricación de productos químicos
                 </div>
 
-                <p class="w-full text-gray-600 text-xs md:text-sm px-6 mt-6 mb-4 text-center">
+                <p class="
+                        font-roboto
+                        w-full
+                        text-gray-600
+                        text-xs
+                        md:text-sm
+                        px-6
+                        mt-6
+                        mb-4
+                        text-center
+                    "
+                >
                     Línea Facial BASTT®
                 </p>
             </div>
