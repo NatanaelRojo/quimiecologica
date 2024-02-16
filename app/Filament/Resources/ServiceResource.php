@@ -41,9 +41,14 @@ class ServiceResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
+                ->image()
+                ->columnSpan(2),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
-                ->required()->maxLength(20),
-            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description')),
+                ->required()->maxLength(20)
+                ->columnSpan(2),
+            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
+                ->columnSpan(2),
         ];
     }
 

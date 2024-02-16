@@ -17,7 +17,7 @@ class ConditionsRelationManager extends RelationManager
 
     public static function getModelLabel(): string
     {
-        return __('filament/resources/condiion.label');
+        return __('filament/resources/condition.label');
     }
 
     public static function getPluralModelLabel(): string
