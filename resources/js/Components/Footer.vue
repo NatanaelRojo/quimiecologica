@@ -19,7 +19,7 @@ import { Link } from '@inertiajs/vue3';
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
+                    <p class="uppercase font-extrabold text-gray-800 md:mb-6">
                         Social
                     </p>
                     <ul class="list-reset mb-6">
@@ -27,6 +27,7 @@ import { Link } from '@inertiajs/vue3';
                             <a
                                 href="https://www.instagram.com/basttvzla/"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -42,6 +43,7 @@ import { Link } from '@inertiajs/vue3';
                             <a
                                 href="https://www.tiktok.com/@basttvzla"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -59,6 +61,7 @@ import { Link } from '@inertiajs/vue3';
                                     https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
                                 "
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -74,7 +77,7 @@ import { Link } from '@inertiajs/vue3';
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
+                    <p class="uppercase font-extrabold text-gray-800 md:mb-6">
                         Interés
                     </p>
                     <ul class="list-reset mb-6">
@@ -82,6 +85,7 @@ import { Link } from '@inertiajs/vue3';
                             <Link
                                 :href="route('posts.index')"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -96,6 +100,7 @@ import { Link } from '@inertiajs/vue3';
                             <Link
                                 :href="route('about-us')"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -111,6 +116,7 @@ import { Link } from '@inertiajs/vue3';
                             <Link
                                 :href="route('contact')"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -124,7 +130,9 @@ import { Link } from '@inertiajs/vue3';
                     </ul>
                 </div>
             </div>
-            <p class="text-center text-gray-800">Quimiecologi C.A.</p>
+            <p class="font-montserrat text-center text-gray-800">
+                <b>Quimiecologi C.A.</b>
+            </p>
         </div>
     </footer>
     <!-- Final Footer -->

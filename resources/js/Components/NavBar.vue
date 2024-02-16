@@ -89,6 +89,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                         <Link
                             :href="route('welcome')"
                             class="
+                                font-montserrat
                                 inline-block
                                 text-black
                                 no-underline
@@ -97,13 +98,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2 px-4
                             "
                         >
-                            Inicio
+                            <b>Inicio</b>
                         </Link>
                     </li>
                     <li class="mr-3">
                         <Link
                             :href="route('about-us')"
                             class="
+                                font-montserrat
                                 inline-block
                                 text-black
                                 no-underline
@@ -113,13 +115,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 px-4
                             "
                         >
-                            Conócenos
+                            <b>Conócenos</b>
                         </Link>
                     </li>
                     <li class="mr-3">
                         <Link
                             :href="route('products')"
                             class="
+                                font-montserrat
                                 inline-block
                                 text-black
                                 no-underline
@@ -129,13 +132,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 px-4
                             "
                         >
-                            Productos
+                            <b>Productos</b>
                         </Link>
                     </li>
                     <li class="mr-3">
                         <Link
                             :href="route('services')"
                             class="
+                                font-montserrat
                                 inline-block
                                 text-black
                                 no-underline
@@ -144,13 +148,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2 px-4
                             "
                         >
-                            Servicios
+                            <b>Servicios</b>
                         </Link>
                     </li>
                     <li class="mr-3">
                         <Link
                             :href="route('posts.index')"
                             class="
+                                font-montserrat
                                 inline-block
                                 text-black
                                 no-underline
@@ -159,13 +164,14 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2 px-4
                             "
                         >
-                            Blog
+                            <b>Blog</b>
                         </Link>
                     </li>
                     <li class="mr-3">
                         <Link
                             :href="route('contact')"
                             class="
+                                font-montserrat
                                 inline-block
                                 text-black
                                 no-underline
@@ -175,7 +181,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 px-4
                             "
                         >
-                            Contacto
+                            <b>Contacto</b>
                         </Link>
                     </li>
                     <li class="mr-3">

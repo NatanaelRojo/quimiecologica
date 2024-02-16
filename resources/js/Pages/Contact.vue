@@ -35,7 +35,18 @@ onMounted(async () => {
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+                    <h2
+                        class="
+                            font-montserrat
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
                         Contacto
                     </h2>
                     <div class="w-full mb-4">
@@ -54,11 +65,12 @@ onMounted(async () => {
                     </div>
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">
-                            <p class="text-gray-600 mb-8">
+                            <p class="font-montserrat mb-8">
                                 Mérida Edo. Mérida
                                 <br>
                                 <br>
-                                Teléfono: 0412-5347169 (Horario de atención: 8:00am a 3:30pm)
+                                Teléfono: 0412-5347169
+                                (Horario de atención: 8:00am a 3:30pm)
                             </p>
                         </div>
                     </div>

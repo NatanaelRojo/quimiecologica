@@ -33,6 +33,7 @@
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2
                         class="
+                            font-montserrat
                             w-full
                             my-2
                             text-5xl
