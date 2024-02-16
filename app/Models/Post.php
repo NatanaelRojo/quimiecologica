@@ -62,8 +62,15 @@ class Post extends Model
         $query->where('published',  true);
     }
 
-    public function scopeFilterBy(Builder $query, array $categories, array $genders): void
+    public function scopeFilterByTitle(Builder $query, ?string $searchTerm): void
     {
+        $query->where('title', 'ilike', "%{$searchTerm}%");
+    }
+
+    public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): void
+    {
+        $categories = $categoriesString ? explode(',', $categoriesString) : [];
+        $genders = $gendersString ? explode(',', $gendersString) : [];
         $query->where(function (Builder $query) use ($categories, $genders): void {
             foreach (['categories', 'genders'] as $type) {
                 if (!empty($$type)) {
