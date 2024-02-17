@@ -430,7 +430,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-sm leading-tight">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
                                             "¡Los productos de cuidado personal
                                             de esta tienda son increíbles! Mi
                                             piel nunca ha lucido tan radiante y
@@ -481,12 +481,12 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-sm leading-tight">
-                                            "¡Los productos de cuidado personal
-                                            de esta tienda son increíbles! Mi
-                                            piel nunca ha lucido tan radiante y
-                                            saludable. ¡Definitivamente los
-                                            recomiendo!"
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "Estoy encantada con los resultados
+                                            que he obtenido utilizando los
+                                            productos de esta marca. ¡Mi rutina
+                                            de cuidado personal nunca ha sido
+                                            tan efectiva y placentera!"
                                         </p>
                                     </div>
                                 </div>
@@ -533,12 +533,12 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-sm leading-tight">
-                                            "¡Los productos de cuidado personal
-                                            de esta tienda son increíbles! Mi
-                                            piel nunca ha lucido tan radiante y
-                                            saludable. ¡Definitivamente los
-                                            recomiendo!"
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "Desde que empecé a usar estos
+                                            productos, he notado una gran
+                                            mejoría en la textura y apariencia
+                                            de mi piel. ¡Son simplemente
+                                            maravillosos!"
                                         </p>
                                     </div>
                                 </div>
@@ -584,12 +584,12 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-sm leading-tight">
-                                            "¡Los productos de cuidado personal
-                                            de esta tienda son increíbles! Mi
-                                            piel nunca ha lucido tan radiante y
-                                            saludable. ¡Definitivamente los
-                                            recomiendo!"
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "He probado innumerables productos
+                                            de cuidado personal, y ninguno se
+                                            compara a la calidad y efectividad
+                                            de los que ofrece esta tienda. ¡Para
+                                            mi ahora son imprescindibles!"
                                         </p>
                                     </div>
                                 </div>
@@ -636,12 +636,13 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-sm leading-tight">
-                                            "¡Los productos de cuidado personal
-                                            de esta tienda son increíbles! Mi
-                                            piel nunca ha lucido tan radiante y
-                                            saludable. ¡Definitivamente los
-                                            recomiendo!"
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "Mis expectativas han sido superadas
+                                            con creces desde que comencé a usar
+                                            estos productos. Mi piel se siente
+                                            renovada y luce más saludable que
+                                            nunca. ¡Gracias por crear productos
+                                            tan asombrosos!"
                                         </p>
                                     </div>
                                 </div>
@@ -687,12 +688,12 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-sm leading-tight">
-                                            "¡Los productos de cuidado personal
-                                            de esta tienda son increíbles! Mi
-                                            piel nunca ha lucido tan radiante y
-                                            saludable. ¡Definitivamente los
-                                            recomiendo!"
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "No suelo dejar testimonios, pero
+                                            estos productos realmente lo merecen.
+                                            Mi experiencia ha sido fantástica y
+                                            no puedo estar más satisfecha con
+                                            los resultados que he obtenido."
                                         </p>
                                     </div>
                                 </div>
