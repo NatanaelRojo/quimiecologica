@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('services')) {
-            Schema::create('services', function (Blueprint $table) {
-                $table->id();
-                $table->string('name', 20);
-                $table->text('description')->nullable();
-                // $table->string('considerations');
-                $table->timestamps();
+        if (!Schema::hasColumn('services', 'banner')) {
+            Schema::table('services', function (Blueprint $table) {
+                $table->string('banner')->nullable()->default(null);
             });
         }
     }
@@ -27,6 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::table('services', function (Blueprint $table) {
+            $table->dropColumn('banner');
+        });
     }
 };
