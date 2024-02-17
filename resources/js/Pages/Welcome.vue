@@ -9,6 +9,7 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const imagePath = '/images/1.jpg';
 const productOne = '/images/producto-1.png';
+const avatar = '/images/avatar.png';
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 
 onBeforeMount(async () => {
@@ -352,6 +353,355 @@ onMounted(async () => {
                 </div>
             </section>
             <!-- Final Sección Servicios -->
+
+            <!-- Sección Opiniones de clientes -->
+            <section class="bg-white border-b py-3">
+                <div class="container max-w-5xl mx-auto m-8 font-montserrat">
+                    <h2
+                        class="
+                            font-montserrat
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
+                        ¡Nuestros clientes lo dicen todo!
+                    </h2>
+                    <div class="w-full mb-4">
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
+                    </div>
+                    <br>
+                    <div class="flex flex-wrap">
+                        <div class="-mx-3 md:flex items-start">
+                            <div class="px-3 md:w-1/3">
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Karla Parra.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                María Zerpa.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-3 md:w-1/3">
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Andrea Pérez.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Charlie Contreras.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-3 md:w-1/3">
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Nevada Páez.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Kriss Guitierrez.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Final Sección Opiniones de clientes -->
         </template>
     </MainLayout>
 </template>
