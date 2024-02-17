@@ -189,6 +189,7 @@ onMounted(async () => {
                                     focus:border-blue-700
                                     focus:ring
                                     focus:ring-blue-200
+                                    font-bold
                                 "
                             >
                                 Ver todos
@@ -341,6 +342,7 @@ onMounted(async () => {
                                     focus:border-blue-700
                                     focus:ring
                                     focus:ring-blue-200
+                                    font-bold
                                 "
                             >
                                 Ver todos

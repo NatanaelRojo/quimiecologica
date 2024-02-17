@@ -36,7 +36,7 @@ import { Link } from '@inertiajs/vue3';
                                 "
                                 target="__blank"
                             >
-                                Instagram
+                                <b>Instagram</b>
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -52,7 +52,7 @@ import { Link } from '@inertiajs/vue3';
                                 "
                                 target="__blank"
                             >
-                                TikTok
+                                <b>TikTok</b>
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -70,7 +70,7 @@ import { Link } from '@inertiajs/vue3';
                                 "
                                 target="__blank"
                             >
-                                Linkedin
+                                <b>Linkedin</b>
                             </a>
                         </li>
                     </ul>
@@ -93,7 +93,7 @@ import { Link } from '@inertiajs/vue3';
                                     hover:text-underline
                                 "
                             >
-                                Blog
+                                <b>Blog</b>
                             </Link>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -109,7 +109,7 @@ import { Link } from '@inertiajs/vue3';
                                 "
 
                             >
-                                Conócenos
+                                <b>Conócenos</b>
                             </Link>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -124,14 +124,24 @@ import { Link } from '@inertiajs/vue3';
                                     hover:text-underline
                                 "
                             >
-                                Contacto
+                                <b>Contacto</b>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </div>
-            <p class="font-montserrat text-center text-gray-800">
-                <b>Quimiecologi C.A.</b>
+            <p
+                class="
+                    font-montserrat
+                    text-center
+                    font-bold
+                    text-xl
+                    px-6
+                    hover:text-gray-800
+                    hover:text-underline
+                "
+            >
+                <Link :href="route('welcome')">Quimiecologi C.A.</Link>
             </p>
         </div>
     </footer>
