@@ -44,9 +44,6 @@ class ProductResource extends Resource
     public static function inputForm(): array
     {
         return [
-            // Forms\Components\Select::make('service_id')->label('Service')
-            //     ->relationship('service', 'name')->searchable()->preload()
-            //     ->createOptionForm(ServiceResource::inputForm()),
             Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
                 if (!$state) {
                     return static::getAttributeLabel('inactive');
@@ -56,6 +53,12 @@ class ProductResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan(2)
                 ->live(),
+            // Forms\Components\Select::make('purchase_type')->label(static::getAttributeLabel('purchase_type'))
+            //     ->required()
+            //     ->options([
+            //         'Al mayor',
+            //         'Al detal',
+            //     ]),
             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                 ->required()
                 ->multiple()->relationship('categories', 'name')->searchable()->preload()

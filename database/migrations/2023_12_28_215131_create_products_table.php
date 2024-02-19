@@ -23,9 +23,7 @@ return new class extends Migration
                 $table->jsonb('image_urls');
                 $table->unsignedBigInteger('stock');
                 $table->string('slug')->unique()->nullable();
-                // $table->foreignIdFor(Service::class);
-                // $table->foreignIdFor(Gender::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-                // $table->foreignIdFor(Category::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                // $table->string('purchase_type');
                 $table->timestamps();
             });
         }
