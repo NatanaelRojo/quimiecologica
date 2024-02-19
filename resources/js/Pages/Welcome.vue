@@ -9,6 +9,7 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const imagePath = '/images/1.jpg';
 const productOne = '/images/producto-1.png';
+const avatar = '/images/avatar.png';
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 
 onBeforeMount(async () => {
@@ -53,8 +54,8 @@ onMounted(async () => {
 
                 <p class="
                         font-roboto
+                        text-gray-800
                         w-full
-                        text-gray-600
                         text-xs
                         md:text-sm
                         px-6
@@ -73,13 +74,14 @@ onMounted(async () => {
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2
                         class="
-                                w-full
-                                my-2 text-5xl
-                                font-black
-                                leading-tight
-                                text-center
-                                text-gray-800
-                            "
+                            font-montserrat
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
                     >
                         Productos
                     </h2>
@@ -100,10 +102,10 @@ onMounted(async () => {
 
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Leche desmaquillante
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -115,10 +117,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Tónico
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -130,10 +132,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Exfoliante
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -145,10 +147,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Crema humectante
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -160,10 +162,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Protector Solar, FPS 30
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -176,6 +178,7 @@ onMounted(async () => {
                         <Link :href="route('products')">
                             <button
                                 class="
+                                    font-montserrat
                                     gradient-green
                                     mt-4
                                     bg-blue-500
@@ -187,6 +190,7 @@ onMounted(async () => {
                                     focus:border-blue-700
                                     focus:ring
                                     focus:ring-blue-200
+                                    font-bold
                                 "
                             >
                                 Ver todos
@@ -202,6 +206,7 @@ onMounted(async () => {
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2
                         class="
+                            font-montserrat
                             w-full
                             my-2
                             text-5xl
@@ -230,10 +235,10 @@ onMounted(async () => {
 
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Planificación y diseño de cosméticos
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 ¡Anímate. Que sólo la intención ya no cuenta en
                                 éstos tiempos! Materializa con nosotros tus
                                 ideas y conviértelas en productos
@@ -247,10 +252,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Fabricación a granel
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Cuenta con nosotros para fabricar a escala,
                                 aquello que deseas.
                             </p>
@@ -262,10 +267,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Asesorías
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Te orientamos en todas las etapas previas a
                                 comercializar tus productos o marca.
                             </p>
@@ -277,10 +282,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Análisis de muestras
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Si tienes el producto y desear registros de las
                                 propiedades químicas (pH, viscosidad, grado de
                                 alcohol, conductividad), también podemos
@@ -294,10 +299,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Pulverización
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Transforme en polvo cualquier sólido natural,
                                 utilizado como materia prima comestible o
                                 cosmético.
@@ -310,10 +315,10 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Molienda
                             </h3>
-                            <p class="text-gray-600">
+                            <p class="font-montserrat">
                                 Reduzca el tamaño de las partículas de sólidos
                                 naturales, comestibles y cosméticos.
                             </p>
@@ -326,6 +331,7 @@ onMounted(async () => {
                         <Link :href="route('services')">
                             <button
                                 class="
+                                    font-montserrat
                                     gradient-green
                                     mt-4
                                     bg-blue-500
@@ -337,6 +343,7 @@ onMounted(async () => {
                                     focus:border-blue-700
                                     focus:ring
                                     focus:ring-blue-200
+                                    font-bold
                                 "
                             >
                                 Ver todos
@@ -346,6 +353,356 @@ onMounted(async () => {
                 </div>
             </section>
             <!-- Final Sección Servicios -->
+
+            <!-- Sección Opiniones de clientes -->
+            <section class="bg-white border-b py-3">
+                <div class="container max-w-5xl mx-auto m-8 font-montserrat">
+                    <h2
+                        class="
+                            font-montserrat
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
+                        ¡Nuestros clientes lo dicen todo!
+                    </h2>
+                    <div class="w-full mb-4">
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
+                    </div>
+                    <br>
+                    <div class="flex flex-wrap">
+                        <div class="-mx-3 md:flex items-start">
+                            <div class="px-3 md:w-1/3">
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Karla Parra.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "¡Los productos de cuidado personal
+                                            de esta tienda son increíbles! Mi
+                                            piel nunca ha lucido tan radiante y
+                                            saludable. ¡Definitivamente los
+                                            recomiendo!"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                María Zerpa.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "Estoy encantada con los resultados
+                                            que he obtenido utilizando los
+                                            productos de esta marca. ¡Mi rutina
+                                            de cuidado personal nunca ha sido
+                                            tan efectiva y placentera!"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-3 md:w-1/3">
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Andrea Pérez.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "Desde que empecé a usar estos
+                                            productos, he notado una gran
+                                            mejoría en la textura y apariencia
+                                            de mi piel. ¡Son simplemente
+                                            maravillosos!"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Charlie Contreras.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "He probado innumerables productos
+                                            de cuidado personal, y ninguno se
+                                            compara a la calidad y efectividad
+                                            de los que ofrece esta tienda. ¡Para
+                                            mi ahora son imprescindibles!"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-3 md:w-1/3">
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Nevada Páez.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "Mis expectativas han sido superadas
+                                            con creces desde que comencé a usar
+                                            estos productos. Mi piel se siente
+                                            renovada y luce más saludable que
+                                            nunca. ¡Gracias por crear productos
+                                            tan asombrosos!"
+                                        </p>
+                                    </div>
+                                </div>
+                                <div
+                                    class="
+                                        w-full
+                                        mx-auto
+                                        rounded-lg
+                                        bg-white
+                                        border
+                                        border-gray-200
+                                        p-5
+                                        text-gray-800
+                                        font-light
+                                        mb-6
+                                    "
+                                >
+                                    <div class="w-full flex mb-4 items-center">
+                                        <div
+                                            class="
+                                                overflow-hidden
+                                                rounded-full
+                                                w-10
+                                                h-10
+                                                bg-gray-50
+                                                border
+                                                border-gray-200
+                                            "
+                                        >
+                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                        </div>
+                                        <div class="flex-grow pl-3">
+                                            <h6
+                                                class="
+                                                    font-bold
+                                                    text-sm
+                                                    uppercase
+                                                    text-gray-600
+                                                "
+                                            >
+                                                Kriss Guitierrez.
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                            "No suelo dejar testimonios, pero
+                                            estos productos realmente lo merecen.
+                                            Mi experiencia ha sido fantástica y
+                                            no puedo estar más satisfecha con
+                                            los resultados que he obtenido."
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Final Sección Opiniones de clientes -->
         </template>
     </MainLayout>
 </template>

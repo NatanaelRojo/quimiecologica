@@ -19,7 +19,7 @@ import { Link } from '@inertiajs/vue3';
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
+                    <p class="uppercase font-extrabold text-gray-800 md:mb-6">
                         Social
                     </p>
                     <ul class="list-reset mb-6">
@@ -27,6 +27,7 @@ import { Link } from '@inertiajs/vue3';
                             <a
                                 href="https://www.instagram.com/basttvzla/"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -35,13 +36,14 @@ import { Link } from '@inertiajs/vue3';
                                 "
                                 target="__blank"
                             >
-                                Instagram
+                                <b>Instagram</b>
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <a
                                 href="https://www.tiktok.com/@basttvzla"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -50,7 +52,7 @@ import { Link } from '@inertiajs/vue3';
                                 "
                                 target="__blank"
                             >
-                                TikTok
+                                <b>TikTok</b>
                             </a>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -59,6 +61,7 @@ import { Link } from '@inertiajs/vue3';
                                     https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
                                 "
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -67,14 +70,14 @@ import { Link } from '@inertiajs/vue3';
                                 "
                                 target="__blank"
                             >
-                                Linkedin
+                                <b>Linkedin</b>
                             </a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="flex-1">
-                    <p class="uppercase font-extrabold text-gray-500 md:mb-6">
+                    <p class="uppercase font-extrabold text-gray-800 md:mb-6">
                         Interés
                     </p>
                     <ul class="list-reset mb-6">
@@ -82,6 +85,7 @@ import { Link } from '@inertiajs/vue3';
                             <Link
                                 :href="route('posts.index')"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -89,13 +93,14 @@ import { Link } from '@inertiajs/vue3';
                                     hover:text-underline
                                 "
                             >
-                                Blog
+                                <b>Blog</b>
                             </Link>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <Link
                                 :href="route('about-us')"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -104,13 +109,14 @@ import { Link } from '@inertiajs/vue3';
                                 "
 
                             >
-                                Conócenos
+                                <b>Conócenos</b>
                             </Link>
                         </li>
                         <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                             <Link
                                 :href="route('contact')"
                                 class="
+                                    font-montserrat
                                     inline-block
                                     text-black
                                     no-underline
@@ -118,13 +124,25 @@ import { Link } from '@inertiajs/vue3';
                                     hover:text-underline
                                 "
                             >
-                                Contacto
+                                <b>Contacto</b>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </div>
-            <p class="text-center text-gray-800">Quimiecologi C.A.</p>
+            <p
+                class="
+                    font-montserrat
+                    text-center
+                    font-bold
+                    text-xl
+                    px-6
+                    hover:text-gray-800
+                    hover:text-underline
+                "
+            >
+                <Link :href="route('welcome')">Quimiecologi C.A.</Link>
+            </p>
         </div>
     </footer>
     <!-- Final Footer -->

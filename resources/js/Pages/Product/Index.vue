@@ -33,6 +33,7 @@
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2
                         class="
+                            font-montserrat
                             w-full
                             my-2
                             text-5xl
@@ -95,6 +96,7 @@
                         <br>
                         <button
                             class="
+                                font-montserrat
                                 gradient-green
                                 mt-4
                                 bg-blue-500
@@ -106,6 +108,7 @@
                                 focus:border-blue-700
                                 focus:ring
                                 focus:ring-blue-200
+                                font-bold
                             "
                             type="button"
                             @click="filterProducts"
@@ -114,6 +117,7 @@
                         </button>
                         <button
                             class="
+                                font-montserrat
                                 gradient-green
                                 mt-4
                                 ml-2
@@ -126,6 +130,7 @@
                                 focus:border-blue-700
                                 focus:ring
                                 focus:ring-blue-200
+                                font-bold
                             "
                             type="button"
                             @click="clearFilters"
@@ -220,6 +225,7 @@
                                         <button
                                             @click="addProductToCart(product.id)"
                                             class="
+                                                font-montserrat
                                                 gradient-green
                                                 mt-4
                                                 bg-blue-500
@@ -231,6 +237,7 @@
                                                 focus:border-blue-700
                                                 focus:ring
                                                 focus:ring-blue-200
+                                                font-bold
                                             "
                                         >
                                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>

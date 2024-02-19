@@ -35,7 +35,9 @@ onMounted(async () => {
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="
+                    <h2
+                        class="
+                            font-montserrat
                             w-full
                             my-2
                             text-5xl
@@ -64,14 +66,14 @@ onMounted(async () => {
 
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">
-                            <p class="text-gray-600 mb-8">
+                            <p class="font-montserrat mb-8">
                                 Somos una marca nacional que diseña y elabora
                                 productos de cuidado personal, nuestra
                                 estrategia es la innovación sustentable. Prestamos
                                 diversos servicios y asesorías a empresas y/o
                                 personas que lo requieran.
                             </p>
-                            <p class="text-gray-600 mb-8">
+                            <p class="font-montserrat mb-8">
                                 Contamos con una marca registrada de alcance
                                 nacional, <b>BASTT</b>. Actualmente especializada
                                 en el cuidado preventivo del rostro y que está
@@ -79,7 +81,7 @@ onMounted(async () => {
                                 país, así como en tiendas particulares a nivel
                                 nacional.
                             </p>
-                            <p class="text-gray-600 mb-8">
+                            <p class="font-montserrat mb-8">
                                 La línea <b>Fusión Elemental</b> tiene en cada
                                 uno de sus productos, al menos un ingrediente
                                 natural y un principio activo, los cuales
@@ -87,14 +89,16 @@ onMounted(async () => {
                                 resplandeciente, sino también protegido,
                                 aliviado y colmado de frescura.
                             </p>
-                            <p class="text-gray-600 mb-8">
+                            <p class="font-montserrat mb-8">
                                 Los desarrollos son avalados por laboratorios
                                 certificados, tales como laboratorios de la
                                 Universidad de Los Andes y otros de naturaleza
                                 privada.
                             </p>
-                            <p class="text-center">
-                                <b>Diseña un mundo de cuidado, con el aliado que te mereces.</b>
+                            <p class="font-alexbrush text-3xl text-gray-700 text-center">
+                                <b>"Diseña un mundo de cuidado, con el aliado
+                                    que te mereces."
+                                </b>
                             </p>
                         </div>
                     </div>
