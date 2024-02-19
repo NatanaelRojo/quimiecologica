@@ -5,7 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PurchaseOrderResource\Pages;
 use App\Filament\Resources\PurchaseOrderResource\RelationManagers;
 use App\Filament\Resources\PurchaseOrderResource\RelationManagers\PurchaseOrderItemsRelationManager;
+use App\Models\Product;
 use App\Models\PurchaseOrder;
+use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -59,11 +61,42 @@ class PurchaseOrderResource extends Resource
             Forms\Components\TextInput::make('total_price')->label(static::getAttributeLabel('total_price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
-            Forms\Components\CheckboxList::make('items')->label(static::getAttributeLabel('products'))
-                ->relationship(name: 'purchaseOrderItems', titleAttribute: 'product_name')
-                ->searchable()->noSearchResultsMessage(static::getAttributeLabel('not_found'))->SearchPrompt(static::getAttributeLabel('search_message'))
-                ->columns(2)
-                ->bulkToggleable(),
+            // Forms\Components\CheckboxList::make('items')->label(static::getAttributeLabel('products'))
+            //     ->relationship(name: 'purchaseOrderItems', titleAttribute: 'product_name')
+            //     ->searchable()->noSearchResultsMessage(static::getAttributeLabel('not_found'))->SearchPrompt(static::getAttributeLabel('search_message'))
+            //     ->columns(2)
+            //     ->bulkToggleable(),
+            Forms\Components\Repeater::make('product_info')->label('Datos de producto')
+                ->required()
+                ->schema([
+                    Forms\Components\Select::make('product_id')->label(static::getAttributeLabel('product_name'))
+                        ->options(function (): array {
+                            $options = array();
+                            foreach (Product::all(['id', 'name']) as $product) {
+                                $options[$product->id] = $product->name;
+                            }
+                            return $options;
+                        }),
+                    Forms\Components\TextInput::make('product_quantity')->label(static::getAttributeLabel('product_quantity'))
+                        ->required()
+                        ->numeric()->minValue(1),
+                    Forms\Components\Select::make('sale_type')->label(static::getAttributeLabel('sale_type'))
+                        ->required()
+                        ->options([
+                            'Al detal' => 'Al detal',
+                            'Al mayor' => 'Al mayor',
+                        ]),
+                    Forms\Components\Select::make('product_unit')->label(static::getAttributeLabel('product_unit'))
+                        ->required()
+                        ->options(function (): array {
+                            $options = array();
+                            foreach (Unit::all('name') as $unit) {
+                                $options[$unit->name] = $unit->name;
+                            }
+                            $options['No aplica'] = 'No aplica';
+                            return $options;
+                        }),
+                ])->reorderable(false)->collapsible(),
         ];
     }
 

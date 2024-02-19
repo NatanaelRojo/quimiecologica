@@ -16,6 +16,10 @@ return [
     'reference_number' => 'Número de referencia del pago',
     'status' => 'Estado de la orden',
     'products' => 'Productos',
+    'product_name' => 'Nombre del producto',
+    'product_quantity' => 'Cantidad del producto',
+    'sale_type' => 'Tipo del producto',
+    'product_unit' => 'Unidad del producto',
     'search_message' => 'Buscar un producto',
     'not_found' => 'No se encontraron productos',
 ];
