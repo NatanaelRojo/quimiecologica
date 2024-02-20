@@ -141,7 +141,7 @@
                     <!-- Final Buscador y Filtros -->
 
                     <!-- Grid de productos -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div v-if="products.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Itera sobre los productos -->
                         <template v-for="product in products" :key="product.id">
                             <div class="
@@ -249,6 +249,18 @@
                         </template>
                         <!-- Fin de la iteración de productos -->
                     </div>
+                    <h2
+                        v-else
+                        class="
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center text-gray-800
+                        "
+                    >
+                        No hay productos disponibles
+                    </h2>
                     <!-- Fin del grid de productos -->
 
                     <!-- Carrito de Compras -->

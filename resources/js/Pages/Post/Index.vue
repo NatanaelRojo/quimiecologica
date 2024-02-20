@@ -88,15 +88,18 @@
                     <br>
 
                     <!-- posts grid-->
-                    <div class="
+                    <div
+                        v-if="posts.length > 0"
+                        class="
                             grid
                             grid-cols-1
                             sm:grid-cols-2
                             lg:grid-cols-3
                             gap-8
-                        ">
+                        "
+                    >
                         <!-- Iterate on posts -->
-                        <template v-if="posts.length > 0" v-for="post in posts" :key="post.id">
+                        <template v-for="post in posts" :key="post.id">
                             <div class="
                                     bg-white
                                     p-4 border
@@ -148,16 +151,19 @@
                             </div>
                         </template>
                         <!-- Fin de la iteración de posts-->
-                        <h2 v-else class="
-                        w-full
-                        my-2 text-5xl
-                        font-black
-                        leading-tight
-                        text-center text-gray-800
-                        ">
-                            No hay publicaciones disponibles
-                        </h2>
                     </div>
+                    <h2
+                        v-else
+                        class="
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center text-gray-800
+                        "
+                    >
+                        No hay publicaciones disponibles
+                    </h2>
 
                     <!-- End of grid posts -->
                 </div>
