@@ -262,33 +262,6 @@
                         No hay productos disponibles
                     </h2>
                     <!-- Fin del grid de productos -->
-
-                    <!-- Carrito de Compras -->
-                    <div>
-                        <h2
-                            class="
-                                w-full
-                                my-2
-                                text-5xl
-                                font-black
-                                leading-tight
-                                text-center
-                                text-gray-800
-                            "
-                        >
-                            Productos en el Carrito
-                        </h2>
-                        <ul>
-                            <li v-for="(product, index) in arrayProducts" :key="index">
-                                {{ product.name }} - ${{ product.price }}
-                                <button @click="removeProductFromCart(product.id)">
-                                    Eliminar
-                                </button>
-                            </li>
-                        </ul>
-                        <p>Total: ${{ calculateTotalPrice() }}</p>
-                    </div>
-                    <!-- Final del carrito de Compras -->
                 </div>
             </section>
             <!-- Final Sección -->
@@ -372,37 +345,21 @@ const addProductToCart = (id) => {
     // Obtener los datos del producto con el id especificado
     const productData = products.value.find(product => product.id === id);
 
-    // Añadir los datos del producto al array de Productos del carrito.
-    arrayProducts.value.push(productData);
-}
+    // Verificar si hay algún producto en localStorage
+    let cartProducts = JSON.parse(localStorage.arrayProducts || '[]');
 
-/**
- * Método que permite eliminar un producto del carrito.
-*/
-const removeProductFromCart = (id) => {
-    // Encontrar el índice del producto con el id especificado
-    const index = arrayProducts.value.findIndex(product => product.id === id);
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = cartProducts.findIndex(p => p.id === id);
 
-    // Eliminar el producto del array de productos del carrito
-    if (index !== -1) {
-        arrayProducts.value.splice(index, 1);
-    }
-}
-
-/**
- * Método para calcular el precio total de todos los productos en el carrito.
-*/
-const calculateTotalPrice = () => {
-    // Inicializar el precio total
-    let totalPrice = 0;
-
-    // Iterar sobre todos los productos en el carrito
-    for (let i = 0; i < arrayProducts.value.length; i++) {
-        // Sumar el precio del producto actual al precio total
-        totalPrice += arrayProducts.value[i].price;
+    if (existingProductIndex > -1) {
+        // El producto ya existe en el carrito, actualizar cantidad
+        cartProducts[existingProductIndex].quantity++;
+    } else {
+        // Añadir los datos del producto al array de Productos del carrito
+        cartProducts.push({ ...productData, quantity: 1 });
     }
 
-    // Devolver el precio total
-    return totalPrice;
+    // Almacenar el array de productos actualizado en localStorage
+    localStorage.arrayProducts = JSON.stringify(cartProducts);
 }
 </script>

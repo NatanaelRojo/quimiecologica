@@ -7,6 +7,8 @@ import 'vue-loading-overlay/dist/css/index.css';
 
 const isLoading = ref(false);
 const fullPage = ref(true);
+const arrayProducts = ref(localStorage.arrayProducts
+    ? JSON.parse(localStorage.arrayProducts) : []);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -17,13 +19,45 @@ onMounted(async () => {
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
+
+/**
+ * Método que permite eliminar un producto del carrito.
+*/
+const removeProductFromCart = (id) => {
+    // Encontrar el índice del producto con el id especificado.
+    const index = arrayProducts.value.findIndex(product => product.id === id);
+
+    // Eliminar el producto del array de productos del carrito.
+    if (index !== -1) {
+        arrayProducts.value.splice(index, 1);
+
+        // Actualizar el array de productos en localStorage.
+        localStorage.arrayProducts = JSON.stringify(arrayProducts.value);
+    }
+}
+
+/**
+ * Método para calcular el precio total de todos los productos en el carrito.
+*/
+const calculateTotalPrice = () => {
+    let totalPrice = 0;
+
+    // Iterar sobre todos los productos en el carrito.
+    for (let i = 0; i < arrayProducts.value.length; i++) {
+        // Sumar el precio del producto actual al precio total.
+        totalPrice += arrayProducts.value[i].price;
+    }
+
+    // Devolver el precio total.
+    return totalPrice;
+}
 </script>
 
 <template>
     <MainLayout>
         <template #main>
 
-            <Head title="Mis Productos seleccionados" />
+            <Head title="Productos en el Carrito" />
 
             <loading
                 :active="isLoading"
@@ -35,7 +69,7 @@ onMounted(async () => {
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
                     <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
-                        Mis Productos seleccionados
+                        Productos en el Carrito
                     </h2>
                     <div class="w-full mb-4">
                         <div
@@ -52,11 +86,138 @@ onMounted(async () => {
                         ></div>
                     </div>
                     <div class="flex flex-wrap">
-                        <div class="mt-5 w-full">
-                            <p class="text-gray-600 mb-8">
-                                XXXXXXXXXXXXXXX
-                            </p>
+                        <div v-if="arrayProducts.length > 0">
+                            <div
+                                class="
+                                    grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
+                                "
+                            >
+                                <!-- Carrito de Compras -->
+                                <template v-for="product in arrayProducts" :key="product.id">
+                                    <div class="
+                                            bg-white
+                                            p-4 border
+                                            border-gray-200
+                                            rounded-lg
+                                            shadow-md
+                                            transition-transform
+                                            hover:transform
+                                            hover:scale-105
+                                        "
+                                    >
+                                        <!-- Información a la izquierda -->
+                                        <div class="flex flex-col">
+                                            <img
+                                                :src="`/storage/${product.image_urls[0]}`"
+                                                alt="Imagen del producto"
+                                                class="w-full h-40 object-cover mb-4 rounded-md"
+                                            >
+                                            <div>
+                                                <Link
+                                                    :href="
+                                                        route(
+                                                            'products.detail',
+                                                            product.slug
+                                                        )
+                                                    "
+                                                >
+                                                    <h3 class="
+                                                            text-lg
+                                                            font-semibold
+                                                            mb-2
+                                                            text-gray-800
+                                                        "
+                                                    >
+                                                        {{ product.name }}
+                                                    </h3>
+                                                </Link>
+
+                                                <p class="text-gray-600 mb-4">
+                                                    {{ product.description }}
+                                                </p>
+
+                                                <div class="flex space-x-2">
+                                                    <div
+                                                        v-for="
+                                                            (category, index) of product.categories
+                                                        "
+                                                        :key="index"
+                                                        class="text-gray-600"
+                                                    >
+                                                        Categorías: {{ category.name }}
+                                                    </div>
+                                                </div>
+                                                <div class="flex space-x-2 mt-2">
+                                                    <div
+                                                        v-for="
+                                                            (gender, index) of product.genders
+                                                        "
+                                                        :key="index"
+                                                        class="text-gray-600"
+                                                    >
+                                                        Géneros: {{ gender.name }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Precio y botón a la derecha -->
+                                            <p
+                                                class="
+                                                    mt-2
+                                                    text-gray-700
+                                                    font-semibold
+                                                    text-xl
+                                                "
+                                            >
+                                                Precio: ${{ product.price }}
+                                            </p>
+                                            <div class="flex flex-col items-center">
+                                                <button
+                                                    @click="removeProductFromCart(product.id)"
+                                                    class="
+                                                        font-montserrat
+                                                        gradient-green
+                                                        mt-4
+                                                        bg-blue-500
+                                                        text-white
+                                                        py-2 px-4
+                                                        rounded-md
+                                                        hover:bg-blue-600
+                                                        focus:outline-none
+                                                        focus:border-blue-700
+                                                        focus:ring
+                                                        focus:ring-blue-200
+                                                        font-bold
+                                                    "
+                                                >
+                                                    <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!-- Final del carrito de Compras -->
+                            </div>
+                            <br>
+                            <h2 class="w-full my-2 text-5xl font-black leading-tight text-gray-800">
+                                Total: {{ calculateTotalPrice() }}$
+                            </h2>
                         </div>
+                        <h2
+                            v-else
+                            class="
+                                w-full
+                                my-2
+                                text-4xl
+                                font-black
+                                leading-tight
+                                text-center text-gray-800
+                            "
+                        >
+                            No hay productos añadidos en el
+                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        </h2>
                     </div>
                 </div>
             </section>
