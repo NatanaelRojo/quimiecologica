@@ -95,178 +95,228 @@ const calculateTotalPrice = () => {
                             "
                         ></div>
                     </div>
-                    <div class="flex flex-wrap" style="border:ridge 1px red">
-                        <div v-if="arrayProducts.length > 0" style="border:ridge 1px blue">
-                            <div
-                                class="
-                                    grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
-                                "
-                            >
-                                <!-- Carrito de Compras -->
-                                <template
-                                    v-for="product in arrayProducts"
-                                    :key="product.id"
+                    <!-- Inicio del formulario -->
+                    <form
+                        class="
+                            p-4 border
+                            border-gray-200
+                            rounded-lg
+                            shadow-md
+                        "
+                    >
+                        <!-- Listado de Productos añadidos al carrito -->
+                        <div class="flex flex-wrap">
+                            <div v-if="arrayProducts.length > 0">
+                                <div
+                                    class="
+                                        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
+                                    "
                                 >
-                                    <div class="
-                                            bg-white
-                                            p-4 border
-                                            border-gray-200
-                                            rounded-lg
-                                            shadow-md
-                                            transition-transform
-                                            hover:transform
-                                            hover:scale-105
-                                        "
+                                    <!-- Carrito de Compras -->
+                                    <template
+                                        v-for="product in arrayProducts"
+                                        :key="product.id"
                                     >
-                                        <!-- Información a la izquierda -->
-                                        <div class="flex flex-col">
-                                            <img
-                                                :src="`/storage/${product.image_urls[0]}`"
-                                                alt="Imagen del producto"
-                                                class="w-full h-40 object-cover mb-4 rounded-md"
-                                            >
-                                            <div>
-                                                <Link
-                                                    :href="
-                                                        route(
-                                                            'products.detail',
-                                                            product.slug
-                                                        )
-                                                    "
+                                        <div
+                                            class="
+                                                bg-white
+                                                p-4 border
+                                                border-gray-200
+                                                rounded-lg
+                                                shadow-md
+                                                transition-transform
+                                                hover:transform
+                                                hover:scale-105
+                                            "
+                                        >
+                                            <!-- Información a la izquierda -->
+                                            <div class="flex flex-col">
+                                                <img
+                                                    :src="`/storage/${product.image_urls[0]}`"
+                                                    alt="Imagen del producto"
+                                                    class="w-full h-40 object-cover mb-4 rounded-md"
                                                 >
-                                                    <h3
-                                                        class="
-                                                            text-lg
-                                                            font-semibold
-                                                            mb-2
-                                                            text-gray-800
+                                                <div>
+                                                    <Link
+                                                        :href="
+                                                            route(
+                                                                'products.detail',
+                                                                product.slug
+                                                            )
                                                         "
                                                     >
-                                                        {{ product.name }}
-                                                    </h3>
-                                                </Link>
+                                                        <h3
+                                                            class="
+                                                                text-lg
+                                                                font-semibold
+                                                                mb-2
+                                                                text-gray-800
+                                                            "
+                                                        >
+                                                            {{ product.name }}
+                                                        </h3>
+                                                    </Link>
 
-                                                <p class="text-gray-600 mb-4">
-                                                    {{ product.description }}
-                                                </p>
+                                                    <p class="text-gray-600 mb-4">
+                                                        {{ product.description }}
+                                                    </p>
 
-                                                <div class="flex space-x-2">
-                                                    <div
-                                                        v-for="
-                                                            (category, index)
-                                                                of product.categories
-                                                        "
-                                                        :key="index"
-                                                        class="text-gray-600"
-                                                    >
-                                                        Categorías: {{ category.name }}
+                                                    <div class="flex space-x-2">
+                                                        <div
+                                                            v-for="
+                                                                (category, index)
+                                                                    of product.categories
+                                                            "
+                                                            :key="index"
+                                                            class="text-gray-600"
+                                                        >
+                                                            Categorías: {{ category.name }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex space-x-2 mt-2">
+                                                        <div
+                                                            v-for="
+                                                                (gender, index)
+                                                                    of product.genders
+                                                            "
+                                                            :key="index"
+                                                            class="text-gray-600"
+                                                        >
+                                                            Géneros: {{ gender.name }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="flex space-x-2 mt-2">
-                                                    <div
-                                                        v-for="
-                                                            (gender, index)
-                                                                of product.genders
-                                                        "
-                                                        :key="index"
-                                                        class="text-gray-600"
-                                                    >
-                                                        Géneros: {{ gender.name }}
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <!-- Precio y botón a la derecha -->
-                                            <p
-                                                class="
-                                                    mt-2
-                                                    text-gray-700
-                                                    font-semibold
-                                                    text-xl
-                                                "
-                                            >
-                                                Precio: ${{ product.price }}
-                                            </p>
-                                            <div class="flex flex-col items-center">
-                                                <button
-                                                    @click="removeProductFromCart(product.id)"
+                                                <!-- Precio y botón a la derecha -->
+                                                <p
                                                     class="
-                                                        font-montserrat
-                                                        gradient-green
-                                                        mt-4
-                                                        bg-blue-500
-                                                        text-white
-                                                        py-2 px-4
-                                                        rounded-md
-                                                        hover:bg-blue-600
-                                                        focus:outline-none
-                                                        focus:border-blue-700
-                                                        focus:ring
-                                                        focus:ring-blue-200
-                                                        font-bold
+                                                        mt-2
+                                                        text-gray-700
+                                                        font-semibold
+                                                        text-xl
                                                     "
                                                 >
-                                                    <i class="fa fa-remove fa-lg ollapsed"></i>
-                                                    Eliminar
-                                                </button>
+                                                    Precio: ${{ product.price }}
+                                                </p>
+                                                <div class="flex flex-col items-center">
+                                                    <button
+                                                        @click="removeProductFromCart(product.id)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        "
+                                                    >
+                                                        <i class="fa fa-remove fa-lg ollapsed"></i>
+                                                        Eliminar
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </template>
-                                <!-- Final del carrito de Compras -->
+                                    </template>
+                                    <!-- Final del carrito de Compras -->
+                                </div>
+                                <hr class="mt-5 mb-5">
+                                <h2
+                                    class="
+                                        w-full
+                                        my-2
+                                        text-5xl
+                                        font-black
+                                        leading-tight
+                                        text-gray-800
+                                    "
+                                >
+                                    Total: {{ calculateTotalPrice() }}$
+                                </h2>
                             </div>
-                            <hr class="mt-5 mb-5">
                             <h2
+                                v-else
                                 class="
                                     w-full
                                     my-2
-                                    text-5xl
+                                    text-4xl
                                     font-black
                                     leading-tight
-                                    text-gray-800
+                                    text-center text-gray-800
                                 "
                             >
-                                Total: {{ calculateTotalPrice() }}$
+                                No hay productos añadidos en el
+                                <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                             </h2>
                         </div>
-                        <h2
-                            v-else
-                            class="
-                                w-full
-                                my-2
-                                text-4xl
-                                font-black
-                                leading-tight
-                                text-center text-gray-800
-                            "
-                        >
-                            No hay productos añadidos en el
-                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        </h2>
-                    </div>
-                    <div class="text-center">
-                        <button
-                            v-if="arrayProducts.length > 0"
-                            class="
-                                font-montserrat
-                                gradient-green
-                                mt-4
-                                bg-blue-500
-                                text-white
-                                py-2 px-4
-                                rounded-md
-                                hover:bg-blue-600
-                                focus:outline-none
-                                focus:border-blue-700
-                                focus:ring
-                                focus:ring-blue-200
-                                font-bold
-                            "
-                        >
-                            <i class="fa fa-check fa-lg ollapsed"></i>
-                            COMPRAR
-                        </button>
-                    </div>
+                        <!-- Final del listado de Productos añadidos al carrito -->
+
+                        <br>
+
+                        <!-- Datos del Comprador -->
+                        <div>
+                            <div class="mb-4">
+                                <label
+                                    for="owner_firstname"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
+                                    Nombres:</label>
+                                <input
+                                    type="text"
+                                    id="owner_firstname"
+                                    name="owner_firstname"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
+                            </div>
+                            <div class="mb-4">
+                                <label
+                                    for="owner_firstname"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
+                                    Apellidos:</label>
+                                <input
+                                    type="text"
+                                    id="owner_firstname"
+                                    name="owner_firstname"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
+                            </div>
+                        </div>
+                        <!-- Final de Datos del Comprador -->
+
+                        <!-- Botón Comprar -->
+                        <div class="text-center">
+                            <button
+                                v-if="arrayProducts.length > 0"
+                                class="
+                                    font-montserrat
+                                    gradient-green
+                                    mt-4
+                                    bg-blue-500
+                                    text-white
+                                    py-2 px-4
+                                    rounded-md
+                                    hover:bg-blue-600
+                                    focus:outline-none
+                                    focus:border-blue-700
+                                    focus:ring
+                                    focus:ring-blue-200
+                                    font-bold
+                                "
+                            >
+                                <i class="fa fa-check fa-lg ollapsed"></i>
+                                COMPRAR
+                            </button>
+                        </div>
+                        <!-- Final del Botón Comprar -->
+                    </form>
+                    <!-- Final del formulario -->
                 </div>
             </section>
             <!-- Final Sección -->
