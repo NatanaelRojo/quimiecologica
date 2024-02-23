@@ -67,8 +67,18 @@ const calculateTotalPrice = () => {
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
-                <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+                <div class="container max-w-5xl mx-auto m-4">
+                    <h2
+                        class="
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
                         Productos en el Carrito
                     </h2>
                     <div class="w-full mb-4">
@@ -85,15 +95,18 @@ const calculateTotalPrice = () => {
                             "
                         ></div>
                     </div>
-                    <div class="flex flex-wrap">
-                        <div v-if="arrayProducts.length > 0">
+                    <div class="flex flex-wrap" style="border:ridge 1px red">
+                        <div v-if="arrayProducts.length > 0" style="border:ridge 1px blue">
                             <div
                                 class="
                                     grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
                                 "
                             >
                                 <!-- Carrito de Compras -->
-                                <template v-for="product in arrayProducts" :key="product.id">
+                                <template
+                                    v-for="product in arrayProducts"
+                                    :key="product.id"
+                                >
                                     <div class="
                                             bg-white
                                             p-4 border
@@ -121,7 +134,8 @@ const calculateTotalPrice = () => {
                                                         )
                                                     "
                                                 >
-                                                    <h3 class="
+                                                    <h3
+                                                        class="
                                                             text-lg
                                                             font-semibold
                                                             mb-2
@@ -139,7 +153,8 @@ const calculateTotalPrice = () => {
                                                 <div class="flex space-x-2">
                                                     <div
                                                         v-for="
-                                                            (category, index) of product.categories
+                                                            (category, index)
+                                                                of product.categories
                                                         "
                                                         :key="index"
                                                         class="text-gray-600"
@@ -150,7 +165,8 @@ const calculateTotalPrice = () => {
                                                 <div class="flex space-x-2 mt-2">
                                                     <div
                                                         v-for="
-                                                            (gender, index) of product.genders
+                                                            (gender, index)
+                                                                of product.genders
                                                         "
                                                         :key="index"
                                                         class="text-gray-600"
@@ -190,7 +206,7 @@ const calculateTotalPrice = () => {
                                                         font-bold
                                                     "
                                                 >
-                                                    <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                                                    <i class="fa fa-remove fa-lg ollapsed"></i>
                                                     Eliminar
                                                 </button>
                                             </div>
@@ -199,8 +215,17 @@ const calculateTotalPrice = () => {
                                 </template>
                                 <!-- Final del carrito de Compras -->
                             </div>
-                            <br>
-                            <h2 class="w-full my-2 text-5xl font-black leading-tight text-gray-800">
+                            <hr class="mt-5 mb-5">
+                            <h2
+                                class="
+                                    w-full
+                                    my-2
+                                    text-5xl
+                                    font-black
+                                    leading-tight
+                                    text-gray-800
+                                "
+                            >
                                 Total: {{ calculateTotalPrice() }}$
                             </h2>
                         </div>
@@ -218,6 +243,29 @@ const calculateTotalPrice = () => {
                             No hay productos añadidos en el
                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                         </h2>
+                    </div>
+                    <div class="text-center">
+                        <button
+                            v-if="arrayProducts.length > 0"
+                            class="
+                                font-montserrat
+                                gradient-green
+                                mt-4
+                                bg-blue-500
+                                text-white
+                                py-2 px-4
+                                rounded-md
+                                hover:bg-blue-600
+                                focus:outline-none
+                                focus:border-blue-700
+                                focus:ring
+                                focus:ring-blue-200
+                                font-bold
+                            "
+                        >
+                            <i class="fa fa-check fa-lg ollapsed"></i>
+                            COMPRAR
+                        </button>
                     </div>
                 </div>
             </section>

@@ -58,10 +58,6 @@
                         <p class="text-gray-600 mb-4">{{ product.description }}</p>
 
                         <div class="mb-4">
-                            <p class="text-lg font-bold text-gray-800">Precio: ${{ product.price }}</p>
-                        </div>
-
-                        <div class="mb-4">
                             <p class="text-lg font-bold text-gray-800">Categorías:</p>
                             <ul class="list-disc pl-4">
                                 <li v-for="category in product.categories" :key="category.id">{{ category.name }}</li>
@@ -75,12 +71,9 @@
                             </ul>
                         </div>
 
-                        <!-- Otras secciones de detalles según tus necesidades -->
-
-                        <!-- Botón de agregar al carrito -->
-                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                            Agregar al carrito
-                        </button>
+                        <div class="mb-4">
+                            <p class="text-lg font-bold text-gray-800">Precio: ${{ product.price }}</p>
+                        </div>
                     </div>
                 </div>
             </section>
