@@ -10,6 +10,12 @@ const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
     ? JSON.parse(localStorage.arrayProducts) : []);
 
+const record = ref({
+    firstname: '',
+    lastname: '',
+    total: '',
+});
+
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
     isLoading.value = true;
@@ -48,8 +54,20 @@ const calculateTotalPrice = () => {
         totalPrice += arrayProducts.value[i].price;
     }
 
+    // Asignar el valor del total.
+    record.value.total = totalPrice;
+
     // Devolver el precio total.
     return totalPrice;
+}
+
+/**
+ * Método que permite crear la orden de compra.
+*/
+const createRecord = () => {
+    console.log(record.value.firstname);
+    console.log(record.value.lastname);
+    console.log(record.value.total);
 }
 </script>
 
@@ -97,16 +115,18 @@ const calculateTotalPrice = () => {
                     </div>
                     <!-- Inicio del formulario -->
                     <form
+                        v-if="arrayProducts.length > 0"
                         class="
                             p-4 border
                             border-gray-200
                             rounded-lg
                             shadow-md
                         "
+                        @submit.prevent="createRecord"
                     >
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
-                            <div v-if="arrayProducts.length > 0">
+                            <div>
                                 <div
                                     class="
                                         grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
@@ -240,20 +260,6 @@ const calculateTotalPrice = () => {
                                     Total: {{ calculateTotalPrice() }}$
                                 </h2>
                             </div>
-                            <h2
-                                v-else
-                                class="
-                                    w-full
-                                    my-2
-                                    text-4xl
-                                    font-black
-                                    leading-tight
-                                    text-center text-gray-800
-                                "
-                            >
-                                No hay productos añadidos en el
-                                <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                            </h2>
                         </div>
                         <!-- Final del listado de Productos añadidos al carrito -->
 
@@ -263,27 +269,27 @@ const calculateTotalPrice = () => {
                         <div>
                             <div class="mb-4">
                                 <label
-                                    for="owner_firstname"
+                                    for="firstname"
                                     class="block text-gray-700 text-sm font-bold mb-2"
                                 >
                                     Nombres:</label>
                                 <input
                                     type="text"
-                                    id="owner_firstname"
-                                    name="owner_firstname"
+                                    v-model="record.firstname"
+                                    name="firstname"
                                     class="w-full px-3 py-2 border rounded"
                                 >
                             </div>
                             <div class="mb-4">
                                 <label
-                                    for="owner_firstname"
+                                    for="lastname"
                                     class="block text-gray-700 text-sm font-bold mb-2"
                                 >
                                     Apellidos:</label>
                                 <input
                                     type="text"
-                                    id="owner_firstname"
-                                    name="owner_firstname"
+                                    v-model="record.lastname"
+                                    name="lastname"
                                     class="w-full px-3 py-2 border rounded"
                                 >
                             </div>
@@ -317,6 +323,20 @@ const calculateTotalPrice = () => {
                         <!-- Final del Botón Comprar -->
                     </form>
                     <!-- Final del formulario -->
+                    <h2
+                        v-else
+                        class="
+                            w-full
+                            mt-8
+                            text-4xl
+                            font-black
+                            leading-tight
+                            text-center text-gray-800
+                        "
+                    >
+                        No hay productos añadidos en el
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                    </h2>
                 </div>
             </section>
             <!-- Final Sección -->
