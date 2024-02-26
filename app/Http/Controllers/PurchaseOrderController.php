@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PurchaseOrderResource;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class PurchaseOrderController extends Controller
             'image' => $baucher_image_url,
             'total_price' => $request->total_price,
         ]);
+        return response()->json(new PurchaseOrderResource($newPurchaseOrder), 201);
     }
 
     /**
