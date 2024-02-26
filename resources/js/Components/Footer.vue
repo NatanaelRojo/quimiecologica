@@ -12,7 +12,7 @@ import { Link } from '@inertiajs/vue3';
                     <a href="/">
                         <img
                             :src="LogoQblack"
-                            class="w-32 inline-block"
+                            class="w-32 inline-block img-zoom"
                             alt="Quimiecologi C.A."
                         />
                     </a>

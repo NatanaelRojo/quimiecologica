@@ -192,7 +192,12 @@
                     <br>
 
                     <!-- Grid de productos -->
-                    <div v-if="products.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        v-if="products.length > 0"
+                        class="
+                            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
+                        "
+                    >
                         <!-- Itera sobre los productos -->
                         <template v-for="product in products" :key="product.id">
                             <div class="
@@ -211,7 +216,10 @@
                                     <img
                                         :src="`/storage/${product.image_urls[0]}`"
                                         alt="Imagen del producto"
-                                        class="w-full h-40 object-cover mb-4 rounded-md"
+                                        class="
+                                            w-full h-40 object-cover mb-4
+                                            rounded-md img-zoom
+                                        "
                                     >
                                     <div>
                                         <Link

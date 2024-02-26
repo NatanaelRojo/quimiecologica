@@ -87,3 +87,24 @@ button,
 .font-roboto {
   font-family: "Roboto-Regular", sans-serif;
 }
+
+.img-zoom {
+  transform:scale(1);
+  -ms-transform:scale(1);
+  -moz-transform:scale(1);
+  -webkit-transform:scale(1);
+  -o-transform:scale(1);
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+}
+
+/* Se hace mini zoom al hacer hover en la imagen*/
+.img-zoom:hover {
+  transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -webkit-transform:scale(1.2);
+  -o-transform:scale(1.2);
+}

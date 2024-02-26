@@ -36,7 +36,10 @@ onMounted(async () => {
 
             <!-- Sección 1 -->
             <div class="container mx-auto flex flex-wrap pb-4">
-                <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto mb-6" />
+                <img
+                    :src="imagePath"
+                    class="rounded-lg w-full h-auto mx-auto mb-6"
+                />
 
                 <div
                     class="
@@ -111,7 +114,7 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
@@ -126,7 +129,7 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
@@ -141,13 +144,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Crema humectante
                             </h3>
                             <p class="font-montserrat">
@@ -156,13 +169,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Protector Solar, FPS 30
                             </h3>
                             <p class="font-montserrat">
@@ -171,7 +194,7 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
@@ -235,7 +258,17 @@ onMounted(async () => {
 
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Planificación y diseño de cosméticos
                             </h3>
                             <p class="font-montserrat">
@@ -246,13 +279,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Fabricación a granel
                             </h3>
                             <p class="font-montserrat">
@@ -261,13 +304,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Asesorías
                             </h3>
                             <p class="font-montserrat">
@@ -276,13 +329,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Análisis de muestras
                             </h3>
                             <p class="font-montserrat">
@@ -293,13 +356,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Pulverización
                             </h3>
                             <p class="font-montserrat">
@@ -309,13 +382,23 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
+                            <h3
+                                class="
+                                    font-roboto
+                                    text-3xl
+                                    text-gray-800
+                                    font-bold
+                                    leading-none
+                                    mb-6
+                                    mt-6
+                                "
+                            >
                                 Molienda
                             </h3>
                             <p class="font-montserrat">
@@ -324,7 +407,7 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto">
+                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
                     <div class="flex flex-col items-center">
