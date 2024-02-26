@@ -9,7 +9,12 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const imagePath = '/images/1.jpg';
 const productOne = '/images/producto-1.png';
-const avatar = '/images/avatar.png';
+const profile_1 = '/images/profile_1.png';
+const profile_2 = '/images/profile_2.png';
+const profile_3 = '/images/profile_3.png';
+const profile_4 = '/images/profile_4.png';
+const profile_5 = '/images/profile_5.png';
+const profile_6 = '/images/profile_6.png';
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 
 onBeforeMount(async () => {
@@ -497,7 +502,10 @@ onMounted(async () => {
                                                 border-gray-200
                                             "
                                         >
-                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                            <img
+                                                :src="profile_1"
+                                                class="w-80 h-auto mx-auto img-zoom"
+                                            >
                                         </div>
                                         <div class="flex-grow pl-3">
                                             <h6
@@ -513,7 +521,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight">
                                             "¡Los productos de cuidado personal
                                             de esta tienda son increíbles! Mi
                                             piel nunca ha lucido tan radiante y
@@ -548,7 +556,10 @@ onMounted(async () => {
                                                 border-gray-200
                                             "
                                         >
-                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                            <img
+                                                :src="profile_2"
+                                                class="w-80 h-auto mx-auto img-zoom"
+                                            >
                                         </div>
                                         <div class="flex-grow pl-3">
                                             <h6
@@ -564,7 +575,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight">
                                             "Estoy encantada con los resultados
                                             que he obtenido utilizando los
                                             productos de esta marca. ¡Mi rutina
@@ -600,7 +611,10 @@ onMounted(async () => {
                                                 border-gray-200
                                             "
                                         >
-                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                            <img
+                                                :src="profile_3"
+                                                class="w-80 h-auto mx-auto img-zoom"
+                                            >
                                         </div>
                                         <div class="flex-grow pl-3">
                                             <h6
@@ -616,7 +630,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight">
                                             "Desde que empecé a usar estos
                                             productos, he notado una gran
                                             mejoría en la textura y apariencia
@@ -651,7 +665,10 @@ onMounted(async () => {
                                                 border-gray-200
                                             "
                                         >
-                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                            <img
+                                                :src="profile_5"
+                                                class="w-80 h-auto mx-auto img-zoom"
+                                            >
                                         </div>
                                         <div class="flex-grow pl-3">
                                             <h6
@@ -667,7 +684,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight">
                                             "He probado innumerables productos
                                             de cuidado personal, y ninguno se
                                             compara a la calidad y efectividad
@@ -703,7 +720,10 @@ onMounted(async () => {
                                                 border-gray-200
                                             "
                                         >
-                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                            <img
+                                                :src="profile_6"
+                                                class="w-80 h-auto mx-auto img-zoom"
+                                            >
                                         </div>
                                         <div class="flex-grow pl-3">
                                             <h6
@@ -719,7 +739,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight">
                                             "Mis expectativas han sido superadas
                                             con creces desde que comencé a usar
                                             estos productos. Mi piel se siente
@@ -755,7 +775,10 @@ onMounted(async () => {
                                                 border-gray-200
                                             "
                                         >
-                                            <img :src="avatar" class="w-80 h-auto mx-auto">
+                                            <img
+                                                :src="profile_4"
+                                                class="w-80 h-auto mx-auto img-zoom"
+                                            >
                                         </div>
                                         <div class="flex-grow pl-3">
                                             <h6
@@ -771,7 +794,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl font-alexbrush text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight">
                                             "No suelo dejar testimonios, pero
                                             estos productos realmente lo merecen.
                                             Mi experiencia ha sido fantástica y
