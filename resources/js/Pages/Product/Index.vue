@@ -31,6 +31,13 @@
                 </div>
                 <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
+                    <a
+                        href="#"
+                        class="font-montserrat"
+                        @click.prevent="goBack"
+                    >
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
                     <h2
                         class="
                             font-montserrat
@@ -420,5 +427,12 @@ const addProductToCart = (id) => {
 
     // Almacenar el array de productos actualizado en localStorage
     localStorage.arrayProducts = JSON.stringify(cartProducts);
+}
+
+/**
+ * Regresar al componente anterior.
+*/
+const goBack = () => {
+    window.history.back();
 }
 </script>

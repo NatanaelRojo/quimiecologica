@@ -13,11 +13,40 @@
             <!-- Sección-->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+                    <a
+                        href="#"
+                        class="font-montserrat"
+                        @click.prevent="goBack"
+                    >
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
+                    <h2
+                        class="
+                            font-montserrat
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
                         Detalle de la Publicación
                     </h2>
                     <div class="w-full mb-4">
-                        <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                        <div
+                            class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "
+                        ></div>
                     </div>
 
                     <br>
@@ -66,6 +95,13 @@ const fullPage = ref(true);
 const props = defineProps({
     post: { type: Object, required: true },
 });
+
+/**
+ * Regresar al componente anterior.
+*/
+const goBack = () => {
+    window.history.back();
+}
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.

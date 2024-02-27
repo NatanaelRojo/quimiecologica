@@ -9,17 +9,30 @@
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="
+                    <a
+                        href="#"
+                        class="font-montserrat"
+                        @click.prevent="goBack"
+                    >
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
+                    <h2
+                        class="
+                            font-montserrat
                             w-full
-                            my-2 text-5xl
+                            my-2
+                            text-5xl
                             font-black
                             leading-tight
-                            text-center text-gray-800
-                        ">
+                            text-center
+                            text-gray-800
+                        "
+                    >
                         Nuestras Publicaciones
                     </h2>
-                    <!-- <h2 <div class="w-full mb-4">
-                        <div class="
+                    <div class="w-full mb-4">
+                        <div
+                            class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -28,8 +41,12 @@
                                 my-0
                                 py-0
                                 rounded-t
-                            "></div>
-                </div> -->
+                            "
+                        ></div>
+                    </div>
+
+                    <br>
+
                     <section class="mb-4">
                         <div>
                             <h2>Buscar por Nombre:</h2>
@@ -223,6 +240,13 @@ const FilterPosts = async () => {
     } catch (error) {
         console.error(error);
     }
+}
+
+/**
+ * Regresar al componente anterior.
+*/
+const goBack = () => {
+    window.history.back();
 }
 
 const clearFilters = async () => {
