@@ -13,7 +13,7 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json()->setStatusCode(200);
     }
 
     /**
@@ -21,8 +21,9 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        // dd($request->owner_firstname);
         $baucher_image_url = '';
-        if ($request->has('image')) {
+        if ($request->hasFile('baucher')) {
             $baucher_image_url = $request->file('baucher')->store('bauchers');
         }
         $newPurchaseOrder = PurchaseOrder::create([
@@ -36,7 +37,10 @@ class PurchaseOrderController extends Controller
             'reference_number' => $request->reference_number,
             'image' => $baucher_image_url,
             'total_price' => $request->total_price,
+            'products_info' => $request->products_info,
         ]);
+
+        return response()->json()->setStatusCode(201);
     }
 
     /**

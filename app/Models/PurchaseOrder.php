@@ -21,12 +21,12 @@ class PurchaseOrder extends Model
         'reference_number',
         'image',
         'total_price',
-        'product_info',
+        'products_info',
         'status',
     ];
 
     protected $casts = [
-        'product_info' => 'array',
+        'products_info' => 'array',
     ];
 
     public function purchaseOrderItems(): BelongsToMany

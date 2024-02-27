@@ -24,7 +24,7 @@ return new class extends Migration
                 $table->string('reference_number');
                 $table->string('image')->nullable();
                 $table->unsignedBigInteger('total_price');
-                $table->json('product_info');
+                $table->json('products_info');
                 $table->string('status', 20)->default('En espera');
                 $table->timestamps();
             });

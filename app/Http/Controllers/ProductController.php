@@ -26,7 +26,7 @@ class ProductController extends Controller
         if ($request->has('categories') || $request->has('genders')) {
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
-        if ($request->has('priceFilter') && $request->has('productPrice')) {
+        if ($request->has('priceFilter') && $request->has('price')) {
             $operator = $this->parsePriceCriteria($request->priceFilter);
             $query->filterByPrice($request->price, $operator);
         }

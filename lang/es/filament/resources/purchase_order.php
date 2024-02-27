@@ -15,7 +15,7 @@ return [
     'baucher' => 'Comprobante de pago',
     'reference_number' => 'Número de referencia del pago',
     'status' => 'Estado de la orden',
-    'products' => 'Productos',
+    'products_info' => 'Productos',
     'product_name' => 'Nombre del producto',
     'product_quantity' => 'Cantidad del producto',
     'sale_type' => 'Tipo del producto',

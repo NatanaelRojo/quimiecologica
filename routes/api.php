@@ -9,6 +9,7 @@ use App\Http\Controllers\GenderController;
 use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRetailOrderController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
 use App\Http\Controllers\ServiceController;
@@ -39,6 +40,7 @@ Route::resource('/pending-orders',  PendingOrderController::class);
 Route::apiResource('/posts', PostController::class);
 Route::get('/products/filter/', [ProductController::class, 'filter'])->name('products.filter');
 Route::apiResource('/products', ProductController::class);
+Route::apiResource('/purchase-orders', PurchaseOrderController::class);
 Route::apiResource('/purchase-retail-orders', PurchaseRetailOrderController::class);
 Route::apiResource('/purchase-wholesale-orders', PurchaseWholesaleOrderController::class);
 

@@ -66,7 +66,7 @@ class PurchaseOrderResource extends Resource
             //     ->searchable()->noSearchResultsMessage(static::getAttributeLabel('not_found'))->SearchPrompt(static::getAttributeLabel('search_message'))
             //     ->columns(2)
             //     ->bulkToggleable(),
-            Forms\Components\Repeater::make('product_info')->label('Datos de producto')
+            Forms\Components\Repeater::make('products_info')->label(static::getAttributeLabel('products_info'))
                 ->required()
                 ->schema([
                     Forms\Components\Select::make('product_id')->label(static::getAttributeLabel('product_name'))
@@ -96,7 +96,9 @@ class PurchaseOrderResource extends Resource
                             $options['No aplica'] = 'No aplica';
                             return $options;
                         }),
-                ])->reorderable(false)->collapsible(),
+                ])->reorderable(false)->collapsible()
+                ->minItems(1)
+                ->grid(2),
         ];
     }
 
