@@ -4,7 +4,11 @@
 
             <Head title="Nuestras Publicaciones" />
 
-            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
+            <loading
+                :active="isLoading"
+                :is-full-page="fullPage"
+                color="#82675C"
+            ></loading>
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
@@ -70,7 +74,8 @@
                                 </option>
                             </select>
                         </div>
-                        <button class="
+                        <button
+                            class="
                                 gradient-green
                                 mt-4
                                 bg-blue-500
@@ -82,10 +87,14 @@
                                 focus:border-blue-700
                                 focus:ring
                                 focus:ring-blue-200
-                            " type="button" @click="filterPosts">
+                            "
+                            type="button"
+                            @click="filterPosts"
+                        >
                             Buscar
                         </button>
-                        <button class="
+                        <button
+                            class="
                                 gradient-green
                                 mt-4
                                 bg-blue-500
@@ -97,7 +106,10 @@
                                 focus:border-blue-700
                                 focus:ring
                                 focus:ring-blue-200
-                            " type="button" @click="clearFilters">
+                            "
+                            type="button"
+                            @click="clearFilters"
+                        >
                             Limpiar
                         </button>
                     </section>
@@ -117,7 +129,8 @@
                     >
                         <!-- Iterate on posts -->
                         <template v-for="post in posts" :key="post.id">
-                            <div class="
+                            <div
+                                class="
                                     bg-white
                                     p-4 border
                                     border-gray-200
@@ -126,25 +139,37 @@
                                     transition-transform
                                     hover:transform
                                     hover:scale-105
-                                ">
+                                "
+                            >
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col items-start">
-                                    <img :src="`/storage/${post.thumbnail}`" alt="Imagen de la publicación" class="
+                                    <img
+                                        :src="`/storage/${post.thumbnail}`"
+                                        alt="Imagen de la publicación"
+                                        class="
                                             w-full
                                             h-40
                                             object-cover
                                             mb-4
                                             rounded-md
-                                        ">
+                                            img-zoom
+                                        "
+                                    >
                                     <div>
-                                        <Link :href="route('posts.detail', post.slug)
-                                            ">
-                                        <h3 class="
-                                                    text-lg
-                                                    font-semibold
-                                                    mb-2
-                                                    text-gray-800
-                                                ">
+                                        <Link
+                                            :href="route(
+                                                'posts.detail',
+                                                post.slug
+                                            )"
+                                        >
+                                        <h3
+                                            class="
+                                                text-lg
+                                                font-semibold
+                                                mb-2
+                                                text-gray-800
+                                            "
+                                        >
                                             {{ post.title }}
                                         </h3>
                                         </Link>
@@ -158,8 +183,12 @@
                                             </div>
                                         </div>
                                         <div class="flex space-x-2 mt-2">
-                                            <div v-for="(gender, index)
-                                                    of post.genders" :key="index" class="text-gray-600">
+                                            <div
+                                                v-for="(gender, index)
+                                                    of post.genders"
+                                                :key="index"
+                                                class="text-gray-600"
+                                            >
                                                 {{ gender.name }}
                                             </div>
                                         </div>
@@ -260,6 +289,4 @@ const clearFilters = async () => {
         console.error(error);
     }
 }
-
-
 </script>
