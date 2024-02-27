@@ -40,6 +40,14 @@ class PurchaseOrderResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Select::make('status')->label(static::getAttributeLabel('status'))
+                ->required()
+                ->options([
+                    'Aprobada' => 'Aprobada',
+                    'En espera' => 'En espera',
+                    'Rechazada' => 'Rechazada',
+                ])
+                ->columnSpan('full'),
             Forms\Components\TextInput::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))->autofocus()
                 ->required()->maxLength(30),
             Forms\Components\TextInput::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
