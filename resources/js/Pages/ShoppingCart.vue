@@ -94,6 +94,16 @@ const createRecord = () => {
     console.log(record.value.lastname);
     console.log(record.value.total);
 }
+
+/**
+ * Limpiar el Carrito de compras.
+*/
+const cleanForm = () => {
+    if (localStorage.arrayProducts) {
+        localStorage.removeItem('arrayProducts');
+        location.reload();
+    }
+}
 </script>
 
 <template>
@@ -321,8 +331,31 @@ const createRecord = () => {
                         </div>
                         <!-- Final de Datos del Comprador -->
 
-                        <!-- Botón Comprar -->
+                        <!-- Botón Limpiar -->
                         <div class="text-center">
+                            <button
+                                @click="cleanForm()"
+                                v-if="arrayProducts.length > 0"
+                                class="
+                                    font-montserrat
+                                    gradient-green
+                                    mt-4
+                                    mr-2
+                                    bg-blue-500
+                                    text-white
+                                    py-2 px-4
+                                    rounded-md
+                                    hover:bg-blue-600
+                                    focus:outline-none
+                                    focus:border-blue-700
+                                    focus:ring
+                                    focus:ring-blue-200
+                                    font-bold
+                                "
+                            >
+                                <i class="fa fa-remove fa-lg ollapsed"></i>
+                                LIMPIAR
+                            </button>
                             <button
                                 v-if="arrayProducts.length > 0"
                                 class="
