@@ -13,22 +13,24 @@
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <!-- Notificación del carrito -->
-                <div
-                    v-if="arrayProducts.length > 0"
-                    class="container max-w-5xl mx-auto m-8"
-                    role="alert"
-                >
+                <Link :href="route('shopping-cart')">
                     <div
-                        class="
-                            relative block w-full p-4 mb-4 text-base
-                            leading-5 text-white gradient-green rounded-lg
-                            opacity-100 font-regular
-                        "
+                        v-if="arrayProducts.length > 0"
+                        class="container max-w-5xl mx-auto m-8"
+                        role="alert"
                     >
-                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        Ha agregado Productos al Carrito de compras.
+                        <div
+                            class="
+                                relative block w-full p-4 mb-4 text-base
+                                leading-5 text-white gradient-green rounded-lg
+                                opacity-100 font-regular
+                            "
+                        >
+                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                            Ha agregado Productos al carrito.
+                        </div>
                     </div>
-                </div>
+                </Link>
                 <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
                     <a
@@ -354,7 +356,8 @@ const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
-const arrayProducts = ref([]);
+const arrayProducts = ref(localStorage.arrayProducts
+    ? JSON.parse(localStorage.arrayProducts) : []);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -427,6 +430,9 @@ const addProductToCart = (id) => {
 
     // Almacenar el array de productos actualizado en localStorage
     localStorage.arrayProducts = JSON.stringify(cartProducts);
+
+    // Actualizar arrayProducts con los nuevos datos de localStorage
+    arrayProducts.value = cartProducts;
 }
 
 /**
