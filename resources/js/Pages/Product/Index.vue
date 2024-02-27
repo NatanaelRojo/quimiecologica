@@ -13,24 +13,33 @@
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <!-- Notificación del carrito -->
-                <div
-                    v-if="arrayProducts.length > 0"
-                    class="container max-w-5xl mx-auto m-8"
-                    role="alert"
-                >
+                <Link :href="route('shopping-cart')">
                     <div
-                        class="
-                            relative block w-full p-4 mb-4 text-base
-                            leading-5 text-white gradient-green rounded-lg
-                            opacity-100 font-regular
-                        "
+                        v-if="arrayProducts.length > 0"
+                        class="container max-w-5xl mx-auto m-8"
+                        role="alert"
                     >
-                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        Ha agregado Productos al Carrito de compras.
+                        <div
+                            class="
+                                relative block w-full p-4 mb-4 text-base
+                                leading-5 text-white gradient-green rounded-lg
+                                opacity-100 font-regular
+                            "
+                        >
+                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                            Ha agregado Productos al carrito.
+                        </div>
                     </div>
-                </div>
+                </Link>
                 <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
+                    <a
+                        href="#"
+                        class="font-montserrat"
+                        @click.prevent="goBack"
+                    >
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
                     <h2
                         class="
                             font-montserrat
@@ -63,37 +72,86 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section class="mb-4">
-                        <h2>Buscar por Nombre:</h2>
-                        <TextInput
-                            v-model="productName"
-                            type="text"
-                            placeholder=""
-                        />
-                        <br>
-                        <label for="product-price">Precio</label>
-                        <input type="number" id="product-price" name="product-price" v-model="productPrice"
-                            placeholder="Ingrese el precio del producto" min="1">
-                        <select v-model="selectedProductPriceFilter" id="price-filter">
-                            <option value="" disabled selected>Seleccione un rango de precios...</option>
-                            <option value="gte">Mayor o igual a ${{ productPrice }}</option>
-                            <option value="lte">Menor o igual a ${{ productPrice }}</option>
-                        </select>
-
-                        <h2>Categorías</h2>
-                        <select v-model="selectedCategories" multiple>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option v-for="category in categories" :key="category.id" :value="category.name">{{
-                                category.name }}</option>
-                        </select>
-                        <h2>Géneros:</h2>
-                        <select v-model="selectedGenders" multiple>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option v-for="gender in genders" :key="gender.id" :value="gender.name">{{ gender.name
-                            }}
-                            </option>
-                        </select>
-                        <br>
+                    <section>
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"
+                        >
+                            <div>
+                                <h2>Buscar por Nombre:</h2>
+                                <input
+                                    class="w-full rounded"
+                                    type="text"
+                                    v-model="productName"
+                                />
+                            </div>
+                            <div>
+                                <h2>Buscar por Precio:</h2>
+                                <input
+                                    class="w-full rounded"
+                                    type="number"
+                                    id="product-price"
+                                    name="product-price"
+                                    v-model="productPrice"
+                                    placeholder="Ingrese el precio del producto"
+                                    min="1"
+                                >
+                                <select
+                                    class="w-full rounded"
+                                    v-model="selectedProductPriceFilter"
+                                    id="price-filter"
+                                >
+                                    <option
+                                        value=""
+                                        disabled
+                                        selected
+                                    >
+                                        Seleccione un rango de precios
+                                    </option>
+                                    <option value="gte">
+                                        Mayor o igual a ${{ productPrice }}
+                                    </option>
+                                    <option value="lte">
+                                        Menor o igual a ${{ productPrice }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <h2>Buscar por Categorías:</h2>
+                                <select
+                                    class="w-full rounded"
+                                    v-model="selectedCategories"
+                                >
+                                    <option value="" disabled selected>
+                                        Seleccione...
+                                    </option>
+                                    <option
+                                        v-for="category in categories"
+                                        :key="category.id"
+                                        :value="category.name"
+                                    >
+                                        {{ category.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
+                                <h2>Buscar por Géneros:</h2>
+                                <select
+                                    class="w-full rounded"
+                                    v-model="selectedGenders"
+                                >
+                                    <option value="" disabled selected>
+                                        Seleccione...
+                                    </option>
+                                    <option
+                                        v-for="gender in genders"
+                                        :key="gender.id"
+                                        :value="gender.name"
+                                    >
+                                        {{ gender.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                         <button
                             class="
                                 font-montserrat
@@ -140,8 +198,15 @@
                     </section>
                     <!-- Final Buscador y Filtros -->
 
+                    <br>
+
                     <!-- Grid de productos -->
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        v-if="products.length > 0"
+                        class="
+                            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
+                        "
+                    >
                         <!-- Itera sobre los productos -->
                         <template v-for="product in products" :key="product.id">
                             <div class="
@@ -160,7 +225,10 @@
                                     <img
                                         :src="`/storage/${product.image_urls[0]}`"
                                         alt="Imagen del producto"
-                                        class="w-full h-40 object-cover mb-4 rounded-md"
+                                        class="
+                                            w-full h-40 object-cover mb-4
+                                            rounded-md img-zoom
+                                        "
                                     >
                                     <div>
                                         <Link
@@ -249,34 +317,19 @@
                         </template>
                         <!-- Fin de la iteración de productos -->
                     </div>
+                    <h2
+                        v-else
+                        class="
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center text-gray-800
+                        "
+                    >
+                        No hay productos disponibles
+                    </h2>
                     <!-- Fin del grid de productos -->
-
-                    <!-- Carrito de Compras -->
-                    <div>
-                        <h2
-                            class="
-                                w-full
-                                my-2
-                                text-5xl
-                                font-black
-                                leading-tight
-                                text-center
-                                text-gray-800
-                            "
-                        >
-                            Productos en el Carrito
-                        </h2>
-                        <ul>
-                            <li v-for="(product, index) in arrayProducts" :key="index">
-                                {{ product.name }} - ${{ product.price }}
-                                <button @click="removeProductFromCart(product.id)">
-                                    Eliminar
-                                </button>
-                            </li>
-                        </ul>
-                        <p>Total: ${{ calculateTotalPrice() }}</p>
-                    </div>
-                    <!-- Final del carrito de Compras -->
                 </div>
             </section>
             <!-- Final Sección -->
@@ -303,7 +356,8 @@ const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
-const arrayProducts = ref([]);
+const arrayProducts = ref(localStorage.arrayProducts
+    ? JSON.parse(localStorage.arrayProducts) : []);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -360,37 +414,31 @@ const addProductToCart = (id) => {
     // Obtener los datos del producto con el id especificado
     const productData = products.value.find(product => product.id === id);
 
-    // Añadir los datos del producto al array de Productos del carrito.
-    arrayProducts.value.push(productData);
+    // Verificar si hay algún producto en localStorage
+    let cartProducts = JSON.parse(localStorage.arrayProducts || '[]');
+
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = cartProducts.findIndex(p => p.id === id);
+
+    if (existingProductIndex > -1) {
+        // El producto ya existe en el carrito, actualizar cantidad
+        cartProducts[existingProductIndex].quantity++;
+    } else {
+        // Añadir los datos del producto al array de Productos del carrito
+        cartProducts.push({ ...productData, quantity: 1 });
+    }
+
+    // Almacenar el array de productos actualizado en localStorage
+    localStorage.arrayProducts = JSON.stringify(cartProducts);
+
+    // Actualizar arrayProducts con los nuevos datos de localStorage
+    arrayProducts.value = cartProducts;
 }
 
 /**
- * Método que permite eliminar un producto del carrito.
+ * Regresar al componente anterior.
 */
-const removeProductFromCart = (id) => {
-    // Encontrar el índice del producto con el id especificado
-    const index = arrayProducts.value.findIndex(product => product.id === id);
-
-    // Eliminar el producto del array de productos del carrito
-    if (index !== -1) {
-        arrayProducts.value.splice(index, 1);
-    }
-}
-
-/**
- * Método para calcular el precio total de todos los productos en el carrito.
-*/
-const calculateTotalPrice = () => {
-    // Inicializar el precio total
-    let totalPrice = 0;
-
-    // Iterar sobre todos los productos en el carrito
-    for (let i = 0; i < arrayProducts.value.length; i++) {
-        // Sumar el precio del producto actual al precio total
-        totalPrice += arrayProducts.value[i].price;
-    }
-
-    // Devolver el precio total
-    return totalPrice;
+const goBack = () => {
+    window.history.back();
 }
 </script>

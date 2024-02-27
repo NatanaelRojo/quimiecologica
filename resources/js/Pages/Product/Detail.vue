@@ -13,6 +13,13 @@
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
+                    <a
+                        href="#"
+                        class="font-montserrat"
+                        @click.prevent="goBack"
+                    >
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
                     <h2
                         class="
                             font-montserrat
@@ -58,10 +65,6 @@
                         <p class="text-gray-600 mb-4">{{ product.description }}</p>
 
                         <div class="mb-4">
-                            <p class="text-lg font-bold text-gray-800">Precio: ${{ product.price }}</p>
-                        </div>
-
-                        <div class="mb-4">
                             <p class="text-lg font-bold text-gray-800">Categorías:</p>
                             <ul class="list-disc pl-4">
                                 <li v-for="category in product.categories" :key="category.id">{{ category.name }}</li>
@@ -75,12 +78,9 @@
                             </ul>
                         </div>
 
-                        <!-- Otras secciones de detalles según tus necesidades -->
-
-                        <!-- Botón de agregar al carrito -->
-                        <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                            Agregar al carrito
-                        </button>
+                        <div class="mb-4">
+                            <p class="text-lg font-bold text-gray-800">Precio: ${{ product.price }}</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -101,6 +101,13 @@ const fullPage = ref(true);
 const props = defineProps({
     product: { type: Object, required: true },
 });
+
+/**
+ * Regresar al componente anterior.
+*/
+const goBack = () => {
+    window.history.back();
+}
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.

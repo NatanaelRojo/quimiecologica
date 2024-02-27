@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PurchaseOrderResource;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -39,8 +40,7 @@ class PurchaseOrderController extends Controller
             'total_price' => $request->total_price,
             'products_info' => $request->products_info,
         ]);
-
-        return response()->json()->setStatusCode(201);
+        return response()->json(new PurchaseOrderResource($newPurchaseOrder), 201);
     }
 
     /**
