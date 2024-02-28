@@ -63,6 +63,7 @@ const createPurchaseOrder = async () => {
             form.append(key, value);
         });
         const response = await axios.post('/api/purchase-orders', form);
+        console.log("Se guardo la orden de compra!");
     } catch (error) {
         console.error(error);
     }
