@@ -22,7 +22,6 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        // dd($request->owner_firstname);
         $baucher_image_url = '';
         if ($request->hasFile('baucher')) {
             $baucher_image_url = $request->file('baucher')->store('bauchers');

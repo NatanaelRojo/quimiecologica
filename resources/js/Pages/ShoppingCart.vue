@@ -9,6 +9,7 @@ import axios from 'axios';
 const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts ? JSON.parse(localStorage.arrayProducts) : []);
+const baucherFile = ref(null);
 const record = ref({
     owner_firstname: 'Natanael',
     owner_lastname: 'Rojo',
@@ -19,6 +20,7 @@ const record = ref({
     owner_city: 'Merida',
     owner_address: 'Merida',
     reference_number: '00000',
+    baucher: 'hola',
     total_price: 200,
     products_info: [
         {
@@ -43,6 +45,7 @@ const createPurchaseOrder = async () => {
             owner_state: 'Merida',
             owner_city: 'Merida',
             owner_address: 'Merida',
+            baucher: baucherFile.value.files[0],
             reference_number: '00000',
             total_price: 200,
             products_info: [
@@ -51,13 +54,14 @@ const createPurchaseOrder = async () => {
                     product_quantity: '1',
                     sale_type: 'Al detal',
                     product_unit: 'No aplica',
-                }
+                },
             ],
-        }
-        const response = await axios.post(
-            '/api/purchase-orders',
-            purchaseOrderData
-        );
+        };
+        const form = new FormData();
+        Object.entries(record.value).forEach(([key, value]) => {
+            form.append(key, value);
+        });
+        const response = await axios.post('/api/purchase-orders', form);
     } catch (error) {
         console.error(error);
     }
@@ -168,7 +172,7 @@ const cleanForm = () => {
                             border-gray-200
                             rounded-lg
                             shadow-md
-                        " @submit.prevent="createRecord">
+                        " @submit.prevent="createPurchaseOrder">
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
                             <div>
@@ -330,6 +334,13 @@ const cleanForm = () => {
                                 <input type="text" v-model="record.reference_number" id="reference-number"
                                     class="w-full px-3 py-2 border rounded">
                             </div>
+                            <div class="mb-4">
+                                <label for="baucher" class="block text-gray-700 text-sm font-bold mb-2">
+                                    Adjunte imagen o PDF del pago:</label>
+                                <input type="file" ref="baucherFile" id="baucher" class="w-full px-3 py-2 border rounded"
+                                    @input="record.baucher = $event.target.files[0]"
+                                    accept="image/png, image/jpeg, image/jpg, application/pdf">
+                            </div>
                         </div>
                         <!-- Final de Datos del Comprador -->
 
@@ -368,7 +379,7 @@ const cleanForm = () => {
                                     focus:ring
                                     focus:ring-blue-200
                                     font-bold
-                                " @click="createPurchaseOrder">
+                                ">
                                 <i class="fa fa-check fa-lg ollapsed"></i>
                                 COMPRAR
                             </button>
