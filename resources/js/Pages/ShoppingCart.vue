@@ -12,17 +12,17 @@ const arrayProducts = ref(localStorage.arrayProducts
     ? JSON.parse(localStorage.arrayProducts) : []);
 const baucherFile = ref(null);
 const record = ref({
-    owner_firstname: 'Natanael',
-    owner_lastname: 'Rojo',
-    owner_id: '26488388',
-    owner_email: 'rojonatanael99@gmail.com',
-    owner_phone_number: '+58 4147453112',
-    owner_state: 'Merida',
-    owner_city: 'Merida',
-    owner_address: 'Merida',
-    reference_number: '00000',
-    baucher: 'hola',
-    total_price: 200,
+    owner_firstname: '',
+    owner_lastname: '',
+    owner_id: '',
+    owner_email: '',
+    owner_phone_number: '',
+    owner_state: '',
+    owner_city: '',
+    owner_address: '',
+    reference_number: '',
+    baucher: '',
+    total_price: '',
     products_info: [
         {
             product_id: 1,
@@ -38,26 +38,6 @@ const record = ref({
 */
 const createPurchaseOrder = async () => {
     try {
-        const purchaseOrderData = {
-            owner_firstname: 'Natanael',
-            owner_lastname: 'Rojo',
-            owner_id: '26488388',
-            owner_phone_number: '+58 4147453112',
-            owner_state: 'Merida',
-            owner_city: 'Merida',
-            owner_address: 'Merida',
-            baucher: baucherFile.value.files[0],
-            reference_number: '00000',
-            total_price: 200,
-            products_info: [
-                {
-                    product_id: 1,
-                    product_quantity: '1',
-                    sale_type: 'Al detal',
-                    product_unit: 'No aplica',
-                },
-            ],
-        };
         const form = new FormData();
         Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
@@ -111,7 +91,7 @@ const calculateTotalPrice = () => {
     record.value.total_price = totalPrice;
 
     // Devolver el precio total.
-    // return totalPrice;
+    return totalPrice;
 }
 
 /**
@@ -311,7 +291,7 @@ const cleanForm = () => {
                                         text-gray-800
                                     "
                                 >
-                                    Total: ${{ record.total_price }}
+                                    Total: {{ calculateTotalPrice() }}$
                                 </h2>
                             </div>
                         </div>
@@ -363,6 +343,21 @@ const cleanForm = () => {
                                     type="text"
                                     v-model="record.owner_id"
                                     id="owner-id"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
+                            </div>
+                            <!-- Número de teléfono -->
+                            <div class="mb-4">
+                                <label
+                                    for="owner_phone_number"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
+                                    Número de teléfono:
+                                </label>
+                                <input
+                                    type="text"
+                                    v-model="record.owner_phone_number"
+                                    id="owner_phone_number"
                                     class="w-full px-3 py-2 border rounded"
                                 >
                             </div>
