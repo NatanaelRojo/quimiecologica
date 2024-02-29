@@ -1,6 +1,7 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
+import axios from 'axios';
 import { onMounted, onBeforeMount, ref } from 'vue';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
@@ -22,9 +23,18 @@ onBeforeMount(async () => {
 });
 
 onMounted(async () => {
+    try {
+        const response = await axios.get('/api/services');
+        services.value = response.data;
+        console.log(services.value);
+    } catch (error) {
+        console.log(error);
+    }
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
+
+const services = ref([]);
 </script>
 
 <template>
@@ -33,20 +43,12 @@ onMounted(async () => {
 
             <Head title="Nuestros Servicios" />
 
-            <loading
-                :active="isLoading"
-                :is-full-page="fullPage"
-                color="#82675C"
-            ></loading>
+            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <a
-                        href="#"
-                        class="font-montserrat"
-                        @click.prevent="goBack"
-                    >
+                    <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
                     <h2 class="
@@ -58,13 +60,11 @@ onMounted(async () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         Nuestros Servicios
                     </h2>
                     <div class="w-full mb-4">
-                        <div
-                            class="
+                        <div class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -73,24 +73,44 @@ onMounted(async () => {
                                 my-0
                                 py-0
                                 rounded-t
-                            "
-                        ></div>
+                            "></div>
                     </div>
 
                     <br>
 
                     <div class="flex flex-wrap">
-                        <div class="w-5/6 sm:w-1/2 p-6">
-                        <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                            Lorem ipsum dolor sit amet
-                        </h3>
-                        <p class="text-gray-600 mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                            at ipsum eu nunc commodo posuere et sit amet ligula.<br /><br />
+                        <template v-for="(service, index) in services" :key="index">
+                            <div class="w-5/6 sm:w-1/2 p-6">
+                                <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                                    {{ service.name }}
+                                </h3>
+                                <p class="text-gray-600 mb-8">
+                                    {{ service.description }}
+                                    <br /><br />
 
-                            Images from:
-                            <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a>
-                        </p>
+                                    Images from:
+                                    <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a>
+                                </p>
+                            </div>
+                            <div class="w-full sm:w-1/2 p-6">
+                                <img :src="`/storage/${service.banner}`" alt="" class="w-full h-auto mx-auto">
+                            </div>
+                        </template>
+                    </div>
+
+
+                    <div class="flex flex-wrap">
+                        <div class="w-5/6 sm:w-1/2 p-6">
+                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                                Lorem ipsum dolor sit amet
+                            </h3>
+                            <p class="text-gray-600 mb-8">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                at ipsum eu nunc commodo posuere et sit amet ligula.<br /><br />
+
+                                Images from:
+                                <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a>
+                            </p>
                         </div>
                         <div class="w-full sm:w-1/2 p-6">
                             <img :src="imagePath" alt="" class="w-full h-auto mx-auto">
@@ -102,17 +122,17 @@ onMounted(async () => {
                             <img :src="imagePath" alt="" class="w-full h-auto mx-auto">
                         </div>
                         <div class="w-full sm:w-1/2 p-6 mt-6">
-                        <div class="align-middle">
-                            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                            Lorem ipsum dolor sit amet
-                            </h3>
-                            <p class="text-gray-600 mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                            at ipsum eu nunc commodo posuere et sit amet ligula.<br /><br />
-                            Images from:
-                            <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a>
-                            </p>
-                        </div>
+                            <div class="align-middle">
+                                <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
+                                    Lorem ipsum dolor sit amet
+                                </h3>
+                                <p class="text-gray-600 mb-8">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                                    at ipsum eu nunc commodo posuere et sit amet ligula.<br /><br />
+                                    Images from:
+                                    <a class="text-orange-500 underline" href="https://undraw.co/">undraw.co</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

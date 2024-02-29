@@ -20,6 +20,10 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
+        if ($request->has('saleType')) {
+            $query->filterBySaleType($request->saleType);
+        }
+
         if ($request->has('name')) {
             $query->filterByName($request->name);
         }
@@ -33,6 +37,7 @@ class ProductController extends Controller
         $products = $query->get()->unique();
 
         return response()->json(ProductResource::collection($products), 200);
+        // return response()->json(count($products));
     }
 
     private function filterByName(string $searchTerm): Builder

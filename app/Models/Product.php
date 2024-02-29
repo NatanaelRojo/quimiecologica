@@ -95,6 +95,15 @@ class Product extends Model
         $query->where('name', 'ilike', "%{$searchTerm}%");
     }
 
+    public function scopeFilterBySaleType(?Builder $query, string $saleTypeName): void
+    {
+        $query->where(function (Builder $query) use ($saleTypeName): void {
+            $query->whereHas('typeSales', function (Builder $q) use ($saleTypeName): void {
+                $q->whereIn('name', [$saleTypeName]);
+            });
+        });
+    }
+
     public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): void
     {
         $categories = $categoriesString ? explode(',', $categoriesString) : [];

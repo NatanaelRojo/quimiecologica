@@ -15,6 +15,7 @@ class ServiceResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'banner' => $this->banner,
             'name' => $this->name,
             'description' => $this->description,
             'created_at' => $this->created_at,
