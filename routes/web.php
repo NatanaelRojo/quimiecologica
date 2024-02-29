@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -61,6 +62,9 @@ Route::get('/posts/{post}', [PostController::class, 'showDetail'])->name('posts.
 Route::get('/services', function () {
     return Inertia::render('Services');
 })->name('services');
+
+// service detail
+Route::get('/services/{service}', [ServiceController::class, 'showDetail'])->name('services.detail');
 
 // Página de Contacto
 Route::get('/contact', function () {

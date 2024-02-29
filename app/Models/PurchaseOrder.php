@@ -14,6 +14,7 @@ class PurchaseOrder extends Model
         'owner_firstname',
         'owner_lastname',
         'owner_id',
+        'owner_email',
         'owner_phone_number',
         'owner_state',
         'owner_city',

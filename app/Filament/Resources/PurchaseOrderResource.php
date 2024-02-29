@@ -54,6 +54,8 @@ class PurchaseOrderResource extends Resource
                 ->required()->maxLength(30),
             Forms\Components\TextInput::make('owner_id')->label(static::getAttributeLabel('owner_id'))
                 ->required(),
+            Forms\Components\TextInput::make('owner_email')->label(static::getAttributeLabel('owner_email'))
+                ->required()->email(),
             Forms\Components\TextInput::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number'))
                 ->tel()->required(),
             Forms\Components\TextInput::make('owner_state')->label(static::getAttributeLabel('owner_state'))
@@ -76,6 +78,7 @@ class PurchaseOrderResource extends Resource
             //     ->bulkToggleable(),
             Forms\Components\Repeater::make('products_info')->label(static::getAttributeLabel('products_info'))
                 ->required()
+                ->columnSpan('full')
                 ->schema([
                     Forms\Components\Select::make('product_id')->label(static::getAttributeLabel('product_name'))
                         ->options(function (): array {

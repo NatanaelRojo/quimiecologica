@@ -29,6 +29,7 @@ class PurchaseOrderController extends Controller
         $newPurchaseOrder = PurchaseOrder::create([
             'owner_firstname' => $request->owner_firstname,
             'owner_lastname' => $request->owner_lastname,
+            'owner_email' => $request->owner_email,
             'owner_id' => $request->owner_id,
             'owner_phone_number' => $request->owner_phone_number,
             'owner_state' => $request->owner_state,

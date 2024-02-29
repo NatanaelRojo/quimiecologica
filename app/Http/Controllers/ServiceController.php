@@ -7,6 +7,8 @@ use App\Models\Service;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ServiceController extends Controller
 {
@@ -38,6 +40,15 @@ class ServiceController extends Controller
         ]);
 
         return response()->json(new ServiceResource($newService), 201);
+    }
+
+    public function showDetail(Service $service): Response
+    {
+        $service = Service::where('id', $service->id)->with('conditions')->first();
+        // dd($service->name);
+        return Inertia::render('Service/Detail', [
+            'service' => $service,
+        ]);
     }
 
     /**

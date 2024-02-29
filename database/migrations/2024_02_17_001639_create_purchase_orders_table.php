@@ -18,6 +18,7 @@ return new class extends Migration
                 $table->string('owner_lastname', 30);
                 $table->string('owner_id');
                 $table->string('owner_phone_number');
+                $table->string('owner_email');
                 $table->string('owner_city');
                 $table->string('owner_state');
                 $table->string('owner_address');
