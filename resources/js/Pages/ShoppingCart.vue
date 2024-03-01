@@ -10,7 +10,7 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
     ? JSON.parse(localStorage.arrayProducts) : []);
-const baucherFile = ref(null);
+const image = ref(null);
 const record = ref({
     owner_firstname: 'Natanael',
     owner_lastname: 'Rojo',
@@ -21,14 +21,14 @@ const record = ref({
     owner_city: 'Merida',
     owner_address: 'Merida',
     reference_number: '00000',
-    baucher: 'hola',
-    total_price: 200,
+    image: '',
+    total_price: '',
     products_info: [
         {
-            product_id: 1,
-            product_quantity: '1',
-            sale_type: 'Al detal',
-            product_unit: 'No aplica',
+            product_id: '',
+            product_quantity: '',
+            sale_type: '',
+            product_unit: '',
         }
     ],
 });
@@ -46,34 +46,30 @@ const createPurchaseOrder = async () => {
                 product_unit: 'No aplica',
             },
         ];
-        const purchaseOrderData = {
-            owner_firstname: 'Natanael',
-            owner_lastname: 'Rojo',
-            owner_id: '26488388',
-            owner_email: 'rojonatanael99@gmail.com',
-            owner_phone_number: '+58 4147453112',
-            owner_state: 'Merida',
-            owner_city: 'Merida',
-            owner_address: 'Merida',
-            baucher: baucherFile.value.files[0],
-            reference_number: '00000',
-            total_price: 200,
-            // products_info: data,
-        }
-        // console.log(purchaseOrderData.product_info);
+
         const form = new FormData();
-        Object.entries(purchaseOrderData).forEach(([key, value]) => {
-            console.log(value);
+
+        Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
         });
+
         data.forEach(item => {
             form.append(`products_info[${item.product_id}]`, JSON.stringify(item));
         });
+
         const response = await axios.post('/api/purchase-orders', form);
+        console.log("Guardo la orden de compra!")
     } catch (error) {
         console.error(error);
     }
 }
+
+/**
+ * Método para obtiene el archivo adjunto del campo image del formulario.
+*/
+const handleFileChange = (event) => {
+    record.value.image = event.target.files[0];
+};
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -117,7 +113,7 @@ const calculateTotalPrice = () => {
     record.value.total_price = totalPrice;
 
     // Devolver el precio total.
-    // return totalPrice;
+    return totalPrice;
 }
 
 /**
@@ -171,7 +167,10 @@ const cleanForm = () => {
                             border-gray-200
                             rounded-lg
                             shadow-md
-                        " @submit.prevent="createPurchaseOrder">
+                        "
+                        @submit.prevent="createPurchaseOrder"
+                        enctype="multipart/form-data"
+                    >
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
                             <div>
@@ -275,7 +274,7 @@ const cleanForm = () => {
                                         leading-tight
                                         text-gray-800
                                     ">
-                                    Total: ${{ record.total_price }}
+                                    Total: {{ calculateTotalPrice() }}$
                                 </h2>
                             </div>
                         </div>
@@ -287,80 +286,160 @@ const cleanForm = () => {
                         <div>
                             <!-- Nombres -->
                             <div class="mb-4">
-                                <label for="owner-firstname" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-firstname"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Nombres:
                                 </label>
-                                <input type="text" v-model="record.owner_firstname" id="owner-firstname"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.owner_firstname"
+                                    id="owner-firstname"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Apellidos -->
                             <div class="mb-4">
-                                <label for="owner-lastname" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-lastname"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Apellidos:
                                 </label>
-                                <input type="text" v-model="record.owner_lastname" id="owner-lastname"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.owner_lastname"
+                                    id="owner-lastname"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Cédula de identidad -->
                             <div class="mb-4">
-                                <label for="owner-id" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-id"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Cédula de identidad:
                                 </label>
-                                <input type="text" v-model="record.owner_id" id="owner-id"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.owner_id"
+                                    id="owner-id"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
+                            </div>
+                            <!-- Número de teléfono -->
+                            <div class="mb-4">
+                                <label
+                                    for="owner_phone_number"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
+                                    Número de teléfono:
+                                </label>
+                                <input
+                                    type="text"
+                                    v-model="record.owner_phone_number"
+                                    id="owner_phone_number"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Correo electrónico -->
                             <div class="mb-4">
-                                <label for="owner-email" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-email"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Correo electrónico:
                                 </label>
-                                <input type="email" v-model="record.owner_email" id="owner-email"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="email"
+                                    v-model="record.owner_email"
+                                    id="owner-email"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Estado de procedencia -->
                             <div class="mb-4">
-                                <label for="owner-state" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-state"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Estado de procedencia:
                                 </label>
-                                <input type="text" v-model="record.owner_state" id="owner-state"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.owner_state"
+                                    id="owner-state"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Ciudad de procedencia -->
                             <div class="mb-4">
-                                <label for="owner-city" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-city"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Ciudad de procedencia:
                                 </label>
-                                <input type="text" v-model="record.owner_city" id="owner-city"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.owner_city"
+                                    id="owner-city"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Direccion de procedencia: -->
                             <div class="mb-4">
-                                <label for="owner-address" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="owner-address"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Direccion de procedencia:
                                 </label>
-                                <input type="text" v-model="record.owner_address" id="owner-address"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.owner_address"
+                                    id="owner-address"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Numero de referencia del pago -->
                             <div class="mb-4">
-                                <label for="reference-number" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="reference-number"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Numero de referencia del pago:
                                 </label>
-                                <input type="text" v-model="record.reference_number" id="reference-number"
-                                    class="w-full px-3 py-2 border rounded">
+                                <input
+                                    type="text"
+                                    v-model="record.reference_number"
+                                    id="reference-number"
+                                    class="w-full px-3 py-2 border rounded"
+                                >
                             </div>
                             <!-- Adjunte imagen o PDF del pago -->
                             <div class="mb-4">
-                                <label for="baucher" class="block text-gray-700 text-sm font-bold mb-2">
+                                <label
+                                    for="image"
+                                    class="block text-gray-700 text-sm font-bold mb-2"
+                                >
                                     Adjunte imagen o PDF del pago:
                                 </label>
-                                <input type="file" ref="baucherFile" id="baucher" class="w-full px-3 py-2 border rounded"
-                                    @input="record.baucher = $event.target.files[0]" accept="
+                                <input
+                                    type="file"
+                                    ref="image"
+                                    id="image"
+                                    class="w-full px-3 py-2 border rounded"
+                                    @change="handleFileChange"
+                                    accept="
                                         image/png,
                                         image/jpeg,
                                         image/jpg,
                                         application/pdf
-                                    ">
+                                    "
+                                >
                             </div>
                         </div>
                         <!-- Final de Datos del Comprador -->
