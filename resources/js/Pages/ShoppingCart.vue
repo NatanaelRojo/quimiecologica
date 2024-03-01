@@ -39,10 +39,27 @@ const record = ref({
 const createPurchaseOrder = async () => {
     try {
         const form = new FormData();
+        const dataString = JSON.stringify(record.value.products_info);
 
+        /*
         Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
         });
+        */
+
+        form.append('username', record.value.name);
+        form.append('owner_firstname', record.value.owner_firstname);
+        form.append('owner_lastname', record.value.owner_lastname);
+        form.append('owner_id', record.value.owner_id);
+        form.append('owner_email', record.value.owner_email);
+        form.append('owner_phone_number', record.value.owner_phone_number);
+        form.append('owner_state', record.value.owner_state);
+        form.append('owner_city', record.value.owner_city);
+        form.append('owner_address', record.value.owner_address);
+        form.append('reference_number', record.value.reference_number);
+        form.append('image', record.value.image);
+        form.append('total_price', record.value.total_price);
+        form.append('products_info', dataString);
 
         const response = await axios.post('/api/purchase-orders', form);
         console.log("Se guardo la orden de compra!");
