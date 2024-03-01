@@ -27,6 +27,11 @@ class PurchaseOrderController extends Controller
             $baucher_image_url = $request->file('baucher')->store('bauchers');
         }
         // dd($request->products_info);
+        // dd(array($request->products_info));
+        $products_info = array();
+        foreach ($request->products_info as $product) {
+            array_push($products_info, json_decode($product));
+        }
         $newPurchaseOrder = PurchaseOrder::create([
             'owner_firstname' => $request->owner_firstname,
             'owner_lastname' => $request->owner_lastname,
@@ -39,7 +44,7 @@ class PurchaseOrderController extends Controller
             'reference_number' => $request->reference_number,
             'image' => $baucher_image_url,
             'total_price' => $request->total_price,
-            'products_info' => $request->products_info,
+            'products_info' => $products_info,
         ]);
         // dd($newPurchaseOrder->image);
         return response()->json(new PurchaseOrderResource($newPurchaseOrder), 201);
