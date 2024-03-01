@@ -43,7 +43,7 @@ class ServiceResource extends Resource
         return [
             Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
                 ->image()
-                ->columnSpan(2),
+                ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20)
                 ->columnSpan(2),

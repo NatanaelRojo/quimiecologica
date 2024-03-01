@@ -60,7 +60,7 @@ Route::get('/posts/{post}', [PostController::class, 'showDetail'])->name('posts.
 
 // Página de Servicios
 Route::get('/services', function () {
-    return Inertia::render('Services');
+    return Inertia::render('Service/Index');
 })->name('services');
 
 // service detail
