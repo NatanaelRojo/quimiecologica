@@ -10,7 +10,7 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
     ? JSON.parse(localStorage.arrayProducts) : []);
-const baucherFile = ref(null);
+const image = ref(null);
 const record = ref({
     owner_firstname: '',
     owner_lastname: '',
@@ -21,7 +21,7 @@ const record = ref({
     owner_city: '',
     owner_address: '',
     reference_number: '',
-    baucher: '',
+    image: '',
     total_price: '',
     products_info: [
         {
@@ -39,9 +39,11 @@ const record = ref({
 const createPurchaseOrder = async () => {
     try {
         const form = new FormData();
+
         Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
         });
+
         const response = await axios.post('/api/purchase-orders', form);
         console.log("Se guardo la orden de compra!");
     } catch (error) {
@@ -93,6 +95,13 @@ const calculateTotalPrice = () => {
     // Devolver el precio total.
     return totalPrice;
 }
+
+/**
+ * Método para obtiene el archivo adjunto del campo image del formulario.
+*/
+const handleFileChange = (event) => {
+    record.value.image = event.target.files[0];
+};
 
 /**
  * Limpiar el Carrito de compras.
@@ -157,6 +166,7 @@ const cleanForm = () => {
                             shadow-md
                         "
                         @submit.prevent="createPurchaseOrder"
+                        enctype="multipart/form-data"
                     >
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
@@ -439,17 +449,17 @@ const cleanForm = () => {
                             <!-- Adjunte imagen o PDF del pago -->
                             <div class="mb-4">
                                 <label
-                                    for="baucher"
+                                    for="image"
                                     class="block text-gray-700 text-sm font-bold mb-2"
                                 >
                                     Adjunte imagen o PDF del pago:
                                 </label>
                                 <input
                                     type="file"
-                                    ref="baucherFile"
-                                    id="baucher"
+                                    ref="image"
+                                    id="image"
                                     class="w-full px-3 py-2 border rounded"
-                                    @input="record.baucher = $event.target.files[0]"
+                                    @change="handleFileChange"
                                     accept="
                                         image/png,
                                         image/jpeg,

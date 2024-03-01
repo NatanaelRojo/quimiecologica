@@ -22,10 +22,9 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        // dd($request->input());
-        $baucher_image_url = '';
-        if ($request->hasFile('baucher')) {
-            $baucher_image_url = $request->file('baucher')->store('bauchers');
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('image');
         }
         $newPurchaseOrder = PurchaseOrder::create([
             'owner_firstname' => $request->owner_firstname,
@@ -36,7 +35,7 @@ class PurchaseOrderController extends Controller
             'owner_city' => $request->owner_city,
             'owner_address' => $request->owner_address,
             'reference_number' => $request->reference_number,
-            'image' => $baucher_image_url,
+            'image' => $imagePath,
             'total_price' => $request->total_price,
             'products_info' => $request->products_info,
         ]);
