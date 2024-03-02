@@ -59,6 +59,8 @@ const createPurchaseOrder = async () => {
 
         const response = await axios.post('/api/purchase-orders', form);
         console.log("Guardo la orden de compra!")
+        // Limpiar el Carrito de compras luego de guardar el formulario.
+        cleanForm();
     } catch (error) {
         console.error(error);
     }

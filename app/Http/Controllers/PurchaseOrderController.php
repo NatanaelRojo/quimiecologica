@@ -26,7 +26,8 @@ class PurchaseOrderController extends Controller
         $products_info = array();
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('image');
+            $imagePath = $request->file('image')->storePublicly('public');
+            $imageName = basename($imagePath);
         }
 
         foreach ($request->products_info as $product) {
@@ -43,7 +44,7 @@ class PurchaseOrderController extends Controller
             'owner_city' => $request->owner_city,
             'owner_address' => $request->owner_address,
             'reference_number' => $request->reference_number,
-            'image' => $imagePath,
+            'image' => $imageName,
             'total_price' => $request->total_price,
             'products_info' => $products_info,
         ]);
