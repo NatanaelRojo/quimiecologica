@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseOrder\StorePurchaseOrderRequest;
 use App\Http\Resources\PurchaseOrderResource;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\JsonResponse;
@@ -20,7 +21,7 @@ class PurchaseOrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): JsonResponse
+    public function store(StorePurchaseOrderRequest $request): JsonResponse
     {
         $imagePath = null;
         $products_info = array();
@@ -34,7 +35,7 @@ class PurchaseOrderController extends Controller
             array_push($products_info, json_decode($product));
         }
 
-        $newPurchaseOrder = PurchaseOrder::create([
+        $newPurchaseOrder = PurchaseOrder::query()->create([
             'owner_firstname' => $request->owner_firstname,
             'owner_lastname' => $request->owner_lastname,
             'owner_email' => $request->owner_email,

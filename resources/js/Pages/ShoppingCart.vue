@@ -1,5 +1,6 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
+import ErrorList from '@/Components/ErrorList.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
 import Loading from 'vue-loading-overlay';
@@ -32,6 +33,8 @@ const record = ref({
         }
     ],
 });
+const errors = ref([]);
+const form = ref(null);
 
 /**
  * Método que permite enviar los datos de la orden de compra al api.
@@ -62,9 +65,20 @@ const createPurchaseOrder = async () => {
         // Limpiar el Carrito de compras luego de guardar el formulario.
         cleanForm();
     } catch (error) {
-        console.error(error);
+        errors.value = error.response.data;
+        scrollMeTo();
     }
 }
+
+const scrollMeTo = () => {
+    const top = form.offsetTop;
+    window.scrollTo(0, top);
+}
+
+const clearErrors = () => {
+    errors.value = []
+}
+
 
 /**
  * Método para obtiene el archivo adjunto del campo image del formulario.
@@ -139,6 +153,7 @@ const cleanForm = () => {
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
+                <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-4">
                     <h2 class="
                             w-full
@@ -169,10 +184,7 @@ const cleanForm = () => {
                             border-gray-200
                             rounded-lg
                             shadow-md
-                        "
-                        @submit.prevent="createPurchaseOrder"
-                        enctype="multipart/form-data"
-                    >
+                        " @submit.prevent="createPurchaseOrder" enctype="multipart/form-data" ref="form">
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
                             <div>
@@ -288,160 +300,88 @@ const cleanForm = () => {
                         <div>
                             <!-- Nombres -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-firstname"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-firstname" class="block text-gray-700 text-sm font-bold mb-2">
                                     Nombres:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_firstname"
-                                    id="owner-firstname"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_firstname" id="owner-firstname"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Apellidos -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-lastname"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-lastname" class="block text-gray-700 text-sm font-bold mb-2">
                                     Apellidos:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_lastname"
-                                    id="owner-lastname"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_lastname" id="owner-lastname"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Cédula de identidad -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-id"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-id" class="block text-gray-700 text-sm font-bold mb-2">
                                     Cédula de identidad:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_id"
-                                    id="owner-id"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_id" id="owner-id"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Número de teléfono -->
                             <div class="mb-4">
-                                <label
-                                    for="owner_phone_number"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner_phone_number" class="block text-gray-700 text-sm font-bold mb-2">
                                     Número de teléfono:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_phone_number"
-                                    id="owner_phone_number"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_phone_number" id="owner_phone_number"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Correo electrónico -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-email"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-email" class="block text-gray-700 text-sm font-bold mb-2">
                                     Correo electrónico:
                                 </label>
-                                <input
-                                    type="email"
-                                    v-model="record.owner_email"
-                                    id="owner-email"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="email" v-model="record.owner_email" id="owner-email"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Estado de procedencia -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-state"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-state" class="block text-gray-700 text-sm font-bold mb-2">
                                     Estado de procedencia:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_state"
-                                    id="owner-state"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_state" id="owner-state"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Ciudad de procedencia -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-city"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-city" class="block text-gray-700 text-sm font-bold mb-2">
                                     Ciudad de procedencia:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_city"
-                                    id="owner-city"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_city" id="owner-city"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Direccion de procedencia: -->
                             <div class="mb-4">
-                                <label
-                                    for="owner-address"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="owner-address" class="block text-gray-700 text-sm font-bold mb-2">
                                     Direccion de procedencia:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.owner_address"
-                                    id="owner-address"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.owner_address" id="owner-address"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Numero de referencia del pago -->
                             <div class="mb-4">
-                                <label
-                                    for="reference-number"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="reference-number" class="block text-gray-700 text-sm font-bold mb-2">
                                     Numero de referencia del pago:
                                 </label>
-                                <input
-                                    type="text"
-                                    v-model="record.reference_number"
-                                    id="reference-number"
-                                    class="w-full px-3 py-2 border rounded"
-                                >
+                                <input type="text" v-model="record.reference_number" id="reference-number"
+                                    class="w-full px-3 py-2 border rounded">
                             </div>
                             <!-- Adjunte imagen o PDF del pago -->
                             <div class="mb-4">
-                                <label
-                                    for="image"
-                                    class="block text-gray-700 text-sm font-bold mb-2"
-                                >
+                                <label for="image" class="block text-gray-700 text-sm font-bold mb-2">
                                     Adjunte imagen o PDF del pago:
                                 </label>
-                                <input
-                                    type="file"
-                                    ref="image"
-                                    id="image"
-                                    class="w-full px-3 py-2 border rounded"
-                                    @change="handleFileChange"
-                                    accept="
+                                <input type="file" ref="image" id="image" class="w-full px-3 py-2 border rounded"
+                                    @change="handleFileChange" accept="
                                         image/png,
                                         image/jpeg,
                                         image/jpg,
                                         application/pdf
-                                    "
-                                >
+                                    ">
                             </div>
                         </div>
                         <!-- Final de Datos del Comprador -->
