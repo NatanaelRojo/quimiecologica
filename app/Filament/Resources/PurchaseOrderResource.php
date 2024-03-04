@@ -21,6 +21,11 @@ class PurchaseOrderResource extends Resource
     protected static ?string $model = PurchaseOrder::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    public static array $statusOptions = [
+        'Aprobada' => 'Aprobada',
+        'En espea' => 'En espera',
+        'Rechazada' => 'Rechazada',
+    ];
 
     public static function getModelLabel(): string
     {
@@ -116,6 +121,7 @@ class PurchaseOrderResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('status')->label(static::getAttributeLabel('status')),
             Tables\Columns\TextColumn::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_firstname', 'like', "%{$search}%");
@@ -156,7 +162,8 @@ class PurchaseOrderResource extends Resource
         return $table
             ->columns(static::tableColumns())
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options(self::$statusOptions)->label(static::getAttributeLabel('status')),
             ])
             ->actions(static::tableActions())
             ->bulkActions([
