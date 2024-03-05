@@ -130,7 +130,8 @@ class ProductResource extends Resource
         return $table
             ->columns(ProductResource::tableColumns())
             ->filters([
-                //
+                Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                    ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all'))
             ])
             ->actions(ProductResource::tableActions())
             ->bulkActions([
