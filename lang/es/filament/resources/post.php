@@ -9,6 +9,7 @@ return [
     'title' => 'Título',
     'slug' => 'Alias',
     'body' => 'Cuerpo',
+    'is_published' => 'Estado de la publicacion',
     'published' => 'Publicado',
-    'non-published' => 'Borrador',
+    'non_published' => 'Borrador',
 ];

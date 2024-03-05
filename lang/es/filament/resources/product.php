@@ -7,6 +7,7 @@ return [
     'genders' => 'Géneros',
     'type_sales' => 'Tipos de venta',
     'purchase_type' => 'Tipo de venta del producto',
+    'is_active' => 'Estado del producto',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
     'name' => 'Nombre',
@@ -14,4 +15,5 @@ return [
     'stock' => 'En existencia',
     'images' => 'Imágen(s)',
     'price' => 'Precio',
+    'all' => 'Todos',
 ];

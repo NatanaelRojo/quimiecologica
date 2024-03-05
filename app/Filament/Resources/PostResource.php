@@ -46,7 +46,7 @@ class PostResource extends Resource
         return [
             Forms\Components\Toggle::make('published')->label(function (?bool $state): string {
                 if (!$state) {
-                    return static::getAttributeLabel('non-published');
+                    return static::getAttributeLabel('non_published');
                 }
 
                 return static::getAttributeLabel('published');
@@ -126,7 +126,8 @@ class PostResource extends Resource
         return $table
             ->columns(PostResource::tableColumns())
             ->filters([
-                //
+                Tables\Filters\TernaryFilter::make('published')->label(static::getAttributeLabel('is_published'))
+                    ->trueLabel(static::getAttributeLabel('published'))->falseLabel(static::getAttributeLabel('non_published'))->placeholder(''),
             ])
             ->actions(PostResource::tableActions())
             ->bulkActions([
