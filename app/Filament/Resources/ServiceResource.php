@@ -49,6 +49,7 @@ class ServiceResource extends Resource
                 ->columnSpan(2),
             Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
                 ->columnSpan(2),
+            Forms\Components\KeyValue::make('test'),
         ];
     }
 

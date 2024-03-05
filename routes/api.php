@@ -6,6 +6,7 @@ use App\Http\Controllers\AnalysisTypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\GenderController;
+use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
@@ -43,6 +44,7 @@ Route::apiResource('/products', ProductController::class);
 Route::apiResource('/purchase-orders', PurchaseOrderController::class);
 Route::apiResource('/purchase-retail-orders', PurchaseRetailOrderController::class);
 Route::apiResource('/purchase-wholesale-orders', PurchaseWholesaleOrderController::class);
+Route::apiResource('/payment-methods', PaymentMethodController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

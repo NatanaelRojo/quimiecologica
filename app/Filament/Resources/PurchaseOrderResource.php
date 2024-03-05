@@ -19,8 +19,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class PurchaseOrderResource extends Resource
 {
     protected static ?string $model = PurchaseOrder::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Órdenes';
+    protected static ?string $navigationLabel = 'General';
+
     public static array $statusOptions = [
         'Aprobada' => 'Aprobada',
         'En espea' => 'En espera',
