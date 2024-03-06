@@ -222,23 +222,23 @@
                             >
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
-                                    <img
-                                        :src="`/storage/${product.image_urls[0]}`"
-                                        alt="Imagen del producto"
-                                        class="
-                                            w-full h-40 object-cover mb-4
-                                            rounded-md img-zoom
+                                    <Link
+                                        :href="
+                                            route(
+                                                'products.detail',
+                                                product.slug
+                                            )
                                         "
                                     >
-                                    <div>
-                                        <Link
-                                            :href="
-                                                route(
-                                                    'products.detail',
-                                                    product.slug
-                                                )
+                                        <img
+                                            :src="`/storage/${product.image_urls[0]}`"
+                                            alt="Imagen del producto"
+                                            class="
+                                                w-full h-40 object-cover mb-4
+                                                rounded-md img-zoom
                                             "
                                         >
+                                        <div>
                                             <h3 class="
                                                     text-lg
                                                     font-semibold
@@ -248,35 +248,33 @@
                                             >
                                                 {{ product.name }}
                                             </h3>
-                                        </Link>
-
-                                        <p class="text-gray-600 mb-4">
-                                            {{ product.description }}
-                                        </p>
-
-                                        <div class="flex space-x-2">
-                                            <div
-                                                v-for="
-                                                    (category, index) of product.categories
-                                                "
-                                                :key="index"
-                                                class="text-gray-600"
-                                            >
-                                                Categorías: {{ category.name }}
+                                            <p class="text-gray-600 mb-4">
+                                                {{ product.description }}
+                                            </p>
+                                            <div class="flex space-x-2">
+                                                <div
+                                                    v-for="
+                                                        (category, index) of product.categories
+                                                    "
+                                                    :key="index"
+                                                    class="text-gray-600"
+                                                >
+                                                    Categorías: {{ category.name }}
+                                                </div>
+                                            </div>
+                                            <div class="flex space-x-2 mt-2">
+                                                <div
+                                                    v-for="
+                                                        (gender, index) of product.genders
+                                                    "
+                                                    :key="index"
+                                                    class="text-gray-600"
+                                                >
+                                                    Géneros: {{ gender.name }}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex space-x-2 mt-2">
-                                            <div
-                                                v-for="
-                                                    (gender, index) of product.genders
-                                                "
-                                                :key="index"
-                                                class="text-gray-600"
-                                            >
-                                                Géneros: {{ gender.name }}
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </Link>
 
                                     <!-- Precio y botón a la derecha -->
                                     <p

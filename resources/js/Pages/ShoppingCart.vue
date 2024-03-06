@@ -141,6 +141,13 @@ const cleanForm = () => {
         location.reload();
     }
 }
+
+/**
+ * Regresar al componente anterior.
+*/
+const goBack = () => {
+    window.history.back();
+}
 </script>
 
 <template>
@@ -155,6 +162,13 @@ const cleanForm = () => {
             <section class="bg-white border-b py-3">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-4">
+                    <a
+                        href="#"
+                        class="font-montserrat"
+                        @click.prevent="goBack"
+                    >
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
                     <h2 class="
                             w-full
                             my-2
@@ -205,45 +219,49 @@ const cleanForm = () => {
                                             ">
                                             <!-- Información a la izquierda -->
                                             <div class="flex flex-col">
-                                                <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
-                                                    class="w-full h-40 object-cover mb-4 rounded-md">
-                                                <div>
-                                                    <Link :href="route(
+                                                <Link
+                                                    :href="route(
                                                         'products.detail',
                                                         product.slug
                                                     )
-                                                        ">
-                                                    <h3 class="
-                                                                text-lg
-                                                                font-semibold
-                                                                mb-2
-                                                                text-gray-800
-                                                            ">
-                                                        {{ product.name }}
-                                                    </h3>
-                                                    </Link>
+                                                    "
+                                                >
+                                                    <img
+                                                        :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
+                                                        class="w-full h-40 object-cover mb-4 rounded-md img-zoom"
+                                                    >
+                                                    <div>
+                                                        <h3 class="
+                                                                    text-lg
+                                                                    font-semibold
+                                                                    mb-2
+                                                                    text-gray-800
+                                                                ">
+                                                            {{ product.name }}
+                                                        </h3>
 
-                                                    <p class="text-gray-600 mb-4">
-                                                        {{ product.description }}
-                                                    </p>
+                                                        <p class="text-gray-600 mb-4">
+                                                            {{ product.description }}
+                                                        </p>
 
-                                                    <div class="flex space-x-2">
-                                                        <div v-for="
-                                                                (category, index)
-                                                                    of product.categories
-                                                            " :key="index" class="text-gray-600">
-                                                            Categorías: {{ category.name }}
+                                                        <div class="flex space-x-2">
+                                                            <div v-for="
+                                                                    (category, index)
+                                                                        of product.categories
+                                                                " :key="index" class="text-gray-600">
+                                                                Categorías: {{ category.name }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex space-x-2 mt-2">
+                                                            <div v-for="
+                                                                    (gender, index)
+                                                                        of product.genders
+                                                                " :key="index" class="text-gray-600">
+                                                                Géneros: {{ gender.name }}
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="flex space-x-2 mt-2">
-                                                        <div v-for="
-                                                                (gender, index)
-                                                                    of product.genders
-                                                            " :key="index" class="text-gray-600">
-                                                            Géneros: {{ gender.name }}
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                </Link>
 
                                                 <!-- Precio y botón a la derecha -->
                                                 <p class="
