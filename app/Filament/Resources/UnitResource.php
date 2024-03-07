@@ -42,6 +42,8 @@ class UnitResource extends Resource
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))->autofocus()
                 ->required()->maxLength(30),
             Forms\Components\TextInput::make('abbreviation')->label(static::getAttributeLabel('abbreviation'))
+                ->required()
+                ->minLength(2)->maxLength(10),
         ];
     }
 
