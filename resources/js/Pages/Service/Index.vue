@@ -26,7 +26,6 @@ onMounted(async () => {
     try {
         const response = await axios.get('/api/services');
         services.value = response.data;
-        console.log(services.value);
     } catch (error) {
         console.log(error);
     }
@@ -78,7 +77,7 @@ const services = ref([]);
 
                     <br>
 
-                    <div class="flex flex-wrap">
+                    <div v-if="services.length > 0" class="flex flex-wrap">
                         <template v-for="(service, index) in services" :key="index">
                             <div class="w-5/6 sm:w-1/2 p-6">
                                 <Link :href="route('services.detail', service.slug)">
@@ -99,6 +98,18 @@ const services = ref([]);
                             </div>
                         </template>
                     </div>
+                    <h2
+                        v-else
+                        class="
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center text-gray-800
+                        "
+                    >
+                        No hay servicios disponibles
+                    </h2>
                 </div>
             </section>
             <!-- Final de Sección -->

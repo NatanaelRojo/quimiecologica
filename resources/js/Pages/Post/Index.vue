@@ -40,11 +40,11 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section>
+                    <section v-if="posts.length > 0">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
                                 <h2>Buscar por Nombre:</h2>
-                                <input class="w-full rounded" type="text" v-model="productName" />
+                                <input class="w-full rounded" type="text" v-model="postTitle" />
                             </div>
                             <div>
                                 <h2>Buscar por Categorías:</h2>
@@ -234,7 +234,7 @@ onMounted(async () => {
 const filterPosts = async () => {
     try {
         const queryParams = {
-            title: productTitle.value,
+            title: postTitle.value,
             // categories: selectedCategories.value.join(','),
             // genders: selectedGenders.value.join(','),
             categories: selectedCategories.value,
