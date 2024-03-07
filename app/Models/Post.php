@@ -69,8 +69,11 @@ class Post extends Model
 
     public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): void
     {
-        $categories = $categoriesString ? explode(',', $categoriesString) : [];
-        $genders = $gendersString ? explode(',', $gendersString) : [];
+        // $categories = $categoriesString ? explode(',', $categoriesString) : [];
+        // $genders = $gendersString ? explode(',', $gendersString) : [];
+        $categories = $categoriesString ? [$categoriesString] : [];
+        $genders = $gendersString ? [$gendersString] : [];
+
         $query->where(function (Builder $query) use ($categories, $genders): void {
             foreach (['categories', 'genders'] as $type) {
                 if (!empty($$type)) {

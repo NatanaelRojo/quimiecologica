@@ -31,7 +31,6 @@ class ProductController extends Controller
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
         if ($request->query('priceFilter', null) !== null && $request->query('price', null) !== null) {
-            dd('entra');
             $operator = $this->parsePriceCriteria($request->priceFilter);
             $query->filterByPrice($request->price, $operator);
         }
