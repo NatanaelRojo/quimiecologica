@@ -262,7 +262,7 @@ const selectedCategories = ref('');
 const selectedGenders = ref('');
 const selectedProductPriceFilter = ref('=');
 const productName = ref('');
-const productPrice = ref(1);
+const productPrice = ref(null);
 const fullPage = ref(true);
 const products = ref([]);
 const categories = ref([]);
@@ -276,12 +276,16 @@ onBeforeMount(async () => {
 });
 
 onMounted(async () => {
-    let response = await axios.get("/api/products");
-    products.value = response.data;
-    response = await axios.get('/api/categories');
-    categories.value = response.data;
-    response = await axios.get('/api/genders');
-    genders.value = response.data;
+    try {
+        let response = await axios.get("/api/products");
+        products.value = response.data;
+        response = await axios.get('/api/categories');
+        categories.value = response.data;
+        response = await axios.get('/api/genders');
+        genders.value = response.data;
+    } catch (error) {
+        console.error(error);
+    }
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
@@ -313,9 +317,9 @@ const clearFilters = async () => {
         // selectedGenders.value = [];
         selectedCategories.value = '';
         selectedGenders.value = '';
-        productPrice.value = 1;
+        productPrice.value = null;
         selectedProductPriceFilter.value = '=';
-        const response = await filterProducts();
+        const response = await axios.get('/api/products');
         products.value = response.data;
     } catch (error) {
         console.error(error);

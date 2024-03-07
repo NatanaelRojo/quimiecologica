@@ -31,13 +31,13 @@ class ProductController extends Controller
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
         if ($request->query('priceFilter', null) !== null && $request->query('price', null) !== null) {
+            dd('entra');
             $operator = $this->parsePriceCriteria($request->priceFilter);
             $query->filterByPrice($request->price, $operator);
         }
         $products = $query->get()->unique();
 
         return response()->json(ProductResource::collection($products), 200);
-        // return response()->json(count($products));
     }
 
     private function filterByName(string $searchTerm): Builder
