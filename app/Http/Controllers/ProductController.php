@@ -30,7 +30,7 @@ class ProductController extends Controller
         if ($request->has('categories') || $request->has('genders')) {
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
-        if ($request->has('priceFilter') && $request->has('price')) {
+        if ($request->query('priceFilter', null) !== null && $request->query('price', null) !== null) {
             $operator = $this->parsePriceCriteria($request->priceFilter);
             $query->filterByPrice($request->price, $operator);
         }
@@ -114,11 +114,14 @@ class ProductController extends Controller
         return response()->json()->setStatusCode(204);
     }
 
-    protected function parsePriceCriteria(string $criteria): string
+    protected function parsePriceCriteria(?string $criteria): string
     {
         if ($criteria === 'gte') {
             return '>=';
+        } else if ($criteria === 'lte') {
+            return  '<=';
+        } else {
+            return '=';
         }
-        return  '<=';
     }
 }

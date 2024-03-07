@@ -4,44 +4,29 @@
 
             <Head title="Nuestros Productos" />
 
-            <loading
-                :active="isLoading"
-                :is-full-page="fullPage"
-                color="#82675C"
-            ></loading>
+            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <!-- Notificación del carrito -->
                 <Link :href="route('shopping-cart')">
-                    <div
-                        v-if="arrayProducts.length > 0"
-                        class="container max-w-5xl mx-auto m-8"
-                        role="alert"
-                    >
-                        <div
-                            class="
+                <div v-if="arrayProducts.length > 0" class="container max-w-5xl mx-auto m-8" role="alert">
+                    <div class="
                                 relative block w-full p-4 mb-4 text-base
                                 leading-5 text-white gradient-green rounded-lg
                                 opacity-100 font-regular
-                            "
-                        >
-                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                            Ha agregado Productos al carrito.
-                        </div>
+                            ">
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        Ha agregado Productos al carrito.
                     </div>
+                </div>
                 </Link>
                 <!-- Final de Notificación del carrito -->
                 <div class="container max-w-5xl mx-auto m-8">
-                    <a
-                        href="#"
-                        class="font-montserrat"
-                        @click.prevent="goBack"
-                    >
+                    <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
-                    <h2
-                        class="
+                    <h2 class="
                             font-montserrat
                             w-full
                             my-2
@@ -50,13 +35,11 @@
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         Nuestros Productos
                     </h2>
                     <div class="w-full mb-4">
-                        <div
-                            class="
+                        <div class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -65,46 +48,24 @@
                                 my-0
                                 py-0
                                 rounded-t
-                            "
-                        ></div>
+                            "></div>
                     </div>
 
                     <br>
 
                     <!-- Buscador y Filtros -->
                     <section>
-                        <div
-                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2"
-                        >
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
                                 <h2>Buscar por Nombre:</h2>
-                                <input
-                                    class="w-full rounded"
-                                    type="text"
-                                    v-model="productName"
-                                />
+                                <input class="w-full rounded" type="text" v-model="productName" />
                             </div>
                             <div>
                                 <h2>Buscar por Precio:</h2>
-                                <input
-                                    class="w-full rounded"
-                                    type="number"
-                                    id="product-price"
-                                    name="product-price"
-                                    v-model="productPrice"
-                                    placeholder="Ingrese el precio del producto"
-                                    min="1"
-                                >
-                                <select
-                                    class="w-full rounded"
-                                    v-model="selectedProductPriceFilter"
-                                    id="price-filter"
-                                >
-                                    <option
-                                        value=""
-                                        disabled
-                                        selected
-                                    >
+                                <input class="w-full rounded" type="number" id="product-price" name="product-price"
+                                    v-model="productPrice" placeholder="Ingrese el precio del producto" min="1">
+                                <select class="w-full rounded" v-model="selectedProductPriceFilter" id="price-filter">
+                                    <option value="" disabled selected>
                                         Seleccione un rango de precios
                                     </option>
                                     <option value="gte">
@@ -117,43 +78,28 @@
                             </div>
                             <div>
                                 <h2>Buscar por Categorías:</h2>
-                                <select
-                                    class="w-full rounded"
-                                    v-model="selectedCategories"
-                                >
+                                <select class="w-full rounded" v-model="selectedCategories">
                                     <option value="" disabled selected>
                                         Seleccione...
                                     </option>
-                                    <option
-                                        v-for="category in categories"
-                                        :key="category.id"
-                                        :value="category.name"
-                                    >
+                                    <option v-for="category in categories" :key="category.id" :value="category.name">
                                         {{ category.name }}
                                     </option>
                                 </select>
                             </div>
                             <div>
                                 <h2>Buscar por Géneros:</h2>
-                                <select
-                                    class="w-full rounded"
-                                    v-model="selectedGenders"
-                                >
+                                <select class="w-full rounded" v-model="selectedGenders">
                                     <option value="" disabled selected>
                                         Seleccione...
                                     </option>
-                                    <option
-                                        v-for="gender in genders"
-                                        :key="gender.id"
-                                        :value="gender.name"
-                                    >
+                                    <option v-for="gender in genders" :key="gender.id" :value="gender.name">
                                         {{ gender.name }}
                                     </option>
                                 </select>
                             </div>
                         </div>
-                        <button
-                            class="
+                        <button class="
                                 font-montserrat
                                 gradient-green
                                 mt-4
@@ -167,14 +113,10 @@
                                 focus:ring
                                 focus:ring-blue-200
                                 font-bold
-                            "
-                            type="button"
-                            @click="filterProducts"
-                        >
+                            " type="button" @click="filterProducts">
                             Buscar
                         </button>
-                        <button
-                            class="
+                        <button class="
                                 font-montserrat
                                 gradient-green
                                 mt-4
@@ -189,10 +131,7 @@
                                 focus:ring
                                 focus:ring-blue-200
                                 font-bold
-                            "
-                            type="button"
-                            @click="clearFilters"
-                        >
+                            " type="button" @click="clearFilters">
                             Limpiar
                         </button>
                     </section>
@@ -201,12 +140,9 @@
                     <br>
 
                     <!-- Grid de productos -->
-                    <div
-                        v-if="products.length > 0"
-                        class="
+                    <div v-if="products.length > 0" class="
                             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
-                        "
-                    >
+                        ">
                         <!-- Itera sobre los productos -->
                         <template v-for="product in products" :key="product.id">
                             <div class="
@@ -218,79 +154,58 @@
                                     transition-transform
                                     hover:transform
                                     hover:scale-105
-                                "
-                            >
+                                ">
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
-                                    <Link
-                                        :href="
-                                            route(
-                                                'products.detail',
-                                                product.slug
-                                            )
-                                        "
-                                    >
-                                        <img
-                                            :src="`/storage/${product.image_urls[0]}`"
-                                            alt="Imagen del producto"
-                                            class="
+                                    <Link :href="route(
+                'products.detail',
+                product.slug
+            )
+                ">
+                                    <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
                                                 w-full h-40 object-cover mb-4
                                                 rounded-md img-zoom
-                                            "
-                                        >
-                                        <div>
-                                            <h3 class="
+                                            ">
+                                    <div>
+                                        <h3 class="
                                                     text-lg
                                                     font-semibold
                                                     mb-2
                                                     text-gray-800
-                                                "
-                                            >
-                                                {{ product.name }}
-                                            </h3>
-                                            <p class="text-gray-600 mb-4">
-                                                {{ product.description }}
-                                            </p>
-                                            <div class="flex space-x-2">
-                                                <div
-                                                    v-for="
+                                                ">
+                                            {{ product.name }}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4">
+                                            {{ product.description }}
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <div v-for="
                                                         (category, index) of product.categories
-                                                    "
-                                                    :key="index"
-                                                    class="text-gray-600"
-                                                >
-                                                    Categorías: {{ category.name }}
-                                                </div>
-                                            </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <div
-                                                    v-for="
-                                                        (gender, index) of product.genders
-                                                    "
-                                                    :key="index"
-                                                    class="text-gray-600"
-                                                >
-                                                    Géneros: {{ gender.name }}
-                                                </div>
+                                                    " :key="index" class="text-gray-600">
+                                                Categorías: {{ category.name }}
                                             </div>
                                         </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <div v-for="
+                                                        (gender, index) of product.genders
+                                                    " :key="index" class="text-gray-600">
+                                                Géneros: {{ gender.name }}
+                                            </div>
+                                        </div>
+                                    </div>
                                     </Link>
 
                                     <!-- Precio y botón a la derecha -->
-                                    <p
-                                        class="
+                                    <p class="
                                             mt-2
                                             text-gray-700
                                             font-semibold
                                             text-xl
-                                        "
-                                    >
+                                        ">
                                         Precio: ${{ product.price }}
                                     </p>
                                     <div class="flex flex-col items-center">
-                                        <button
-                                            @click="addProductToCart(product.id)"
-                                            class="
+                                        <button @click="addProductToCart(product.id)" class="
                                                 font-montserrat
                                                 gradient-green
                                                 mt-4
@@ -304,8 +219,7 @@
                                                 focus:ring
                                                 focus:ring-blue-200
                                                 font-bold
-                                            "
-                                        >
+                                            ">
                                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                                             Añadir al Carrito
                                         </button>
@@ -315,16 +229,13 @@
                         </template>
                         <!-- Fin de la iteración de productos -->
                     </div>
-                    <h2
-                        v-else
-                        class="
+                    <h2 v-else class="
                             w-full
                             my-2 text-5xl
                             font-black
                             leading-tight
                             text-center text-gray-800
-                        "
-                    >
+                        ">
                         No hay productos disponibles
                     </h2>
                     <!-- Fin del grid de productos -->
@@ -345,9 +256,11 @@ import axios from 'axios';
 import TextInput from '@/Components/TextInput.vue';
 
 const isLoading = ref(false);
-const selectedCategories = ref([]);
-const selectedGenders = ref([]);
-const selectedProductPriceFilter = ref('');
+// const selectedCategories = ref([]);
+// const selectedGenders = ref([]);
+const selectedCategories = ref('');
+const selectedGenders = ref('');
+const selectedProductPriceFilter = ref('=');
 const productName = ref('');
 const productPrice = ref(1);
 const fullPage = ref(true);
@@ -377,8 +290,10 @@ const filterProducts = async () => {
     try {
         const queryParams = {
             name: productName.value,
-            categories: selectedCategories.value.join(','),
-            genders: selectedGenders.value.join(','),
+            // categories: selectedCategories.value.join(','),
+            // genders: selectedGenders.value.join(','),
+            categories: selectedCategories.value,
+            genders: selectedGenders.value,
             price: productPrice.value,
             priceFilter: selectedProductPriceFilter.value,
         }
@@ -394,10 +309,12 @@ const filterProducts = async () => {
 const clearFilters = async () => {
     try {
         productName.value = '';
-        selectedCategories.value = [];
-        selectedGenders.value = [];
+        // selectedCategories.value = [];
+        // selectedGenders.value = [];
+        selectedCategories.value = '';
+        selectedGenders.value = '';
         productPrice.value = 1;
-        selectedProductPriceFilter.value = '';
+        selectedProductPriceFilter.value = '=';
         const response = await filterProducts();
         products.value = response.data;
     } catch (error) {

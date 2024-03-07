@@ -15,7 +15,7 @@ return new class extends Migration
             Schema::create('units', function (Blueprint $table) {
                 $table->id();
                 $table->string('name', 30);
-                $table->string('abbreviation', 3);
+                $table->string('abbreviation', 10);
                 $table->timestamps();
             });
         }

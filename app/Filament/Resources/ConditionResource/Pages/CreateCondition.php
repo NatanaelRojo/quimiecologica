@@ -9,4 +9,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateCondition extends CreateRecord
 {
     protected static string $resource = ConditionResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }
