@@ -37,6 +37,7 @@ class StorePurchaseOrderRequest extends FormRequest
             'total_price' => ['bail', 'required', 'numeric', 'integer', 'min:0'],
         ];
     }
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->validationErrorResponse($validator->errors()));

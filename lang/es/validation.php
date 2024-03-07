@@ -193,8 +193,8 @@ return [
         'owner_id' => 'cédula del titular',
         'owner_email' => 'correo electrónico del titular',
         'owner_phone_number' => 'número de teléfono del titular',
-        'owner_state' => 'estado de proveniencia del titular',
-        'owner_city' => 'ciudad de proveniencia del titular',
+        'owner_state' => 'estado de procedencia del titular',
+        'owner_city' => 'ciudad de procedencia del titular',
         'owner_address' => 'dirección de domicilio del titular',
         'owner_request' => 'petición del titular',
         'password'                 => 'contraseña',
@@ -211,6 +211,7 @@ return [
         'province'                 => 'provincia',
         'quantity'                 => 'cantidad',
         'recaptcha_response_field' => 'respuesta del recaptcha',
+        'reference_number' => 'Número de referencia',
         'remember'                 => 'recordar',
         'restored_at'              => 'restaurado el',
         'result_text_under_image'  => 'texto bajo la imagen',
@@ -236,5 +237,28 @@ return [
         'user'                     => 'usuario',
         'username'                 => 'usuario',
         'year'                     => 'año',
+    ],
+    'custom' => [
+        'owner_firstname' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener números.',
+        ],
+        'owner_lastname' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener números.',
+        ],
+        'owner_id' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener números.',
+        ],
+        'owner_state' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener letras.',
+        ],
+        'owner_city' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener letras.',
+        ],
+        'owner_address' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener letras, números, puntos o comas.',
+        ],
+        'reference_number' => [
+            'regex' => 'El formato del campo :attribute no es válido. Solo debe contener números.',
+        ],
     ],
 ];
