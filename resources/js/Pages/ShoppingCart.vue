@@ -35,6 +35,7 @@ const record = ref({
 });
 const errors = ref([]);
 const form = ref(null);
+const purchaseOrder = ref(null);
 
 /**
  * Método que permite enviar los datos de la orden de compra al api.
@@ -61,24 +62,38 @@ const createPurchaseOrder = async () => {
         });
 
         const response = await axios.post('/api/purchase-orders', form);
-        console.log("Guardo la orden de compra!")
+
+        // Mostrar notificación toastr.
+        showMessage('success');
+
+        // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
+        purchaseOrder.value = response.data;
+
         // Limpiar el Carrito de compras luego de guardar el formulario.
-        cleanForm();
+        // cleanForm();
+
+        return purchaseOrder;
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo();
     }
 }
 
+/**
+ * Método que envia al usuario al principio del componente para ver los errores
+ * del formulario.
+*/
 const scrollMeTo = () => {
     const top = form.offsetTop;
     window.scrollTo(0, top);
 }
 
+/**
+ * Método que limpia los errores del formulario.
+*/
 const clearErrors = () => {
     errors.value = []
 }
-
 
 /**
  * Método para obtiene el archivo adjunto del campo image del formulario.
@@ -130,6 +145,22 @@ const calculateTotalPrice = () => {
 
     // Devolver el precio total.
     return totalPrice;
+}
+
+/**
+ * Método que muestra la notificación toastr luego de guardar la orden de compra.
+*/
+const showMessage = (type) => {
+    let options = {
+        closeButton: true,
+        progressBar: true,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        preventDuplicates: true
+    };
+    if (type === 'success') {
+        toastr.success("¡Orden de Compra enviada!", "", options);
+    }
 }
 
 /**
@@ -468,6 +499,36 @@ const goBack = () => {
                             No hay productos añadidos en el
                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                         </h2>
+                    </div>
+                    <br>
+                    <div v-if="purchaseOrder">
+                        <h2
+                            class="
+                                w-full
+                                text-2xl
+                                font-black
+                                leading-tight
+                                text-center text-gray-800
+                            "
+                        >
+                            Detalles de la Orden de Compra
+                        </h2>
+                        <p>Nombre del propietario: {{ purchaseOrder.owner_firstname }} {{ purchaseOrder.owner_lastname }}</p>
+                        <p>ID del propietario: {{ purchaseOrder.owner_id }}</p>
+                        <p>Número de teléfono: {{ purchaseOrder.owner_phone_number }}</p>
+                        <p>Estado: {{ purchaseOrder.owner_state }}</p>
+                        <p>Ciudad: {{ purchaseOrder.owner_city }}</p>
+                        <p>Dirección: {{ purchaseOrder.owner_address }}</p>
+                        <p>Precio total: {{ purchaseOrder.total_price }}</p>
+                        <h3>Información de productos:</h3>
+                        <ul>
+                            <li v-for="(product, index) in purchaseOrder.products_info" :key="index">
+                            <p>Producto ID: {{ product.product_id }}</p>
+                            <p>Cantidad: {{ product.product_quantity }}</p>
+                            <p>Tipo de venta: {{ product.sale_type }}</p>
+                            <p>Unidad de producto: {{ product.product_unit }}</p>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
