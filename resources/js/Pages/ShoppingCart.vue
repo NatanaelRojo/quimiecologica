@@ -62,7 +62,9 @@ const createPurchaseOrder = async () => {
         });
 
         const response = await axios.post('/api/purchase-orders', form);
-        console.log("Guardo la orden de compra!")
+
+        // Mostrar notificación toastr.
+        showMessage('success');
 
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
         purchaseOrder.value = response.data;
@@ -77,11 +79,18 @@ const createPurchaseOrder = async () => {
     }
 }
 
+/**
+ * Método que envia al usuario al principio del componente para ver los errores
+ * del formulario.
+*/
 const scrollMeTo = () => {
     const top = form.offsetTop;
     window.scrollTo(0, top);
 }
 
+/**
+ * Método que limpia los errores del formulario.
+*/
 const clearErrors = () => {
     errors.value = []
 }
@@ -136,6 +145,22 @@ const calculateTotalPrice = () => {
 
     // Devolver el precio total.
     return totalPrice;
+}
+
+/**
+ * Método que muestra la notificación toastr luego de guardar la orden de compra.
+*/
+const showMessage = (type) => {
+    let options = {
+        closeButton: true,
+        progressBar: true,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        preventDuplicates: true
+    };
+    if (type === 'success') {
+        toastr.success("¡Orden de Compra enviada!", "", options);
+    }
 }
 
 /**
