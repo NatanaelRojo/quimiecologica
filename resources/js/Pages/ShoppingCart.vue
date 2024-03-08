@@ -192,7 +192,7 @@ const goBack = () => {
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
-                <div class="container max-w-5xl mx-auto m-4">
+                    <div class="container max-w-5xl mx-auto m-8">
                     <a
                         href="#"
                         class="font-montserrat"
@@ -200,7 +200,9 @@ const goBack = () => {
                     >
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
-                    <h2 class="
+                    <h2
+                        class="
+                            font-montserrat
                             w-full
                             my-2
                             text-5xl
@@ -208,7 +210,8 @@ const goBack = () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        ">
+                        "
+                    >
                         Productos en el Carrito
                     </h2>
                     <div class="w-full mb-4">
@@ -478,28 +481,20 @@ const goBack = () => {
                         <!-- Final del Botón Comprar -->
                     </form>
                     <!-- Final del formulario -->
-                    <div v-else class="
+                    <h2
+                        v-else
+                        class="
+                            w-full
+                            my-2 text-5xl
+                            font-black
+                            leading-tight
+                            text-center text-gray-800
                             mt-8
-                            bg-white
-                            p-4 border
-                            border-gray-200
-                            rounded-lg
-                            shadow-md
-                            transition-transform
-                            hover:transform
-                            hover:scale-105
-                        ">
-                        <h2 class="
-                                w-full
-                                text-2xl
-                                font-black
-                                leading-tight
-                                text-center text-gray-800
-                            ">
-                            No hay productos añadidos en el
-                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        </h2>
-                    </div>
+                        "
+                    >
+                        No hay productos añadidos en el
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                    </h2>
                     <br>
                     <div v-if="purchaseOrder">
                         <h2
