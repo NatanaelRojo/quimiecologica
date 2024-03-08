@@ -20,17 +20,17 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        if ($request->has('saleType')) {
+        if ($request->query('saleType', null)) {
             $query->filterBySaleType($request->saleType);
         }
 
-        if ($request->has('name')) {
+        if ($request->query('name', null)) {
             $query->filterByName($request->name);
         }
-        if ($request->has('categories') || $request->has('genders')) {
+        if ($request->query('categories', null) || $request->query('genders', null)) {
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
-        if ($request->query('priceFilter', null) !== null && $request->query('price', null) !== null) {
+        if ($request->query('priceFilter', null) && $request->query('price', null)) {
             $operator = $this->parsePriceCriteria($request->priceFilter);
             $query->filterByPrice($request->price, $operator);
         }
@@ -115,12 +115,10 @@ class ProductController extends Controller
 
     protected function parsePriceCriteria(?string $criteria): string
     {
-        if ($criteria === 'gte') {
-            return '>=';
-        } else if ($criteria === 'lte') {
-            return  '<=';
-        } else {
-            return '=';
-        }
+        return match ($criteria) {
+            'gte' => '>=',
+            'lte' => '<=',
+            default => '=',
+        };
     }
 }

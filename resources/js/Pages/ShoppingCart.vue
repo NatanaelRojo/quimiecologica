@@ -7,6 +7,14 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import axios from 'axios';
 
+const phoneCodes = ref([
+    { value: '+58 414', label: '0414' },
+    { value: '+58 424', label: '0424' },
+    { value: '+58 426', label: '0426' },
+    { value: '+58 416', label: '0416' },
+    { value: '+58 412', label: '0412' },
+]);
+const selectedPhoneCode = ref('');
 const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
@@ -50,6 +58,8 @@ const createPurchaseOrder = async () => {
                 product_unit: 'No aplica',
             },
         ];
+        record.value.owner_phone_number = selectedPhoneCode.value + record.value.owner_phone_number;
+        console.log(record.value.owner_phone_number);
 
         const form = new FormData();
 
@@ -192,16 +202,11 @@ const goBack = () => {
             <!-- Sección -->
             <section class="bg-white border-b py-3">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
-                    <div class="container max-w-5xl mx-auto m-8">
-                    <a
-                        href="#"
-                        class="font-montserrat"
-                        @click.prevent="goBack"
-                    >
+                <div class="container max-w-5xl mx-auto m-8">
+                    <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
-                    <h2
-                        class="
+                    <h2 class="
                             font-montserrat
                             w-full
                             my-2
@@ -210,8 +215,7 @@ const goBack = () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         Productos en el Carrito
                     </h2>
                     <div class="w-full mb-4">
@@ -253,48 +257,45 @@ const goBack = () => {
                                             ">
                                             <!-- Información a la izquierda -->
                                             <div class="flex flex-col">
-                                                <Link
-                                                    :href="route(
-                                                        'products.detail',
-                                                        product.slug
-                                                    )
-                                                    "
-                                                >
-                                                    <img
-                                                        :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto"
-                                                        class="w-full h-40 object-cover mb-4 rounded-md img-zoom"
-                                                    >
-                                                    <div>
-                                                        <h3 class="
+                                                <Link :href="route(
+                'products.detail',
+                product.slug
+            )
+                ">
+                                                <img :src="`/storage/${product.image_urls[0]}`"
+                                                    alt="Imagen del producto"
+                                                    class="w-full h-40 object-cover mb-4 rounded-md img-zoom">
+                                                <div>
+                                                    <h3 class="
                                                                     text-lg
                                                                     font-semibold
                                                                     mb-2
                                                                     text-gray-800
                                                                 ">
-                                                            {{ product.name }}
-                                                        </h3>
+                                                        {{ product.name }}
+                                                    </h3>
 
-                                                        <p class="text-gray-600 mb-4">
-                                                            {{ product.description }}
-                                                        </p>
+                                                    <p class="text-gray-600 mb-4">
+                                                        {{ product.description }}
+                                                    </p>
 
-                                                        <div class="flex space-x-2">
-                                                            <div v-for="
+                                                    <div class="flex space-x-2">
+                                                        <div v-for="
                                                                     (category, index)
                                                                         of product.categories
                                                                 " :key="index" class="text-gray-600">
-                                                                Categorías: {{ category.name }}
-                                                            </div>
+                                                            Categorías: {{ category.name }}
                                                         </div>
-                                                        <div class="flex space-x-2 mt-2">
-                                                            <div v-for="
+                                                    </div>
+                                                    <div class="flex space-x-2 mt-2">
+                                                        <div v-for="
                                                                     (gender, index)
                                                                         of product.genders
                                                                 " :key="index" class="text-gray-600">
-                                                                Géneros: {{ gender.name }}
-                                                            </div>
+                                                            Géneros: {{ gender.name }}
                                                         </div>
                                                     </div>
+                                                </div>
                                                 </Link>
 
                                                 <!-- Precio y botón a la derecha -->
@@ -379,6 +380,13 @@ const goBack = () => {
                                 <label for="owner_phone_number" class="block text-gray-700 text-sm font-bold mb-2">
                                     Número de teléfono:
                                 </label>
+                                <div class="flex items-center">
+                                    <select v-model="selectedPhoneCode" class="w-16 px-3 py-2 border rounded mr-2">
+                                        <option v-for="(code, index) in phoneCodes" :key="index" :value="code.value">
+                                            {{ code.label }} </option>
+                                    </select>
+                                    <p>{{ selectedPhoneCode }}</p>
+                                </div>
                                 <input type="text" v-model="record.owner_phone_number" id="owner_phone_number"
                                     class="w-full px-3 py-2 border rounded">
                             </div>
@@ -481,34 +489,30 @@ const goBack = () => {
                         <!-- Final del Botón Comprar -->
                     </form>
                     <!-- Final del formulario -->
-                    <h2
-                        v-else
-                        class="
+                    <h2 v-else class="
                             w-full
                             my-2 text-5xl
                             font-black
                             leading-tight
                             text-center text-gray-800
                             mt-8
-                        "
-                    >
+                        ">
                         No hay productos añadidos en el
                         <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                     </h2>
                     <br>
                     <div v-if="purchaseOrder">
-                        <h2
-                            class="
+                        <h2 class="
                                 w-full
                                 text-2xl
                                 font-black
                                 leading-tight
                                 text-center text-gray-800
-                            "
-                        >
+                            ">
                             Detalles de la Orden de Compra
                         </h2>
-                        <p>Nombre del propietario: {{ purchaseOrder.owner_firstname }} {{ purchaseOrder.owner_lastname }}</p>
+                        <p>Nombre del propietario: {{ purchaseOrder.owner_firstname }} {{ purchaseOrder.owner_lastname
+                            }}</p>
                         <p>ID del propietario: {{ purchaseOrder.owner_id }}</p>
                         <p>Número de teléfono: {{ purchaseOrder.owner_phone_number }}</p>
                         <p>Estado: {{ purchaseOrder.owner_state }}</p>
@@ -518,10 +522,10 @@ const goBack = () => {
                         <h3>Información de productos:</h3>
                         <ul>
                             <li v-for="(product, index) in purchaseOrder.products_info" :key="index">
-                            <p>Producto ID: {{ product.product_id }}</p>
-                            <p>Cantidad: {{ product.product_quantity }}</p>
-                            <p>Tipo de venta: {{ product.sale_type }}</p>
-                            <p>Unidad de producto: {{ product.product_unit }}</p>
+                                <p>Producto ID: {{ product.product_id }}</p>
+                                <p>Cantidad: {{ product.product_quantity }}</p>
+                                <p>Tipo de venta: {{ product.sale_type }}</p>
+                                <p>Unidad de producto: {{ product.product_unit }}</p>
                             </li>
                         </ul>
                     </div>

@@ -24,6 +24,7 @@ class PurchaseOrderController extends Controller
     public function store(StorePurchaseOrderRequest $request): JsonResponse
     {
         $imagePath = null;
+        $imageName = null;
         $products_info = array();
 
         if ($request->hasFile('image')) {
