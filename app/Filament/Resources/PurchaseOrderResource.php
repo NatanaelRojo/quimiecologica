@@ -10,11 +10,12 @@ use App\Models\PurchaseOrder;
 use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PurchaseOrderResource extends Resource
 {
@@ -120,6 +121,38 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    public static function infolistEntries(): array
+    {
+        return [
+            Infolists\Components\Tabs::make('tabs')->tabs([
+                Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('owner'))
+                    ->schema([
+                        Infolists\Components\Section::make(static::getAttributeLabel('personal_data'))
+                            ->description(static::getAttributeLabel('personal_data_description'))
+                            ->schema([
+                                Infolists\Components\TextEntry::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname')),
+                                Infolists\Components\TextEntry::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname')),
+                                Infolists\Components\TextEntry::make('owner_id')->label(static::getAttributeLabel('owner_id')),
+                                Infolists\Components\TextEntry::make('owner_email')->label(static::getAttributeLabel('owner_email')),
+                                Infolists\Components\TextEntry::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number')),
+                            ])->collapsible(),
+                        Infolists\Components\Section::make(static::getAttributeLabel('location_data'))
+                            ->description(static::getAttributeLabel('location_data_description'))
+                            ->schema([
+                                Infolists\Components\TextEntry::make('owner_state')->label(static::getAttributeLabel('owner_state')),
+                                Infolists\Components\TextEntry::make('owner_city')->label(static::getAttributeLabel('owner_city')),
+                                Infolists\Components\TextEntry::make('owner_address')->label(static::getAttributeLabel('owner_address'))
+                            ])->collapsible(),
+                    ]),
+                Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('purchase_order'))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('reference_number')->label(static::getAttributeLabel('reference_number'))
+                            ->copyable(),
+                    ])
+            ])->columnSpan('full'),
+        ];
+    }
+
     public static function tableColumns(): array
     {
         return [
@@ -153,10 +186,14 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
-
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
+    }
+
+    public static function infolist(Infolist $infolist): Infolist
+    {
+        return $infolist->schema(static::infolistEntries());
     }
 
     public static function table(Table $table): Table
@@ -187,6 +224,7 @@ class PurchaseOrderResource extends Resource
         return [
             'index' => Pages\ListPurchaseOrders::route('/'),
             'create' => Pages\CreatePurchaseOrder::route('/create'),
+            'view' => Pages\ViewPurchaseOrder::route('/{record}'),
             'edit' => Pages\EditPurchaseOrder::route('/{record}/edit'),
         ];
     }

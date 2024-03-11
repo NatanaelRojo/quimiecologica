@@ -105,7 +105,7 @@ class PostResource extends Resource
         // ->columns(1);
     }
 
-    public static function infolist(InfoList $infolist): Infolist
+    public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
             ->schema([

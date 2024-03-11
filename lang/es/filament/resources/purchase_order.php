@@ -22,4 +22,11 @@ return [
     'product_unit' => 'Unidad del producto',
     'search_message' => 'Buscar un producto',
     'not_found' => 'No se encontraron productos',
+    'owner' => 'Titular',
+    'purchase_order' => 'Órden de compra',
+    'products' => 'Productos',
+    'personal_data' => 'Datos personales',
+    'location_data' => 'Datos de ubicación',
+    'personal_data_description' => 'Datos personales del titular de la órden',
+    'location_data_description' => 'Datos de la ubicación del titular',
 ];
