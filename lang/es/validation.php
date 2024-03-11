@@ -248,6 +248,9 @@ return [
         'owner_id' => [
             'regex' => 'El formato del campo :attribute no es válido. Solo debe contener números.',
         ],
+        'owner_phone_number' => [
+            'phone' => 'El formato del campo :attribute no es válido. Solo debe contener números.',
+        ],
         'owner_state' => [
             'regex' => 'El formato del campo :attribute no es válido. Solo debe contener letras.',
         ],

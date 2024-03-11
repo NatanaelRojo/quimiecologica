@@ -54,7 +54,7 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section>
+                    <section v-if="products.length > 0">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
                                 <h2>Buscar por Nombre:</h2>
@@ -158,10 +158,11 @@
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
                                     <Link :href="route(
-                'products.detail',
-                product.slug
-            )
-                ">
+                                        'products.detail',
+                                        product.slug
+                                    )
+                                    "
+                                >
                                     <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
                                                 w-full h-40 object-cover mb-4
                                                 rounded-md img-zoom

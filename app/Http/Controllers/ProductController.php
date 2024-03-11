@@ -20,9 +20,10 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        if ($request->has('saleType')) {
+        if ($request->query('saleType', null)) {
             $query->filterBySaleType($request->saleType);
         }
+
         if ($request->query('name', null)) {
             $query->filterByName($request->name);
         }

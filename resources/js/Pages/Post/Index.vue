@@ -40,11 +40,11 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section>
+                    <section v-if="posts.length > 0">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
                                 <h2>Buscar por Nombre:</h2>
-                                <input class="w-full rounded" type="text" v-model="productName" />
+                                <input class="w-full rounded" type="text" v-model="postTitle" />
                             </div>
                             <div>
                                 <h2>Buscar por Categorías:</h2>
@@ -140,34 +140,36 @@
                                             img-zoom
                                         ">
                                     <div>
-                                        <Link :href="route(
-                'posts.detail',
-                post.slug
-            )">
-                                        <h3 class="
-                                                text-lg
-                                                font-semibold
-                                                mb-2
-                                                text-gray-800
-                                            ">
-                                            {{ post.title }}
-                                        </h3>
+                                        <Link
+                                            :href="route(
+                                                'posts.detail',
+                                                post.slug
+                                                )
+                                            "
+                                        >
+                                            <h3 class="
+                                                    text-lg
+                                                    font-semibold
+                                                    mb-2
+                                                    text-gray-800
+                                                ">
+                                                {{ post.title }}
+                                            </h3>
+                                            <div class="flex space-x-2">
+                                                <div v-for="
+                                                        (category, index)
+                                                            of post.categories
+                                                    " :key="index" class="text-gray-600">
+                                                    {{ category.name }}
+                                                </div>
+                                            </div>
+                                            <div class="flex space-x-2 mt-2">
+                                                <div v-for="(gender, index)
+                                                        of post.genders" :key="index" class="text-gray-600">
+                                                    {{ gender.name }}
+                                                </div>
+                                            </div>
                                         </Link>
-
-                                        <div class="flex space-x-2">
-                                            <div v-for="
-                                                    (category, index)
-                                                        of post.categories
-                                                " :key="index" class="text-gray-600">
-                                                {{ category.name }}
-                                            </div>
-                                        </div>
-                                        <div class="flex space-x-2 mt-2">
-                                            <div v-for="(gender, index)
-                                                    of post.genders" :key="index" class="text-gray-600">
-                                                {{ gender.name }}
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -234,16 +236,16 @@ onMounted(async () => {
 const filterPosts = async () => {
     try {
         const queryParams = {
-            title: productTitle.value,
+            title: postTitle.value,
             // categories: selectedCategories.value.join(','),
             // genders: selectedGenders.value.join(','),
             categories: selectedCategories.value,
             genders: selectedGenders.value,
         }
-        const response = await axios.get('/api/products', {
+        const response = await axios.get('/api/posts', {
             params: queryParams,
         });
-        products.value = response.data;
+        posts.value = response.data;
     } catch (error) {
         console.error(error);
     }
@@ -264,7 +266,7 @@ const clearFilters = async () => {
         selectedCategories.value = '';
         selectedGenders.value = '';
         const response = await axios.get('/api/posts');
-        products.value = response.data;
+        posts.value = response.data;
     } catch (error) {
         console.error(error);
     }

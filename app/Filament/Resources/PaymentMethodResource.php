@@ -47,12 +47,10 @@ class PaymentMethodResource extends Resource
             Forms\Components\TextInput::make("name")->label(static::getAttributeLabel('name'))
                 ->required()->unique()
                 ->autofocus(),
-            Forms\Components\Select::make('type')->label(static::getAttributeLabel('type'))
+            Forms\Components\Select::make('payment_type_id')->label(static::getAttributeLabel('type'))
                 ->required()
-                ->options([
-                    'Transferencia' => 'Transferencia',
-                    'Pago movil' => 'Pago movil',
-                ]),
+                ->relationship(name: 'paymentType', titleAttribute: 'name')
+                ->createOptionForm(PaymentTypeResource::inputForm()),
             Forms\Components\KeyValue::make('data')->label(static::getAttributeLabel('type'))
                 ->required()
                 ->columnSpan('full'),
@@ -67,8 +65,20 @@ class PaymentMethodResource extends Resource
                 ->searchable(query: function (Builder $query, string $search): Builder {
                     return $query->where('name', 'ilike', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('type')->label(static::getAttributeLabel('type'))
+            Tables\Columns\TextColumn::make('paymentType.name')->label(static::getAttributeLabel('payment_type'))
                 ->searchable()
+        ];
+    }
+
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\SelectFilter::make('payment_type')->label(static::getAttributeLabel('payment_type'))
+                ->relationship(name: 'paymentType', titleAttribute: 'name'),
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))
+                ->falseLabel(static::getAttributeLabel('inactive'))
+                ->placeholder(static::getAttributeLabel('all')),
         ];
     }
 
@@ -81,15 +91,15 @@ class PaymentMethodResource extends Resource
         ];
     }
 
-    public static function tableFilters(): array
-    {
-        return [
-            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
-                ->trueLabel(static::getAttributeLabel('active'))
-                ->falseLabel(static::getAttributeLabel('inactive'))
-                ->placeholder(static::getAttributeLabel('all')),
-        ];
-    }
+    // public static function tableFilters(): array
+    // {
+    //     return [
+    //         Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+    //             ->trueLabel(static::getAttributeLabel('active'))
+    //             ->falseLabel(static::getAttributeLabel('inactive'))
+    //             ->placeholder(static::getAttributeLabel('all')),
+    //     ];
+    // }
 
     public static function form(Form $form): Form
     {
