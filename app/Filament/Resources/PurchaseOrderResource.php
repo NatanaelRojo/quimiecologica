@@ -12,6 +12,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
+use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -155,8 +156,18 @@ class PurchaseOrderResource extends Resource
                     ]),
                 Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('products'))
                     ->schema([
-                        Infolists\Components\TextEntry::make('prueba'),
-                    ])
+                        Infolists\Components\RepeatableEntry::make('products_info')
+                            ->label(static::getAttributeLabel('products_info'))
+                            ->schema([
+                                Infolists\Components\Section::make(static::getAttributeLabel('product_info'))
+                                    ->schema([
+                                        Infolists\Components\TextEntry::make('product_name'),
+                                        Infolists\Components\TextEntry::make('product_quantity'),
+                                        Infolists\Components\TextEntry::make('sale_type'),
+                                        Infolists\Components\TextEntry::make('product_unit'),
+                                    ])->collapsible(),
+                            ]),
+                    ]),
             ])->columnSpan('full'),
         ];
     }

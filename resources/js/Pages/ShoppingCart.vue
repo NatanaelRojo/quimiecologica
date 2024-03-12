@@ -51,6 +51,7 @@ onMounted(() => {
     arrayProducts.value.forEach(product => {
         const productData = {
             product_id: product.id,
+            product_name: product.name,
             product_quantity: `${product.quantity}`,
             sale_type: 'Al detal',
             product_unit: 'Kg',
