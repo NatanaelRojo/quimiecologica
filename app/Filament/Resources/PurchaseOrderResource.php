@@ -146,8 +146,16 @@ class PurchaseOrderResource extends Resource
                     ]),
                 Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('purchase_order'))
                     ->schema([
+                        Infolists\Components\TextEntry::make('status')->label(static::getAttributeLabel('status')),
                         Infolists\Components\TextEntry::make('reference_number')->label(static::getAttributeLabel('reference_number'))
                             ->copyable(),
+                        Infolists\Components\ImageEntry::make('baucher')->label(static::getAttributeLabel('baucher')),
+                        Infolists\Components\TextEntry::make('total_price')->label(static::getAttributeLabel('total_price'))
+                            ->prefix('$'),
+                    ]),
+                Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('products'))
+                    ->schema([
+                        Infolists\Components\TextEntry::make('prueba'),
                     ])
             ])->columnSpan('full'),
         ];
