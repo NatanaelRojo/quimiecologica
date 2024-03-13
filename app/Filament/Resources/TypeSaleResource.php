@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class TypeSaleResource extends Resource
 {
     protected static ?string $model = TypeSale::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {

@@ -21,10 +21,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
-
-    protected static ?string $navigationGroup = 'Elementos Base';
+    protected static ?string $navigationGroup = 'Registros';
 
     public static function getModelLabel(): string
     {

@@ -19,10 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ConditionResource extends Resource
 {
     protected static ?string $model = Condition::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationGroup = 'Ajustes Base';
+    protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {

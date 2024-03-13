@@ -27,7 +27,7 @@ return [
     'purchase_order' => 'Órden de compra',
     'products' => 'Productos',
     'personal_data' => 'Datos personales',
-    'location_data' => 'Datos de ubicación',
+    'location_data' => 'Datos para envío',
     'personal_data_description' => 'Datos personales del titular de la órden',
-    'location_data_description' => 'Datos de la ubicación del titular',
+    'location_data_description' => 'Datos de ubicación del titular para envío',
 ];

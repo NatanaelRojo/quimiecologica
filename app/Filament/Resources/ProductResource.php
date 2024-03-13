@@ -7,8 +7,10 @@ use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\ImagesRelationManager;
 use App\Filament\Resources\PurchaseOrderResource\RelationManagers\ProductsRelationManager;
 use App\Models\Product;
+use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -21,10 +23,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ProductResource extends Resource
 {
     protected static ?string $model = Product::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
-
-    protected static ?string $navigationGroup = 'Elementos Base';
+    protected static ?string $navigationGroup = 'Registros';
 
     public static function getModelLabel(): string
     {
@@ -68,11 +68,12 @@ class ProductResource extends Resource
                 ->relationship('genders', 'name')
                 ->multiple()->searchable()->preload()
                 ->createOptionForm(GenderResource::inputForm()),
-            Forms\Components\Select::make('type_sales')->label(static::getAttributeLabel('type_sales'))
+            Forms\Components\Select::make('type_sale')->label(static::getAttributeLabel('type_sales'))
                 ->required()
-                ->relationship(name: 'typeSales', titleAttribute: 'name')
-                ->multiple()->searchable()->preload()
-                ->createOptionForm(TypeSaleResource::inputForm()),
+                ->relationship(name: 'saleType', titleAttribute: 'name')
+                ->searchable()->preload()
+                ->createOptionForm(TypeSaleResource::inputForm())
+                ->live(),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                 ->columnSpan('full'),
@@ -80,7 +81,29 @@ class ProductResource extends Resource
                 ->required()
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
-                ->required()->numeric()->minValue(1),
+                ->required()->numeric()->minValue(1)
+                ->visible(fn (Get $get): bool => match ($get('type_sale')) {
+                    '1' => true,
+                    '2' => false,
+                    default => false,
+                }),
+            Forms\Components\Fieldset::make('label')->schema([
+                Forms\Components\TextInput::make('minimum_quantity')->label(static::getAttributeLabel('minimum_quantity'))
+                    ->required()->numeric()->minValue(1),
+                Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
+                    ->options(function (): array {
+                        $options = array();
+                        $units = Unit::all();
+                        foreach ($units as $unit) {
+                            $options[$unit->name] = $unit->name;
+                        }
+                        return $options;
+                    }),
+            ])->visible(fn (Get $get): bool => match ($get('type_sale')) {
+                '1' => false,
+                '2' => true,
+                default => false,
+            }),
             Forms\Components\TextInput::make('price')->label(static::getAttributeLabel('price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),

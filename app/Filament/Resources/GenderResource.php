@@ -16,10 +16,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class GenderResource extends Resource
 {
     protected static ?string $model = Gender::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-users';
-
-    protected static ?string $navigationGroup = 'Ajustes Base';
+    protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {

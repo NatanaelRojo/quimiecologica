@@ -134,8 +134,10 @@ class PurchaseOrderResource extends Resource
                                 Infolists\Components\TextEntry::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname')),
                                 Infolists\Components\TextEntry::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname')),
                                 Infolists\Components\TextEntry::make('owner_id')->label(static::getAttributeLabel('owner_id')),
-                                Infolists\Components\TextEntry::make('owner_email')->label(static::getAttributeLabel('owner_email')),
-                                Infolists\Components\TextEntry::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number')),
+                                Infolists\Components\TextEntry::make('owner_email')->label(static::getAttributeLabel('owner_email'))
+                                    ->copyable(),
+                                Infolists\Components\TextEntry::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number'))
+                                    ->copyable(),
                             ])->collapsible(),
                         Infolists\Components\Section::make(static::getAttributeLabel('location_data'))
                             ->description(static::getAttributeLabel('location_data_description'))
@@ -234,7 +236,7 @@ class PurchaseOrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            PurchaseOrderItemsRelationManager::class,
+            // PurchaseOrderItemsRelationManager::class,
         ];
     }
 

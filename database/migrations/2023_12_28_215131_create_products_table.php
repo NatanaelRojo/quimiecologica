@@ -3,6 +3,7 @@
 use App\Models\Category;
 use App\Models\Gender;
 use App\Models\Service;
+use App\Models\TypeSale;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,6 +18,7 @@ return new class extends Migration
         if (!Schema::hasTable('products')) {
             Schema::create('products', function (Blueprint $table) {
                 $table->id();
+                $table->foreignIdFor(TypeSale::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->boolean('is_active');
                 $table->string('name');
                 $table->text('description');

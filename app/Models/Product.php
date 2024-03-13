@@ -85,9 +85,9 @@ class Product extends Model
         return $this->belongsToMany(PurchaseRetailOrder::class, 'product_purchase_order');
     }
 
-    public function typeSales(): BelongsToMany
+    public function saleType(): BelongsTo
     {
-        return $this->belongsToMany(TypeSale::class);
+        return $this->belongsTo(TypeSale::class);
     }
 
     public function scopeFilterByName(Builder $query, ?string $searchTerm): void
