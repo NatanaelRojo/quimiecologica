@@ -44,75 +44,104 @@ class ProductResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
-                if (!$state) {
-                    return static::getAttributeLabel('inactive');
-                }
-                return static::getAttributeLabel('active');
-            })->required()
-                ->onColor('success')->offColor('danger')
-                ->columnSpan(2)
-                ->live(),
-            // Forms\Components\Select::make('purchase_type')->label(static::getAttributeLabel('purchase_type'))
-            //     ->required()
-            //     ->options([
-            //         'Al mayor',
-            //         'Al detal',
-            //     ]),
-            Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
-                ->required()
-                ->multiple()->relationship('categories', 'name')->searchable()->preload()
-                ->createOptionForm(CategoryResource::inputForm()),
-            Forms\Components\Select::make('genders')->label(static::getAttributeLabel('genders'))
-                ->required()
-                ->relationship('genders', 'name')
-                ->multiple()->searchable()->preload()
-                ->createOptionForm(GenderResource::inputForm()),
-            Forms\Components\Select::make('type_sale')->label(static::getAttributeLabel('type_sales'))
-                ->required()
-                ->relationship(name: 'saleType', titleAttribute: 'name')
-                ->searchable()->preload()
-                ->createOptionForm(TypeSaleResource::inputForm())
-                ->live(),
-            Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
-                ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
-                ->columnSpan('full'),
-            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
-                ->required()
-                ->columnSpan('full'),
-            Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
-                ->required()->numeric()->minValue(1)
-                ->visible(fn (Get $get): bool => match ($get('type_sale')) {
+            Forms\Components\Fieldset::make('basic_data')->label(static::getAttributeLabel('basic_data'))
+                ->schema([
+                    Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
+                        if (!$state) {
+                            return static::getAttributeLabel('inactive');
+                        }
+                        return static::getAttributeLabel('active');
+                    })->required()
+                        ->onColor('success')->offColor('danger')
+                        ->columnSpan(2)
+                        ->live(),
+                    Forms\Components\FileUpload::make('image_urls')->label(static::getAttributeLabel('images'))
+                        ->multiple()
+                        ->image()
+                        ->minFiles(1)
+                        ->maxFiles(5)
+                        ->reorderable()
+                        ->columnSpan('full'),
+                    Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
+                        ->required()
+                        ->multiple()->relationship('categories', 'name')->searchable()->preload()
+                        ->createOptionForm(CategoryResource::inputForm()),
+                    Forms\Components\Select::make('genders')->label(static::getAttributeLabel('genders'))
+                        ->required()
+                        ->relationship('genders', 'name')
+                        ->multiple()->searchable()->preload()
+                        ->createOptionForm(GenderResource::inputForm()),
+                    Forms\Components\Select::make('type_sale')->label(static::getAttributeLabel('type_sales'))
+                        ->required()
+                        ->relationship(name: 'saleType', titleAttribute: 'name')
+                        ->searchable()->preload()
+                        ->createOptionForm(TypeSaleResource::inputForm())
+                        ->live(),
+                    Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
+                        ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
+                        ->columnSpan('full'),
+                    Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
+                        ->required()
+                        ->columnSpan('full'),
+                ]),
+            Forms\Components\Fieldset::make('retail_type_data')->label(static::getAttributeLabel('retail_type_data'))
+                ->schema([
+                    Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
+                        ->required()->numeric()->minValue(1),
+                    Forms\Components\TextInput::make('minimum_quantity')->label(static::getAttributeLabel('product_content'))
+                        ->required()->numeric()->minValue(1),
+                    Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
+                        ->options(function (): array {
+                            $options = array();
+                            $units = Unit::all();
+                            foreach ($units as $unit) {
+                                $options[$unit->name] = $unit->name;
+                            }
+                            return $options;
+                        }),
+                    Forms\Components\TextInput::make('price')
+                        ->label(static::getAttributeLabel('price'))
+                        // ->label(function (Get $get): string {
+                        //     $price_by = static::getAttributeLabel('price_by');
+                        //     $unit = $get('unit');
+                        //     return "{$price_by} {$unit}";
+                        // })
+                        ->required()->numeric()->minValue(1)
+                        ->prefix('$'),
+                ])->visible(fn (Get $get): bool => match ($get('type_sale')) {
                     '1' => true,
                     '2' => false,
                     default => false,
                 }),
-            Forms\Components\Fieldset::make('label')->schema([
-                Forms\Components\TextInput::make('minimum_quantity')->label(static::getAttributeLabel('minimum_quantity'))
-                    ->required()->numeric()->minValue(1),
-                Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
-                    ->options(function (): array {
-                        $options = array();
-                        $units = Unit::all();
-                        foreach ($units as $unit) {
-                            $options[$unit->name] = $unit->name;
-                        }
-                        return $options;
-                    }),
-            ])->visible(fn (Get $get): bool => match ($get('type_sale')) {
-                '1' => false,
-                '2' => true,
-                default => false,
-            }),
-            Forms\Components\TextInput::make('price')->label(static::getAttributeLabel('price'))
-                ->required()->numeric()->minValue(1)
-                ->prefix('$'),
-            Forms\Components\FileUpload::make('image_urls')->label(static::getAttributeLabel('images'))
-                ->multiple()
-                ->image()
-                ->minFiles(1)
-                ->maxFiles(5)
-                ->reorderable(),
+            Forms\Components\Fieldset::make('wholesale_type_data')->label(static::getAttributeLabel('wholesale_type_data'))
+                ->schema([
+                    Forms\Components\TextInput::make('minimum_quantity')->label(static::getAttributeLabel('minimum_quantity'))
+                        ->required()->numeric()->minValue(1),
+                    Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
+                        ->options(function (): array {
+                            $options = array();
+                            $units = Unit::all();
+                            foreach ($units as $unit) {
+                                $options[$unit->name] = $unit->name;
+                            }
+                            return $options;
+                        }),
+                    Forms\Components\TextInput::make('price')
+                        ->label(static::getAttributeLabel('price_by_unit'))
+                        // ->label(function (Get $get): string {
+                        //     $price_by = static::getAttributeLabel('price_by');
+                        //     $unit = $get('unit');
+                        //     return "{$price_by} {$unit}";
+                        // })
+                        ->required()->numeric()->minValue(1)
+                        ->prefix('$'),
+                ])->visible(fn (Get $get): bool => match ($get('type_sale')) {
+                    '1' => false,
+                    '2' => true,
+                    default => false,
+                }),
+
+
         ];
     }
 
