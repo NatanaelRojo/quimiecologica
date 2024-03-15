@@ -2,7 +2,6 @@
 
 use App\Models\Category;
 use App\Models\Gender;
-use App\Models\Service;
 use App\Models\TypeSale;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -26,7 +25,6 @@ return new class extends Migration
                 $table->jsonb('image_urls');
                 $table->unsignedBigInteger('stock');
                 $table->string('slug')->unique()->nullable();
-                // $table->string('purchase_type');
                 $table->timestamps();
             });
         }

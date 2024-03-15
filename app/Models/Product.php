@@ -24,16 +24,16 @@ class Product extends Model
     ];
 
     protected $fillable = [
+        'type_sale_id',
+        'unit_id',
         'is_active',
         'name',
         // 'slug',
         'description',
         'stock',
+        'quantity',
         'price',
         'image_urls',
-        // 'service_id',
-        // 'gender_id',
-        // 'category_id',
     ];
 
     /**
@@ -85,7 +85,7 @@ class Product extends Model
         return $this->belongsToMany(PurchaseRetailOrder::class, 'product_purchase_order');
     }
 
-    public function saleType(): BelongsTo
+    public function typeSale(): BelongsTo
     {
         return $this->belongsTo(TypeSale::class);
     }
@@ -126,5 +126,10 @@ class Product extends Model
     {
         $productPrice = floatval($stringPrice);
         $query->where('price', $operator, $productPrice * 100);
+    }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
     }
 }
