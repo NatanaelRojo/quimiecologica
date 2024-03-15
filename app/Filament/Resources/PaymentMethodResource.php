@@ -91,16 +91,6 @@ class PaymentMethodResource extends Resource
         ];
     }
 
-    // public static function tableFilters(): array
-    // {
-    //     return [
-    //         Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
-    //             ->trueLabel(static::getAttributeLabel('active'))
-    //             ->falseLabel(static::getAttributeLabel('inactive'))
-    //             ->placeholder(static::getAttributeLabel('all')),
-    //     ];
-    // }
-
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());

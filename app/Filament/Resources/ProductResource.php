@@ -18,6 +18,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
@@ -39,6 +40,95 @@ class ProductResource extends Resource
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/product.{$attribute}");
+    }
+
+    public static function tabSchema(Get $get, $livewire, ?Model $record): array
+    {
+        if ($livewire instanceof Pages\CreateProduct) {
+            $type_sale_id = $get('type_sale_id');
+            return match ($type_sale_id) {
+                '1' => static::retailTypeForm(),
+                '2' => static::wholesaleTypeForm(),
+                default => [],
+            };
+        }
+        $type_sale_id = ($livewire instanceof Pages\EditProduct && $record) ?
+            $record->type_sale_id :
+            $get('type_sale_id');
+        // dd($type_sale_id);
+        return match ($type_sale_id) {
+            1 => static::retailTypeForm(),
+            2 => static::wholesaleTypeForm(),
+            default => [],
+        };
+    }
+
+    public static function showRetailTab(Get $get, $livewire, ?Model $record): bool
+    {
+        if ($livewire instanceof Pages\CreateProduct) {
+            $type_sale_id = $get('type_sale_id');
+            return match ($type_sale_id) {
+                '1' => true,
+                '2' => false,
+                default => false,
+            };
+        }
+        $type_sale_id = ($livewire instanceof Pages\EditProduct && $record) ?
+            $record->type_sale_id :
+            $get('type_sale_id');
+        return match ($type_sale_id) {
+            1 => true,
+            2 => false,
+            default => false,
+        };
+    }
+
+    public static function showWholesaleTab(Get $get, $livewire, ?Model $record): bool
+    {
+        if ($livewire instanceof Pages\CreateProduct) {
+            $type_sale_id = $get('type_sale_id');
+            return match ($type_sale_id) {
+                '1' => false,
+                '2' => true,
+                default => false,
+            };
+        }
+        $type_sale_id = ($livewire instanceof Pages\EditProduct && $record) ?
+            $record->type_sale_id :
+            $get('type_sale_id');
+        return match ($type_sale_id) {
+            1 => false,
+            2 => true,
+            default => false,
+        };
+    }
+
+
+    protected static function retailTypeForm(): array
+    {
+        return [
+            Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
+                ->required()->numeric()->minValue(1),
+            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('product_content'))
+                ->required()->numeric()
+                ->minValue(1),
+            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
+                ->required()
+                ->relationship(name: 'unit',  titleAttribute: 'name')
+                ->createOptionForm(UnitResource::inputForm()),
+            // ->options(function (): array {
+            //     $options = array();
+            //     $units = Unit::all();
+            //     foreach ($units as $unit) {
+            //         $options[$unit->name] = $unit->name;
+            //     }
+            //     return $options;
+            // }),
+            Forms\Components\TextInput::make('price')
+                ->label(static::getAttributeLabel('price'))
+                ->required()->numeric()->minValue(1)
+                ->prefix('$'),
+        ];
     }
 
     public static function inputForm(): array
@@ -78,7 +168,8 @@ class ProductResource extends Resource
                                 ->relationship(name: 'typeSale', titleAttribute: 'name')
                                 ->preload()
                                 ->createOptionForm(TypeSaleResource::inputForm())
-                                ->live(),
+                                ->live()
+                                ->afterStateUpdated(fn (Set $set, $state) => $set('test', $state)),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),
@@ -87,60 +178,11 @@ class ProductResource extends Resource
                                 ->columnSpan('full'),
                         ]),
                     Forms\Components\Tabs\Tab::make('retail_type_data')->label(static::getAttributeLabel('retail_type_data'))
-                        ->schema([
-                            Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
-                                ->required()->numeric()->minValue(1),
-                            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('product_content'))
-                                ->required()->numeric()->minValue(1),
-                            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                                ->required()
-                                ->relationship(name: 'unit',  titleAttribute: 'name')
-                                ->createOptionForm(UnitResource::inputForm()),
-                            // ->options(function (): array {
-                            //     $options = array();
-                            //     $units = Unit::all();
-                            //     foreach ($units as $unit) {
-                            //         $options[$unit->name] = $unit->name;
-                            //     }
-                            //     return $options;
-                            // }),
-                            Forms\Components\TextInput::make('price')
-                                ->label(static::getAttributeLabel('price'))
-                                ->required()->numeric()->minValue(1)
-                                ->prefix('$'),
-                        ])->visible(fn (Get $get): bool => match ($get('type_sale_id')) {
-                            '1' => true,
-                            '2' => false,
-                            default => false,
-                        }),
+                        ->schema(fn (Get $get, $livewire, ?Model $record): array => static::tabSchema($get, $livewire, $record))
+                        ->visible(fn (Get $get, $livewire, ?Model $record): bool => static::showRetailTab($get, $livewire, $record)),
                     Forms\Components\Tabs\Tab::make('wholesale_type_data')->label(static::getAttributeLabel('wholesale_type_data'))
-                        ->schema([
-                            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
-                                ->required()->numeric()->minValue(1),
-                            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                                ->relationship(name: 'unit', titleAttribute: 'name'),
-                            // ->options(function (): array {
-                            //     $options = array();
-                            //     $units = Unit::all();
-                            //     foreach ($units as $unit) {
-                            //         $options[$unit->name] = $unit->name;
-                            //     }
-                            //     return $options;
-                            // }),
-                            Forms\Components\TextInput::make('price')
-                                ->label(static::getAttributeLabel('price_by_unit'))
-                                // ->label(function (Get $get): string {
-                                //     $price_by = static::getAttributeLabel('price_by');
-                                //     $unit = $get('unit');
-                                //     return "{$price_by} {$unit}";
-                                // })
-                                ->required()->numeric()->minValue(1)
-                                ->prefix('$'),
-                        ])->visible(fn (Get $get): bool => match ($get('type_sale_id')) {
-                            '1' => false,
-                            '2' => true,
-                            default => false,
-                        }),
+                        ->schema(fn (Get $get, $livewire, ?Model $record): array => static::tabSchema($get, $livewire, $record))
+                        ->visible(fn (Get $get, $livewire, ?model $record): bool => static::showWholesaleTab($get, $livewire, $record)),
                 ])->columnSpan('full'),
         ];
     }
@@ -169,6 +211,41 @@ class ProductResource extends Resource
             Tables\Actions\ViewAction::make(),
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make(),
+        ];
+    }
+
+    public static function wholesaleTypeForm(): array
+    {
+        return [
+            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
+                ->required()->numeric()->minValue(1),
+            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
+                ->relationship(name: 'unit', titleAttribute: 'name'),
+            // ->options(function (): array {
+            //     $options = array();
+            //     $units = Unit::all();
+            //     foreach ($units as $unit) {
+            //         $options[$unit->name] = $unit->name;
+            //     }
+            //     return $options;
+            // }),
+            Forms\Components\TextInput::make('price')
+                ->label(static::getAttributeLabel('price_by_unit'))
+                // ->label(function (Get $get): string {
+                //     $price_by = static::getAttributeLabel('price_by');
+                //     $unit = $get('unit');
+                //     return "{$price_by} {$unit}";
+                // })
+                ->required()->numeric()->minValue(1)
+                ->prefix('$'),
+        ];
+    }
+
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\SelectFilter::make('type_sale')->label(static::get('type_sales'))
+                ->relationship(name: 'typeSale', titleAttribute: 'name'),
         ];
     }
 

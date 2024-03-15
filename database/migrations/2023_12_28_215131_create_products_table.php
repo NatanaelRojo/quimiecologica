@@ -23,7 +23,7 @@ return new class extends Migration
                 $table->text('description');
                 $table->unsignedBigInteger('price');
                 $table->jsonb('image_urls');
-                $table->unsignedBigInteger('stock');
+                $table->unsignedBigInteger('stock')->default(1);
                 $table->string('slug')->unique()->nullable();
                 $table->timestamps();
             });
