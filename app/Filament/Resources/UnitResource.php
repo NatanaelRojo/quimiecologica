@@ -43,7 +43,7 @@ class UnitResource extends Resource
                 ->required()->maxLength(30),
             Forms\Components\TextInput::make('abbreviation')->label(static::getAttributeLabel('abbreviation'))
                 ->required()
-                ->minLength(2)->maxLength(10),
+                ->minLength(1)->maxLength(10),
         ];
     }
 

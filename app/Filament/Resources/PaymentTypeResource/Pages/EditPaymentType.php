@@ -10,6 +10,11 @@ class EditPaymentType extends EditRecord
 {
     protected static string $resource = PaymentTypeResource::class;
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl();
+    }
+
     protected function getHeaderActions(): array
     {
         return [
