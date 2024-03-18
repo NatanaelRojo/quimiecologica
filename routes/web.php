@@ -4,6 +4,7 @@ use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
 use App\Http\Controllers\ServiceController;
 use Illuminate\Foundation\Application;
@@ -65,6 +66,13 @@ Route::get('/services', function () {
 
 // service detail
 Route::get('/services/{service}', [ServiceController::class, 'showDetail'])->name('services.detail');
+
+// Purchase order detail
+Route::get(
+    'purchase-orders/detail/{purchase_order}',
+    [PurchaseOrderController::class, 'showDetail']
+)
+    ->name('purchaseOrders.detail');
 
 // Página de Contacto
 Route::get('/contact', function () {

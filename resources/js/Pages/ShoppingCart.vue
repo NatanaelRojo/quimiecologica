@@ -3,6 +3,7 @@ import MainLayout from '@/Layouts/MainLayout.vue';
 import ErrorList from '@/Components/ErrorList.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
+import { router } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import axios from 'axios';
@@ -101,7 +102,8 @@ const createPurchaseOrder = async () => {
         // Limpiar el Carrito de compras luego de guardar el formulario.
         // cleanForm();
 
-        return purchaseOrder;
+        // return purchaseOrder;
+        router.get(`/purchase-orders/detail/${purchaseOrder.value.id}`);
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo();
