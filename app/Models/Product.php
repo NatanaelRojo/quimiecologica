@@ -98,10 +98,15 @@ class Product extends Model
     public function scopeFilterBySaleType(?Builder $query, string $saleTypeName): void
     {
         $query->where(function (Builder $query) use ($saleTypeName): void {
-            $query->whereHas('typeSales', function (Builder $q) use ($saleTypeName): void {
-                $q->whereIn('name', [$saleTypeName]);
+            $query->whereHas('typeSale', function (Builder $q) use ($saleTypeName): void {
+                $q->where('name', $saleTypeName);
             });
         });
+        // $query->where(function (Builder $query) use ($saleTypeName): void {
+        //     $query->whereHas('typeSales', function (Builder $q) use ($saleTypeName): void {
+        //         $q->whereIn('name', [$saleTypeName]);
+        //     });
+        // });
     }
 
     public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): void

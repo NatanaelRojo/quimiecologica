@@ -19,6 +19,7 @@ class ProductController extends Controller
     public function index(Request $request): JsonResponse
     {
         $query = Product::query();
+        // dd($query->get());
 
         if ($request->query('saleType', null)) {
             $query->filterBySaleType($request->saleType);
@@ -87,7 +88,7 @@ class ProductController extends Controller
      */
     public function showDetail(Product $product): Response
     {
-        $product = Product::where('id', $product->id)->with(['categories', 'genders', 'typeSales'])->first();
+        $product = Product::where('id', $product->id)->with(['categories', 'genders', 'typeSale'])->first();
         return Inertia::render('Product/Detail', [
             'product' => $product,
         ]);

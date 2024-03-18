@@ -20,6 +20,8 @@ const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
     ? JSON.parse(localStorage.arrayProducts) : []);
 const products = ref([]);
+const productsQuantity = ref([]);
+const productQuantity = ref('');
 const image = ref(null);
 const record = ref({
     owner_firstname: 'Natanael',
@@ -32,7 +34,7 @@ const record = ref({
     owner_address: 'Merida',
     reference_number: '00000',
     image: '',
-    total_price: '',
+    total_price: 0,
     products_info: [],
     // products_info: [
     // {
@@ -48,16 +50,20 @@ const form = ref(null);
 const purchaseOrder = ref(null);
 
 onMounted(() => {
-    arrayProducts.value.forEach(product => {
+    arrayProducts.value.forEach((product, index) => {
         const productData = {
             product_id: product.id,
             product_name: product.name,
             product_quantity: `${product.quantity}`,
-            sale_type: 'Al detal',
-            product_unit: 'Kg',
+            sale_type: product.type_sale.name,
+            product_unit: product.unit.name,
         }
         record.value.products_info.push(productData);
+        record.value.total_price += product.price * product.product_content;
+        productsQuantity.value[index] = product.product_content;
     });
+    // Finalizar spinner de carga.
+    isLoading.value = false;
 });
 
 /**
@@ -130,11 +136,6 @@ onBeforeMount(async () => {
     isLoading.value = true;
 });
 
-onMounted(async () => {
-    // Finalizar spinner de carga.
-    isLoading.value = false;
-});
-
 /**
  * Método que permite eliminar un producto del carrito.
 */
@@ -154,14 +155,22 @@ const removeProductFromCart = (id) => {
 /**
  * Método para calcular el precio total de todos los productos en el carrito.
 */
-const calculateTotalPrice = () => {
+const calculateTotalPrice = (quantity) => {
     let totalPrice = 0;
+    arrayProducts.value.forEach((product, index) => {
+        if (product.type_sale.name === 'Detal') {
+            totalPrice += product.price * productsQuantity.value[index];
+        } else if (product.type_sale.name === 'Granel') {
+            totalPrice += product.price * productsQuantity.value[index];
+        }
+    });
 
     // Iterar sobre todos los productos en el carrito.
-    for (let i = 0; i < arrayProducts.value.length; i++) {
-        // Sumar el precio del producto actual al precio total.
-        totalPrice += arrayProducts.value[i].price;
-    }
+    // for (let i = 0; i < arrayProducts.value.length; i++) {
+    //     // Sumar el precio del producto actual al precio total.
+    //     // if ()
+    //     totalPrice += arrayProducts.value[i].price;
+    // }
 
     // Asignar el valor del total.
     record.value.total_price = totalPrice;
@@ -257,7 +266,7 @@ const goBack = () => {
                                         grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
                                     ">
                                     <!-- Carrito de Compras -->
-                                    <template v-for="product in arrayProducts" :key="product.id">
+                                    <template v-for="(product, index) in arrayProducts" :key="index">
                                         <div class="
                                                 bg-white
                                                 p-4 border
@@ -307,9 +316,31 @@ const goBack = () => {
                                                                 " :key="index" class="text-gray-600">
                                                             Géneros: {{ gender.name }}
                                                         </div>
+                                                        <div v-if="product.type_sale.name === 'Detal'">
+                                                            <label for="product-retail-quantity">Cantidad del
+                                                                producto</label>
+                                                            <input type="number" id="product-retail-quantity"
+                                                                name="product-retail-quantity"
+                                                                :min="product.product_content"
+                                                                v-model="productsQuantity[index]" @change="record.total_price =
+                calculateTotalPrice(productsQuantity[index])">
+                                                        </div>
+                                                        <div v-else-if="product.type_sale.name === 'Granel'">
+                                                            <label for="product-wholesale-quantity">{{ product.unit.name
+                                                                }}(s) del
+                                                                producto</label>
+                                                            <input type="number" id="product-wholesale-quantity"
+                                                                name="product-wholesale-quantity"
+                                                                :min="product.product_content"
+                                                                v-model="productsQuantity[index]"
+                                                                @change="record.total_price = calculateTotalPrice(productsQuantity[index])">
+                                                        </div>
                                                     </div>
+
                                                 </div>
+
                                                 </Link>
+
 
                                                 <!-- Precio y botón a la derecha -->
                                                 <p class="
@@ -354,7 +385,7 @@ const goBack = () => {
                                         leading-tight
                                         text-gray-800
                                     ">
-                                    Total: {{ calculateTotalPrice() }}$
+                                    Total: ${{ record.total_price }}
                                 </h2>
                             </div>
                         </div>
@@ -531,11 +562,12 @@ const goBack = () => {
                         <p>Estado: {{ purchaseOrder.owner_state }}</p>
                         <p>Ciudad: {{ purchaseOrder.owner_city }}</p>
                         <p>Dirección: {{ purchaseOrder.owner_address }}</p>
-                        <p>Precio total: {{ purchaseOrder.total_price }}</p>
+                        <p>Precio total: ${{ purchaseOrder.total_price }}</p>
                         <h3>Información de productos:</h3>
                         <ul>
                             <li v-for="(product, index) in purchaseOrder.products_info" :key="index">
                                 <p>Producto ID: {{ product.product_id }}</p>
+                                <p>Nombre del producto: {{ product.product_name }}</p>
                                 <p>Cantidad: {{ product.product_quantity }}</p>
                                 <p>Tipo de venta: {{ product.sale_type }}</p>
                                 <p>Unidad de producto: {{ product.product_unit }}</p>

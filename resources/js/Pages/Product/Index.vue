@@ -57,6 +57,17 @@
                     <section v-if="products.length > 0">
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
+                                <h2>Buscar por Tipo de venta:</h2>
+                                <select class="w-full rounded" v-model="selectedTypeSale">
+                                    <option value="" disabled selected>
+                                        Seleccione...
+                                    </option>
+                                    <option v-for="(typeSale, index) in typeSales" :key="index" :value="typeSale.name">
+                                        {{ typeSale.name }}
+                                    </option>
+                                </select>
+                            </div>
+                            <div>
                                 <h2>Buscar por Nombre:</h2>
                                 <input class="w-full rounded" type="text" v-model="productName" />
                             </div>
@@ -98,6 +109,7 @@
                                     </option>
                                 </select>
                             </div>
+
                         </div>
                         <button class="
                                 font-montserrat
@@ -158,11 +170,10 @@
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
                                     <Link :href="route(
-                                        'products.detail',
-                                        product.slug
-                                    )
-                                    "
-                                >
+                'products.detail',
+                product.slug
+            )
+                ">
                                     <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
                                                 w-full h-40 object-cover mb-4
                                                 rounded-md img-zoom
@@ -259,12 +270,14 @@ import TextInput from '@/Components/TextInput.vue';
 const isLoading = ref(false);
 // const selectedCategories = ref([]);
 // const selectedGenders = ref([]);
+const selectedTypeSale = ref('');
 const selectedCategories = ref('');
 const selectedGenders = ref('');
 const selectedProductPriceFilter = ref('=');
 const productName = ref('');
 const productPrice = ref(null);
 const fullPage = ref(true);
+const typeSales = ref([]);
 const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
@@ -280,6 +293,8 @@ onMounted(async () => {
     try {
         let response = await axios.get("/api/products");
         products.value = response.data;
+        response = await axios.get('/api/type-sales');
+        typeSales.value = response.data;
         response = await axios.get('/api/categories');
         categories.value = response.data;
         response = await axios.get('/api/genders');
@@ -294,6 +309,7 @@ onMounted(async () => {
 const filterProducts = async () => {
     try {
         const queryParams = {
+            saleType: selectedTypeSale.value,
             name: productName.value,
             // categories: selectedCategories.value.join(','),
             // genders: selectedGenders.value.join(','),

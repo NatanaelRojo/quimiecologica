@@ -24,7 +24,9 @@ class ProductResource extends JsonResource
             'created_at' => $this->created_at,
             'categories' => CategoryResource::collection($this->categories),
             'genders' => GenderResource::collection($this->genders),
-            'type_sales' => TypeSaleResource::collection($this->typeSales),
+            'type_sale' => new TypeSaleResource($this->typeSale),
+            'product_content' => $this->quantity,
+            'unit' => new UnitResource($this->unit),
         ];
     }
 }
