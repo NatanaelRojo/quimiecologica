@@ -214,11 +214,20 @@ const goBack = () => {
 }
 
 const increaseProductQuantity = (quantities, index) => {
+    if (productsQuantity.value[index] + 1 > arrayProducts.value[index].stock) {
+        return;
+    }
     quantities[index]++;
     calculateTotalPrice(quantities[index]);
 }
 
 const decreaseProductQuantity = (quantities, index) => {
+    if (productsQuantity.value[index] - 1 === 0 && arrayProducts.value[index].type_sale.name === 'Detal') {
+        console.log('entra');
+        return;
+    } else if (productsQuantity.value[index] - 1 < arrayProducts.value[index].quantity && arrayProducts.value[index].type_sale.name === 'Granel') {
+        return;
+    }
     quantities[index]--;
     calculateTotalPrice(quantities[index]);
 }
@@ -344,7 +353,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         producto</label>
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="product.product_content"
-                                                        v-model="productsQuantity[index]" @change="record.total_price =
+                                                        :max="product.stock" v-model="productsQuantity[index]" @change="record.total_price =
                 calculateTotalPrice(productsQuantity[index])">
                                                     <button
                                                         @click="increaseProductQuantity(productsQuantity, index)">+</button>

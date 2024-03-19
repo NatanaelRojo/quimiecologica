@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseOrder\StorePurchaseOrderRequest;
 use App\Http\Resources\PurchaseOrderResource;
+use App\Models\Product;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -52,6 +54,7 @@ class PurchaseOrderController extends Controller
             'total_price' => $request->total_price,
             'products_info' => $products_info,
         ]);
+        $this->discountProducts($newPurchaseOrder);
 
         return response()->json(
             [
@@ -95,5 +98,19 @@ class PurchaseOrderController extends Controller
     public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
+    }
+
+    private function discountProducts(PurchaseOrder $purchaseOrder): void
+    {
+        DB::transaction(function () use ($purchaseOrder): void {
+            foreach ($purchaseOrder->products_info as $data) {
+                $product = Product::query()->find($data['product_id']);
+                if ($data['sale_type'] === 'Detal') {
+                    $product->update([
+                        'stock' => $product->stock - $data['product_quantity'],
+                    ]);
+                }
+            }
+        });
     }
 }
