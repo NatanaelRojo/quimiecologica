@@ -79,7 +79,7 @@ onMounted(async () => {
                     </div>
 
                     <div class="flex flex-wrap">
-                        <div class="mt-5 w-full">
+                        <div class="mt-5 w-full text-justify">
                             <p class="font-montserrat mb-8">
                                 Somos una marca nacional que diseña y elabora
                                 productos de cuidado personal, nuestra

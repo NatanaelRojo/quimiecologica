@@ -113,7 +113,7 @@ onMounted(async () => {
                             <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Leche desmaquillante
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -128,7 +128,7 @@ onMounted(async () => {
                             <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Tónico
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -143,7 +143,7 @@ onMounted(async () => {
                             <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
                                 Exfoliante
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -168,7 +168,7 @@ onMounted(async () => {
                             >
                                 Crema humectante
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -193,7 +193,7 @@ onMounted(async () => {
                             >
                                 Protector Solar, FPS 30
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
                                 at ipsum eu nunc commodo posuere et sit amet ligula.
                             </p>
@@ -276,7 +276,7 @@ onMounted(async () => {
                             >
                                 Planificación y diseño de cosméticos
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 ¡Anímate. Que sólo la intención ya no cuenta en
                                 éstos tiempos! Materializa con nosotros tus
                                 ideas y conviértelas en productos
@@ -303,7 +303,7 @@ onMounted(async () => {
                             >
                                 Fabricación a granel
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Cuenta con nosotros para fabricar a escala,
                                 aquello que deseas.
                             </p>
@@ -328,7 +328,7 @@ onMounted(async () => {
                             >
                                 Asesorías
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Te orientamos en todas las etapas previas a
                                 comercializar tus productos o marca.
                             </p>
@@ -353,7 +353,7 @@ onMounted(async () => {
                             >
                                 Análisis de muestras
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Si tienes el producto y desear registros de las
                                 propiedades químicas (pH, viscosidad, grado de
                                 alcohol, conductividad), también podemos
@@ -380,7 +380,7 @@ onMounted(async () => {
                             >
                                 Pulverización
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Transforme en polvo cualquier sólido natural,
                                 utilizado como materia prima comestible o
                                 cosmético.
@@ -406,7 +406,7 @@ onMounted(async () => {
                             >
                                 Molienda
                             </h3>
-                            <p class="font-montserrat">
+                            <p class="font-montserrat text-justify">
                                 Reduzca el tamaño de las partículas de sólidos
                                 naturales, comestibles y cosméticos.
                             </p>
@@ -521,7 +521,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight text-justify">
                                             "¡Los productos de cuidado personal
                                             de esta tienda son increíbles! Mi
                                             piel nunca ha lucido tan radiante y
@@ -575,7 +575,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight text-justify">
                                             "Estoy encantada con los resultados
                                             que he obtenido utilizando los
                                             productos de esta marca. ¡Mi rutina
@@ -630,7 +630,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight text-justify">
                                             "Desde que empecé a usar estos
                                             productos, he notado una gran
                                             mejoría en la textura y apariencia
@@ -684,7 +684,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight text-justify">
                                             "He probado innumerables productos
                                             de cuidado personal, y ninguno se
                                             compara a la calidad y efectividad
@@ -739,7 +739,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight text-justify">
                                             "Mis expectativas han sido superadas
                                             con creces desde que comencé a usar
                                             estos productos. Mi piel se siente
@@ -794,7 +794,7 @@ onMounted(async () => {
                                         </div>
                                     </div>
                                     <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight">
+                                        <p class="text-xl text-sm leading-tight text-justify">
                                             "No suelo dejar testimonios, pero
                                             estos productos realmente lo merecen.
                                             Mi experiencia ha sido fantástica y
