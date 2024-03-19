@@ -3,7 +3,6 @@ import MainLayout from '@/Layouts/MainLayout.vue';
 import ErrorList from '@/Components/ErrorList.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
-import { router } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import axios from 'axios';

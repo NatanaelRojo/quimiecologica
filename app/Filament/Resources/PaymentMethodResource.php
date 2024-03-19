@@ -44,8 +44,8 @@ class PaymentMethodResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
-            Forms\Components\TextInput::make("name")->label(static::getAttributeLabel('name'))
-                ->required()->unique()
+            Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
+                ->required()->unique(ignoreRecord: true)
                 ->autofocus(),
             Forms\Components\Select::make('payment_type_id')->label(static::getAttributeLabel('payment_type'))
                 ->required()
