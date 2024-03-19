@@ -69,10 +69,9 @@ Route::get('/services/{service}', [ServiceController::class, 'showDetail'])->nam
 
 // Purchase order detail
 Route::get(
-    'purchase-orders/detail/{purchase_order}',
+    '/purchase-orders/detail/{purchase_order}',
     [PurchaseOrderController::class, 'showDetail']
-)
-    ->name('purchaseOrders.detail');
+)->name('purchaseOrders.detail');
 
 // Página de Contacto
 Route::get('/contact', function () {

@@ -47,11 +47,11 @@ class PaymentMethodResource extends Resource
             Forms\Components\TextInput::make("name")->label(static::getAttributeLabel('name'))
                 ->required()->unique()
                 ->autofocus(),
-            Forms\Components\Select::make('payment_type_id')->label(static::getAttributeLabel('type'))
+            Forms\Components\Select::make('payment_type_id')->label(static::getAttributeLabel('payment_type'))
                 ->required()
                 ->relationship(name: 'paymentType', titleAttribute: 'name')
                 ->createOptionForm(PaymentTypeResource::inputForm()),
-            Forms\Components\KeyValue::make('data')->label(static::getAttributeLabel('type'))
+            Forms\Components\KeyValue::make('data')->label(static::getAttributeLabel('data'))
                 ->required()
                 ->columnSpan('full'),
         ];

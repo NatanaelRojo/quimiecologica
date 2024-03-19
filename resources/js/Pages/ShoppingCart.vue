@@ -1,7 +1,7 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import ErrorList from '@/Components/ErrorList.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
@@ -97,13 +97,13 @@ const createPurchaseOrder = async () => {
         showMessage('success');
 
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
-        purchaseOrder.value = response.data;
+        purchaseOrder.value = response.data.record;
 
         // Limpiar el Carrito de compras luego de guardar el formulario.
         // cleanForm();
 
         // return purchaseOrder;
-        router.get(`/purchase-orders/detail/${purchaseOrder.value.id}`);
+        router.get(response.data.redirect);
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo();

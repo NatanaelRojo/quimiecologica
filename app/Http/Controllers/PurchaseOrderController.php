@@ -53,7 +53,13 @@ class PurchaseOrderController extends Controller
             'products_info' => $products_info,
         ]);
 
-        return response()->json(new PurchaseOrderResource($newPurchaseOrder), 201);
+        return response()->json(
+            [
+                'record' => new PurchaseOrderResource($newPurchaseOrder),
+                'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
+            ],
+            201
+        );
     }
 
     public function showDetail(PurchaseOrder $purchase_order): Response
@@ -70,7 +76,7 @@ class PurchaseOrderController extends Controller
      */
     public function show(PurchaseOrder $purchase_order): JsonResponse
     {
-        $purchaseOrderData = PurchaseOrder::query()->find($purchase_order->purchase_order_id);
+        $purchaseOrderData = PurchaseOrder::query()->find($purchase_order->id);
 
         return response()->json(new PurchaseOrderResource($purchaseOrderData), 200);
     }
