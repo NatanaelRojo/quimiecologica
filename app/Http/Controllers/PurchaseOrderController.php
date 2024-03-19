@@ -7,6 +7,8 @@ use App\Http\Resources\PurchaseOrderResource;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class PurchaseOrderController extends Controller
 {
@@ -51,15 +53,32 @@ class PurchaseOrderController extends Controller
             'products_info' => $products_info,
         ]);
 
-        return response()->json(new PurchaseOrderResource($newPurchaseOrder), 201);
+        return response()->json(
+            [
+                'record' => new PurchaseOrderResource($newPurchaseOrder),
+                'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
+            ],
+            201
+        );
+    }
+
+    public function showDetail(PurchaseOrder $purchase_order): Response
+    {
+        $purchaseOrderData = PurchaseOrder::query()->find($purchase_order->id);
+
+        return Inertia::render('PurchaseOrder/Detail', [
+            'purchase_order' => $purchaseOrderData,
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(PurchaseOrder $purchaseOrder)
+    public function show(PurchaseOrder $purchase_order): JsonResponse
     {
-        //
+        $purchaseOrderData = PurchaseOrder::query()->find($purchase_order->id);
+
+        return response()->json(new PurchaseOrderResource($purchaseOrderData), 200);
     }
 
     /**

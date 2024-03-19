@@ -140,35 +140,33 @@
                                             img-zoom
                                         ">
                                     <div>
-                                        <Link
-                                            :href="route(
-                                                'posts.detail',
-                                                post.slug
-                                                )
-                                            "
-                                        >
-                                            <h3 class="
+                                        <Link :href="route(
+                'posts.detail',
+                post.slug
+            )
+                ">
+                                        <h3 class="
                                                     text-lg
                                                     font-semibold
                                                     mb-2
                                                     text-gray-800
                                                 ">
-                                                {{ post.title }}
-                                            </h3>
-                                            <div class="flex space-x-2">
-                                                <div v-for="
+                                            {{ post.title }}
+                                        </h3>
+                                        <div class="flex space-x-2">
+                                            <div v-for="
                                                         (category, index)
                                                             of post.categories
                                                     " :key="index" class="text-gray-600">
-                                                    {{ category.name }}
-                                                </div>
+                                                {{ category.name }}
                                             </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <div v-for="(gender, index)
+                                        </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <div v-for="(gender, index)
                                                         of post.genders" :key="index" class="text-gray-600">
-                                                    {{ gender.name }}
-                                                </div>
+                                                {{ gender.name }}
                                             </div>
+                                        </div>
                                         </Link>
                                     </div>
                                 </div>
@@ -224,8 +222,10 @@ onMounted(async () => {
         posts.value = response.data;
         response = await axios.get('/api/categories');
         categories.value = response.data;
+        console.log(categories.value);
         response = await axios.get('/api/genders');
         genders.value = response.data;
+        console.log(genders.value);
     } catch (error) {
         console.error(error);
     }
