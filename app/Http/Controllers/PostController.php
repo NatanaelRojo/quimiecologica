@@ -21,10 +21,11 @@ class PostController extends Controller
         $query = Post::query();
         $query->allPublished();
 
-        if ($request->has('title')) {
+        if ($request->query('title', null)) {
             $query->filterByTitle($request->title);
         }
-        if ($request->has('categories' && $request->has('genders'))) {
+        if ($request->query('categories', null) || $request->query('genders', null)) {
+            // dd('entra');
             $query->filterByCategoryOrGender($request->categories, $request->genders);
         }
         $posts = $query->get()->unique();

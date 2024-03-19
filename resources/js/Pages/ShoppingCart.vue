@@ -1,7 +1,7 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import ErrorList from '@/Components/ErrorList.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
@@ -96,12 +96,13 @@ const createPurchaseOrder = async () => {
         showMessage('success');
 
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
-        purchaseOrder.value = response.data;
+        purchaseOrder.value = response.data.record;
 
         // Limpiar el Carrito de compras luego de guardar el formulario.
         // cleanForm();
 
-        return purchaseOrder;
+        // return purchaseOrder;
+        router.get(response.data.redirect);
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo();
@@ -211,6 +212,16 @@ const cleanForm = () => {
 const goBack = () => {
     window.history.back();
 }
+
+const increaseProductQuantity = (quantities, index) => {
+    quantities[index]++;
+    calculateTotalPrice(quantities[index]);
+}
+
+const decreaseProductQuantity = (quantities, index) => {
+    quantities[index]--;
+    calculateTotalPrice(quantities[index]);
+}
 </script>
 
 <template>
@@ -316,32 +327,9 @@ const goBack = () => {
                                                                 " :key="index" class="text-gray-600">
                                                             Géneros: {{ gender.name }}
                                                         </div>
-                                                        <div v-if="product.type_sale.name === 'Detal'">
-                                                            <label for="product-retail-quantity">Cantidad del
-                                                                producto</label>
-                                                            <input type="number" id="product-retail-quantity"
-                                                                name="product-retail-quantity"
-                                                                :min="product.product_content"
-                                                                v-model="productsQuantity[index]" @change="record.total_price =
-                calculateTotalPrice(productsQuantity[index])">
-                                                        </div>
-                                                        <div v-else-if="product.type_sale.name === 'Granel'">
-                                                            <label for="product-wholesale-quantity">{{ product.unit.name
-                                                                }}(s) del
-                                                                producto</label>
-                                                            <input type="number" id="product-wholesale-quantity"
-                                                                name="product-wholesale-quantity"
-                                                                :min="product.product_content"
-                                                                v-model="productsQuantity[index]"
-                                                                @change="record.total_price = calculateTotalPrice(productsQuantity[index])">
-                                                        </div>
                                                     </div>
-
                                                 </div>
-
                                                 </Link>
-
-
                                                 <!-- Precio y botón a la derecha -->
                                                 <p class="
                                                         mt-2
@@ -351,6 +339,31 @@ const goBack = () => {
                                                     ">
                                                     Precio: ${{ product.price }}
                                                 </p>
+                                                <div v-if="product.type_sale.name === 'Detal'">
+                                                    <label for="product-retail-quantity">Cantidad del
+                                                        producto</label>
+                                                    <input type="number" id="product-retail-quantity"
+                                                        name="product-retail-quantity" :min="product.product_content"
+                                                        v-model="productsQuantity[index]" @change="record.total_price =
+                calculateTotalPrice(productsQuantity[index])">
+                                                    <button
+                                                        @click="increaseProductQuantity(productsQuantity, index)">+</button>
+                                                    <button
+                                                        @click="decreaseProductQuantity(productsQuantity, index)">-</button>
+                                                </div>
+                                                <div v-else-if="product.type_sale.name === 'Granel'">
+                                                    <label for="product-wholesale-quantity">{{ product.unit.name
+                                                        }}(s) del
+                                                        producto</label>
+                                                    <input type="number" id="product-wholesale-quantity"
+                                                        name="product-wholesale-quantity" :min="product.product_content"
+                                                        v-model="productsQuantity[index]"
+                                                        @change="record.total_price = calculateTotalPrice(productsQuantity[index])">
+                                                    <button
+                                                        @click="increaseProductQuantity(productsQuantity, index)">+</button>
+                                                    <button
+                                                        @click="decreaseProductQuantity(productsQuantity, index)">-</button>
+                                                </div>
                                                 <div class="flex flex-col items-center">
                                                     <button @click="removeProductFromCart(product.id)" class="
                                                             font-montserrat
