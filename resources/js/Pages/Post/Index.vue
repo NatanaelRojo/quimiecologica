@@ -222,10 +222,8 @@ onMounted(async () => {
         posts.value = response.data;
         response = await axios.get('/api/categories');
         categories.value = response.data;
-        console.log(categories.value);
         response = await axios.get('/api/genders');
         genders.value = response.data;
-        console.log(genders.value);
     } catch (error) {
         console.error(error);
     }
