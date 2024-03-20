@@ -52,7 +52,10 @@ class PaymentMethodResource extends Resource
                 ->relationship(name: 'paymentType', titleAttribute: 'name')
                 ->createOptionForm(PaymentTypeResource::inputForm()),
             Forms\Components\KeyValue::make('data')->label(static::getAttributeLabel('data'))
+                ->keyLabel(static::getAttributeLabel('key_label'))
+                ->valueLabel(static::getAttributeLabel('value_label'))
                 ->required()
+                ->reorderable()
                 ->columnSpan('full'),
         ];
     }

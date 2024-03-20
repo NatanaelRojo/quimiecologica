@@ -7,7 +7,9 @@ return [
     'active' => 'Activo',
     'inactive' => 'Inactivo',
     'name' => 'Nombre',
-    'payment_type' => 'Tipo de pago',
-    'data' => 'Datos',
+    'payment_type' => 'Plataforma',
+    'data' => 'Beneficiario',
+    'key_label' => 'Descripción',
+    'value_label' => 'Dato',
     'all' => 'Todos',
 ];
