@@ -77,33 +77,60 @@ const services = ref([]);
 
                     <br>
 
-                    <div v-if="services.length > 0" class="flex flex-wrap">
-                        <template v-for="(service, index) in services" :key="index">
-                            <div class="w-5/6 sm:w-1/2 p-6">
-                                <Link :href="route('services.detail', service.slug)">
-                                    <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                                        {{ service.name }}
-                                    </h3>
-                                    <p>
-                                        {{ service.description }}
-                                    </p>
-                                </Link>
-                            </div>
-                            <div class="w-full sm:w-1/2 p-6">
-                                <img :src="`/storage/${service.banner}`" alt="" class="w-full h-auto mx-auto img-zoom">
-                            </div>
+                    <!-- posts grid-->
+                    <div v-if="services.length > 0" class="
+                            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
+                        ">
+                        <!-- Iterate de servicios -->
+                        <template v-for="service in services" :key="service.id">
+                            <Link :href="route('services.detail', service.slug)">
+                                <div class="
+                                    bg-white
+                                    p-4 border
+                                    border-gray-200
+                                    rounded-lg
+                                    shadow-md
+                                    transition-transform
+                                    hover:transform
+                                    hover:scale-105
+                                ">
+                                    <!-- Información a la izquierda -->
+                                    <div class="flex flex-col items-start">
+                                        <img
+                                            :src="`/storage/${service.banner}`"
+                                            alt="Imagen del servicio"
+                                            class="
+                                            w-full mb-4
+                                                rounded-md img-zoom
+                                            "
+                                        >
+                                        <div>
+                                            <h3 class="
+                                                        text-lg
+                                                        font-semibold
+                                                        mb-2
+                                                        text-gray-800
+                                                    "
+                                                >
+                                                    {{ service.name }}
+                                            </h3>
+                                            <p>
+                                                {{ service.description }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
                         </template>
+                        <!-- Fin de la iteración de los servicios-->
                     </div>
-                    <h2
-                        v-else
-                        class="
+                    <h2 v-else class="
                             w-full
                             my-2 text-5xl
                             font-black
                             leading-tight
                             text-center text-gray-800
-                        "
-                    >
+                        ">
                         No hay servicios disponibles
                     </h2>
                 </div>
