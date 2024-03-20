@@ -331,9 +331,8 @@ const filterProducts = async () => {
 const clearFilters = async () => {
     try {
         productName.value = '';
-        // selectedCategories.value = [];
-        // selectedGenders.value = [];
         selectedCategories.value = '';
+        selectedTypeSale.value = '';
         selectedGenders.value = '';
         productPrice.value = null;
         selectedProductPriceFilter.value = '=';
