@@ -170,41 +170,42 @@
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
                                     <Link :href="route(
-                'products.detail',
-                product.slug
-            )
-                ">
-                                    <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
-                                                w-full h-40 object-cover mb-4
+                                            'products.detail',
+                                            product.slug
+                                        )"
+                                    >
+                                        <img :src="`/storage/${product.image_urls[0]}`"
+                                            alt="Imagen del producto" class="
+                                                w-full h-50 object-cover mb-4
                                                 rounded-md img-zoom
                                             ">
-                                    <div>
-                                        <h3 class="
-                                                    text-lg
-                                                    font-semibold
-                                                    mb-2
-                                                    text-gray-800
-                                                ">
-                                            {{ product.name }}
-                                        </h3>
-                                        <p class="text-gray-600 mb-4">
-                                            {{ product.description }}
-                                        </p>
-                                        <div class="flex space-x-2">
-                                            <div v-for="
-                                                        (category, index) of product.categories
-                                                    " :key="index" class="text-gray-600">
-                                                Categorías: {{ category.name }}
+                                        <div>
+                                            <h3 class="
+                                                        text-lg
+                                                        font-semibold
+                                                        mb-2
+                                                        text-gray-800
+                                                    ">
+                                                {{ product.name }}
+                                            </h3>
+                                            <p class="text-gray-600 mb-4">
+                                                {{ product.description }}
+                                            </p>
+                                            <div class="flex space-x-2">
+                                                <div v-for="
+                                                            (category, index) of product.categories
+                                                        " :key="index" class="text-gray-600">
+                                                    Categorías: {{ category.name }}
+                                                </div>
+                                            </div>
+                                            <div class="flex space-x-2 mt-2">
+                                                <div v-for="
+                                                            (gender, index) of product.genders
+                                                        " :key="index" class="text-gray-600">
+                                                    Géneros: {{ gender.name }}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex space-x-2 mt-2">
-                                            <div v-for="
-                                                        (gender, index) of product.genders
-                                                    " :key="index" class="text-gray-600">
-                                                Géneros: {{ gender.name }}
-                                            </div>
-                                        </div>
-                                    </div>
                                     </Link>
 
                                     <!-- Precio y botón a la derecha -->
@@ -335,9 +336,8 @@ const clearFilters = async () => {
     try {
         isFiltered.value = false;
         productName.value = '';
-        // selectedCategories.value = [];
-        // selectedGenders.value = [];
         selectedCategories.value = '';
+        selectedTypeSale.value = '';
         selectedGenders.value = '';
         productPrice.value = null;
         selectedProductPriceFilter.value = '=';

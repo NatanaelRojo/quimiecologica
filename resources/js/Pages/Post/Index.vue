@@ -111,11 +111,7 @@
 
                     <!-- posts grid-->
                     <div v-if="posts.length > 0" class="
-                            grid
-                            grid-cols-1
-                            sm:grid-cols-2
-                            lg:grid-cols-3
-                            gap-8
+                            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
                         ">
                         <!-- Iterate on posts -->
                         <template v-for="post in posts" :key="post.id">
@@ -131,44 +127,42 @@
                                 ">
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col items-start">
-                                    <img :src="`/storage/${post.thumbnail}`" alt="Imagen de la publicación" class="
-                                            w-full
-                                            h-40
-                                            object-cover
-                                            mb-4
-                                            rounded-md
-                                            img-zoom
-                                        ">
-                                    <div>
-                                        <Link :href="route(
-                'posts.detail',
-                post.slug
-            )
-                ">
-                                        <h3 class="
-                                                    text-lg
-                                                    font-semibold
-                                                    mb-2
-                                                    text-gray-800
-                                                ">
-                                            {{ post.title }}
-                                        </h3>
-                                        <div class="flex space-x-2">
-                                            <div v-for="
-                                                        (category, index)
-                                                            of post.categories
-                                                    " :key="index" class="text-gray-600">
-                                                {{ category.name }}
+                                    <Link :href="route(
+                                        'posts.detail',
+                                        post.slug
+                                        )
+                                    ">
+                                        <img :src="`/storage/${post.thumbnail}`"
+                                            alt="Imagen de la publicación"
+                                            class="
+                                                w-full h-40 mb-4
+                                                rounded-md img-zoom
+                                            ">
+                                        <div>
+                                            <h3 class="
+                                                        text-lg
+                                                        font-semibold
+                                                        mb-2
+                                                        text-gray-800
+                                                    ">
+                                                {{ post.title }}
+                                            </h3>
+                                            <div class="flex space-x-2">
+                                                <div v-for="
+                                                            (category, index)
+                                                                of post.categories
+                                                        " :key="index" class="text-gray-600">
+                                                    {{ category.name }}
+                                                </div>
+                                            </div>
+                                            <div class="flex space-x-2 mt-2">
+                                                <div v-for="(gender, index)
+                                                            of post.genders" :key="index" class="text-gray-600">
+                                                    {{ gender.name }}
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="flex space-x-2 mt-2">
-                                            <div v-for="(gender, index)
-                                                        of post.genders" :key="index" class="text-gray-600">
-                                                {{ gender.name }}
-                                            </div>
-                                        </div>
-                                        </Link>
-                                    </div>
+                                    </Link>
                                 </div>
                             </div>
                         </template>
@@ -225,10 +219,8 @@ onMounted(async () => {
         posts.value = response.data;
         response = await axios.get('/api/categories');
         categories.value = response.data;
-        console.log(categories.value);
         response = await axios.get('/api/genders');
         genders.value = response.data;
-        console.log(genders.value);
     } catch (error) {
         console.error(error);
     }
