@@ -244,8 +244,18 @@ class ProductResource extends Resource
     public static function tableFilters(): array
     {
         return [
-            Tables\Filters\SelectFilter::make('type_sale')->label(static::get('type_sales'))
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
+            Tables\Filters\SelectFilter::make('type_sale')->label(static::getAttributeLabel('type_sales'))
                 ->relationship(name: 'typeSale', titleAttribute: 'name'),
+            Tables\Filters\SelectFilter::make('categories')->label(static::getAttributeLabel('categories'))
+                ->multiple()
+                ->relationship(name: 'categories', titleAttribute: 'name')
+                ->preload(),
+            Tables\Filters\SelectFilter::make('genders')->label(static::getAttributeLabel('genders'))
+                ->multiple()
+                ->relationship(name: 'genders', titleAttribute: 'name')
+                ->preload(),
         ];
     }
 
@@ -258,10 +268,7 @@ class ProductResource extends Resource
     {
         return $table
             ->columns(ProductResource::tableColumns())
-            ->filters([
-                Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
-                    ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all'))
-            ])
+            ->filters(static::tableFilters())
             ->actions(ProductResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -40,7 +40,7 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section v-if="posts.length > 0">
+                    <section>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
                                 <h2>Buscar por Nombre:</h2>
@@ -181,7 +181,9 @@
                             leading-tight
                             text-center text-gray-800
                         ">
-                        No hay publicaciones disponibles
+                        {{ isFiltered ?
+                'No hay coincidencias' :
+                        'No hay publicaciones disponibles' }}
                     </h2>
 
                     <!-- End of grid posts -->
@@ -200,6 +202,7 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 
 const isLoading = ref(false);
+const isFiltered = ref(false);
 const fullPage = ref(true);
 const posts = ref([]);
 // const selectedCategories = ref([]);
@@ -235,6 +238,7 @@ onMounted(async () => {
 
 const filterPosts = async () => {
     try {
+        isFiltered.value = true;
         const queryParams = {
             title: postTitle.value,
             // categories: selectedCategories.value.join(','),
@@ -260,6 +264,7 @@ const goBack = () => {
 
 const clearFilters = async () => {
     try {
+        isFiltered.value = false;
         postTitle.value = '';
         // selectedCategories.value = [];
         // selectedGenders.value = [];

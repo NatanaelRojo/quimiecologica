@@ -125,7 +125,17 @@ class PostResource extends Resource
             ->columns(PostResource::tableColumns())
             ->filters([
                 Tables\Filters\TernaryFilter::make('published')->label(static::getAttributeLabel('is_published'))
-                    ->trueLabel(static::getAttributeLabel('published'))->falseLabel(static::getAttributeLabel('non_published'))->placeholder(''),
+                    ->trueLabel(static::getAttributeLabel('published'))->falseLabel(static::getAttributeLabel('non_published'))
+                    ->placeholder(static::getAttributeLabel('all')),
+
+                Tables\Filters\SelectFilter::make('categories')->label(static::getAttributeLabel('categories'))
+                    ->multiple()
+                    ->relationship(name: 'categories', titleAttribute: 'name')
+                    ->preload(),
+                Tables\Filters\SelectFilter::make('genders')->label(static::getAttributeLabel('genders'))
+                    ->multiple()
+                    ->relationship(name: 'genders', titleAttribute: 'name')
+                    ->preload(),
             ])
             ->actions(PostResource::tableActions())
             ->bulkActions([

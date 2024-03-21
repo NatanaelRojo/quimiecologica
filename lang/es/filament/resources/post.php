@@ -12,4 +12,5 @@ return [
     'is_published' => 'Estado de la publicacion',
     'published' => 'Publicado',
     'non_published' => 'Borrador',
+    'all' => 'Todos',
 ];

@@ -54,7 +54,7 @@
                     <br>
 
                     <!-- Buscador y Filtros -->
-                    <section v-if="products.length > 0">
+                    <section>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
                             <div>
                                 <h2>Buscar por Tipo de venta:</h2>
@@ -248,7 +248,9 @@
                             leading-tight
                             text-center text-gray-800
                         ">
-                        No hay productos disponibles
+                        {{ isFiltered ?
+                'No hay coincidencias' :
+                        'No hay productos disponibles ' }}
                     </h2>
                     <!-- Fin del grid de productos -->
                 </div>
@@ -268,6 +270,7 @@ import axios from 'axios';
 import TextInput from '@/Components/TextInput.vue';
 
 const isLoading = ref(false);
+const isFiltered = ref(false);
 // const selectedCategories = ref([]);
 // const selectedGenders = ref([]);
 const selectedTypeSale = ref('');
@@ -308,6 +311,7 @@ onMounted(async () => {
 
 const filterProducts = async () => {
     try {
+        isFiltered.value = true
         const queryParams = {
             saleType: selectedTypeSale.value,
             name: productName.value,
@@ -329,6 +333,7 @@ const filterProducts = async () => {
 
 const clearFilters = async () => {
     try {
+        isFiltered.value = false;
         productName.value = '';
         // selectedCategories.value = [];
         // selectedGenders.value = [];
