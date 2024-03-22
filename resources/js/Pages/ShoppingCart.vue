@@ -273,10 +273,11 @@ const decreaseProductQuantity = (quantities, index) => {
                                             <!-- Información a la izquierda -->
                                             <div class="flex flex-col">
                                                 <Link :href="route(
-                'products.detail',
-                product.slug
-            )
-                ">
+                                                        'products.detail',
+                                                        product.slug
+                                                    )
+                                                        "
+                                                >
                                                 <img :src="`/storage/${product.image_urls[0]}`"
                                                     alt="Imagen del producto"
                                                     class="w-full h-40 object-cover mb-4 rounded-md img-zoom">
@@ -324,30 +325,19 @@ const decreaseProductQuantity = (quantities, index) => {
                                                 <div v-if="product.type_sale.name === 'Detal'">
                                                     <label for="product-retail-quantity">Cantidad del
                                                         producto</label>
-                                                    <input type="number" id="product-retail-quantity"
-                                                        name="product-retail-quantity" :min="product.product_content"
-                                                        :max="product.stock" v-model="productsQuantity[index]" @change="record.total_price =
-                calculateTotalPrice(productsQuantity[index])">
-                                                    <button
-                                                        @click="increaseProductQuantity(productsQuantity, index)">+</button>
-                                                    <button
-                                                        @click="decreaseProductQuantity(productsQuantity, index)">-</button>
-                                                </div>
-                                                <div v-else-if="product.type_sale.name === 'Granel'">
-                                                    <label for="product-wholesale-quantity">{{ product.unit.name
-                                                        }}(s) del
-                                                        producto</label>
-                                                    <input type="number" id="product-wholesale-quantity"
-                                                        name="product-wholesale-quantity" :min="product.product_content"
+                                                    <input
+                                                        type="number"
+                                                        id="product-retail-quantity"
+                                                        name="product-retail-quantity"
+                                                        :min="product.product_content"
+                                                        :max="product.stock"
                                                         v-model="productsQuantity[index]"
-                                                        @change="record.total_price = calculateTotalPrice(productsQuantity[index])">
+                                                        @change="record.total_price =
+                                                        calculateTotalPrice(productsQuantity[index])"
+                                                    >
                                                     <button
-                                                        @click="increaseProductQuantity(productsQuantity, index)">+</button>
-                                                    <button
-                                                        @click="decreaseProductQuantity(productsQuantity, index)">-</button>
-                                                </div>
-                                                <div class="flex flex-col items-center">
-                                                    <button @click="removeProductFromCart(product.id)" class="
+                                                        @click="increaseProductQuantity(productsQuantity, index)"
+                                                        class="
                                                             font-montserrat
                                                             gradient-green
                                                             mt-4
@@ -361,7 +351,98 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             focus:ring
                                                             focus:ring-blue-200
                                                             font-bold
-                                                        ">
+                                                        "
+                                                    >+</button>
+                                                    <button
+                                                        @click="decreaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            ml-2
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        "
+                                                    >-</button>
+                                                </div>
+                                                <div v-else-if="product.type_sale.name === 'Granel'">
+                                                    <label for="product-wholesale-quantity">{{ product.unit.name
+                                                        }}(s) del
+                                                        producto</label>
+                                                    <input
+                                                        type="number"
+                                                        id="product-wholesale-quantity"
+                                                        name="product-wholesale-quantity"
+                                                        :min="product.product_content"
+                                                        v-model="productsQuantity[index]"
+                                                        @change="record.total_price =
+                                                            calculateTotalPrice(productsQuantity[index])"
+                                                    >
+                                                    <button
+                                                        @click="increaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        "
+                                                    >+</button>
+                                                    <button
+                                                        @click="decreaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            ml-2
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        "
+                                                    >-</button>
+                                                </div>
+                                                <div class="flex flex-col items-center">
+                                                    <button
+                                                        @click="removeProductFromCart(product.id)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        "
+                                                    >
                                                         <i class="fa fa-remove fa-lg ollapsed"></i>
                                                         Eliminar
                                                     </button>
