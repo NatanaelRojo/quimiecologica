@@ -36,14 +36,6 @@ const record = ref({
     image: '',
     total_price: 0,
     products_info: [],
-    // products_info: [
-    // {
-    //     product_id: '',
-    //     product_quantity: '',
-    //     sale_type: '',
-    //     product_unit: '',
-    // }
-    // ],
 });
 const errors = ref([]);
 const form = ref(null);
@@ -480,10 +472,10 @@ const decreaseProductQuantity = (quantities, index) => {
                                 <input type="text" v-model="record.owner_city" id="owner-city"
                                     class="w-full px-3 py-2 border rounded">
                             </div>
-                            <!-- Direccion de procedencia: -->
+                            <!-- Direccion de domicilio: -->
                             <div class="mb-4">
                                 <label for="owner-address" class="block text-gray-700 text-sm font-bold mb-2">
-                                    Direccion de procedencia:
+                                    Direccion de domicilio:
                                 </label>
                                 <input type="text" v-model="record.owner_address" id="owner-address"
                                     class="w-full px-3 py-2 border rounded">
