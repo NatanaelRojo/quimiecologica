@@ -153,6 +153,22 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                     </li>
                     <li class="mr-3">
                         <Link
+                            :href="route('pending_orders.create')"
+                            class="
+                                font-montserrat
+                                inline-block
+                                text-black
+                                no-underline
+                                hover:text-gray-800
+                                hover:text-underline
+                                py-2 px-4
+                            "
+                        >
+                            <b>Asesorías</b>
+                        </Link>
+                    </li>
+                    <li class="mr-3">
+                        <Link
                             :href="route('posts.index')"
                             class="
                                 font-montserrat
