@@ -25,18 +25,36 @@ onBeforeMount(async () => {
 });
 
 onMounted(() => {
-    cleanForm();
+    cleanShoppingCart();
     // Finalizar spinner de carga.
     isLoading.value = false;
+    // Mostrar notificación toastr.
+    showMessage('success');
 });
 
 /**
  * Limpiar el Carrito de compras.
 */
-const cleanForm = () => {
+const cleanShoppingCart = () => {
     if (localStorage.arrayProducts) {
         localStorage.removeItem('arrayProducts');
         location.reload();
+    }
+}
+
+/**
+ * Método que muestra la notificación toastr luego de guardar la orden de compra.
+*/
+const showMessage = (type) => {
+    let options = {
+        closeButton: true,
+        progressBar: true,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        preventDuplicates: true
+    };
+    if (type === 'success') {
+        toastr.success("¡Orden de Compra enviada!", "", options);
     }
 }
 </script>
