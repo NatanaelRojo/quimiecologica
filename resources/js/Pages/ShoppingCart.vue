@@ -472,7 +472,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                 <input type="text" v-model="record.owner_city" id="owner-city"
                                     class="w-full px-3 py-2 border rounded">
                             </div>
-                            <!-- Direccion de domicilio: -->
+                            <!-- Direccion de procedencia: -->
                             <div class="mb-4">
                                 <label for="owner-address" class="block text-gray-700 text-sm font-bold mb-2">
                                     Direccion de domicilio:

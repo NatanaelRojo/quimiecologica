@@ -30,7 +30,7 @@ const goBack = () => {
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
-                    <!-- <h2 class="
+                    <h2 class="
                             font-montserrat
                             w-full
                             my-2
@@ -40,8 +40,8 @@ const goBack = () => {
                             text-center
                             text-gray-800
                         ">
-                        Detalles de tu órden de compra
-                    </h2> -->
+                        Detalles de tu Orden de compra
+                    </h2>
                     <div class="w-full mb-4">
                         <div class="
                                 gradient-green
@@ -54,25 +54,21 @@ const goBack = () => {
                                 rounded-t
                             "></div>
                     </div>
-                    <div>
-                        <h2 class="
-                                w-full
-                                text-2xl
-                                font-black
-                                leading-tight
-                                text-center text-gray-800
-                            ">
-                            Detalles de la Orden de Compra
-                        </h2>
-                        <p>Nombre del propietario: {{ purchase_order.owner_firstname }} {{ purchase_order.owner_lastname
-                            }}</p>
-                        <p>ID del propietario: {{ purchase_order.owner_id }}</p>
-                        <p>Número de teléfono: {{ purchase_order.owner_phone_number }}</p>
-                        <p>Estado: {{ purchase_order.owner_state }}</p>
-                        <p>Ciudad: {{ purchase_order.owner_city }}</p>
-                        <p>Dirección: {{ purchase_order.owner_address }}</p>
-                        <p>Precio total: ${{ purchase_order.total_price }}</p>
-                        <h3>Información de productos:</h3>
+                    <div class="
+                            p-4 border
+                            border-gray-200
+                            rounded-lg
+                            shadow-md">
+                        <p><b>Nombres:</b> {{ purchase_order.owner_firstname }}</p>
+                        <p><b>Apellidos:</b> {{ purchase_order.owner_lastname }} {{ purchase_order.owner_lastname }}</p>
+                        <p><b>Cédula de identidad:</b>s {{ purchase_order.owner_id }}</p>
+                        <p><b>Número de teléfono:</b> {{ purchase_order.owner_phone_number }}</p>
+                        <p><b>Correo electrónico:</b> {{ purchase_order.owner_email }}</p>
+                        <p><b>Estado de procedencia:</b> {{ purchase_order.owner_state }}</p>
+                        <p><b>Ciudad de procedencia:</b> {{ purchase_order.owner_city }}</p>
+                        <p><b>Dirección de domicilio:</b> {{ purchase_order.owner_address }}</p>
+                        <p><b>Numero de referencia del pago:</b> {{ purchase_order.reference_number }}</p>
+                        <h3><b>Información de los Productos:</b></h3>
                         <ul>
                             <li v-for="(product, index) in purchase_order.products_info" :key="index">
                                 <p>Producto ID: {{ product.product_id }}</p>
@@ -82,6 +78,16 @@ const goBack = () => {
                                 <p>Unidad de producto: {{ product.product_unit }}</p>
                             </li>
                         </ul>
+                        <h2 class="
+                                w-full
+                                my-2
+                                text-5xl
+                                font-black
+                                leading-tight
+                                text-gray-800
+                            ">
+                            Total: ${{ purchase_order.total_price }}
+                        </h2>
                     </div>
                 </div>
             </section>
