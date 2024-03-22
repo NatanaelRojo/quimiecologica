@@ -1,6 +1,6 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
-import { ref } from 'vue';
+import { onMounted, onBeforeMount, ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
@@ -12,8 +12,32 @@ const props = defineProps({
 const isLoading = ref(false);
 const fullPage = ref(true);
 
+/**
+ * Regresar al componente anterior.
+*/
 const goBack = () => {
     window.history.back();
+}
+
+onBeforeMount(async () => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
+
+onMounted(() => {
+    cleanForm();
+    // Finalizar spinner de carga.
+    isLoading.value = false;
+});
+
+/**
+ * Limpiar el Carrito de compras.
+*/
+const cleanForm = () => {
+    if (localStorage.arrayProducts) {
+        localStorage.removeItem('arrayProducts');
+        location.reload();
+    }
 }
 </script>
 
