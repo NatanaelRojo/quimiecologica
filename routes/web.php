@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
 use App\Http\Controllers\ServiceController;
+use App\Mail\TestMailable;
+use App\Models\PurchaseOrder;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -82,6 +84,11 @@ Route::get('/contact', function () {
 Route::get('/shopping-cart', function () {
     return Inertia::render('ShoppingCart');
 })->name('shopping-cart');
+
+Route::get('/mail', function () {
+    $purchaseOrder = PurchaseOrder::query()->find(11);
+    Mail::to('rojonatanael99@gmail.com')->send(new TestMailable($purchaseOrder));
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

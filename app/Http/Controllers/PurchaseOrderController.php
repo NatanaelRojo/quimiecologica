@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseOrder\StorePurchaseOrderRequest;
 use App\Http\Resources\PurchaseOrderResource;
+use App\Mail\PurchaseOrderMailable;
 use App\Models\Product;
 use App\Models\PurchaseOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -54,6 +56,7 @@ class PurchaseOrderController extends Controller
             'total_price' => $request->total_price,
             'products_info' => $products_info,
         ]);
+        Mail::to($newPurchaseOrder->owner_email)->send(new PurchaseOrderMailable($newPurchaseOrder));
         $this->discountProducts($newPurchaseOrder);
 
         return response()->json(
