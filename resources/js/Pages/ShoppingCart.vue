@@ -336,7 +336,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         calculateTotalPrice(productsQuantity[index])"
                                                     >
                                                     <button
-                                                        @click="increaseProductQuantity(productsQuantity, index)"
+                                                        @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
                                                             gradient-green
@@ -354,7 +354,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         "
                                                     >+</button>
                                                     <button
-                                                        @click="decreaseProductQuantity(productsQuantity, index)"
+                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
                                                             gradient-green
@@ -387,7 +387,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             calculateTotalPrice(productsQuantity[index])"
                                                     >
                                                     <button
-                                                        @click="increaseProductQuantity(productsQuantity, index)"
+                                                        @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
                                                             gradient-green
@@ -405,7 +405,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         "
                                                     >+</button>
                                                     <button
-                                                        @click="decreaseProductQuantity(productsQuantity, index)"
+                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
                                                             gradient-green
