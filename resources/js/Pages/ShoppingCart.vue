@@ -200,7 +200,6 @@ const increaseProductQuantity = (quantities, index) => {
 
 const decreaseProductQuantity = (quantities, index) => {
     if (productsQuantity.value[index] - 1 === 0 && arrayProducts.value[index].type_sale.name === 'Detal') {
-        console.log('entra');
         return;
     } else if (productsQuantity.value[index] - 1 < arrayProducts.value[index].quantity && arrayProducts.value[index].type_sale.name === 'Granel') {
         return;
