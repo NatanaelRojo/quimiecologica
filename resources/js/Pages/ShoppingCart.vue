@@ -60,7 +60,11 @@ onMounted(() => {
         }
         record.value.products_info.push(productData);
         record.value.total_price += product.price * product.product_content;
-        productsQuantity.value[index] = product.product_content;
+        if (product.type_sale.name === 'Detal') {
+            productsQuantity.value[index] = 1;
+        } else if (product.type_sale.name === 'Granel') {
+            productsQuantity.value[index] = product.product_content;
+        }
     });
     // Finalizar spinner de carga.
     isLoading.value = false;
@@ -352,9 +356,9 @@ const decreaseProductQuantity = (quantities, index) => {
                                                     <label for="product-retail-quantity">Cantidad del
                                                         producto</label>
                                                     <input type="number" id="product-retail-quantity"
-                                                        name="product-retail-quantity" :min="product.product_content"
-                                                        :max="product.stock" v-model="productsQuantity[index]" @change="record.total_price =
-                calculateTotalPrice(productsQuantity[index])">
+                                                        name="product-retail-quantity" :min="1" :max="product.stock"
+                                                        v-model="productsQuantity[index]" @change="record.total_price =
+                calculateTotalPrice(productsQuantity[index])" disabled>
                                                     <button
                                                         @click="increaseProductQuantity(productsQuantity, index)">+</button>
                                                     <button
