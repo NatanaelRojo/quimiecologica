@@ -17,6 +17,11 @@ const profile_5 = '/images/profile_5.png';
 const profile_6 = '/images/profile_6.png';
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 
+// Imágenes de los servicios
+
+const servicios_pulverizacion = 'images/servicios/servicios_pulverizacion.png';
+const servicios_analisis_muestras = 'images/servicios/servicios_analisis_muestras.png';
+
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
     isLoading.value = true;
@@ -287,7 +292,7 @@ onMounted(async () => {
                             <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
-                    <hr>
+                    <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3
@@ -312,7 +317,7 @@ onMounted(async () => {
                             <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
-                    <hr>
+                    <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3
@@ -337,7 +342,7 @@ onMounted(async () => {
                             <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
-                    <hr>
+                    <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3
@@ -361,10 +366,10 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
+                            <img :src="servicios_analisis_muestras" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
-                    <hr>
+                    <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3
@@ -387,10 +392,10 @@ onMounted(async () => {
                             </p>
                         </div>
                         <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
+                            <img :src="servicios_pulverizacion" class="w-80 h-auto mx-auto img-zoom">
                         </div>
                     </div>
-                    <hr>
+                    <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
                             <h3

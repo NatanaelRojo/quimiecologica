@@ -28,7 +28,7 @@ const record = ref({
     owner_lastname: 'Rojo',
     owner_id: '26488388',
     owner_email: 'rojonatanael99@gmail.com',
-    owner_phone_number: '+58 4147453112',
+    owner_phone_number: '7453112',
     owner_state: 'Merida',
     owner_city: 'Merida',
     owner_address: 'Merida',
@@ -36,14 +36,6 @@ const record = ref({
     image: '',
     total_price: 0,
     products_info: [],
-    // products_info: [
-    // {
-    //     product_id: '',
-    //     product_quantity: '',
-    //     sale_type: '',
-    //     product_unit: '',
-    // }
-    // ],
 });
 const errors = ref([]);
 const form = ref(null);
@@ -95,9 +87,6 @@ const createPurchaseOrder = async () => {
         });
 
         const response = await axios.post('/api/purchase-orders', form);
-
-        // Mostrar notificación toastr.
-        showMessage('success');
 
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
         purchaseOrder.value = response.data.record;
@@ -182,22 +171,6 @@ const calculateTotalPrice = (quantity) => {
 
     // Devolver el precio total.
     return totalPrice;
-}
-
-/**
- * Método que muestra la notificación toastr luego de guardar la orden de compra.
-*/
-const showMessage = (type) => {
-    let options = {
-        closeButton: true,
-        progressBar: true,
-        timeOut: 5000,
-        extendedTimeOut: 1000,
-        preventDuplicates: true
-    };
-    if (type === 'success') {
-        toastr.success("¡Orden de Compra enviada!", "", options);
-    }
 }
 
 /**
@@ -360,9 +333,40 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         v-model="productsQuantity[index]" @change="record.total_price =
                 calculateTotalPrice(productsQuantity[index])" disabled>
                                                     <button
-                                                        @click="increaseProductQuantity(productsQuantity, index)">+</button>
+                                                        @click.prevent="increaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        ">+</button>
                                                     <button
-                                                        @click="decreaseProductQuantity(productsQuantity, index)">-</button>
+                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            ml-2
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        ">-</button>
                                                 </div>
                                                 <div v-else-if="product.type_sale.name === 'Granel'">
                                                     <label for="product-wholesale-quantity">{{ product.unit.name
@@ -370,12 +374,43 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         producto</label>
                                                     <input type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" :min="product.product_content"
-                                                        v-model="productsQuantity[index]"
-                                                        @change="record.total_price = calculateTotalPrice(productsQuantity[index])">
+                                                        v-model="productsQuantity[index]" @change="record.total_price =
+                calculateTotalPrice(productsQuantity[index])">
                                                     <button
-                                                        @click="increaseProductQuantity(productsQuantity, index)">+</button>
+                                                        @click.prevent="increaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        ">+</button>
                                                     <button
-                                                        @click="decreaseProductQuantity(productsQuantity, index)">-</button>
+                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            ml-2
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        ">-</button>
                                                 </div>
                                                 <div class="flex flex-col items-center">
                                                     <button @click="removeProductFromCart(product.id)" class="
@@ -487,7 +522,7 @@ const decreaseProductQuantity = (quantities, index) => {
                             <!-- Direccion de procedencia: -->
                             <div class="mb-4">
                                 <label for="owner-address" class="block text-gray-700 text-sm font-bold mb-2">
-                                    Direccion de procedencia:
+                                    Direccion de domicilio:
                                 </label>
                                 <input type="text" v-model="record.owner_address" id="owner-address"
                                     class="w-full px-3 py-2 border rounded">
