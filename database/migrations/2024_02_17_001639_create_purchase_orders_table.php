@@ -13,7 +13,8 @@ return new class extends Migration
     {
         if (!Schema::hasTable('purchase_orders')) {
             Schema::create('purchase_orders', function (Blueprint $table) {
-                $table->id();
+                // $table->id();
+                $table->uuid('id')->primary();
                 $table->string('owner_firstname', 30);
                 $table->string('owner_lastname', 30);
                 $table->string('owner_id');

@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -68,9 +69,16 @@ class PurchaseOrderController extends Controller
         );
     }
 
-    public function showDetail(PurchaseOrder $purchase_order): Response
+    public function showDetail(Request $request): Response
     {
-        $purchaseOrderData = PurchaseOrder::query()->find($purchase_order->id);
+        $validator = Validator::make($request->all(), [
+            'purchase_order' => ['required', 'uuid'],
+        ]);
+
+        if ($validator->fails()) {
+            return Inertia::render('Error/404Error');
+        }
+        $purchaseOrderData = PurchaseOrder::query()->find($request->id);
 
         return Inertia::render('PurchaseOrder/Detail', [
             'purchase_order' => $purchaseOrderData,

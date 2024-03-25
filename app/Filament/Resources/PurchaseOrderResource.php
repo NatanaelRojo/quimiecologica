@@ -163,10 +163,14 @@ class PurchaseOrderResource extends Resource
                             ->schema([
                                 Infolists\Components\Section::make(static::getAttributeLabel('product_info'))
                                     ->schema([
-                                        Infolists\Components\TextEntry::make('product_name'),
-                                        Infolists\Components\TextEntry::make('product_quantity'),
-                                        Infolists\Components\TextEntry::make('sale_type'),
-                                        Infolists\Components\TextEntry::make('product_unit'),
+                                        Infolists\Components\TextEntry::make('product_name')
+                                            ->label(static::getAttributeLabel('product_name')),
+                                        Infolists\Components\TextEntry::make('product_quantity')
+                                            ->label(static::getAttributeLabel('product_quantity')),
+                                        Infolists\Components\TextEntry::make('sale_type')
+                                            ->label(static::getAttributeLabel('sale_type')),
+                                        Infolists\Components\TextEntry::make('product_unit')
+                                            ->label(static::getAttributeLabel('product_unit')),
                                     ])->collapsible(),
                             ]),
                     ]),

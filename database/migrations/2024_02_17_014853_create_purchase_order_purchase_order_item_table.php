@@ -16,7 +16,8 @@ return new class extends Migration
         if (!Schema::hasTable('purchase_order_purchase_order_item')) {
             Schema::create('purchase_order_purchase_order_item', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(PurchaseOrder::class)->constrained()->cascadeOnUpdate();
+                // $table->foreignIdFor(PurchaseOrder::class)->constrained()->cascadeOnUpdate();
+                $table->foreignUuid('purchase_order_id')->constrained();
                 $table->foreignIdFor(PurchaseOrderItem::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->timestamps();
             });

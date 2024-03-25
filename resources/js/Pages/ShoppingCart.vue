@@ -51,11 +51,12 @@ onMounted(() => {
             product_unit: product.unit.name,
         }
         record.value.products_info.push(productData);
-        record.value.total_price += product.price * product.product_content;
         if (product.type_sale.name === 'Detal') {
             productsQuantity.value[index] = 1;
+            record.value.total_price += product.price * 1;
         } else if (product.type_sale.name === 'Granel') {
             productsQuantity.value[index] = product.product_content;
+            record.value.total_price += product.price * product.product_content;
         }
     });
     // Finalizar spinner de carga.
@@ -139,6 +140,11 @@ const removeProductFromCart = (id) => {
 
     // Eliminar el producto del array de productos del carrito.
     if (index !== -1) {
+        if (arrayProducts.value[index].type_sale.name === 'Detal') {
+            record.value.total_price -= arrayProducts.value[index].price * productsQuantity.value[index];
+        } else if (arrayProducts.value[index].type_sale.name === 'Granel') {
+            record.value.total_price -= arrayProducts.value[index].price * productsQuantity.value[index];
+        }
         arrayProducts.value.splice(index, 1);
 
         // Actualizar el array de productos en localStorage.
