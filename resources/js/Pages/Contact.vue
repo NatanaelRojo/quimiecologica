@@ -79,7 +79,7 @@ onMounted(async () => {
                     </div>
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full">
-                            <p class="font-montserrat mb-8">
+                            <div class="font-montserrat mb-8">
                                 <div class="mb-3">
                                     Mérida Edo. Mérida
                                 </div>
@@ -89,7 +89,7 @@ onMounted(async () => {
                                 <div>
                                     <b>Horario de atención:</b> 8:00am a 3:30pm
                                 </div>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>
