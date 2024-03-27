@@ -5,6 +5,7 @@ namespace Database\Seeders\TypeSaleSeeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class TypeSaleSeeder extends Seeder
 {
@@ -31,6 +32,7 @@ class TypeSaleSeeder extends Seeder
             DB::table('type_sales')->insert([
                 'name' => $type_sale['name'],
                 'description' => $type_sale['description'],
+                'created_at' => Carbon::now(),
             ]);
         }
         // DB::table('type_sales')->insert([

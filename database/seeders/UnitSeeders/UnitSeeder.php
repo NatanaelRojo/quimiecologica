@@ -5,6 +5,7 @@ namespace Database\Seeders\UnitSeeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class UnitSeeder extends Seeder
 {
@@ -43,6 +44,7 @@ class UnitSeeder extends Seeder
             DB::table('units')->insert([
                 'name' => $unit['name'],
                 'abbreviation' => $unit['abbreviation'],
+                'created_at' => Carbon::now(),
             ]);
         }
         // for ($i = 0; $i < 5; $i++) {

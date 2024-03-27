@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Database\Seeders\CategorySeeders\BaseCategory;
+use Carbon\Carbon;
 
 class CategorySeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class CategorySeeder extends Seeder
         foreach (static::$categories as $category) {
             DB::table('categories')->insert([
                 'name' => $category,
+                'created_at' => Carbon::now(),
             ]);
         }
         // for ($i = 0; $i < 5; $i++) {
