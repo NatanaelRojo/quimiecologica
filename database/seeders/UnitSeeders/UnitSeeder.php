@@ -14,7 +14,7 @@ class UnitSeeder extends Seeder
             'abbreviation' => 'Kg'
         ],
         [
-            'name' => 'gramo',
+            'name' => 'Gramo',
             'abbreviation' => 'g',
         ],
         [

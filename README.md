@@ -61,6 +61,10 @@
 
     $ php artisan migrate
 
+## Ejecutar los seeders de la aplicación:
+
+    $ php artisan db:seed
+
 ## Crear un usuario administrador en la base de datos:
 
     $ php artisan make:filament-user

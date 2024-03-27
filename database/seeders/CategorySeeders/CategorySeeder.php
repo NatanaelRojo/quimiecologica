@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
         'Manos',
         'Pies',
         'Spa',
-        'Zona intima',
+        'Zona íntima',
     ];
     /**
      * Run the database seeds.
