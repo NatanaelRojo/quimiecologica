@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HttpError\BadRequestController;
 use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductController;
@@ -12,6 +13,7 @@ use App\Models\PurchaseOrder;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Inertia\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +46,9 @@ Route::get('/products', function () {
 })->name('products');
 
 // Product detail
-Route::get('/products/{product}', [ProductController::class, 'showDetail'])->name('products.detail');
+Route::get('/products/{product}', [ProductController::class, 'showDetail'])
+    ->name('products.detail')
+    ->missing(fn (): Response => BadRequestController::show());
 
 // Pending orders routes
 Route::get('/pending-orders/create', [PendingOrderController::class, 'create'])->name('pending_orders.create');
@@ -59,7 +63,9 @@ Route::get(
 
 // Página de Publicaciones
 Route::get('/posts', [PostController::class, 'showAll'])->name('posts.index');
-Route::get('/posts/{post}', [PostController::class, 'showDetail'])->name('posts.detail');
+Route::get('/posts/{post}', [PostController::class, 'showDetail'])
+    ->name('posts.detail')
+    ->missing(fn (): Response => BadRequestController::show());
 
 // Página de Servicios
 Route::get('/services', function () {
@@ -67,13 +73,16 @@ Route::get('/services', function () {
 })->name('services');
 
 // service detail
-Route::get('/services/{service}', [ServiceController::class, 'showDetail'])->name('services.detail');
+Route::get('/services/{service}', [ServiceController::class, 'showDetail'])
+    ->name('services.detail')
+    ->missing(fn (): Response => BadRequestController::show());
 
 // Purchase order detail
 Route::get(
     '/purchase-orders/detail/{purchase_order}',
     [PurchaseOrderController::class, 'showDetail']
-)->name('purchaseOrders.detail');
+)->name('purchaseOrders.detail')
+    ->missing(fn (): Response => BadRequestController::show());
 
 // Página de Contacto
 Route::get('/contact', function () {
@@ -98,6 +107,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+Route::fallback(function (): Response {
+    return Inertia::render('Error/404Error');
 });
 
 /*

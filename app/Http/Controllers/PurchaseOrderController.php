@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PurchaseOrder\StorePurchaseOrderRequest;
+use Illuminate\Support\Str;
 use App\Http\Resources\PurchaseOrderResource;
 use App\Mail\PurchaseOrderMailable;
 use App\Models\Product;
 use App\Models\PurchaseOrder;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -71,15 +73,13 @@ class PurchaseOrderController extends Controller
 
     public function showDetail(Request $request): Response
     {
-        $validator = Validator::make($request->all(), [
-            'purchase_order' => ['required', 'uuid'],
-        ]);
+        $isValidId = Str::isUuid($request->purchase_order);
 
-        if ($validator->fails()) {
+        if (!$isValidId) {
             return Inertia::render('Error/404Error');
         }
-        $purchaseOrderData = PurchaseOrder::query()->find($request->id);
 
+        $purchaseOrderData = PurchaseOrder::query()->find($request->purchase_order);
         return Inertia::render('PurchaseOrder/Detail', [
             'purchase_order' => $purchaseOrderData,
         ]);

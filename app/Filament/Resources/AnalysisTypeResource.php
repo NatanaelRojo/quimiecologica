@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AnalysisTypeResource extends Resource
 {
+    protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = AnalysisType::class;
 
     protected static ?int $navigationSort = 2;

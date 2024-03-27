@@ -46,9 +46,9 @@ class ServiceResource extends Resource
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20)
-                ->columnSpan(2),
-            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
-                ->columnSpan(2),
+                ->columnSpan('full'),
+            Forms\Components\RichEditor::make('description')->label(static::getAttributeLabel('description'))
+                ->columnSpan('full'),
         ];
     }
 
@@ -60,6 +60,7 @@ class ServiceResource extends Resource
                     return $query->where('name', 'like', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
+                ->html()
                 ->words(20),
         ];
     }

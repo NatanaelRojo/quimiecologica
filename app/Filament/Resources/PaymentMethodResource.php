@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PaymentMethodResource extends Resource
 {
+    protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = PaymentMethod::class;
     protected static ?string $navigationIcon = 'heroicon-o-credit-card';
     protected static ?string $navigationGroup = 'Carga Inicial';

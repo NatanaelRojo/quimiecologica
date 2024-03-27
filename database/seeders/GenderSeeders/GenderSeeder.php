@@ -8,15 +8,26 @@ use Illuminate\Support\Facades\DB;
 
 class GenderSeeder extends Seeder
 {
+    protected static array $genders = [
+        'Hombre',
+        'Mujer',
+        'Niños',
+        'Otro',
+    ];
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        for ($i = 0; $i < 5; $i++) {
+        foreach (static::$genders as $gender) {
             DB::table('genders')->insert([
-                'name' => "Genero {$i}",
+                'name' => $gender,
             ]);
         }
+        // for ($i = 0; $i < 5; $i++) {
+        //     DB::table('genders')->insert([
+        //         'name' => "Genero {$i}",
+        //     ]);
+        // }
     }
 }

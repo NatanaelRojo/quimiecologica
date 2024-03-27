@@ -101,6 +101,7 @@ const showMessage = (type) => {
                             border-gray-200
                             rounded-lg
                             shadow-md">
+                        <p><b>ID de la orden de compra:</b> {{ purchase_order.id }}</p>
                         <p><b>Nombres:</b> {{ purchase_order.owner_firstname }}</p>
                         <p><b>Apellidos:</b> {{ purchase_order.owner_lastname }} {{ purchase_order.owner_lastname }}</p>
                         <p><b>Cédula de identidad:</b>s {{ purchase_order.owner_id }}</p>

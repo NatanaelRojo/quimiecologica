@@ -14,16 +14,33 @@ use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\KeyValueEntry;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
 class PurchaseOrderResource extends Resource
 {
+    protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = PurchaseOrder::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Órdenes';
     protected static ?string $navigationLabel = 'General';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return count(static::getModel()::query()->where('status', 'En espera')->get());
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'info';
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return __('filament/resources/purchase_order.navigation_tooltip');
+    }
 
     public static array $statusOptions = [
         'Aprobada' => 'Aprobada',

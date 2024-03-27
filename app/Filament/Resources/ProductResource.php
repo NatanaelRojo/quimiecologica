@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
+    protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = Product::class;
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Registros';
@@ -173,7 +174,7 @@ class ProductResource extends Resource
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),
-                            Forms\Components\Textarea::make('description')->label(static::getAttributeLabel('description'))
+                            Forms\Components\RichEditor::make('description')->label(static::getAttributeLabel('description'))
                                 ->required()
                                 ->columnSpan('full'),
                         ]),
@@ -198,7 +199,8 @@ class ProductResource extends Resource
                     return $query->where('name', 'ilike', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
-                ->words(20),
+                ->html(),
+            // ->words(20),
             Tables\Columns\TextColumn::make('stock')->label(static::getAttributeLabel('stock')),
             Tables\Columns\TextColumn::make('price')->label(static::getAttributeLabel('price'))
                 ->money('USD')->sortable(),
