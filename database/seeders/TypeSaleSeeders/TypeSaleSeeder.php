@@ -31,6 +31,7 @@ class TypeSaleSeeder extends Seeder
             DB::table('type_sales')->insert([
                 'name' => $type_sale['name'],
                 'description' => $type_sale['description'],
+                'deletable' => false,
             ]);
         }
         // DB::table('type_sales')->insert([

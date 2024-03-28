@@ -16,6 +16,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('name', 20);
                 $table->string('description')->nullable();
+                $table->boolean('deletable')->default(true);
                 $table->timestamps();
             });
         }
