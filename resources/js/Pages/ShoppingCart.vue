@@ -15,6 +15,8 @@ const phoneCodes = ref([
     { value: '+58 412', label: '0412' },
 ]);
 const selectedPhoneCode = ref('');
+
+const productQuantityMessage = ref(false);
 const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
@@ -152,10 +154,24 @@ const removeProductFromCart = (id) => {
     }
 }
 
+const validateProductQuantity = (quantity, product) => {
+    if (quantity > product.stock && product.type_sale.name === 'Detal') {
+        productQuantityMessage.value = true;
+        return false;
+    }
+    productQuantityMessage.value = false;
+    return true;
+}
+
 /**
  * Método para calcular el precio total de todos los productos en el carrito.
 */
-const calculateTotalPrice = (quantity) => {
+const calculateTotalPrice = (quantity, index) => {
+    if (!validateProductQuantity(quantity, arrayProducts.value[index])) {
+        scrollMeTo();
+        productsQuantity.value[index] = arrayProducts.value[index].stock;
+        return;
+    }
     let totalPrice = 0;
     arrayProducts.value.forEach((product, index) => {
         if (product.type_sale.name === 'Detal') {
@@ -201,7 +217,7 @@ const increaseProductQuantity = (quantities, index) => {
         return;
     }
     quantities[index]++;
-    calculateTotalPrice(quantities[index]);
+    calculateTotalPrice(quantities[index], index);
 }
 
 const decreaseProductQuantity = (quantities, index) => {
@@ -211,7 +227,7 @@ const decreaseProductQuantity = (quantities, index) => {
         return;
     }
     quantities[index]--;
-    calculateTotalPrice(quantities[index]);
+    calculateTotalPrice(quantities[index], index);
 }
 </script>
 
@@ -225,6 +241,18 @@ const decreaseProductQuantity = (quantities, index) => {
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
+                <!-- Notificación del carrito -->
+                <div v-if="productQuantityMessage" role="alert">
+                    <div class="
+                                relative block w-full p-4 mb-4 text-base
+                                leading-5 text-white gradient-green rounded-lg
+                                opacity-100 font-regular
+                            ">
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        Ha agregado Productos al carrito.
+                    </div>
+                </div>
+                <!-- Final de Notificación del carrito -->
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
@@ -335,8 +363,8 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         producto</label>
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="1" :max="product.stock"
-                                                        v-model="productsQuantity[index]" @change="record.total_price =
-                calculateTotalPrice(productsQuantity[index])" disabled>
+                                                        v-model="productsQuantity[index]" @input="record.total_price =
+                calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
@@ -379,8 +407,8 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         producto</label>
                                                     <input type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" :min="product.product_content"
-                                                        v-model="productsQuantity[index]" @change="record.total_price =
-                calculateTotalPrice(productsQuantity[index])">
+                                                        v-model="productsQuantity[index]" @input="record.total_price =
+                calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
