@@ -493,6 +493,7 @@ onMounted(async () => {
                                         text-gray-800
                                         font-light
                                         mb-6
+                                        img-zoom
                                     "
                                 >
                                     <div class="w-full flex mb-4 items-center">
@@ -547,6 +548,7 @@ onMounted(async () => {
                                         text-gray-800
                                         font-light
                                         mb-6
+                                        img-zoom
                                     "
                                 >
                                     <div class="w-full flex mb-4 items-center">
@@ -602,6 +604,7 @@ onMounted(async () => {
                                         p-5
                                         text-gray-800
                                         font-light mb-6
+                                        img-zoom
                                     "
                                 >
                                     <div class="w-full flex mb-4 items-center">
@@ -656,6 +659,7 @@ onMounted(async () => {
                                         text-gray-800
                                         font-light
                                         mb-6
+                                        img-zoom
                                     "
                                 >
                                     <div class="w-full flex mb-4 items-center">
@@ -710,7 +714,9 @@ onMounted(async () => {
                                         border-gray-200
                                         p-5
                                         text-gray-800
-                                        font-light mb-6
+                                        font-light
+                                        mb-6
+                                        img-zoom
                                     "
                                 >
                                     <div class="w-full flex mb-4 items-center">
@@ -766,6 +772,7 @@ onMounted(async () => {
                                         text-gray-800
                                         font-light
                                         mb-6
+                                        img-zoom
                                     "
                                 >
                                     <div class="w-full flex mb-4 items-center">

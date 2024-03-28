@@ -109,7 +109,14 @@ onMounted(async () => {
                                 Universidad de Los Andes y otros de naturaleza
                                 privada.
                             </p>
-                            <p class="font-alexbrush text-3xl text-gray-700 text-center">
+                            <p class="
+                                    font-alexbrush
+                                    text-3xl
+                                    text-gray-700
+                                    text-center
+                                    img-zoom
+                                "
+                            >
                                 <b>"Diseña un mundo de cuidado, con el aliado
                                     que te mereces."
                                 </b>

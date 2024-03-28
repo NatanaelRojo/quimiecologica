@@ -5,6 +5,7 @@ namespace Database\Seeders\GenderSeeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class GenderSeeder extends Seeder
 {
@@ -22,6 +23,7 @@ class GenderSeeder extends Seeder
         foreach (static::$genders as $gender) {
             DB::table('genders')->insert([
                 'name' => $gender,
+                'created_at' => Carbon::now(),
             ]);
         }
         // for ($i = 0; $i < 5; $i++) {
