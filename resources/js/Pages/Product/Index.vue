@@ -22,6 +22,7 @@
                 </div>
                 </Link>
                 <!-- Final de Notificación del carrito -->
+                <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
@@ -170,42 +171,40 @@
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
                                     <Link :href="route(
-                                            'products.detail',
-                                            product.slug
-                                        )"
-                                    >
-                                        <img :src="`/storage/${product.image_urls[0]}`"
-                                            alt="Imagen del producto" class="
+                'products.detail',
+                product.slug
+            )">
+                                    <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
                                                 w-full h-50 object-cover mb-4
                                                 rounded-md img-zoom
                                             ">
-                                        <div>
-                                            <h3 class="
+                                    <div>
+                                        <h3 class="
                                                         text-lg
                                                         font-semibold
                                                         mb-2
                                                         text-gray-800
                                                     ">
-                                                {{ product.name }}
-                                            </h3>
-                                            <p class="text-gray-600 mb-4">
-                                                {{ product.description }}
-                                            </p>
-                                            <div class="flex space-x-2">
-                                                <div v-for="
+                                            {{ product.name }}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4">
+                                            {{ product.description }}
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <div v-for="
                                                             (category, index) of product.categories
                                                         " :key="index" class="text-gray-600">
-                                                    Categorías: {{ category.name }}
-                                                </div>
-                                            </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <div v-for="
-                                                            (gender, index) of product.genders
-                                                        " :key="index" class="text-gray-600">
-                                                    Géneros: {{ gender.name }}
-                                                </div>
+                                                Categorías: {{ category.name }}
                                             </div>
                                         </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <div v-for="
+                                                            (gender, index) of product.genders
+                                                        " :key="index" class="text-gray-600">
+                                                Géneros: {{ gender.name }}
+                                            </div>
+                                        </div>
+                                    </div>
                                     </Link>
 
                                     <!-- Precio y botón a la derecha -->
@@ -269,9 +268,11 @@ import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import axios from 'axios';
 import TextInput from '@/Components/TextInput.vue';
+import ErrorList from '@/Components/ErrorList.vue';
 
 const isLoading = ref(false);
 const isFiltered = ref(false);
+const noStockMessage = ref(false);
 // const selectedCategories = ref([]);
 // const selectedGenders = ref([]);
 const selectedTypeSale = ref('');
@@ -287,6 +288,7 @@ const categories = ref([]);
 const genders = ref([]);
 const arrayProducts = ref(localStorage.arrayProducts
     ? JSON.parse(localStorage.arrayProducts) : []);
+const errors = ref([]);
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -364,9 +366,12 @@ const addProductToCart = (id) => {
     if (existingProductIndex > -1) {
         // El producto ya existe en el carrito, actualizar cantidad
         cartProducts[existingProductIndex].quantity++;
-    } else {
+    } else if (existingProductIndex === -1 && productData.stock > 0) {
         // Añadir los datos del producto al array de Productos del carrito
         cartProducts.push({ ...productData, quantity: 1 });
+    } else {
+        errors.value.push(`No se puede agregar el producto "${productData.name}"al carrito por falta de disponibilidad`);
+        scrollMeTo();
     }
 
     // Almacenar el array de productos actualizado en localStorage
@@ -381,5 +386,14 @@ const addProductToCart = (id) => {
 */
 const goBack = () => {
     window.history.back();
+}
+
+const scrollMeTo = () => {
+    // const top = form.offsetTop;
+    window.scrollTo(0, 0);
+}
+
+const clearErrors = () => {
+    errors.value = []
 }
 </script>

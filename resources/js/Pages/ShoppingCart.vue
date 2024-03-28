@@ -15,8 +15,6 @@ const phoneCodes = ref([
     { value: '+58 412', label: '0412' },
 ]);
 const selectedPhoneCode = ref('');
-
-const productQuantityMessage = ref(false);
 const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
@@ -156,10 +154,10 @@ const removeProductFromCart = (id) => {
 
 const validateProductQuantity = (quantity, product) => {
     if (quantity > product.stock && product.type_sale.name === 'Detal') {
-        productQuantityMessage.value = true;
+        errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
+        scrollMeTo();
         return false;
     }
-    productQuantityMessage.value = false;
     return true;
 }
 
@@ -168,7 +166,6 @@ const validateProductQuantity = (quantity, product) => {
 */
 const calculateTotalPrice = (quantity, index) => {
     if (!validateProductQuantity(quantity, arrayProducts.value[index])) {
-        scrollMeTo();
         productsQuantity.value[index] = arrayProducts.value[index].stock;
         return;
     }
@@ -241,18 +238,6 @@ const decreaseProductQuantity = (quantities, index) => {
 
             <!-- Sección -->
             <section class="bg-white border-b py-3">
-                <!-- Notificación del carrito -->
-                <div v-if="productQuantityMessage" role="alert">
-                    <div class="
-                                relative block w-full p-4 mb-4 text-base
-                                leading-5 text-white gradient-green rounded-lg
-                                opacity-100 font-regular
-                            ">
-                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        Ha agregado Productos al carrito.
-                    </div>
-                </div>
-                <!-- Final de Notificación del carrito -->
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
