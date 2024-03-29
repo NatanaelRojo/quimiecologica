@@ -191,17 +191,20 @@
                                             {{ product.description }}
                                         </p>
                                         <div class="flex space-x-2">
-                                            <div v-for="
-                                                            (category, index) of product.categories
-                                                        " :key="index" class="text-gray-600">
-                                                Categorías: {{ category.name }}
+                                            <span>Categorías:</span>
+                                            <div
+                                                v-for="(category, index) of product.categories"
+                                                :key="index" class="text-gray-600"
+                                            >
+                                                {{ category.name }}
                                             </div>
                                         </div>
                                         <div class="flex space-x-2 mt-2">
-                                            <div v-for="
-                                                            (gender, index) of product.genders
-                                                        " :key="index" class="text-gray-600">
-                                                Géneros: {{ gender.name }}
+                                            <span>Géneros:</span>
+                                            <div v-for="(gender, index) of product.genders"
+                                                :key="index" class="text-gray-600"
+                                            >
+                                                {{ gender.name }}
                                             </div>
                                         </div>
                                     </div>
