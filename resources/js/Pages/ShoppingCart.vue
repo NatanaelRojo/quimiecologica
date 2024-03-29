@@ -349,9 +349,10 @@ const decreaseProductQuantity = (quantities, index) => {
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="1" :max="product.stock"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
-                calculateTotalPrice(productsQuantity[index], index)">
+                                                        calculateTotalPrice(productsQuantity[index], index)"
+                                                    >
                                                     <button
-                                                        @click.prevent="increaseProductQuantity(productsQuantity, index)"
+                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
                                                             gradient-green
@@ -366,9 +367,10 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             focus:ring
                                                             focus:ring-blue-200
                                                             font-bold
-                                                        ">+</button>
+                                                        "
+                                                    >-</button>
                                                     <button
-                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
+                                                        @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
                                                             gradient-green
@@ -384,7 +386,8 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             focus:ring
                                                             focus:ring-blue-200
                                                             font-bold
-                                                        ">-</button>
+                                                        "
+                                                    >+</button>
                                                 </div>
                                                 <div v-else-if="product.type_sale.name === 'Granel'">
                                                     <label for="product-wholesale-quantity">{{ product.unit.name
