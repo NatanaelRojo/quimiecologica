@@ -214,7 +214,18 @@
                                             <div class="flex space-x-2 mt-2">
                                                 <span>Tipo de venta:</span>
                                                 <div class="text-gray-600">
-                                                    {{ product.type_sale.name }}
+                                                    <span
+                                                        class="
+                                                            gradient-green
+                                                            rounded-full
+                                                            px-3
+                                                            py-1
+                                                            text-sm
+                                                            text-gray-700
+                                                        "
+                                                    >
+                                                        {{ product.type_sale.name }}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
