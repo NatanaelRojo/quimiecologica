@@ -64,23 +64,51 @@
                         <h1 class="text-3xl font-bold mb-2">{{ product.name }}</h1>
                         <p class="text-gray-600 mb-4">{{ product.description }}</p>
 
-                        <div class="mb-4">
-                            <p class="text-lg font-bold text-gray-800">Categorías:</p>
-                            <ul class="list-disc pl-4">
-                                <li v-for="category in product.categories" :key="category.id">{{ category.name }}</li>
-                            </ul>
+                        <div class="flex space-x-2">
+                            <span>Categorías:</span>
+                            <div
+                                v-for="(category, index) of product.categories"
+                                :key="index" class="text-gray-600"
+                            >
+                                {{ category.name }}
+                            </div>
                         </div>
-
-                        <div class="mb-4">
-                            <p class="text-lg font-bold text-gray-800">Géneros:</p>
-                            <ul class="list-disc pl-4">
-                                <li v-for="gender in product.genders" :key="gender.id">{{ gender.name }}</li>
-                            </ul>
+                        <div class="flex space-x-2 mt-2">
+                            <span>Géneros:</span>
+                            <div v-for="(gender, index) of product.genders"
+                                :key="index" class="text-gray-600"
+                            >
+                                {{ gender.name }}
+                            </div>
                         </div>
-
-                        <div class="mb-4">
-                            <p class="text-lg font-bold text-gray-800">Precio: ${{ product.price }}</p>
+                        <div class="flex space-x-2 mt-2">
+                            <span>Tipo de venta:</span>
+                            <div class="text-gray-600">
+                                <span
+                                    class="
+                                        gradient-green
+                                        rounded-full
+                                        px-3
+                                        py-1
+                                        text-sm
+                                        text-gray-700
+                                    "
+                                >
+                                    {{ product.type_sale.name }}
+                                </span>
+                            </div>
                         </div>
+                        <hr class="mt-5 mb-5">
+                        <h2 class="
+                                w-full
+                                my-2
+                                text-3xl
+                                font-black
+                                leading-tight
+                                text-gray-800
+                            ">
+                            Precio: ${{ product.price }}
+                        </h2>
                     </div>
                 </div>
             </section>
