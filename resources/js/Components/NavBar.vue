@@ -33,7 +33,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                         lg:text-4xl
                     "
                 >
-                    <img :src="logoBrand" alt="Quimiecologi C.A." class="w-72" />
+                    <img :src="logoBrand" alt="Quimiecologi C.A." class="w-60" />
                 </Link>
             </div>
 
@@ -95,10 +95,11 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2 px-4
+                                py-2
+                                px-2
                             "
                         >
-                            <b>Inicio</b>
+                            <b>INICIO</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -112,10 +113,10 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-gray-800
                                 hover:text-underline
                                 py-2
-                                px-4
+                                px-2
                             "
                         >
-                            <b>Conócenos</b>
+                            <b>CONÓCENOS</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -129,10 +130,10 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-gray-800
                                 hover:text-underline
                                 py-2
-                                px-4
+                                px-2
                             "
                         >
-                            <b>Productos</b>
+                            <b>PRODUCTOS</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -145,10 +146,11 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2 px-4
+                                py-2
+                                px-2
                             "
                         >
-                            <b>Servicios</b>
+                            <b>SERVICIOS</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -161,10 +163,11 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2 px-4
+                                py-2
+                                px-2
                             "
                         >
-                            <b>Asesorías</b>
+                            <b>ASESORÍAS</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -177,10 +180,11 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2 px-4
+                                py-2
+                                px-2
                             "
                         >
-                            <b>Blog</b>
+                            <b>BLOG</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -194,10 +198,10 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-gray-800
                                 hover:text-underline
                                 py-2
-                                px-4
+                                px-2
                             "
                         >
-                            <b>Contacto</b>
+                            <b>CONTACTO</b>
                         </Link>
                     </li>
                     <li class="mr-3">
@@ -210,7 +214,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 hover:text-gray-800
                                 hover:text-underline
                                 py-2
-                                px-4
+                                px-2
                             "
                         >
                             <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
