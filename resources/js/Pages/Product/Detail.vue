@@ -40,8 +40,16 @@
                     <br>
 
                     <div class="lg:w-1/2 lg:mr-8 mb-4">
-                        <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen de portada"
-                            class="w-full h-auto img-zoom" />
+                        <img
+                            v-for="(imageUrl, index) in product.image_urls"
+                            :key="index"
+                            :src="`/storage/${imageUrl}`"
+                            alt="Imagen del producto"
+                            class="w-full h-auto img-zoom"
+                            style="
+                                padding: 20px;
+                            "
+                        />
                     </div>
 
                     <!-- Detalles del producto -->
