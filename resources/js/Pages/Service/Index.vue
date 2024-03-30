@@ -84,7 +84,7 @@ const services = ref([]);
                         <!-- Iterate de servicios -->
                         <template v-for="service in services" :key="service.id">
                             <Link :href="route('services.detail', service.slug)">
-                                <div class="
+                            <div class="
                                     bg-white
                                     p-4 border
                                     border-gray-200
@@ -94,32 +94,28 @@ const services = ref([]);
                                     hover:transform
                                     hover:scale-105
                                 ">
-                                    <!-- Información a la izquierda -->
-                                    <div class="flex flex-col items-start">
-                                        <img
-                                            :src="`/storage/${service.banner}`"
-                                            alt="Imagen del servicio"
-                                            class="
+                                <!-- Información a la izquierda -->
+                                <div class="flex flex-col items-start">
+                                    <img :src="`/storage/${service.banner}`" alt="Imagen del servicio" class="
                                             w-full mb-4
                                                 rounded-md img-zoom
-                                            "
-                                        >
-                                        <div>
-                                            <h3 class="
+                                            ">
+                                    <div>
+                                        <h3 class="
                                                         text-lg
                                                         font-semibold
                                                         mb-2
                                                         text-gray-800
-                                                    "
-                                                >
-                                                    {{ service.name }}
-                                            </h3>
-                                            <p>
+                                                    ">
+                                            {{ service.name }}
+                                        </h3>
+                                        <div v-html="service.description"></div>
+                                        <!-- <p>
                                                 {{ service.description }}
-                                            </p>
-                                        </div>
+                                            </p> -->
                                     </div>
                                 </div>
+                            </div>
                             </Link>
                         </template>
                         <!-- Fin de la iteración de los servicios-->

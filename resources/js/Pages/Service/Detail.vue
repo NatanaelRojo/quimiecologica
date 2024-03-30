@@ -74,7 +74,8 @@ onMounted(async () => {
                     <!-- Detalles del servicio -->
                     <div class="lg:w-1/2">
                         <h1 class="text-3xl font-bold mb-2">{{ service.name }}</h1>
-                        <p class="text-gray-600 mb-4">{{ service.description }}</p>
+                        <div v-html="service.description" class="text-gray-600 mb-4"></div>
+                        <!-- <p class="text-gray-600 mb-4">{{ service.description }}</p> -->
 
                     </div>
                 </div>
