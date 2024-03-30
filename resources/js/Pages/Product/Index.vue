@@ -193,7 +193,7 @@
                                                 {{ product.name }}
                                             </h3>
                                             <p class="text-gray-600 mb-4 text-justify">
-                                                <span v-html="product.description"></span>
+                                                <span v-html="truncateText(product.description, 200)"></span>
                                             </p>
                                             <div class="flex space-x-2">
                                                 <span>Categorías:</span>
@@ -372,6 +372,17 @@ const clearFilters = async () => {
         products.value = response.data;
     } catch (error) {
         console.error(error);
+    }
+}
+
+/**
+ * Truncar la cantidad de caracteres ded un texto que se muestran.
+*/
+const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+    } else {
+        return text;
     }
 }
 

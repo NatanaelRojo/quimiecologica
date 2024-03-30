@@ -33,6 +33,17 @@ onMounted(async () => {
     isLoading.value = false;
 });
 
+/**
+ * Truncar la cantidad de caracteres ded un texto que se muestran.
+*/
+const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+    } else {
+        return text;
+    }
+}
+
 const services = ref([]);
 </script>
 
@@ -115,7 +126,7 @@ const services = ref([]);
                                                     {{ service.name }}
                                             </h3>
                                             <p class="text-gray-600 mb-4 text-justify">
-                                                <span v-html="service.description"></span>
+                                                <span v-html="truncateText(service.description, 200)"></span>
                                             </p>
                                         </div>
                                     </div>

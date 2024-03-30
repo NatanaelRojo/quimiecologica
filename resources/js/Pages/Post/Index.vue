@@ -148,7 +148,7 @@
                                                 {{ post.title }}
                                             </h3>
                                             <p class="text-gray-600 mb-4 text-justify">
-                                                <span v-html="post.body"></span>
+                                                <span v-html="truncateText(post.body, 200)"></span>
                                             </p>
                                             <div class="flex space-x-2">
                                                 <span>Categorías:</span>
@@ -258,6 +258,17 @@ const filterPosts = async () => {
 */
 const goBack = () => {
     window.history.back();
+}
+
+/**
+ * Truncar la cantidad de caracteres ded un texto que se muestran.
+*/
+const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+    } else {
+        return text;
+    }
 }
 
 const clearFilters = async () => {
