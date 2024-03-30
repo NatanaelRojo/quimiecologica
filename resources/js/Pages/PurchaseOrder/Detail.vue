@@ -97,40 +97,77 @@ const showMessage = (type) => {
                             "></div>
                     </div>
                     <div class="
-                            p-4 border
-                            border-gray-200
+                            p-4
+                            border
                             rounded-lg
-                            shadow-md">
-                        <p><b>ID de la orden de compra:</b> {{ purchase_order.id }}</p>
-                        <p><b>Nombres:</b> {{ purchase_order.owner_firstname }}</p>
-                        <p><b>Apellidos:</b> {{ purchase_order.owner_lastname }} {{ purchase_order.owner_lastname }}</p>
-                        <p><b>Cédula de identidad:</b>s {{ purchase_order.owner_id }}</p>
-                        <p><b>Número de teléfono:</b> {{ purchase_order.owner_phone_number }}</p>
-                        <p><b>Correo electrónico:</b> {{ purchase_order.owner_email }}</p>
-                        <p><b>Estado de procedencia:</b> {{ purchase_order.owner_state }}</p>
-                        <p><b>Ciudad de procedencia:</b> {{ purchase_order.owner_city }}</p>
-                        <p><b>Dirección de domicilio:</b> {{ purchase_order.owner_address }}</p>
-                        <p><b>Numero de referencia del pago:</b> {{ purchase_order.reference_number }}</p>
-                        <h3><b>Información de los Productos:</b></h3>
-                        <ul>
-                            <li v-for="(product, index) in purchase_order.products_info" :key="index">
-                                <p>Producto ID: {{ product.product_id }}</p>
-                                <p>Nombre del producto: {{ product.product_name }}</p>
-                                <p>Cantidad: {{ product.product_quantity }}</p>
-                                <p>Tipo de venta: {{ product.sale_type }}</p>
-                                <p>Unidad de producto: {{ product.product_unit }}</p>
-                            </li>
-                        </ul>
-                        <h2 class="
-                                w-full
-                                my-2
-                                text-5xl
+                            shadow-md
+                        "
+                        style="border: ridge 1px #93BC00;"
+                    >
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Nombres:</b> {{ purchase_order.owner_firstname }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Apellidos:</b> {{ purchase_order.owner_lastname }} {{ purchase_order.owner_lastname }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Cédula de identidad:</b>s {{ purchase_order.owner_id }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Número de teléfono:</b> {{ purchase_order.owner_phone_number }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Correo electrónico:</b> {{ purchase_order.owner_email }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Estado de procedencia:</b> {{ purchase_order.owner_state }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Ciudad de procedencia:</b> {{ purchase_order.owner_city }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Dirección de domicilio:</b> {{ purchase_order.owner_address }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Numero de referencia del pago:</b> {{ purchase_order.reference_number }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Fecha de creación:</b> {{ new Date(purchase_order.created_at).toLocaleDateString('en-GB') }}
+                        </div>
+                        <div class="mb-2 text-gray-800 text-lg">
+                            <b>Información de los Productos:</b>
+                        </div>
+                        <span v-for="(product, index) in purchase_order.products_info" :key="index">
+                            <p>Nombre del producto: {{ product.product_name }}</p>
+                            <p>Cantidad: {{ product.product_quantity }}</p>
+                            <p>Tipo de venta: {{ product.sale_type }}</p>
+                            <p>Unidad del producto: {{ product.product_unit }}</p>
+                            <hr
+                                v-if="purchase_order.products_info.length > 1"
+                                class="mt-3 mb-5"
+                                style="border: ridge 1px #93BC00;"
+                            >
+                        </span>
+                        <hr
+                            v-if="purchase_order.products_info.length < 2"
+                            class="mt-3 mb-5"
+                            style="border: ridge 1px #93BC00;"
+                        >
+                        <span
+                            class="
+                                mt-5
+                                gradient-green
+                                rounded
+                                px-5
+                                py-2
+                                text-lg
+                                text-4xl
                                 font-black
-                                leading-tight
                                 text-gray-800
-                            ">
+                            "
+                        >
                             Total: ${{ purchase_order.total_price }}
-                        </h2>
+                        </span>
                     </div>
                 </div>
             </section>
