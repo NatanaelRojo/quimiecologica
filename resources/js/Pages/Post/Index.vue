@@ -147,17 +147,23 @@
                                                     ">
                                                 {{ post.title }}
                                             </h3>
+                                            <p class="text-gray-600 mb-4 text-justify">
+                                                <span v-html="post.body"></span>
+                                            </p>
                                             <div class="flex space-x-2">
-                                                <div v-for="
-                                                            (category, index)
-                                                                of post.categories
-                                                        " :key="index" class="text-gray-600">
+                                                <span>Categorías:</span>
+                                                <div
+                                                    v-for="(category, index) of post.categories"
+                                                    :key="index" class="text-gray-600"
+                                                >
                                                     {{ category.name }}
                                                 </div>
                                             </div>
                                             <div class="flex space-x-2 mt-2">
-                                                <div v-for="(gender, index)
-                                                            of post.genders" :key="index" class="text-gray-600">
+                                                <span>Géneros:</span>
+                                                <div v-for="(gender, index) of post.genders"
+                                                    :key="index" class="text-gray-600"
+                                                >
                                                     {{ gender.name }}
                                                 </div>
                                             </div>

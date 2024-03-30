@@ -32,7 +32,7 @@
                             text-gray-800
                         "
                     >
-                        Detalle del Producto
+                        {{ product.name }}
                     </h2>
                     <div class="w-full mb-4">
                         <div
@@ -55,15 +55,16 @@
                         <img
                             :src="`/storage/${product.image_urls[0]}`"
                             alt="Imagen de portada"
-                            class="w-full h-auto"
+                            class="w-full h-auto img-zoom"
                         />
                     </div>
 
                     <!-- Detalles del producto -->
                     <div class="lg:w-1/2">
                         <h1 class="text-3xl font-bold mb-2">{{ product.name }}</h1>
-                        <p class="text-gray-600 mb-4">{{ product.description }}</p>
-
+                        <p class="text-gray-600 mb-4 text-justify">
+                            <span v-html="product.description"></span>
+                        </p>
                         <div class="flex space-x-2">
                             <span>Categorías:</span>
                             <div

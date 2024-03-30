@@ -49,8 +49,9 @@ onMounted(async () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        ">
-                        Detalle del Servicio
+                        "
+                    >
+                        {{ service.name }}
                     </h2>
                     <div class="w-full mb-4">
                         <div class="
@@ -68,13 +69,19 @@ onMounted(async () => {
                     <br>
 
                     <div class="lg:w-1/2 lg:mr-8 mb-4">
-                        <img :src="`/storage/${service.banner}`" alt="Imagen de portada" class="w-full h-auto" />
+                        <img
+                            :src="`/storage/${service.banner}`"
+                            alt="Imagen de portada"
+                            class="w-full h-auto img-zoom"
+                        />
                     </div>
 
                     <!-- Detalles del servicio -->
                     <div class="lg:w-1/2">
                         <h1 class="text-3xl font-bold mb-2">{{ service.name }}</h1>
-                        <p class="text-gray-600 mb-4">{{ service.description }}</p>
+                        <p class="text-gray-600 mb-4 text-justify">
+                            <span v-html="service.description"></span>
+                        </p>
 
                     </div>
                 </div>

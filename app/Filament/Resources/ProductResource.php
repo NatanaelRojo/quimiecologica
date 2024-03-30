@@ -137,7 +137,7 @@ class ProductResource extends Resource
         return [
             Forms\Components\Tabs::make('basic_data')->label(static::getAttributeLabel('basic_data'))
                 ->tabs([
-                    Forms\Components\Tabs\Tab::make('informacion')
+                    Forms\Components\Tabs\Tab::make('Información básica')
                         ->schema([
                             Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
                                 if (!$state) {

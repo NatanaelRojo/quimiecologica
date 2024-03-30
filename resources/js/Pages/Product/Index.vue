@@ -184,15 +184,16 @@
                                         >
                                         <div>
                                             <h3 class="
-                                                            text-lg
-                                                            font-semibold
-                                                            mb-2
-                                                            text-gray-800
-                                                        ">
+                                                    text-lg
+                                                    font-semibold
+                                                    mb-2
+                                                    text-gray-800
+                                                "
+                                            >
                                                 {{ product.name }}
                                             </h3>
-                                            <p class="text-gray-600 mb-4">
-                                                {{ product.description }}
+                                            <p class="text-gray-600 mb-4 text-justify">
+                                                <span v-html="product.description"></span>
                                             </p>
                                             <div class="flex space-x-2">
                                                 <span>Categorías:</span>
@@ -230,7 +231,7 @@
                                             </div>
                                         </div>
                                     </Link>
-
+                                    <hr class="mt-4 mb-2">
                                     <!-- Precio y botón a la derecha -->
                                     <p class="
                                             mt-2

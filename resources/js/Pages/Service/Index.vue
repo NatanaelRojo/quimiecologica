@@ -114,8 +114,8 @@ const services = ref([]);
                                                 >
                                                     {{ service.name }}
                                             </h3>
-                                            <p>
-                                                {{ service.description }}
+                                            <p class="text-gray-600 mb-4 text-justify">
+                                                <span v-html="service.description"></span>
                                             </p>
                                         </div>
                                     </div>

@@ -32,7 +32,7 @@
                             text-gray-800
                         "
                     >
-                        Detalle de la Publicación
+                        {{ post.title }}
                     </h2>
                     <div class="w-full mb-4">
                         <div
@@ -60,19 +60,30 @@
                         <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>
 
                         <!-- Cuerpo del blogpost -->
-                        <div class="text-gray-700 text-lg mb-6" v-html="post.body"></div>
+                        <div class="text-gray-700 text-lg mb-6 text-justify" v-html="post.body"></div>
 
                         <!-- Categorías del blogpost -->
                         <div class="mb-4">
                             <span class="text-gray-600">Categorías: </span>
-                            <span v-for="(category, index) in post.categories" :key="index" class="mr-2">{{ category.name
-                            }}</span>
+                                <span
+                                    v-for="(category, index) in post.categories"
+                                    :key="index"
+                                    class="mr-2"
+                                >
+                                    {{ category.name }}
+                                </span>
                         </div>
 
                         <!-- Géneros del blogpost -->
                         <div class="mb-6">
                             <span class="text-gray-600">Géneros: </span>
-                            <span v-for="(gender, index) in post.genders" :key="index" class="mr-2">{{ gender.name }}</span>
+                            <span
+                                v-for="(gender, index) in post.genders"
+                                :key="index"
+                                class="mr-2"
+                            >
+                                {{ gender.name }}
+                            </span>
                         </div>
                     </div>
                 </div>
