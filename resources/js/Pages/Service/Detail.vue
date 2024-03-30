@@ -49,8 +49,7 @@ onMounted(async () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         {{ service.name }}
                     </h2>
                     <div class="w-full mb-4">
@@ -69,11 +68,8 @@ onMounted(async () => {
                     <br>
 
                     <div class="lg:w-1/2 lg:mr-8 mb-4">
-                        <img
-                            :src="`/storage/${service.banner}`"
-                            alt="Imagen de portada"
-                            class="w-full h-auto img-zoom"
-                        />
+                        <img :src="`/storage/${service.banner}`" alt="Imagen de portada"
+                            class="w-full h-auto img-zoom" />
                     </div>
 
                     <!-- Detalles del servicio -->

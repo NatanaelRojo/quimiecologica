@@ -95,7 +95,7 @@ const services = ref([]);
                         <!-- Iterate de servicios -->
                         <template v-for="service in services" :key="service.id">
                             <Link :href="route('services.detail', service.slug)">
-                                <div class="
+                            <div class="
                                     bg-white
                                     p-4 border
                                     border-gray-200
@@ -105,32 +105,27 @@ const services = ref([]);
                                     hover:transform
                                     hover:scale-105
                                 ">
-                                    <!-- Información a la izquierda -->
-                                    <div class="flex flex-col items-start">
-                                        <img
-                                            :src="`/storage/${service.banner}`"
-                                            alt="Imagen del servicio"
-                                            class="
+                                <!-- Información a la izquierda -->
+                                <div class="flex flex-col items-start">
+                                    <img :src="`/storage/${service.banner}`" alt="Imagen del servicio" class="
                                             w-full mb-4
                                                 rounded-md img-zoom
-                                            "
-                                        >
-                                        <div>
-                                            <h3 class="
+                                            ">
+                                    <div>
+                                        <h3 class="
                                                         text-lg
                                                         font-semibold
                                                         mb-2
                                                         text-gray-800
-                                                    "
-                                                >
-                                                    {{ service.name }}
-                                            </h3>
-                                            <p class="text-gray-600 mb-4 text-justify">
-                                                <span v-html="truncateText(service.description, 200)"></span>
-                                            </p>
-                                        </div>
+                                                    ">
+                                            {{ service.name }}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4 text-justify">
+                                            <span v-html="truncateText(service.description, 200)"></span>
+                                        </p>
                                     </div>
                                 </div>
+                            </div>
                             </Link>
                         </template>
                         <!-- Fin de la iteración de los servicios-->
