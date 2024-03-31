@@ -16,8 +16,12 @@ class LatestPurchaseOrders extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
+            ->heading(PurchaseOrderResource::getAttributeLabel('latest_purchase_orders'))
             ->query(function (Builder $query): Builder {
-                return PurchaseOrder::query()->where('status', 'En espera');
+                return PurchaseOrder::query()
+                    ->where('status', 'En espera')
+                    ->latest()
+                    ->limit(10);
             })
             ->columns(PurchaseOrderResource::tableColumns());
     }
