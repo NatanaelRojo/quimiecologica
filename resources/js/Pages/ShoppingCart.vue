@@ -132,6 +132,17 @@ onBeforeMount(async () => {
 });
 
 /**
+ * Truncar la cantidad de caracteres ded un texto que se muestran.
+*/
+const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength) + '...';
+    } else {
+        return text;
+    }
+}
+
+/**
  * Método que permite eliminar un producto del carrito.
 */
 const removeProductFromCart = (id) => {
@@ -312,37 +323,41 @@ const decreaseProductQuantity = (quantities, index) => {
                                                         {{ product.name }}
                                                     </h3>
 
-                                                    <p class="text-gray-600 mb-4">
-                                                        {{ product.description }}
+                                                    <p class="text-gray-600 mb-4 text-justify">
+                                                        <span v-html="truncateText(product.description, 200)"></span>
                                                     </p>
 
                                                     <div class="flex space-x-2">
-                                                        <div v-for="
-                                                                    (category, index)
-                                                                        of product.categories
-                                                                " :key="index" class="text-gray-600">
-                                                            Categorías: {{ category.name }}
+                                                        <span>Categorías:</span>
+                                                        <div v-for="(category, index) of product.categories" :key="index"
+                                                            class="text-gray-600">
+                                                            {{ category.name }}
                                                         </div>
                                                     </div>
                                                     <div class="flex space-x-2 mt-2">
-                                                        <div v-for="
-                                                                    (gender, index)
-                                                                        of product.genders
-                                                                " :key="index" class="text-gray-600">
-                                                            Géneros: {{ gender.name }}
+                                                        <span>Géneros:</span>
+                                                        <div v-for="(gender, index) of product.genders" :key="index"
+                                                            class="text-gray-600">
+                                                            {{ gender.name }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex space-x-2 mt-2 mb-2">
+                                                        <span>Tipo de venta:</span>
+                                                        <div class="text-gray-600">
+                                                            <span class="
+                                                                        gradient-green
+                                                                        rounded-full
+                                                                        px-3
+                                                                        py-1
+                                                                        text-sm
+                                                                        text-gray-700
+                                                                    ">
+                                                                {{ product.type_sale.name }}
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 </Link>
-                                                <!-- Precio y botón a la derecha -->
-                                                <p class="
-                                                        mt-2
-                                                        text-gray-700
-                                                        font-semibold
-                                                        text-xl
-                                                    ">
-                                                    Precio: ${{ product.price }}
-                                                </p>
                                                 <div v-if="product.type_sale.name === 'Detal'">
                                                     <label for="product-retail-quantity">Cantidad del
                                                         producto</label>
@@ -393,10 +408,11 @@ const decreaseProductQuantity = (quantities, index) => {
                                                     <label for="product-wholesale-quantity">{{ product.unit.name
                                                         }}(s) del
                                                         producto</label>
-                                                    <input type="number" id="product-wholesale-quantity"
+                                                    <input
+                                                        type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" :min="product.product_content"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
-                calculateTotalPrice(productsQuantity[index], index)">
+                                                        calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
@@ -433,6 +449,16 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             font-bold
                                                         ">-</button>
                                                 </div>
+                                                <hr class="mt-4">
+                                                <!-- Precio -->
+                                                <p class="
+                                                        mt-2
+                                                        text-gray-700
+                                                        font-semibold
+                                                        text-xl
+                                                    ">
+                                                    Precio: ${{ product.price }}
+                                                </p>
                                                 <div class="flex flex-col items-center">
                                                     <button @click="removeProductFromCart(product.id)" class="
                                                             font-montserrat
