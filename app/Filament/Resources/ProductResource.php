@@ -108,10 +108,10 @@ class ProductResource extends Resource
     {
         return [
             Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
-                ->required()->numeric()->minValue(1),
+                ->required()->numeric()->minValue(0),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('product_content'))
                 ->required()->numeric()
-                ->minValue(0),
+                ->minValue(1),
             Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
                 ->required()
                 ->relationship(name: 'unit',  titleAttribute: 'name')
