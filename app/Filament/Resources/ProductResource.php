@@ -56,7 +56,6 @@ class ProductResource extends Resource
         $type_sale_id = ($livewire instanceof Pages\EditProduct && $record) ?
             $record->type_sale_id :
             $get('type_sale_id');
-        // dd($type_sale_id);
         return match ($type_sale_id) {
             1 => static::retailTypeForm(),
             2 => static::wholesaleTypeForm(),
@@ -109,7 +108,7 @@ class ProductResource extends Resource
     {
         return [
             Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
-                ->required()->numeric()->minValue(1),
+                ->required()->numeric()->minValue(0),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('product_content'))
                 ->required()->numeric()
                 ->minValue(1),
@@ -117,14 +116,6 @@ class ProductResource extends Resource
                 ->required()
                 ->relationship(name: 'unit',  titleAttribute: 'name')
                 ->createOptionForm(UnitResource::inputForm()),
-            // ->options(function (): array {
-            //     $options = array();
-            //     $units = Unit::all();
-            //     foreach ($units as $unit) {
-            //         $options[$unit->name] = $unit->name;
-            //     }
-            //     return $options;
-            // }),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price'))
                 ->required()->numeric()->minValue(1)
@@ -169,8 +160,7 @@ class ProductResource extends Resource
                                 ->relationship(name: 'typeSale', titleAttribute: 'name')
                                 ->preload()
                                 ->createOptionForm(TypeSaleResource::inputForm())
-                                ->live()
-                                ->afterStateUpdated(fn (Set $set, $state) => $set('test', $state)),
+                                ->live(),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),
@@ -199,8 +189,8 @@ class ProductResource extends Resource
                     return $query->where('name', 'ilike', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
-                ->html(),
-            // ->words(20),
+                ->html()
+                ->words(20),
             Tables\Columns\TextColumn::make('stock')->label(static::getAttributeLabel('stock')),
             Tables\Columns\TextColumn::make('price')->label(static::getAttributeLabel('price'))
                 ->money('USD')->sortable(),
@@ -223,21 +213,8 @@ class ProductResource extends Resource
                 ->required()->numeric()->minValue(1),
             Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
                 ->relationship(name: 'unit', titleAttribute: 'name'),
-            // ->options(function (): array {
-            //     $options = array();
-            //     $units = Unit::all();
-            //     foreach ($units as $unit) {
-            //         $options[$unit->name] = $unit->name;
-            //     }
-            //     return $options;
-            // }),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price_by_unit'))
-                // ->label(function (Get $get): string {
-                //     $price_by = static::getAttributeLabel('price_by');
-                //     $unit = $get('unit');
-                //     return "{$price_by} {$unit}";
-                // })
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
         ];
@@ -282,7 +259,7 @@ class ProductResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // ImagesRelationManager::class,
+            //
         ];
     }
 
