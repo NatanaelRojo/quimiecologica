@@ -59,7 +59,19 @@ class PurchaseOrderController extends Controller
             'total_price' => $request->total_price,
             'products_info' => $products_info,
         ]);
-        Mail::to($newPurchaseOrder->owner_email)->send(new PurchaseOrderMailable($newPurchaseOrder));
+
+        $listaCorreosENV = explode(',', env('LIST_EMAILS_RECEIVE_NOTIFICATION'));
+
+        $mail = Mail::to($newPurchaseOrder->owner_email);
+
+        // Agregar direcciones de correo electrónico adicionales como copias (CC)
+        foreach ($listaCorreosENV as $email) {
+            $mail->cc($email);
+        }
+
+        // Enviar el correo.
+        $mail->send(new PurchaseOrderMailable($newPurchaseOrder));
+
         $this->discountProducts($newPurchaseOrder);
 
         return response()->json(

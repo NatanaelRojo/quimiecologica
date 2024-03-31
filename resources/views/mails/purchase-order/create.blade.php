@@ -33,7 +33,7 @@
                     <!-- Email Body -->
                     <tr>
                         <td>
-                            <h1>Detalles de tu Orden de compra</h1>
+                            <h1>Detalles de la Orden de compra</h1>
                             <hr>
                             <p>Nombres: {{ $purchaseOrder->owner_firstname }}</p>
                             <p>Apellidos: {{ $purchaseOrder->owner_lastname }}</p>

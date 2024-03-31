@@ -68,6 +68,7 @@ onMounted(() => {
 */
 const createPurchaseOrder = async () => {
     try {
+        isLoading.value = true;
         const data = [
             {
                 product_id: 1,
@@ -92,14 +93,13 @@ const createPurchaseOrder = async () => {
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
         purchaseOrder.value = response.data.record;
 
-        // Limpiar el Carrito de compras luego de guardar el formulario.
-        // cleanForm();
-
-        // return purchaseOrder;
+        isLoading.value = false;
         router.get(response.data.redirect);
     } catch (error) {
+        isLoading.value = true;
         errors.value = error.response.data;
         scrollMeTo();
+        isLoading.value = false;
     }
 }
 
