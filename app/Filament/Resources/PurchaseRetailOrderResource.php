@@ -16,14 +16,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class PurchaseRetailOrderResource extends Resource
 {
     protected static ?string $model = PurchaseRetailOrder::class;
-
     protected static ?int $navigationSort = 0;
-
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
-
     protected static ?string $navigationLabel = 'Al detal';
-
     protected static ?string $navigationGroup = 'Órdenes';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function getModelLabel(): string
     {

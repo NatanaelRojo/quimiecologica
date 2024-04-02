@@ -17,6 +17,7 @@ class AnalysisParameterResource extends Resource
 {
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = AnalysisParameter::class;
+    protected static bool $shouldRegisterNavigation = false;
 
     protected static ?int $navigationSort = 3;
 

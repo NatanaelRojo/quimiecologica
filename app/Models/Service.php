@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Casts\MoneyCast;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
@@ -20,6 +22,11 @@ class Service extends Model
         'description',
     ];
 
+    protected $casts = [
+        'price' => MoneyCast::class,
+        // 'is_active' => 'boolean',
+    ];
+
     public function sluggable(): array
     {
         return [
@@ -32,6 +39,11 @@ class Service extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    public function serviceType(): BelongsTo
+    {
+        return $this->belongsTo(ServiceType::class);
     }
 
     public function products(): HasMany

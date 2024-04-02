@@ -17,14 +17,11 @@ class AnalysisTypeResource extends Resource
 {
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = AnalysisType::class;
-
     protected static ?int $navigationSort = 2;
-
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
-
     protected static ?string $navigationLabel = 'Tipos';
-
     protected static ?string $navigationGroup = 'Ajustes de los Análisis';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function getModelLabel(): string
     {

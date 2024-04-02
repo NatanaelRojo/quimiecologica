@@ -19,6 +19,8 @@ class ServiceResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
+            'price' => $this->price,
+            'type' => $this->serviceType->name,
             'created_at' => $this->created_at,
             'conditions' => $this->conditions,
         ];

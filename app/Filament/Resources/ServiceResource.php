@@ -41,6 +41,10 @@ class ServiceResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Select::make('service_type_id')->label(static::getAttributeLabel('service_type'))
+                ->relationship(name: 'serviceType', titleAttribute: 'name')
+                ->preload()
+                ->columnSpan('full'),
             Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
                 ->image()
                 ->columnSpan('full'),
@@ -48,6 +52,11 @@ class ServiceResource extends Resource
                 ->required()->maxLength(20)
                 ->columnSpan('full'),
             Forms\Components\RichEditor::make('description')->label(static::getAttributeLabel('description'))
+                ->columnSpan('full'),
+            Forms\Components\TextInput::make('price')
+                ->label(static::getAttributeLabel('price'))
+                ->required()->numeric()->minValue(1)
+                ->prefix('$')
                 ->columnSpan('full'),
         ];
     }
