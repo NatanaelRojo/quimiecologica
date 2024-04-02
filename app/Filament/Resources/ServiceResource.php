@@ -44,6 +44,7 @@ class ServiceResource extends Resource
             Forms\Components\Select::make('service_type_id')->label(static::getAttributeLabel('service_type'))
                 ->relationship(name: 'serviceType', titleAttribute: 'name')
                 ->preload()
+                ->createOptionForm(ServiceTypeResource::inputForm())
                 ->columnSpan('full'),
             Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
                 ->image()
@@ -58,12 +59,15 @@ class ServiceResource extends Resource
                 ->required()->numeric()->minValue(1)
                 ->prefix('$')
                 ->columnSpan('full'),
+            Forms\Components\KeyValue::make('conditions')->label(static::getAttributeLabel('conditions'))
+                ->keyLabel(static::getAttributeLabel('name'))->valueLabel(static::getAttributeLabel('description')),
         ];
     }
 
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('serviceType.name')->label(static::getAttributeLabel('service_type')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");

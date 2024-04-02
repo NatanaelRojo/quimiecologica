@@ -15,8 +15,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ServiceTypeResource extends Resource
 {
+    protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = ServiceType::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Carga Inicial';
+
 
     public static function getModelLabel(): string
     {
@@ -37,6 +40,7 @@ class ServiceTypeResource extends Resource
     {
         return [
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
+                ->autofocus()
                 ->required()
                 ->columnSpan('full'),
         ];

@@ -17,13 +17,17 @@ class Service extends Model
     use Sluggable, SluggableScopeHelpers;
 
     protected $fillable = [
+        'service_type_id',
         'banner',
         'name',
         'description',
+        'price',
+        'conditions',
     ];
 
     protected $casts = [
         'price' => MoneyCast::class,
+        'conditions' => 'array',
         // 'is_active' => 'boolean',
     ];
 

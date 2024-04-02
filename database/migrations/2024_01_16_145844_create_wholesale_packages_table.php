@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Unit;
-use App\Models\WholesalePackage;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,10 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasColumn('products', 'unit_id') && !Schema::hasColumn('products', 'quantity')) {
-            Schema::table('products', function (Blueprint $table) {
+        if (!Schema::hasTable('wholesale_packages')) {
+            Schema::create('wholesale_packages', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedFloat('quantity');
                 $table->foreignIdFor(Unit::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-                $table->unsignedInteger('quantity');
+                $table->string('name');
+                $table->timestamps();
             });
         }
     }
@@ -26,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn(['unit_id', 'quantity']);
-        });
+        Schema::dropIfExists('wholesale_packages');
     }
 };
