@@ -24,4 +24,5 @@ return [
     'retail_type_data' => 'Datos de la venta al detal',
     'wholesale_type_data' => 'Datos de la venta a granel',
     'unit' => 'Unidad',
+    'wholesale_packages' => 'Presentaciones del producto',
 ];

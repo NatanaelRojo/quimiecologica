@@ -16,8 +16,8 @@ return new class extends Migration
         if (!Schema::hasTable('product_wholesale_package')) {
             Schema::create('product_wholesale_package', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Product::class)->nullable();
-                $table->foreignIdFor(WholesalePackage::class)->nullable();
+                $table->foreignIdFor(Product::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->foreignIdFor(WholesalePackage::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->timestamps();
             });
         }

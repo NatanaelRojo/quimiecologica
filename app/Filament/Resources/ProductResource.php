@@ -126,10 +126,17 @@ class ProductResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Tabs::make('basic_data')->label(static::getAttributeLabel('basic_data'))
+            Forms\Components\Tabs::make()
                 ->tabs([
                     Forms\Components\Tabs\Tab::make('Información básica')
                         ->schema([
+                            // Forms\Components\Select::make('wholesale_package_id')->label(static::getAttributeLabel('wholesale_packages'))
+                            //     ->required()
+                            //     ->multiple()->relationship(name: 'wholesalePackages', titleAttribute: 'name')
+                            //     ->searchable()
+                            //     ->preload()
+                            //     ->live()
+                            //     ->afterStateUpdated(fn ($set, $state) => $set('test', $state)),
                             Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
                                 if (!$state) {
                                     return static::getAttributeLabel('inactive');
@@ -209,9 +216,17 @@ class ProductResource extends Resource
     public static function wholesaleTypeForm(): array
     {
         return [
+            Forms\Components\Select::make('packages')->label(static::getAttributeLabel('wholesale_packages'))
+                ->required()
+                ->relationship(name: 'wholesalePackages', titleAttribute: 'name')
+                ->multiple()->searchable()
+                ->live()
+                ->afterStateUpdated(fn ($set, $state) => $set('test', 'hola')),
+            Forms\Components\TextInput::make('test'),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
                 ->required()->numeric()->minValue(1),
             Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
+                ->required()
                 ->relationship(name: 'unit', titleAttribute: 'name'),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price_by_unit'))
