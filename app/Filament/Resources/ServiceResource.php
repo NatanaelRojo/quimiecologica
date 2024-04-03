@@ -18,9 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class ServiceResource extends Resource
 {
     protected static ?string $model = Service::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-beaker';
-
     protected static ?string $navigationGroup = 'Registros';
 
     public static function getModelLabel(): string
@@ -44,7 +42,8 @@ class ServiceResource extends Resource
             Forms\Components\Select::make('service_type_id')->label(static::getAttributeLabel('service_type'))
                 ->relationship(name: 'serviceType', titleAttribute: 'name')
                 ->preload()
-                ->columnSpan('full'),
+                ->columnSpan('full')
+                ->createOptionForm(ServiceTypeResource::inputForm()),
             Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
                 ->image()
                 ->columnSpan('full'),
@@ -64,13 +63,16 @@ class ServiceResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('serviceType.name')->label(static::getAttributeLabel('service_type')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
-                ->searchable(query: function (Builder $query, string $search) {
+                ->searchable(query: function (Builder $query, string $search): Builder {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
                 ->html()
                 ->words(20),
+            Tables\Columns\TextColumn::make('price')->label(static::getAttributeLabel('price'))
+                ->money('USD')->sortable(),
         ];
     }
 

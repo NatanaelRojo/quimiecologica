@@ -17,9 +17,11 @@ class Service extends Model
     use Sluggable, SluggableScopeHelpers;
 
     protected $fillable = [
+        'service_type_id',
         'banner',
         'name',
         'description',
+        'price',
     ];
 
     protected $casts = [

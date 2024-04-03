@@ -34,6 +34,7 @@
                     <tr>
                         <td>
                             <h1>Detalles de la Orden de compra</h1>
+                            <p>Estimado cliente, has generado la orden de compra código {{ $purchaseOrder->id }}, el día {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }} a la hora {{ now()->format('h:i A') }} con los siguientes datos:</p>
                             <hr>
                             <p>Nombres: {{ $purchaseOrder->owner_firstname }}</p>
                             <p>Apellidos: {{ $purchaseOrder->owner_lastname }}</p>
