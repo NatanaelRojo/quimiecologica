@@ -42,8 +42,8 @@ class ServiceResource extends Resource
             Forms\Components\Select::make('service_type_id')->label(static::getAttributeLabel('service_type'))
                 ->relationship(name: 'serviceType', titleAttribute: 'name')
                 ->preload()
-                ->columnSpan('full')
-                ->createOptionForm(ServiceTypeResource::inputForm()),
+                ->createOptionForm(ServiceTypeResource::inputForm())
+                ->columnSpan('full'),
             Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
                 ->image()
                 ->columnSpan('full'),
@@ -57,6 +57,8 @@ class ServiceResource extends Resource
                 ->required()->numeric()->minValue(1)
                 ->prefix('$')
                 ->columnSpan('full'),
+            Forms\Components\KeyValue::make('conditions')->label(static::getAttributeLabel('conditions'))
+                ->keyLabel(static::getAttributeLabel('name'))->valueLabel(static::getAttributeLabel('description')),
         ];
     }
 

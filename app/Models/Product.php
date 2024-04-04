@@ -75,6 +75,11 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function wholesalePackages(): BelongsToMany
+    {
+        return $this->belongsToMany(WholesalePackage::class, 'product_wholesale_package', 'product_id', 'wholesale_package_id');
+    }
+
     public function purchaseWholesaleOrders(): HasMany
     {
         return $this->hasMany(PurchaseWholesaleOrder::class);

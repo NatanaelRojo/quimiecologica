@@ -21,6 +21,7 @@ return new class extends Migration
                 $table->string('slug')->unique()->nullable();
                 $table->text('description')->nullable();
                 $table->unsignedBigInteger('price');
+                $table->json('conditions')->nullable();
                 // $table->string('considerations');
                 $table->timestamps();
             });

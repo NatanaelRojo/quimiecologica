@@ -22,10 +22,12 @@ class Service extends Model
         'name',
         'description',
         'price',
+        'conditions',
     ];
 
     protected $casts = [
         'price' => MoneyCast::class,
+        'conditions' => 'array',
         // 'is_active' => 'boolean',
     ];
 

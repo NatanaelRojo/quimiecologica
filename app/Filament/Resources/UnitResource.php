@@ -16,9 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class UnitResource extends Resource
 {
     protected static ?string $model = Unit::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-scale';
-
     protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
