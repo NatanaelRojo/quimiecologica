@@ -17,6 +17,7 @@ class Service extends Model
     use Sluggable, SluggableScopeHelpers;
 
     protected $fillable = [
+        'is_active',
         'service_type_id',
         'banner',
         'name',
@@ -26,9 +27,9 @@ class Service extends Model
     ];
 
     protected $casts = [
+        'is_active' => 'boolean',
         'price' => MoneyCast::class,
         'conditions' => 'array',
-        // 'is_active' => 'boolean',
     ];
 
     public function sluggable(): array

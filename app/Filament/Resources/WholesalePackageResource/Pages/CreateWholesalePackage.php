@@ -16,10 +16,10 @@ class CreateWholesalePackage extends CreateRecord
         return $this->getResource()::getUrl('index');
     }
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-        $unitName = Unit::query()->find($data['unit_id'])->abbreviation;
-        $data['name'] = "{$data['quantity']} {$unitName}";
-        return $data;
-    }
+    // protected function mutateFormDataBeforeCreate(array $data): array
+    // {
+    //     $unitName = Unit::query()->find($data['unit_id'])->abbreviation;
+    //     $data['name'] = "{$data['quantity']} {$unitName}";
+    //     return $data;
+    // }
 }

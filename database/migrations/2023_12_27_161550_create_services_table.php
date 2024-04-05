@@ -15,6 +15,7 @@ return new class extends Migration
         if (!Schema::hasTable('services')) {
             Schema::create('services', function (Blueprint $table) {
                 $table->id();
+                $table->boolean('is_active');
                 $table->foreignIdFor(ServiceType::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('name', 20);
                 $table->string('banner')->nullable();

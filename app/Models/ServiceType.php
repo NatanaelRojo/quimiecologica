@@ -11,7 +11,13 @@ class ServiceType extends Model
     use HasFactory;
 
     protected $fillable = [
+        'is_active',
+        'url_logo',
         'name',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
     ];
 
     public function services(): HasMany

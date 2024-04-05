@@ -19,6 +19,7 @@ class Product extends Model
 
     protected $casts = [
         'price' => MoneyCast::class,
+        'wholesale_price' => MoneyCast::class,
         'image_urls' => 'json',
         'is_active' => 'boolean',
     ];
@@ -28,11 +29,11 @@ class Product extends Model
         'unit_id',
         'is_active',
         'name',
-        // 'slug',
         'description',
         'stock',
         'quantity',
         'price',
+        'wholesale_price',
         'image_urls',
     ];
 

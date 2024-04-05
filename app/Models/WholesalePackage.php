@@ -13,14 +13,10 @@ class WholesalePackage extends Model
 
     protected $fillable = [
         'quantity',
-        'unit_id',
-        'name'
+        // 'unit_id',
+        'unit',
+        'name',
     ];
-
-    public function unit(): BelongsTo
-    {
-        return $this->belongsTo(Unit::class);
-    }
 
     public function products(): BelongsToMany
     {

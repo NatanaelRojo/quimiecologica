@@ -14,6 +14,8 @@ return new class extends Migration
         if (!Schema::hasTable('service_types')) {
             Schema::create('service_types', function (Blueprint $table) {
                 $table->id();
+                $table->boolean('is_active');
+                $table->string('url_logo')->nullable();
                 $table->string('name');
                 $table->timestamps();
             });

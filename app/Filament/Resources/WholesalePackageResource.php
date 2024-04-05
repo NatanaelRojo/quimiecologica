@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\WholesalePackageResource\Pages;
 use App\Filament\Resources\WholesalePackageResource\RelationManagers;
+use App\Models\Unit;
 use App\Models\WholesalePackage;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -39,18 +40,25 @@ class WholesalePackageResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
+                ->required()
+                ->readOnly(),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('quantity'))->autofocus()
                 ->required()->numeric()
-                ->minValue(0),
-            // ->live()
-            // ->afterStateUpdated(fn (Get $get, Set $set, string $state) => $set('name', "{$get('quantity')} {$get('unit_id')}")),
-            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                ->relationship(name: 'unit', titleAttribute: 'name')
-                ->preload(),
-            // ->live()
-            // ->afterStateUpdated(fn (Get $get, Set $set, string $state) => $set('name', "{$get('quantity')} {$get('unit_id')}")),
-            // Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
-            //     ->required(),
+                ->minValue(0)
+                ->live()
+                ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}")),
+            Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
+                ->options(function (): array {
+                    $options = array();
+                    $units = Unit::query()->orderBy('name')->get();
+                    foreach ($units as $unit) {
+                        $options[$unit->name] = $unit->name;
+                    }
+                    return $options;
+                })
+                ->live()
+                ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}")),
         ];
     }
 
@@ -58,8 +66,8 @@ class WholesalePackageResource extends Resource
     {
         return [
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name')),
-            Tables\Columns\TextColumn::make('quantity')->label(static::getAttributeLabel('quantity')),
-            Tables\Columns\TextColumn::make('unit.name')->label(static::getAttributeLabel('unit')),
+            // Tables\Columns\TextColumn::make('quantity')->label(static::getAttributeLabel('quantity')),
+            // Tables\Columns\TextColumn::make('unit')->label(static::getAttributeLabel('unit')),
         ];
     }
 

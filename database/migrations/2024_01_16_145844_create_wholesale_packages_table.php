@@ -16,7 +16,8 @@ return new class extends Migration
             Schema::create('wholesale_packages', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedFloat('quantity');
-                $table->foreignIdFor(Unit::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                // $table->foreignIdFor(Unit::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->string('unit');
                 $table->string('name');
                 $table->timestamps();
             });

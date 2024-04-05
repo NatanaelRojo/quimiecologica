@@ -39,6 +39,18 @@ class ServiceTypeResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('inactive');
+                }
+                return static::getAttributeLabel('active');
+            })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan('full')
+                ->live(),
+            Forms\Components\FileUpload::make('url_logo')->label(static::getAttributeLabel('logo'))
+                ->required()
+                ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
                 ->autofocus()
                 ->required()
@@ -49,6 +61,7 @@ class ServiceTypeResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('is_active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
                     return $query->where('name', 'like', "%{$search}%");
@@ -62,6 +75,16 @@ class ServiceTypeResource extends Resource
             Tables\Actions\ViewAction::make(),
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make(),
+        ];
+    }
+
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\Filter::make('is_active')->label(static::getAttributeLabel('active'))
+                ->query(fn (Builder $query): Builder => $query->where('is_active', true))
+                ->toggle()
+                ->default(),
         ];
     }
 
