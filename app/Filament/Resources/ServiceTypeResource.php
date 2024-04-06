@@ -48,7 +48,7 @@ class ServiceTypeResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
-            Forms\Components\FileUpload::make('url_logo')->label(static::getAttributeLabel('logo'))
+            Forms\Components\FileUpload::make('logo_url')->label(static::getAttributeLabel('logo'))
                 ->required()
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
@@ -97,9 +97,7 @@ class ServiceTypeResource extends Resource
     {
         return $table
             ->columns(static::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

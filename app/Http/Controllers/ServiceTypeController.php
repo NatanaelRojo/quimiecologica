@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ServiceResource;
+use App\Http\Resources\ServiceTypeResource;
 use App\Models\ServiceType;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ServiceTypeController extends Controller
 {
+    public function showTypes(ServiceType $service_type)
+    {
+        return response()->json(ServiceResource::collection($service_type->services));
+    }
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        $serviceTypes = ServiceType::query()->allActive()->get();
+        return response()->json(ServiceTypeResource::collection($serviceTypes), JsonResponse::HTTP_OK);
     }
 
     /**

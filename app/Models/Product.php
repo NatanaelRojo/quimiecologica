@@ -96,6 +96,11 @@ class Product extends Model
         return $this->belongsTo(TypeSale::class);
     }
 
+    public function scopeAllActive(Builder $query): void
+    {
+        $query->where('is_active', true);
+    }
+
     public function scopeFilterByName(Builder $query, ?string $searchTerm): void
     {
         $query->where('name', 'ilike', "%{$searchTerm}%");

@@ -23,7 +23,6 @@ return new class extends Migration
                 $table->text('description')->nullable();
                 $table->unsignedBigInteger('price');
                 $table->json('conditions')->nullable();
-                // $table->string('considerations');
                 $table->timestamps();
             });
         }

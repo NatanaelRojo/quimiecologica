@@ -18,8 +18,7 @@ class ProductController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $query = Product::query();
-        // dd($query->get());
+        $query = Product::query()->allActive();
 
         if ($request->query('saleType', null)) {
             $query->filterBySaleType($request->saleType);

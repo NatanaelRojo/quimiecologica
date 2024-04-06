@@ -15,7 +15,6 @@ class PurchaseWholesaleOrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
             'owner_firstname' => $this->owner_firstname,
             'owner_lastname' => $this->owner_lastname,
             'owner_id' => $this->owner_id,
@@ -24,7 +23,6 @@ class PurchaseWholesaleOrderResource extends JsonResource
             'owner_city' => $this->owner_city,
             'owner_address' => $this->owner_address,
             'total_price' => $this->total_price,
-            'created_at' => $this->created_at,
             'product' => new ProductResource($this->product),
             'product_quantity' => $this->product_quantity,
             'unit' => $this->unit,

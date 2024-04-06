@@ -14,6 +14,7 @@ use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRetailOrderController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceTypeController;
 use App\Http\Controllers\TypeSaleController;
 use App\Http\Controllers\UnitController;
 use Illuminate\Http\Request;
@@ -47,6 +48,8 @@ Route::apiResource('/purchase-retail-orders', PurchaseRetailOrderController::cla
 Route::apiResource('/purchase-wholesale-orders', PurchaseWholesaleOrderController::class);
 Route::apiResource('/payment-methods', PaymentMethodController::class);
 Route::apiResource('type-sales', TypeSaleController::class);
+Route::apiResource('service-types', ServiceTypeController::class);
+Route::get('/services/types/{service_type}', [ServiceTypeController::class, 'showTypes']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

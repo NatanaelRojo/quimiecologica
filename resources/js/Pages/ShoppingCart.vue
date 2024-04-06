@@ -69,14 +69,6 @@ onMounted(() => {
 const createPurchaseOrder = async () => {
     try {
         isLoading.value = true;
-        const data = [
-            {
-                product_id: 1,
-                product_quantity: '1',
-                sale_type: 'Al detal',
-                product_unit: 'No aplica',
-            },
-        ];
         record.value.owner_phone_number = selectedPhoneCode.value + record.value.owner_phone_number;
         const form = new FormData();
 
@@ -329,8 +321,8 @@ const decreaseProductQuantity = (quantities, index) => {
 
                                                     <div class="flex space-x-2">
                                                         <span>Categorías:</span>
-                                                        <div v-for="(category, index) of product.categories" :key="index"
-                                                            class="text-gray-600">
+                                                        <div v-for="(category, index) of product.categories"
+                                                            :key="index" class="text-gray-600">
                                                             {{ category.name }}
                                                         </div>
                                                     </div>
@@ -364,8 +356,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="1" :max="product.stock"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
-                                                        calculateTotalPrice(productsQuantity[index], index)"
-                                                    >
+                calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="
@@ -382,8 +373,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             focus:ring
                                                             focus:ring-blue-200
                                                             font-bold
-                                                        "
-                                                    >-</button>
+                                                        ">-</button>
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
@@ -401,18 +391,16 @@ const decreaseProductQuantity = (quantities, index) => {
                                                             focus:ring
                                                             focus:ring-blue-200
                                                             font-bold
-                                                        "
-                                                    >+</button>
+                                                        ">+</button>
                                                 </div>
                                                 <div v-else-if="product.type_sale.name === 'Granel'">
                                                     <label for="product-wholesale-quantity">{{ product.unit.name
                                                         }}(s) del
                                                         producto</label>
-                                                    <input
-                                                        type="number" id="product-wholesale-quantity"
+                                                    <input type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" :min="product.product_content"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
-                                                        calculateTotalPrice(productsQuantity[index], index)">
+                calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\MoneyCast;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -64,5 +65,10 @@ class Service extends Model
     public function conditions(): MorphMany
     {
         return $this->morphMany(Condition::class, 'conditionable');
+    }
+
+    public function scopeAllActive(Builder $query): void
+    {
+        $query->where('is_active', true);
     }
 }

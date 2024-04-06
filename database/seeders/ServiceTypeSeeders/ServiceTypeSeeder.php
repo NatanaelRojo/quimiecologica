@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ServiceTypeSeeder extends Seeder
 {
@@ -33,6 +34,7 @@ class ServiceTypeSeeder extends Seeder
             DB::table('service_types')->insert([
                 'is_active' => true,
                 'name' =>  $serviceType['name'],
+                'slug' => Str::slug($serviceType['name']),
                 'created_at' => Carbon::now(),
             ]);
         }

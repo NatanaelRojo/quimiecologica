@@ -21,9 +21,7 @@ class ServiceResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'type' => $this->serviceType->name,
-            'created_at' => $this->created_at,
             'conditions' => $this->conditions,
         ];
-        // return parent::toArray($request);
     }
 }
