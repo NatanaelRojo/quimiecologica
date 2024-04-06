@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseWholesaleOrderController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ServiceTypeController;
 use App\Mail\TestMailable;
 use App\Models\PurchaseOrder;
 use Illuminate\Foundation\Application;
@@ -68,9 +69,14 @@ Route::get('/posts/{post}', [PostController::class, 'showDetail'])
     ->missing(fn (): Response => BadRequestController::show());
 
 // Página de Servicios
-Route::get('/services', function () {
-    return Inertia::render('Service/Index');
-})->name('services');
+// Route::get('/services', function () {
+//     return Inertia::render('Service/Index');
+//     return Inertia::render('Service/Type');
+// })->name('services');
+Route::get('/services', [ServiceTypeController::class, 'showServiceTypes'])
+    ->name('services');
+Route::get('services/types/{service_type}', [ServiceTypeController::class, 'showServices'])
+    ->name('serviceType');
 
 // service detail
 Route::get('/services/{service}', [ServiceController::class, 'showDetail'])

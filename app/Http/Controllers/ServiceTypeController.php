@@ -7,13 +7,11 @@ use App\Http\Resources\ServiceTypeResource;
 use App\Models\ServiceType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ServiceTypeController extends Controller
 {
-    public function showTypes(ServiceType $service_type)
-    {
-        return response()->json(ServiceResource::collection($service_type->services));
-    }
     /**
      * Display a listing of the resource.
      */
@@ -45,6 +43,19 @@ class ServiceTypeController extends Controller
     public function show(ServiceType $serviceType)
     {
         //
+    }
+
+    public function showServiceTypes(): Response
+    {
+        return Inertia::render('Service/Type');
+    }
+
+    public function showServices(ServiceType $service_type): Response
+    {
+        $services = $service_type->services()->allActive()->get();
+        return Inertia::render('Service/Index', [
+            'services' => $services,
+        ]);
     }
 
     /**
