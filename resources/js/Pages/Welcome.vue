@@ -36,23 +36,16 @@ onMounted(async () => {
 <template>
     <MainLayout>
         <template #main>
+
             <Head title="Inicio" />
 
-            <loading
-                :active="isLoading"
-                :is-full-page="fullPage"
-                color="#82675C"
-            ></loading>
+            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección 1 -->
             <div class="container mx-auto flex flex-wrap pb-4">
-                <img
-                    :src="imagePath"
-                    class="rounded-lg w-full h-auto mx-auto mb-6"
-                />
+                <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto mb-6" />
 
-                <div
-                    class="
+                <div class="
                         font-roboto
                         w-full
                         font-bold
@@ -60,8 +53,7 @@ onMounted(async () => {
                         text-gray-800
                         px-6
                         text-center
-                    "
-                >
+                    ">
                     Fabricación de productos químicos
                 </div>
 
@@ -75,8 +67,7 @@ onMounted(async () => {
                         mt-6
                         mb-4
                         text-center
-                    "
-                >
+                    ">
                     Línea Facial BASTT®
                 </p>
             </div>
@@ -85,8 +76,7 @@ onMounted(async () => {
             <!-- Sección Productos -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2
-                        class="
+                    <h2 class="
                             font-montserrat
                             w-full
                             my-2 text-5xl
@@ -94,13 +84,11 @@ onMounted(async () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         Productos
                     </h2>
                     <div class="w-full mb-4">
-                        <div
-                            class="
+                        <div class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -109,8 +97,7 @@ onMounted(async () => {
                                 my-0
                                 py-0
                                 rounded-t
-                            "
-                        ></div>
+                            "></div>
                     </div>
 
                     <div class="flex flex-wrap">
@@ -160,8 +147,7 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -169,8 +155,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Crema humectante
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -185,8 +170,7 @@ onMounted(async () => {
                     <hr>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -194,8 +178,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Protector Solar, FPS 30
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -209,8 +192,7 @@ onMounted(async () => {
                     </div>
                     <div class="flex flex-col items-center">
                         <Link :href="route('products')">
-                            <button
-                                class="
+                        <button class="
                                     font-montserrat
                                     gradient-green
                                     mt-4
@@ -224,10 +206,9 @@ onMounted(async () => {
                                     focus:ring
                                     focus:ring-blue-200
                                     font-bold
-                                "
-                            >
-                                Ver todos
-                            </button>
+                                ">
+                            Ver todos
+                        </button>
                         </Link>
                     </div>
                 </div>
@@ -237,8 +218,7 @@ onMounted(async () => {
             <!-- Sección Servicios -->
             <section class="bg-gray-100 border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
-                    <h2
-                        class="
+                    <h2 class="
                             font-montserrat
                             w-full
                             my-2
@@ -247,13 +227,11 @@ onMounted(async () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         Servicios
                     </h2>
                     <div class="w-full mb-4">
-                        <div
-                            class="
+                        <div class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -262,14 +240,12 @@ onMounted(async () => {
                                 my-0
                                 py-0
                                 rounded-t
-                            "
-                        ></div>
+                            "></div>
                     </div>
 
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -277,8 +253,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Planificación y diseño de cosméticos
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -295,8 +270,7 @@ onMounted(async () => {
                     <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -304,8 +278,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Fabricación a granel
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -320,8 +293,7 @@ onMounted(async () => {
                     <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -329,8 +301,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Asesorías
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -345,8 +316,7 @@ onMounted(async () => {
                     <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -354,8 +324,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Análisis de muestras
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -372,8 +341,7 @@ onMounted(async () => {
                     <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -381,8 +349,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Pulverización
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -398,8 +365,7 @@ onMounted(async () => {
                     <br>
                     <div class="flex flex-wrap">
                         <div class="sm:w-1/2 p-6">
-                            <h3
-                                class="
+                            <h3 class="
                                     font-roboto
                                     text-3xl
                                     text-gray-800
@@ -407,8 +373,7 @@ onMounted(async () => {
                                     leading-none
                                     mb-6
                                     mt-6
-                                "
-                            >
+                                ">
                                 Molienda
                             </h3>
                             <p class="font-montserrat text-justify">
@@ -422,8 +387,7 @@ onMounted(async () => {
                     </div>
                     <div class="flex flex-col items-center">
                         <Link :href="route('services')">
-                            <button
-                                class="
+                        <button class="
                                     font-montserrat
                                     gradient-green
                                     mt-4
@@ -437,10 +401,9 @@ onMounted(async () => {
                                     focus:ring
                                     focus:ring-blue-200
                                     font-bold
-                                "
-                            >
-                                Ver todos
-                            </button>
+                                ">
+                            Ver todos
+                        </button>
                         </Link>
                     </div>
                 </div>
@@ -450,8 +413,7 @@ onMounted(async () => {
             <!-- Sección Opiniones de clientes -->
             <section class="bg-white border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8 font-montserrat">
-                    <h2
-                        class="
+                    <h2 class="
                             font-montserrat
                             w-full
                             my-2 text-5xl
@@ -459,13 +421,11 @@ onMounted(async () => {
                             leading-tight
                             text-center
                             text-gray-800
-                        "
-                    >
+                        ">
                         ¡Nuestros clientes lo dicen todo!
                     </h2>
                     <div class="w-full mb-4">
-                        <div
-                            class="
+                        <div class="
                                 gradient-green
                                 h-1
                                 mx-auto
@@ -474,15 +434,13 @@ onMounted(async () => {
                                 my-0
                                 py-0
                                 rounded-t
-                            "
-                        ></div>
+                            "></div>
                     </div>
                     <br>
                     <div class="flex flex-wrap">
                         <div class="-mx-3 md:flex items-start">
                             <div class="px-3 md:w-1/3">
-                                <div
-                                    class="
+                                <div class="
                                         w-full
                                         mx-auto
                                         rounded-lg
@@ -494,11 +452,9 @@ onMounted(async () => {
                                         font-light
                                         mb-6
                                         img-zoom
-                                    "
-                                >
+                                    ">
                                     <div class="w-full flex mb-4 items-center">
-                                        <div
-                                            class="
+                                        <div class="
                                                 overflow-hidden
                                                 rounded-full
                                                 w-10
@@ -506,22 +462,16 @@ onMounted(async () => {
                                                 bg-gray-50
                                                 border
                                                 border-gray-200
-                                            "
-                                        >
-                                            <img
-                                                :src="profile_1"
-                                                class="w-80 h-auto mx-auto img-zoom"
-                                            >
+                                            ">
+                                            <img :src="profile_1" class="w-80 h-auto mx-auto img-zoom">
                                         </div>
                                         <div class="flex-grow pl-3">
-                                            <h6
-                                                class="
+                                            <h6 class="
                                                     font-bold
                                                     text-sm
                                                     uppercase
                                                     text-gray-600
-                                                "
-                                            >
+                                                ">
                                                 Karla Parra.
                                             </h6>
                                         </div>
@@ -536,8 +486,7 @@ onMounted(async () => {
                                         </p>
                                     </div>
                                 </div>
-                                <div
-                                    class="
+                                <div class="
                                         w-full
                                         mx-auto
                                         rounded-lg
@@ -549,11 +498,9 @@ onMounted(async () => {
                                         font-light
                                         mb-6
                                         img-zoom
-                                    "
-                                >
+                                    ">
                                     <div class="w-full flex mb-4 items-center">
-                                        <div
-                                            class="
+                                        <div class="
                                                 overflow-hidden
                                                 rounded-full
                                                 w-10
@@ -561,22 +508,16 @@ onMounted(async () => {
                                                 bg-gray-50
                                                 border
                                                 border-gray-200
-                                            "
-                                        >
-                                            <img
-                                                :src="profile_2"
-                                                class="w-80 h-auto mx-auto img-zoom"
-                                            >
+                                            ">
+                                            <img :src="profile_2" class="w-80 h-auto mx-auto img-zoom">
                                         </div>
                                         <div class="flex-grow pl-3">
-                                            <h6
-                                                class="
+                                            <h6 class="
                                                     font-bold
                                                     text-sm
                                                     uppercase
                                                     text-gray-600
-                                                "
-                                            >
+                                                ">
                                                 María Zerpa.
                                             </h6>
                                         </div>
@@ -593,8 +534,7 @@ onMounted(async () => {
                                 </div>
                             </div>
                             <div class="px-3 md:w-1/3">
-                                <div
-                                    class="
+                                <div class="
                                         w-full
                                         mx-auto
                                         rounded-lg
@@ -605,11 +545,9 @@ onMounted(async () => {
                                         text-gray-800
                                         font-light mb-6
                                         img-zoom
-                                    "
-                                >
+                                    ">
                                     <div class="w-full flex mb-4 items-center">
-                                        <div
-                                            class="
+                                        <div class="
                                                 overflow-hidden
                                                 rounded-full
                                                 w-10
@@ -617,22 +555,16 @@ onMounted(async () => {
                                                 bg-gray-50
                                                 border
                                                 border-gray-200
-                                            "
-                                        >
-                                            <img
-                                                :src="profile_3"
-                                                class="w-80 h-auto mx-auto img-zoom"
-                                            >
+                                            ">
+                                            <img :src="profile_3" class="w-80 h-auto mx-auto img-zoom">
                                         </div>
                                         <div class="flex-grow pl-3">
-                                            <h6
-                                                class="
+                                            <h6 class="
                                                     font-bold
                                                     text-sm
                                                     uppercase
                                                     text-gray-600
-                                                "
-                                            >
+                                                ">
                                                 Andrea Pérez.
                                             </h6>
                                         </div>
@@ -647,8 +579,7 @@ onMounted(async () => {
                                         </p>
                                     </div>
                                 </div>
-                                <div
-                                    class="
+                                <div class="
                                         w-full
                                         mx-auto
                                         rounded-lg
@@ -660,11 +591,9 @@ onMounted(async () => {
                                         font-light
                                         mb-6
                                         img-zoom
-                                    "
-                                >
+                                    ">
                                     <div class="w-full flex mb-4 items-center">
-                                        <div
-                                            class="
+                                        <div class="
                                                 overflow-hidden
                                                 rounded-full
                                                 w-10
@@ -672,22 +601,16 @@ onMounted(async () => {
                                                 bg-gray-50
                                                 border
                                                 border-gray-200
-                                            "
-                                        >
-                                            <img
-                                                :src="profile_5"
-                                                class="w-80 h-auto mx-auto img-zoom"
-                                            >
+                                            ">
+                                            <img :src="profile_5" class="w-80 h-auto mx-auto img-zoom">
                                         </div>
                                         <div class="flex-grow pl-3">
-                                            <h6
-                                                class="
+                                            <h6 class="
                                                     font-bold
                                                     text-sm
                                                     uppercase
                                                     text-gray-600
-                                                "
-                                            >
+                                                ">
                                                 Charlie Contreras.
                                             </h6>
                                         </div>
@@ -704,8 +627,7 @@ onMounted(async () => {
                                 </div>
                             </div>
                             <div class="px-3 md:w-1/3">
-                                <div
-                                    class="
+                                <div class="
                                         w-full
                                         mx-auto
                                         rounded-lg
@@ -717,11 +639,9 @@ onMounted(async () => {
                                         font-light
                                         mb-6
                                         img-zoom
-                                    "
-                                >
+                                    ">
                                     <div class="w-full flex mb-4 items-center">
-                                        <div
-                                            class="
+                                        <div class="
                                                 overflow-hidden
                                                 rounded-full
                                                 w-10
@@ -729,22 +649,16 @@ onMounted(async () => {
                                                 bg-gray-50
                                                 border
                                                 border-gray-200
-                                            "
-                                        >
-                                            <img
-                                                :src="profile_6"
-                                                class="w-80 h-auto mx-auto img-zoom"
-                                            >
+                                            ">
+                                            <img :src="profile_6" class="w-80 h-auto mx-auto img-zoom">
                                         </div>
                                         <div class="flex-grow pl-3">
-                                            <h6
-                                                class="
+                                            <h6 class="
                                                     font-bold
                                                     text-sm
                                                     uppercase
                                                     text-gray-600
-                                                "
-                                            >
+                                                ">
                                                 Nevada Páez.
                                             </h6>
                                         </div>
@@ -760,8 +674,7 @@ onMounted(async () => {
                                         </p>
                                     </div>
                                 </div>
-                                <div
-                                    class="
+                                <div class="
                                         w-full
                                         mx-auto
                                         rounded-lg
@@ -773,11 +686,9 @@ onMounted(async () => {
                                         font-light
                                         mb-6
                                         img-zoom
-                                    "
-                                >
+                                    ">
                                     <div class="w-full flex mb-4 items-center">
-                                        <div
-                                            class="
+                                        <div class="
                                                 overflow-hidden
                                                 rounded-full
                                                 w-10
@@ -785,22 +696,16 @@ onMounted(async () => {
                                                 bg-gray-50
                                                 border
                                                 border-gray-200
-                                            "
-                                        >
-                                            <img
-                                                :src="profile_4"
-                                                class="w-80 h-auto mx-auto img-zoom"
-                                            >
+                                            ">
+                                            <img :src="profile_4" class="w-80 h-auto mx-auto img-zoom">
                                         </div>
                                         <div class="flex-grow pl-3">
-                                            <h6
-                                                class="
+                                            <h6 class="
                                                     font-bold
                                                     text-sm
                                                     uppercase
                                                     text-gray-600
-                                                "
-                                            >
+                                                ">
                                                 Kriss Guitierrez.
                                             </h6>
                                         </div>

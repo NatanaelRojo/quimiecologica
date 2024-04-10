@@ -120,6 +120,10 @@ class ProductResource extends Resource
                 ->label(static::getAttributeLabel('price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
+            Forms\Components\TextInput::make('wholesale_price')
+                ->label(static::getAttributeLabel('wholesale_price'))
+                ->required()->numeric()->minValue(1)
+                ->prefix('$'),
         ];
     }
 
