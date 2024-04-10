@@ -15,13 +15,13 @@ class ServiceTypeSeeder extends Seeder
             'name' => 'Molienda',
         ],
         [
-            'name' => 'Pulverizacion',
+            'name' => 'Pulverización',
         ],
         [
-            'name' => 'Análisis cosmetico'
+            'name' => 'Análisis cosmético'
         ],
         [
-            'name'  => 'Acesorías',
+            'name'  => 'Asesorías',
         ],
     ];
 
