@@ -118,11 +118,11 @@ class ProductResource extends Resource
                 ->createOptionForm(UnitResource::inputForm()),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price'))
-                ->required()->numeric()->minValue(1)
+                ->required()->numeric()->minValue(0)
                 ->prefix('$'),
             Forms\Components\TextInput::make('wholesale_price')
                 ->label(static::getAttributeLabel('wholesale_price'))
-                ->required()->numeric()->minValue(1)
+                ->required()->numeric()->minValue(0)
                 ->prefix('$'),
         ];
     }
