@@ -17,14 +17,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class AnalysisResource extends Resource
 {
     protected static ?string $model = Analysis::class;
-
     protected static ?int $navigationSort = 0;
-
     protected static ?string $navigationIcon = 'heroicon-o-magnifying-glass';
-
     protected static ?string $navigationLabel = 'Nombres';
-
     protected static ?string $navigationGroup = 'Ajustes de los Análisis';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function getModelLabel(): string
     {

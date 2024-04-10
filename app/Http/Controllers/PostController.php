@@ -18,8 +18,7 @@ class PostController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $query = Post::query();
-        $query->allPublished();
+        $query = Post::query()->allPublished();
 
         if ($request->query('title', null)) {
             $query->filterByTitle($request->title);

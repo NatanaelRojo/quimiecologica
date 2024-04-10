@@ -34,6 +34,8 @@
                     <tr>
                         <td>
                             <h1>Detalles de la Orden de compra</h1>
+                            <p>Estimado cliente, has generado la orden de compra código {{ $purchaseOrder->id }}, el día {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }} a la hora {{ now()->format('h:i A') }} con los siguientes datos:</p>
+                            <h2>Detalles personales</h2>
                             <hr>
                             <p>Nombres: {{ $purchaseOrder->owner_firstname }}</p>
                             <p>Apellidos: {{ $purchaseOrder->owner_lastname }}</p>
@@ -46,7 +48,15 @@
                             <p>Numero de referencia del pago:</b> {{ $purchaseOrder->reference_number }}</p>
                             <p>Fecha de creación:</b> {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }}</p>
                             <hr>
+                            <h2>Detalles de la compra</h2>
+                            @foreach($purchaseOrder->products_info as $product)
+                                <p>Nombre del producto: {{ $product['product_name'] }}</p>
+                                <p>Cantidad: {{ $product['product_quantity'] }} {{ $product['product_unit'] }}</p>
+                                <p>Tipo de venta: {{ $product['sale_type'] }}</p>
+                            @endforeach
+                            <hr>
                             <h2>Total: ${{ $purchaseOrder->total_price }}</h2>
+                            <p>Esta orden será despachada entre tres y ocho días hábiles a partir de la presente. Dependiendo de la disponibilidad de la empresa de envío.</p>
                         </td>
                     </tr>
                     <!-- Final Email Body -->
@@ -56,6 +66,7 @@
                             <span>
                                 <b>Teléfono:</b> 0412-5347169
                                 <br>
+                                <b>Teléfono:</b> 0274-2635666
                                 <br>
                                 <b>{{ date('Y') }} - Quimiecologi C.A.</b>
                             </span>

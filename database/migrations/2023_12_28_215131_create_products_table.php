@@ -22,6 +22,7 @@ return new class extends Migration
                 $table->string('name');
                 $table->text('description');
                 $table->unsignedBigInteger('price');
+                $table->unsignedBigInteger('wholesale_price')->nullable()->default(0);
                 $table->jsonb('image_urls');
                 $table->unsignedBigInteger('stock')->default(1);
                 $table->string('slug')->unique()->nullable();

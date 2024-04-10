@@ -17,13 +17,9 @@ class PendingOrderResource extends Resource
 {
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = PendingOrder::class;
-
     protected static ?int $navigationSort = 2;
-
     protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
-
     protected static ?string $navigationLabel = 'Pendientes';
-
     protected static ?string $navigationGroup = 'Órdenes';
 
     public static function getModelLabel(): string

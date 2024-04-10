@@ -17,7 +17,7 @@ class ServiceController extends Controller
      */
     public function index(): JsonResponse
     {
-        $services = Service::all();
+        $services = Service::query()->allActive()->get();
         return response()->json(ServiceResource::collection($services), 200);
     }
 

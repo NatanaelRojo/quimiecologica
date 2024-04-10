@@ -18,7 +18,6 @@ class AnalysisParameterResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price_per_hour' => $this->price_per_hour,
-            'created_at' => $this->created_at,
             'conditions' => ConditionResource::collection($this->conditions),
         ];
     }

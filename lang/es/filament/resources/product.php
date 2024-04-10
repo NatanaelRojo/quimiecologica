@@ -15,7 +15,8 @@ return [
     'stock' => 'En existencia',
     'minimum_quantity' => 'Cantidad mínima',
     'images' => 'Imágen(s)',
-    'price' => 'Precio',
+    'price' => 'Precio al detal',
+    'wholesale' => 'Precio al mayor',
     'price_by' => 'Precio por',
     'price_by_unit' => 'Precio por unidad',
     'product_content' => 'Contenido del producto',
@@ -24,4 +25,5 @@ return [
     'retail_type_data' => 'Datos de la venta al detal',
     'wholesale_type_data' => 'Datos de la venta a granel',
     'unit' => 'Unidad',
+    'wholesale_packages' => 'Presentaciones del producto',
 ];

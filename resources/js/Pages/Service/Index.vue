@@ -24,8 +24,8 @@ onBeforeMount(async () => {
 
 onMounted(async () => {
     try {
-        const response = await axios.get('/api/services');
-        services.value = response.data;
+        // const response = await axios.get('/api/services');
+        // services.value = response.data;
     } catch (error) {
         console.log(error);
     }
@@ -44,7 +44,10 @@ const truncateText = (text, maxLength) => {
     }
 }
 
-const services = ref([]);
+// const services = ref([]);
+const props = defineProps({
+    services: { required: true, type: Object },
+});
 </script>
 
 <template>
@@ -73,6 +76,7 @@ const services = ref([]);
                         ">
                         Nuestros Servicios
                     </h2>
+                    <h1>{{ services }}</h1>
                     <div class="w-full mb-4">
                         <div class="
                                 gradient-green

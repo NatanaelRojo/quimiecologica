@@ -19,6 +19,7 @@ class Product extends Model
 
     protected $casts = [
         'price' => MoneyCast::class,
+        'wholesale_price' => MoneyCast::class,
         'image_urls' => 'json',
         'is_active' => 'boolean',
     ];
@@ -28,11 +29,11 @@ class Product extends Model
         'unit_id',
         'is_active',
         'name',
-        // 'slug',
         'description',
         'stock',
         'quantity',
         'price',
+        'wholesale_price',
         'image_urls',
     ];
 
@@ -75,6 +76,11 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function wholesalePackages(): BelongsToMany
+    {
+        return $this->belongsToMany(WholesalePackage::class, 'product_wholesale_package', 'product_id', 'wholesale_package_id');
+    }
+
     public function purchaseWholesaleOrders(): HasMany
     {
         return $this->hasMany(PurchaseWholesaleOrder::class);
@@ -88,6 +94,11 @@ class Product extends Model
     public function typeSale(): BelongsTo
     {
         return $this->belongsTo(TypeSale::class);
+    }
+
+    public function scopeAllActive(Builder $query): void
+    {
+        $query->where('is_active', true);
     }
 
     public function scopeFilterByName(Builder $query, ?string $searchTerm): void
