@@ -21,6 +21,7 @@ class ConditionResource extends Resource
     protected static ?string $model = Condition::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Carga Inicial';
+    protected static bool $shouldRegisterNavigation = false;
 
     public static function getModelLabel(): string
     {
