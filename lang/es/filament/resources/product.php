@@ -16,7 +16,7 @@ return [
     'minimum_quantity' => 'Cantidad mínima',
     'images' => 'Imágen(s)',
     'price' => 'Precio al detal',
-    'wholesale' => 'Precio al mayor',
+    'wholesale_price' => 'Precio al mayor',
     'price_by' => 'Precio por',
     'price_by_unit' => 'Precio por unidad',
     'product_content' => 'Contenido del producto',
