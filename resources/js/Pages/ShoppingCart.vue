@@ -248,7 +248,7 @@ const decreaseProductQuantity = (quantities, index) => {
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
-            <section class="bg-white border-b py-3">
+            <section class="bg-white border-b py-3" style="min-height: 500px">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">

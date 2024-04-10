@@ -8,27 +8,25 @@ import { Head } from '@inertiajs/vue3'
         <template #main>
 
             <Head title="Recurso no encontrado" />
-            <section class="bg-white border-b py-3">
-                <h1 class="
-                font-montserrat
-                w-full
-                my-2
-                text-5xl
-                font-black
-                leading-tight
+            <section class="bg-white border-b py-3" style="min-height: 500px">
+                <div class="container max-w-5xl mx-auto m-10">
+                    <h2
+                        class="
+                            font-montserrat
+                            w-full
+                            text-5xl
+                            font-black
+                            leading-tight
                             text-center
                             text-gray-800
-                ">No se encontró el recurso</h1>
-                <h2 class="
-                font-montserrat
-                w-full
-                my-2
-                text-5xl
-                font-black
-                leading-tight
-                            text-center
-                            text-gray-800
-                ">Error 404</h2>
+                        "
+                    >
+                        No se encontró el recurso
+                        <br>
+                        <br>
+                        Error 404
+                    </h2>
+                </div>
             </section>
         </template>
     </MainLayout>

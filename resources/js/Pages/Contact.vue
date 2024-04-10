@@ -40,7 +40,7 @@ onMounted(async () => {
             ></loading>
 
             <!-- Sección -->
-            <section class="bg-white border-b py-3">
+            <section class="bg-white border-b py-3" style="min-height: 500px">
                 <div class="container max-w-5xl mx-auto m-8">
                     <a
                         href="#"
