@@ -28,7 +28,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                         text-2xl
                         lg:text-4xl
                     ">
-                <img :src="logoBrand" alt="Quimiecologi C.A." class="w-80 mx-auto" />
+                <img :src="logoBrand" alt="Quimiecologi C.A." class="w-60 mx-auto" />
                 </Link>
             </div>
 
@@ -137,7 +137,7 @@ const logoBrand = '/images/Logo-Quimiecologi-01.png';
                                 py-2
                                 px-2
                             ">
-                        <b>ASESORÍAS</b>
+                        <b>DISEÑA TU PRODUCTO</b>
                         </Link>
                     </li>
                     <li class="mr-3">
