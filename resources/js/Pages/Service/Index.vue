@@ -76,7 +76,6 @@ const props = defineProps({
                         ">
                         Nuestros Servicios
                     </h2>
-                    <h1>{{ services }}</h1>
                     <div class="w-full mb-4">
                         <div class="
                                 gradient-green
