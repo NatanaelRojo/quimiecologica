@@ -74,7 +74,7 @@ const props = defineProps({
                             text-center
                             text-gray-800
                         ">
-                        Nuestros Servicios
+                        Nuestros Servicios de {{ services[0].service_type_id }}
                     </h2>
                     <div class="w-full mb-4">
                         <div class="
