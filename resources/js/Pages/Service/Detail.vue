@@ -78,7 +78,21 @@ onMounted(async () => {
                         <p class="text-gray-600 mb-4 text-justify">
                             <span v-html="service.description"></span>
                         </p>
-
+                        <p class="text-gray-600 mb-4 text-justify">
+                            <b>Precio:</b> ${{ service.price }}
+                        </p>
+                        <!-- Condiciones -->
+                        <div v-if="service.conditions && service.conditions.length > 0">
+                            <h2>Condiciones:</h2>
+                            <ul>
+                                <li v-for="(condition, index) in service.conditions" :key="index">
+                                    <b>{{ condition }}</b>
+                                </li>
+                            </ul>
+                        </div>
+                        <div v-else>
+                            No hay condiciones
+                        </div>
                     </div>
                 </div>
             </section>
