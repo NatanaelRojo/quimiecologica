@@ -16,11 +16,18 @@
             width: 100% !important;
         }
     }
+    p {
+        color: #82675C;
+    }
+    .title-color {
+        color: #93BC00;
+    }
+
     </style>
 </head>
 <body>
     <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-        <tr style="background: #9d8980 !important">
+        <tr style="background: #E5E1DF !important">
             <td align="center">
                 <table class="content" width="100%" cellpadding="15" cellspacing="0" role="presentation">
                     <!-- Email Header -->
@@ -33,10 +40,10 @@
                     <!-- Email Body -->
                     <tr>
                         <td>
-                            <h1>Detalles de la Orden de compra</h1>
+                            <h1 class="title-color">Detalles de la Orden de compra</h1>
                             <p>Estimado cliente, has generado la orden de compra código {{ $purchaseOrder->id }}, el día {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }} a la hora {{ now()->format('h:i A') }} con los siguientes datos:</p>
-                            <h2>Detalles personales</h2>
-                            <hr>
+                            <h2 class="title-color">Detalles personales</h2>
+                            <hr class="title-color">
                             <p>Nombres: {{ $purchaseOrder->owner_firstname }}</p>
                             <p>Apellidos: {{ $purchaseOrder->owner_lastname }}</p>
                             <p>Cédula de identidad: {{ $purchaseOrder->owner_id }}</p>
@@ -47,15 +54,15 @@
                             <p>Dirección de domicilio:</b> {{ $purchaseOrder->owner_address }}</p>
                             <p>Numero de referencia del pago:</b> {{ $purchaseOrder->reference_number }}</p>
                             <p>Fecha de creación:</b> {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }}</p>
-                            <hr>
-                            <h2>Detalles de la compra</h2>
+                            <hr class="title-color">
+                            <h2 class="title-color">Detalles de la compra</h2>
                             @foreach($purchaseOrder->products_info as $product)
                                 <p>Nombre del producto: {{ $product['product_name'] }}</p>
                                 <p>Cantidad: {{ $product['product_quantity'] }} {{ $product['product_unit'] }}</p>
                                 <p>Tipo de venta: {{ $product['sale_type'] }}</p>
                             @endforeach
-                            <hr>
-                            <h2>Total: ${{ $purchaseOrder->total_price }}</h2>
+                            <hr class="title-color">
+                            <h2 class="title-color">Total: ${{ $purchaseOrder->total_price }}</h2>
                             <p>Esta orden será despachada entre tres y ocho días hábiles a partir de la presente. Dependiendo de la disponibilidad de la empresa de envío.</p>
                         </td>
                     </tr>
