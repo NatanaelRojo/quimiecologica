@@ -25,6 +25,7 @@ class Product extends Model
     ];
 
     protected $fillable = [
+        'brand_id',
         'type_sale_id',
         'unit_id',
         'is_active',
@@ -147,5 +148,15 @@ class Product extends Model
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function productTypes(): BelongsToMany
+    {
+        return $this->belongsToMany(ProductType::class);
+    }
+
+    public function brand(): BelongsTo
+    {
+        return $this->belongsTo(Brand::class);
     }
 }
