@@ -3,6 +3,8 @@
 return [
     'label' => "Producto",
     'plural_label' => "Productos",
+    'brand' => 'Marca',
+    'product_types' => 'Tipos de producto',
     'categories' => 'Categorías',
     'genders' => 'Géneros',
     'type_sales' => 'Tipo de venta',
