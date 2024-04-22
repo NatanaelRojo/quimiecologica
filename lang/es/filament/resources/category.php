@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'label' => "Categoría",
-    'plural_label' => "Categorías",
+    'label' => "Subclase",
+    'plural_label' => "Subclases",
     'name' => 'Nombre'
 ];

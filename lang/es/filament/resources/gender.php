@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'label' => "Género",
-    'plural_label' => "Géneros",
+    'label' => "Cuota",
+    'plural_label' => "Cuotas",
     'name' => 'Nombre',
 ];

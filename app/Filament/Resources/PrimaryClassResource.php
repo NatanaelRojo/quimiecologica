@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\PrimaryClassResource\Pages;
+use App\Filament\Resources\PrimaryClassResource\RelationManagers;
+use App\Models\PrimaryClass;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,46 +13,55 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class PrimaryClassResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = PrimaryClass::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
     protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {
-        return __('filament/resources/category.label');
+        return __('filament/resources/primary_class.label');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament/resources/category.plural_label');
+        return __('filament/resources/primary_class.plural_label');
     }
 
     public static function getAttributeLabel(string $attribute): string
     {
-        return __("filament/resources/category.{$attribute}");
+        return __("filament/resources/primary_class.{$attribute}");
     }
 
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
-                ->relationship(name: 'primaryClass', titleAttribute: 'name')
-                ->preload()
-                ->searchable(),
+            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('inactive');
+                }
+                return static::getAttributeLabel('active');
+            })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan('full')
+                ->live(),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20),
+            Forms\Components\TextInput::make('description')->label(static::getAttributeLabel('description'))
+                ->autofocus(),
         ];
     }
 
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");
                 }),
+            Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))->limit(20),
         ];
     }
 
@@ -67,17 +76,17 @@ class CategoryResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form->schema(CategoryResource::inputForm());
+        return $form->schema(static::inputForm());
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns(CategoryResource::tableColumns())
+            ->columns(static::tableColumns())
             ->filters([
                 //
             ])
-            ->actions(CategoryResource::tableActions())
+            ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
@@ -95,9 +104,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListPrimaryClasses::route('/'),
+            'create' => Pages\CreatePrimaryClass::route('/create'),
+            'edit' => Pages\EditPrimaryClass::route('/{record}/edit'),
         ];
     }
 }
