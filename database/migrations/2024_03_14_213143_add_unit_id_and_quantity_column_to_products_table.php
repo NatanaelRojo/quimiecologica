@@ -15,8 +15,8 @@ return new class extends Migration
     {
         if (!Schema::hasColumn('products', 'unit_id') && !Schema::hasColumn('products', 'quantity')) {
             Schema::table('products', function (Blueprint $table) {
-                $table->foreignIdFor(Unit::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-                $table->unsignedInteger('quantity');
+                // $table->foreignIdFor(Unit::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->unsignedInteger('quantity')->default(0);
             });
         }
     }

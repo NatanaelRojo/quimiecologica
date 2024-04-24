@@ -83,9 +83,9 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function presentations(): BelongsToMany
+    public function measures(): BelongsToMany
     {
-        return $this->belongsToMany(Presentation::class);
+        return $this->belongsToMany(Measure::class);
     }
 
     public function purchaseWholesaleOrders(): HasMany

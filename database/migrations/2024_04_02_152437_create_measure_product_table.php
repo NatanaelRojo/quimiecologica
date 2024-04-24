@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Presentation;
+use App\Models\Measure;
 use App\Models\Product;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('presentation_product')) {
-            Schema::create('presentation_product', function (Blueprint $table) {
+        if (!Schema::hasTable('measure_product')) {
+            Schema::create('measure_product', function (Blueprint $table) {
                 $table->id();
-                $table->foreignIdFor(Presentation::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->foreignIdFor(Measure::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->foreignIdFor(Product::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->timestamps();
             });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('presentation_product');
+        Schema::dropIfExists('measure_product');
     }
 };

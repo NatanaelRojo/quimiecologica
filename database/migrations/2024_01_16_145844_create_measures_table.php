@@ -12,12 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('presentations')) {
-            Schema::create('presentations', function (Blueprint $table) {
+        if (!Schema::hasTable('measures')) {
+            Schema::create('measures', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedFloat('quantity');
-                $table->string('unit');
-                $table->string('name');
+                // $table->string('name');
+                $table->string('size', 10)->default('');
+                $table->float('quantity')->default(0);
+                $table->string('unit')->default('');
+                $table->string('type');
                 $table->timestamps();
             });
         }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('presentations');
+        Schema::dropIfExists('measures');
     }
 };

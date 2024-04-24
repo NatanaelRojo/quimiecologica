@@ -2,52 +2,60 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PresentationResource\Pages;
-use App\Filament\Resources\PresentationResource\RelationManagers;
-use App\Models\Presentation;
+use App\Filament\Resources\MeasureResource\Pages;
+use App\Filament\Resources\MeasureResource\RelationManagers;
+use App\Models\Measure;
 use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Forms\Set;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PresentationResource extends Resource
+class MeasureResource extends Resource
 {
-    protected static ?string $model = Presentation::class;
+    protected static ?string $model = Measure::class;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {
-        return __('filament/resources/presentation.label');
+        return __('filament/resources/measure.label');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament/resources/presentation.plural_label');
+        return __('filament/resources/measure.plural_label');
     }
 
     public static function getAttributeLabel(string $attribute): string
     {
-        return __("filament/resources/presentation.{$attribute}");
+        return __("filament/resources/measure.{$attribute}");
     }
 
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Select::make('type')->label(static::getAttributeLabel('type'))
+                ->options([
+                    'Tallas' => 'Tallas',
+                    'Unidades' => 'Unidades',
+                ])
+                ->live(),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
                 ->required()
-                ->readOnly(),
+                ->readOnly(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('quantity'))->autofocus()
                 ->required()->numeric()
                 ->minValue(0)
                 ->live()
-                ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}")),
+                ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}"))
+                ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false)
+                ->dehydrated(false),
             Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
                 ->options(function (): array {
                     $options = array();
@@ -58,7 +66,15 @@ class PresentationResource extends Resource
                     return $options;
                 })
                 ->live()
-                ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}")),
+                ->afterStateUpdated(function (Get $get, Set $set, ?string $state): void {
+                    $presentationName = '';
+                    if ($get('quantity') >= 1) {
+                        $presentationName = "{$get('unit')}s";
+                    }
+                    $set('name', "{$get('quantity')} {$presentationName}");
+                })
+                ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false)
+                ->dehydrated(false),
         ];
     }
 
@@ -110,9 +126,9 @@ class PresentationResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPresentations::route('/'),
-            'create' => Pages\CreatePresentation::route('/create'),
-            'edit' => Pages\EditPresentation::route('/{record}/edit'),
+            'index' => Pages\ListMeasures::route('/'),
+            'create' => Pages\CreateMeasure::route('/create'),
+            'edit' => Pages\EditMeasure::route('/{record}/edit'),
         ];
     }
 }

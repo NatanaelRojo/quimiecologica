@@ -109,13 +109,6 @@ class ProductResource extends Resource
         return [
             Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
                 ->required()->numeric()->minValue(0),
-            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('product_content'))
-                ->required()->numeric()
-                ->minValue(1),
-            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                ->required()
-                ->relationship(name: 'unit',  titleAttribute: 'name')
-                ->createOptionForm(UnitResource::inputForm()),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price'))
                 ->required()->numeric()->minValue(0)
@@ -171,9 +164,9 @@ class ProductResource extends Resource
                                 ->preload()
                                 ->createOptionForm(TypeSaleResource::inputForm())
                                 ->live(),
-                            Forms\Components\Select::make('wholesale_package_id')->label(static::getAttributeLabel('wholesale_packages'))
+                            Forms\Components\Select::make('measures')->label(static::getAttributeLabel('measures'))
                                 ->required()
-                                ->multiple()->relationship(name: 'presentations', titleAttribute: 'name')
+                                ->multiple()->relationship(name: 'measures', titleAttribute: 'name')
                                 ->searchable()
                                 ->preload()
                                 ->visible(function (Get $get, $livewire): bool {
@@ -186,7 +179,7 @@ class ProductResource extends Resource
                                         default => false,
                                     };
                                 })
-                                ->createOptionForm(WholesalePackageResource::inputForm()),
+                                ->createOptionForm(MeasureResource::inputForm()),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),

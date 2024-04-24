@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Filament\Resources\MeasureResource\Pages;
+
+use App\Filament\Resources\MeasureResource;
+use Filament\Actions;
+use Filament\Resources\Pages\CreateRecord;
+
+class CreateMeasure extends CreateRecord
+{
+    protected static string $resource = MeasureResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+}
