@@ -37,10 +37,21 @@ class CategoryResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('inactive');
+                }
+                return static::getAttributeLabel('active');
+            })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan('full')
+                ->live(),
             Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
                 ->relationship(name: 'primaryClass', titleAttribute: 'name')
                 ->preload()
-                ->searchable(),
+                ->searchable()
+                ->createOptionForm(PrimaryClassResource::inputForm())
+                ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20),
         ];
@@ -49,6 +60,7 @@ class CategoryResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('primaryClass.name')->label(static::getAttributeLabel('primary_class')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");

@@ -20,11 +20,16 @@ class GenderSeeder extends Seeder
      */
     public function run(): void
     {
+        $count = 1;
         foreach (static::$genders as $gender) {
-            DB::table('genders')->insert([
+            DB::table('genders')->updateOrInsert([
+                'id' => $count,
                 'name' => $gender,
+            ], [
+                'is_active' => true,
                 'created_at' => Carbon::now(),
             ]);
+            $count++;
         }
         // for ($i = 0; $i < 5; $i++) {
         //     DB::table('genders')->insert([

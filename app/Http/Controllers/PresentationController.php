@@ -2,23 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WholesalePackage;
 use Illuminate\Http\Request;
 
-class WholesalePackageController extends Controller
+class PresentationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
         //
     }
@@ -34,15 +25,7 @@ class WholesalePackageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(WholesalePackage $wholesalePackage)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(WholesalePackage $wholesalePackage)
+    public function show(string $id)
     {
         //
     }
@@ -50,7 +33,7 @@ class WholesalePackageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, WholesalePackage $wholesalePackage)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -58,7 +41,7 @@ class WholesalePackageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(WholesalePackage $wholesalePackage)
+    public function destroy(string $id)
     {
         //
     }

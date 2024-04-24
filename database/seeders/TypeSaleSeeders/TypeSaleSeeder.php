@@ -28,13 +28,17 @@ class TypeSaleSeeder extends Seeder
      */
     public function run(): void
     {
+        $count = 1;
         foreach (static::$type_sales as $type_sale) {
-            DB::table('type_sales')->insert([
+            DB::table('type_sales')->updateOrInsert([
+                'id' => $count,
                 'name' => $type_sale['name'],
+            ], [
                 'description' => $type_sale['description'],
                 'deletable' => false,
                 'created_at' => Carbon::now(),
             ]);
+            $count++;
         }
         // DB::table('type_sales')->insert([
         //     'name' => 'Detal',

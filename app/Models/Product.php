@@ -25,7 +25,8 @@ class Product extends Model
     ];
 
     protected $fillable = [
-        'brand_id',
+        'primary_class_id',
+        // 'brand_id',
         'type_sale_id',
         'unit_id',
         'is_active',
@@ -57,6 +58,11 @@ class Product extends Model
         return 'slug';
     }
 
+    public function primaryClass(): BelongsTo
+    {
+        return $this->belongsTo(PrimaryClass::class);
+    }
+
     public function pendingOrders(): HasMany
     {
         return $this->hasMany(PendingOrder::class);
@@ -77,9 +83,9 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function wholesalePackages(): BelongsToMany
+    public function presentations(): BelongsToMany
     {
-        return $this->belongsToMany(WholesalePackage::class, 'product_wholesale_package', 'product_id', 'wholesale_package_id');
+        return $this->belongsToMany(Presentation::class);
     }
 
     public function purchaseWholesaleOrders(): HasMany

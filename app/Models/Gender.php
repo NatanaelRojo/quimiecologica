@@ -11,13 +11,18 @@ class Gender extends Model
     use HasFactory;
 
     protected $fillable = [
+        'is_active',
         'name',
     ];
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
 
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);
-        (Product::class);
     }
 
     public function products(): BelongsToMany

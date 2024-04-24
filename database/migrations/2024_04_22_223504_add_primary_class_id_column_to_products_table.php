@@ -12,8 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasColumn('categories', 'primary_class_id')) {
-            Schema::table('categories', function (Blueprint $table) {
+        if (!Schema::hasColumn('products', 'primary_class_id')) {
+            Schema::table('products', function (Blueprint $table) {
                 $table->foreignIdFor(PrimaryClass::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             });
         }
@@ -24,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->dropForeign(['primary_class_id']);
         });
     }

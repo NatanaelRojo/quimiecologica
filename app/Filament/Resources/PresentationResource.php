@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\WholesalePackageResource\Pages;
-use App\Filament\Resources\WholesalePackageResource\RelationManagers;
+use App\Filament\Resources\PresentationResource\Pages;
+use App\Filament\Resources\PresentationResource\RelationManagers;
+use App\Models\Presentation;
 use App\Models\Unit;
-use App\Models\WholesalePackage;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -16,25 +16,25 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class WholesalePackageResource extends Resource
+class PresentationResource extends Resource
 {
-    protected static ?string $model = WholesalePackage::class;
+    protected static ?string $model = Presentation::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {
-        return __('filament/resources/wholesale_package.label');
+        return __('filament/resources/presentation.label');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __('filament/resources/wholesale_package.plural_label');
+        return __('filament/resources/presentation.plural_label');
     }
 
     public static function getAttributeLabel(string $attribute): string
     {
-        return __("filament/resources/wholesale_package.{$attribute}");
+        return __("filament/resources/presentation.{$attribute}");
     }
 
     public static function inputForm(): array
@@ -110,9 +110,9 @@ class WholesalePackageResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListWholesalePackages::route('/'),
-            'create' => Pages\CreateWholesalePackage::route('/create'),
-            'edit' => Pages\EditWholesalePackage::route('/{record}/edit'),
+            'index' => Pages\ListPresentations::route('/'),
+            'create' => Pages\CreatePresentation::route('/create'),
+            'edit' => Pages\EditPresentation::route('/{record}/edit'),
         ];
     }
 }

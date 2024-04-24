@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Unit;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,11 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('genders')) {
-            Schema::create('genders', function (Blueprint $table) {
+        if (!Schema::hasTable('presentations')) {
+            Schema::create('presentations', function (Blueprint $table) {
                 $table->id();
-                $table->boolean('is_active')->default(false);
-                $table->string('name', 20);
+                $table->unsignedFloat('quantity');
+                $table->string('unit');
+                $table->string('name');
                 $table->timestamps();
             });
         }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('genders');
+        Schema::dropIfExists('presentations');
     }
 };

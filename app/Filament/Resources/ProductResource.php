@@ -150,6 +150,12 @@ class ProductResource extends Resource
                                 ->maxFiles(5)
                                 ->reorderable()
                                 ->columnSpan('full'),
+                            Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
+                                ->required()
+                                ->relationship(name: 'primaryClass', titleAttribute: 'name')
+                                ->preload()
+                                ->createOptionForm(PrimaryClassResource::inputForm())
+                                ->columnSpan('full'),
                             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                                 ->required()
                                 ->multiple()->relationship('categories', 'name')->searchable()->preload()
@@ -167,7 +173,7 @@ class ProductResource extends Resource
                                 ->live(),
                             Forms\Components\Select::make('wholesale_package_id')->label(static::getAttributeLabel('wholesale_packages'))
                                 ->required()
-                                ->multiple()->relationship(name: 'wholesalePackages', titleAttribute: 'name')
+                                ->multiple()->relationship(name: 'presentations', titleAttribute: 'name')
                                 ->searchable()
                                 ->preload()
                                 ->visible(function (Get $get, $livewire): bool {
