@@ -6,6 +6,7 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\ImagesRelationManager;
 use App\Filament\Resources\PurchaseOrderResource\RelationManagers\ProductsRelationManager;
+use App\Models\Measure;
 use App\Models\Product;
 use App\Models\Unit;
 use Filament\Forms;
@@ -166,19 +167,24 @@ class ProductResource extends Resource
                                 ->live(),
                             Forms\Components\Select::make('measures')->label(static::getAttributeLabel('measures'))
                                 ->required()
-                                ->multiple()->relationship(name: 'measures', titleAttribute: 'name')
+                                ->relationship(
+                                    name: 'measures',
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('id')
+                                )
+                                ->multiple()
+                                ->getOptionLabelFromRecordUsing(fn (Measure $record): string => $record->name)
                                 ->searchable()
                                 ->preload()
-                                ->visible(function (Get $get, $livewire): bool {
-                                    if ($livewire instanceof Pages\EditProduct && $get('type_sale_id') === '2') {
-                                        return true;
-                                    }
-                                    return match ($get('type_sale_id')) {
-                                        '1' => false,
-                                        '2' => true,
-                                        default => false,
-                                    };
-                                })
+                                // ->visible(function (Get $get, $livewire): bool {
+                                //     if ($livewire instanceof Pages\EditProduct && $get('type_sale_id') === '2') {
+                                //         return true;
+                                //     }
+                                //     return match ($get('type_sale_id')) {
+                                //         '1' => false,
+                                //         '2' => true,
+                                //         default => false,
+                                //     };
+                                // })
                                 ->createOptionForm(MeasureResource::inputForm()),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
@@ -230,14 +236,13 @@ class ProductResource extends Resource
     public static function wholesaleTypeForm(): array
     {
         return [
-            // Forms\Components\Select::make('data.packages')->label(static::getAttributeLabel('wholesale_packages'))
+            // Forms\Components\Select::make('minimum_quantity')->label(static::getAttributeLabel('minimum_quantity'))
             //     ->required()
-            //     ->relationship(name: 'wholesalePackages', titleAttribute: 'name')
-            //     ->multiple()->searchable()
-            //     ->searchable()->preload()
-            //     ->live()
-            //     ->afterStateUpdated(fn ($set, $state) => $set('test', 'hola')),
-            // Forms\Components\TextInput::make('test'),
+            //     ->relationship(
+            //         name: 'measures',
+            //         modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('id')->where('quantity', '!=', 0)
+            //     )
+            //     ->getOptionLabelFromRecordUsing(fn (Measure $record): string => $record->name),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
                 ->required()->numeric()->minValue(1),
             Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))

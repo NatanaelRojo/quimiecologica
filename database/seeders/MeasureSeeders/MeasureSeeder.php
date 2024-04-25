@@ -50,7 +50,7 @@ class MeasureSeeder extends Seeder
                 $presentationName = "{$unit->name}s";
             }
             DB::table('measures')->updateOrInsert([
-                'id' => $count,
+                // 'id' => $count,
                 // 'name' => "{$presentationSize} {$presentationName}",
             ], [
                 'quantity' => $presentationSize,
@@ -63,7 +63,7 @@ class MeasureSeeder extends Seeder
         }
         foreach (static::$sizes as $size) {
             DB::table('measures')->updateOrInsert([
-                'id' => $count,
+                // 'id' => $count,
                 'size' => $size['name'],
             ], [
                 'type' => $size['type'],

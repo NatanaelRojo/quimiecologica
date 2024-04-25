@@ -30,17 +30,14 @@ class ServiceTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $count = 1;
         foreach (static::$serviceTypes as $serviceType) {
             DB::table('service_types')->updateOrInsert([
-                'id' => $count,
                 'name' =>  $serviceType['name'],
             ], [
                 'is_active' => true,
                 'slug' => Str::slug($serviceType['name']),
                 'created_at' => Carbon::now(),
             ]);
-            $count++;
         }
     }
 }

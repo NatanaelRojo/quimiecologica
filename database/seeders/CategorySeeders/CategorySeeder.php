@@ -24,17 +24,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $count = 1;
         foreach (static::$categories as $category) {
             DB::table('categories')->updateOrInsert([
-                'id' => $count,
                 'name' => $category,
             ], [
                 'primary_class_id' => 1,
                 'is_active' => true,
                 'created_at' => Carbon::now(),
             ]);
-            $count++;
         }
     }
 }

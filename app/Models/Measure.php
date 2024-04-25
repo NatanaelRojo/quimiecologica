@@ -22,7 +22,7 @@ class Measure extends Model
         if ($this->size !== '') {
             return $this->size;
         }
-        if ($this->quantity >= 1) {
+        if ($this->quantity != 1) {
             $presentationName = "{$this->unit}s";
         }
         return "{$this->quantity} {$presentationName}";

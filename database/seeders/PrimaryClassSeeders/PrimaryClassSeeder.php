@@ -19,17 +19,14 @@ class PrimaryClassSeeder extends Seeder
      */
     public function run(): void
     {
-        $count = 1;
         foreach (static::$primaryClasses as $primaryClass) {
             DB::table('primary_classes')->updateOrInsert([
-                'id' => $count,
                 'name' => $primaryClass,
             ], [
                 'is_active' => true,
                 'description' => '',
                 'created_at' => Carbon::now(),
             ]);
-            $count++;
         }
     }
 }

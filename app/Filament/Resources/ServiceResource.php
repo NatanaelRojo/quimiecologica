@@ -49,6 +49,7 @@ class ServiceResource extends Resource
                 ->columnSpan('full')
                 ->live(),
             Forms\Components\Select::make('service_type_id')->label(static::getAttributeLabel('service_type'))
+                ->required()
                 ->relationship(name: 'serviceType', titleAttribute: 'name')
                 ->preload()
                 ->createOptionForm(ServiceTypeResource::inputForm())

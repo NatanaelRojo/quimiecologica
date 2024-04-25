@@ -40,16 +40,13 @@ class UnitSeeder extends Seeder
      */
     public function run(): void
     {
-        $count = 1;
         foreach (static::$units as $unit) {
             DB::table('units')->updateOrInsert([
-                'id' => $count,
                 'name' => $unit['name'],
             ], [
                 'abbreviation' => $unit['abbreviation'],
                 'created_at' => Carbon::now(),
             ]);
-            $count++;
         }
         // for ($i = 0; $i < 5; $i++) {
         //     DB::table('units')->insert([

@@ -46,16 +46,12 @@ class MeasureResource extends Resource
                     'Unidades' => 'Unidades',
                 ])
                 ->live(),
-            Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
-                ->required()
-                ->readOnly(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('quantity'))->autofocus()
                 ->required()->numeric()
                 ->minValue(0)
                 ->live()
                 ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}"))
-                ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false)
-                ->dehydrated(false),
+                ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false),
             Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
                 ->options(function (): array {
                     $options = array();
@@ -68,13 +64,12 @@ class MeasureResource extends Resource
                 ->live()
                 ->afterStateUpdated(function (Get $get, Set $set, ?string $state): void {
                     $presentationName = '';
-                    if ($get('quantity') >= 1) {
+                    if ($get('quantity') != 1) {
                         $presentationName = "{$get('unit')}s";
                     }
                     $set('name', "{$get('quantity')} {$presentationName}");
                 })
-                ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false)
-                ->dehydrated(false),
+                ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false),
         ];
     }
 
