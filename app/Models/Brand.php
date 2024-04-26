@@ -11,13 +11,14 @@ class Brand extends Model
     use HasFactory;
 
     protected $fillable = [
+        'is_active',
         'logo_url',
         'name',
         'description',
     ];
 
-    public function productTypes(): BelongsToMany
+    public function primaryClasses(): BelongsToMany
     {
-        return $this->belongsToMany(ProductType::class);
+        return $this->belongsToMany(PrimaryClass::class);
     }
 }

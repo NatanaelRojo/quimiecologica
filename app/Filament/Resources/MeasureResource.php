@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class MeasureResource extends Resource
 {
     protected static ?string $model = Measure::class;
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string
     {

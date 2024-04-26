@@ -17,7 +17,8 @@ class GenderResource extends Resource
 {
     protected static ?string $model = Gender::class;
     protected static ?string $navigationIcon = 'heroicon-o-users';
-    protected static ?string $navigationGroup = 'Carga Inicial';
+    // protected static ?int $navigationSort = 2;
+    protected static ?string $navigationGroup = 'Clasificacion';
 
     public static function getModelLabel(): string
     {

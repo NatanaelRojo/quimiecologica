@@ -18,7 +18,7 @@ return new class extends Migration
         if (!Schema::hasTable('products')) {
             Schema::create('products', function (Blueprint $table) {
                 $table->id();
-                // $table->foreignIdFor(Brand::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->foreignIdFor(Brand::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->foreignIdFor(TypeSale::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->boolean('is_active');
                 $table->string('name');

@@ -1,12 +1,11 @@
 <?php
 
 return [
-    'label' => 'Clase',
-    'plural_label' => 'Clases',
+    'label' => 'Marca',
+    'plural_label' => 'Marcas',
+    'logo' => 'Logo',
     'name' => 'Nombre',
     'description' => 'Descripción',
-    'is_active' => 'Activo',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
-    'brands' => 'Marcas',
 ];

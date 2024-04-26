@@ -144,6 +144,12 @@ class ProductResource extends Resource
                                 ->maxFiles(5)
                                 ->reorderable()
                                 ->columnSpan('full'),
+                            Forms\Components\Select::make('brand')->label(static::getAttributeLabel('brand'))
+                                ->required()
+                                ->relationship(name: 'brands', titleAttribute: 'name')
+                                ->preload()
+                                ->searchable()
+                                ->createOptionForm(BrandResource::inputForm()),
                             Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
                                 ->required()
                                 ->relationship(name: 'primaryClass', titleAttribute: 'name')

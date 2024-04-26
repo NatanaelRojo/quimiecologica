@@ -73,6 +73,11 @@ class Product extends Model
     //     return $this->belongsTo(Service::class);
     // }
 
+    public function brands(): BelongsToMany
+    {
+        return $this->belongsToMany(Brand::class);
+    }
+
     public function genders(): BelongsToMany
     {
         return $this->belongsToMany(Gender::class);
