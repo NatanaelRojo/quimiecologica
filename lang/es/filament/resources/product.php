@@ -3,6 +3,7 @@
 return [
     'label' => "Producto",
     'plural_label' => "Productos",
+    'basic_info' => 'Información básica',
     'brand' => 'Marca',
     'product_types' => 'Tipos de producto',
     'primary_class' => 'Clase',
@@ -25,7 +26,7 @@ return [
     'product_content' => 'Contenido del producto',
     'all' => 'Todos',
     'basic_data' => 'Información básica del producto',
-    'retail_type_data' => 'Datos de la venta al detal',
+    'retail_type_data' => 'Datos de la venta al detal/mayor',
     'wholesale_type_data' => 'Datos de la venta a granel',
     'unit' => 'Unidad',
     'measures' => 'Medidas del producto',

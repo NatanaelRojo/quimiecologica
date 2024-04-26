@@ -17,6 +17,7 @@ class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Clasificacion';
 
     public static function getModelLabel(): string
     {
@@ -50,7 +51,8 @@ class BrandResource extends Resource
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20),
-            Forms\Components\TextInput::make('description')->label(static::getAttributeLabel('description')),
+            Forms\Components\RichEditor::make('description')->label(static::getAttributeLabel('description'))
+                ->columnSpan('full'),
         ];
     }
 

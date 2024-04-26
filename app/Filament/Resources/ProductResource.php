@@ -104,7 +104,6 @@ class ProductResource extends Resource
         };
     }
 
-
     protected static function retailTypeForm(): array
     {
         return [
@@ -126,7 +125,8 @@ class ProductResource extends Resource
         return [
             Forms\Components\Tabs::make()
                 ->tabs([
-                    Forms\Components\Tabs\Tab::make('Información básica')
+                    Forms\Components\Tabs\Tab::make('basic info')
+                        ->label(static::getAttributeLabel('basic_info'))
                         ->schema([
                             Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
                                 if (!$state) {
@@ -135,7 +135,7 @@ class ProductResource extends Resource
                                 return static::getAttributeLabel('active');
                             })->required()
                                 ->onColor('success')->offColor('danger')
-                                ->columnSpan(2)
+                                ->columnSpan('full')
                                 ->live(),
                             Forms\Components\FileUpload::make('image_urls')->label(static::getAttributeLabel('images'))
                                 ->multiple()
@@ -154,8 +154,8 @@ class ProductResource extends Resource
                                 ->required()
                                 ->relationship(name: 'primaryClass', titleAttribute: 'name')
                                 ->preload()
-                                ->createOptionForm(PrimaryClassResource::inputForm())
-                                ->columnSpan('full'),
+                                ->searchable()
+                                ->createOptionForm(PrimaryClassResource::inputForm()),
                             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                                 ->required()
                                 ->multiple()->relationship('categories', 'name')->searchable()->preload()
@@ -181,16 +181,6 @@ class ProductResource extends Resource
                                 ->getOptionLabelFromRecordUsing(fn (Measure $record): string => $record->name)
                                 ->searchable()
                                 ->preload()
-                                // ->visible(function (Get $get, $livewire): bool {
-                                //     if ($livewire instanceof Pages\EditProduct && $get('type_sale_id') === '2') {
-                                //         return true;
-                                //     }
-                                //     return match ($get('type_sale_id')) {
-                                //         '1' => false,
-                                //         '2' => true,
-                                //         default => false,
-                                //     };
-                                // })
                                 ->createOptionForm(MeasureResource::inputForm()),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
@@ -198,16 +188,16 @@ class ProductResource extends Resource
                             Forms\Components\RichEditor::make('description')->label(static::getAttributeLabel('description'))
                                 ->required()
                                 ->columnSpan('full'),
-                        ]),
+                        ])->columns(2),
                     Forms\Components\Tabs\Tab::make('retail_type_data')->label(static::getAttributeLabel('retail_type_data'))
                         ->schema(fn (Get $get, $livewire, ?Model $record): array => static::tabSchema($get, $livewire, $record))
-                        ->visible(fn (Get $get, $livewire, ?Model $record): bool => static::showRetailTab($get, $livewire, $record)),
+                        ->visible(fn (Get $get, $livewire, ?Model $record): bool => static::showRetailTab($get, $livewire, $record))
+                        ->columns(2),
                     Forms\Components\Tabs\Tab::make('wholesale_type_data')->label(static::getAttributeLabel('wholesale_type_data'))
                         ->schema(fn (Get $get, $livewire, ?Model $record): array => static::tabSchema($get, $livewire, $record))
-                        ->visible(fn (Get $get, $livewire, ?model $record): bool => static::showWholesaleTab($get, $livewire, $record)),
-                ])
-                ->live()
-                ->columnSpan('full'),
+                        ->visible(fn (Get $get, $livewire, ?model $record): bool => static::showWholesaleTab($get, $livewire, $record))
+                        ->columns(2),
+                ])->columnSpan('full'),
         ];
     }
 
@@ -242,13 +232,6 @@ class ProductResource extends Resource
     public static function wholesaleTypeForm(): array
     {
         return [
-            // Forms\Components\Select::make('minimum_quantity')->label(static::getAttributeLabel('minimum_quantity'))
-            //     ->required()
-            //     ->relationship(
-            //         name: 'measures',
-            //         modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('id')->where('quantity', '!=', 0)
-            //     )
-            //     ->getOptionLabelFromRecordUsing(fn (Measure $record): string => $record->name),
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
                 ->required()->numeric()->minValue(1),
             Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
