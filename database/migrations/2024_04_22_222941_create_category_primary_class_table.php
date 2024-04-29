@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\PrimaryClass;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,9 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasColumn('products', 'primary_class_id')) {
-            Schema::table('products', function (Blueprint $table) {
+        if (!Schema::hasTable('category_primary_class')) {
+            Schema::create('category_primary_class', function (Blueprint $table) {
+                $table->id();
+                $table->foreignIdFor(Category::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->foreignIdFor(PrimaryClass::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->timestamps();
             });
         }
     }
@@ -24,8 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropForeign(['primary_class_id']);
-        });
+        Schema::dropIfExists('category_primary_class');
     }
 };

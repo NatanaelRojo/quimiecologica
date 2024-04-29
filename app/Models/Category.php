@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
@@ -17,9 +18,9 @@ class Category extends Model
         'name',
     ];
 
-    public function primaryClass(): BelongsTo
+    public function primaryClasses(): BelongsToMany
     {
-        return $this->belongsTo(PrimaryClass::class);
+        return $this->belongsToMany(PrimaryClass::class);
     }
 
     public function genders(): BelongsToMany
@@ -36,4 +37,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    // public function products(): HasMany
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 }

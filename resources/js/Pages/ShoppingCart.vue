@@ -221,7 +221,7 @@ const increaseProductQuantity = (quantities, index) => {
 }
 
 const decreaseProductQuantity = (quantities, index) => {
-    if (productsQuantity.value[index] - 1 === 0 && arrayProducts.value[index].type_sale.name === 'Detal') {
+    if (productsQuantity.value[index] - 1 === 0 && arrayProducts.value[index].type_sale.name === 'Detal/Mayor') {
         return;
     } else if (productsQuantity.value[index] - 1 < arrayProducts.value[index].quantity && arrayProducts.value[index].type_sale.name === 'Granel') {
         return;
@@ -298,10 +298,10 @@ const decreaseProductQuantity = (quantities, index) => {
                                             <!-- Información a la izquierda -->
                                             <div class="flex flex-col">
                                                 <Link :href="route(
-                'products.detail',
-                product.slug
-            )
-                ">
+                                                    'products.detail',
+                                                    product.slug
+                                                )
+                                                    ">
                                                 <img :src="`/storage/${product.image_urls[0]}`"
                                                     alt="Imagen del producto"
                                                     class="w-full h-40 object-cover mb-4 rounded-md img-zoom">
@@ -350,13 +350,13 @@ const decreaseProductQuantity = (quantities, index) => {
                                                     </div>
                                                 </div>
                                                 </Link>
-                                                <div v-if="product.type_sale.name === 'Detal'">
+                                                <div v-if="product.type_sale.name === 'Detal/Mayor'">
                                                     <label for="product-retail-quantity">Cantidad del
                                                         producto</label>
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="1" :max="product.stock"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
-                calculateTotalPrice(productsQuantity[index], index)">
+                                                            calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="
@@ -400,7 +400,7 @@ const decreaseProductQuantity = (quantities, index) => {
                                                     <input type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" :min="product.product_content"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
-                calculateTotalPrice(productsQuantity[index], index)">
+                                                            calculateTotalPrice(productsQuantity[index], index)">
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="

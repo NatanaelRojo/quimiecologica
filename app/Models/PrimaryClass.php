@@ -17,13 +17,18 @@ class PrimaryClass extends Model
         'description',
     ];
 
-    public function categories(): HasMany
+    public function categories(): BelongsToMany
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function brands(): BelongsToMany
     {
         return $this->belongsToMany(Brand::class);
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 }

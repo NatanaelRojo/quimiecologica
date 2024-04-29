@@ -171,9 +171,9 @@
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
                                     <Link :href="route(
-                'products.detail',
-                product.slug
-            )">
+                                        'products.detail',
+                                        product.slug
+                                    )">
                                     <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
                                                 w-full h-50 object-cover mb-4
                                                 rounded-md img-zoom
@@ -264,8 +264,8 @@
                             text-center text-gray-800
                         ">
                         {{ isFiltered ?
-                'No hay coincidencias' :
-                        'No hay productos disponibles ' }}
+                            'No hay coincidencias' :
+                            'No hay productos disponibles ' }}
                     </h2>
                     <!-- Fin del grid de productos -->
                 </div>
@@ -314,6 +314,7 @@ onMounted(async () => {
     try {
         let response = await axios.get("/api/products");
         products.value = response.data;
+        console.log(products.value)
         response = await axios.get('/api/type-sales');
         typeSales.value = response.data;
         response = await axios.get('/api/categories');

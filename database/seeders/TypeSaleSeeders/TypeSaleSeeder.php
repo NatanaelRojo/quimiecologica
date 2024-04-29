@@ -11,18 +11,15 @@ class TypeSaleSeeder extends Seeder
 {
     protected static array $type_sales = [
         [
-            'name' => 'Detal',
+            'name' => 'Detal/Mayor',
             'description' => 'Venta de productos a pequeñas cantidades',
         ],
         [
             'name' => 'Granel',
             'description' => 'Venta de productos a grandes cantidades (un solo recipiente)',
         ],
-        [
-            'name' => 'Mayor',
-            'description' => 'Venta de productos a grandes cantidades (varios recipientes)',
-        ],
     ];
+
     /**
      * Run the database seeds.
      */

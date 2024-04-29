@@ -144,9 +144,9 @@ class ProductResource extends Resource
                                 ->maxFiles(5)
                                 ->reorderable()
                                 ->columnSpan('full'),
-                            Forms\Components\Select::make('brand')->label(static::getAttributeLabel('brand'))
+                            Forms\Components\Select::make('brand_id')->label(static::getAttributeLabel('brand'))
                                 ->required()
-                                ->relationship(name: 'brands', titleAttribute: 'name')
+                                ->relationship(name: 'brand', titleAttribute: 'name')
                                 ->preload()
                                 ->searchable()
                                 ->createOptionForm(BrandResource::inputForm()),
@@ -156,14 +156,25 @@ class ProductResource extends Resource
                                 ->preload()
                                 ->searchable()
                                 ->createOptionForm(PrimaryClassResource::inputForm()),
+                            // Forms\Components\Select::make('category_id')->label(static::getAttributeLabel('category'))
+                            //     ->required()
+                            //     ->relationship('category', 'name')->searchable()->preload()
+                            //     ->createOptionForm(CategoryResource::inputForm()),
+                            // Forms\Components\Select::make('gender_id')->label(static::getAttributeLabel('gender'))
+                            //     ->required()
+                            //     ->relationship('gender', 'name')
+                            //     ->searchable()->preload()
+                            //     ->createOptionForm(GenderResource::inputForm()),
                             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                                 ->required()
-                                ->multiple()->relationship('categories', 'name')->searchable()->preload()
+                                ->multiple()
+                                ->relationship('categories', 'name')->searchable()->preload()
                                 ->createOptionForm(CategoryResource::inputForm()),
                             Forms\Components\Select::make('genders')->label(static::getAttributeLabel('genders'))
                                 ->required()
+                                ->multiple()
                                 ->relationship('genders', 'name')
-                                ->multiple()->searchable()->preload()
+                                ->searchable()->preload()
                                 ->createOptionForm(GenderResource::inputForm()),
                             Forms\Components\Select::make('type_sale_id')->label(static::getAttributeLabel('type_sales'))
                                 ->required()
@@ -182,6 +193,9 @@ class ProductResource extends Resource
                                 ->searchable()
                                 ->preload()
                                 ->createOptionForm(MeasureResource::inputForm()),
+                            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
+                                ->required()
+                                ->relationship(name: 'unit', titleAttribute: 'name'),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),
@@ -204,8 +218,8 @@ class ProductResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
-            Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
+            Tables\Columns\TextColumn::make('category.name')->label(static::getAttributeLabel('category'))->searchable(),
+            Tables\Columns\TextColumn::make('gender.name')->label(static::getAttributeLabel('gender'))->searchable(),
             Tables\Columns\TextColumn::make('typeSale.name')->label(static::getAttributeLabel('type_sales'))->searchable(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
@@ -251,13 +265,13 @@ class ProductResource extends Resource
                 ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
             Tables\Filters\SelectFilter::make('type_sale')->label(static::getAttributeLabel('type_sales'))
                 ->relationship(name: 'typeSale', titleAttribute: 'name'),
-            Tables\Filters\SelectFilter::make('categories')->label(static::getAttributeLabel('categories'))
+            Tables\Filters\SelectFilter::make('category')->label(static::getAttributeLabel('category'))
                 ->multiple()
-                ->relationship(name: 'categories', titleAttribute: 'name')
+                ->relationship(name: 'category', titleAttribute: 'name')
                 ->preload(),
-            Tables\Filters\SelectFilter::make('genders')->label(static::getAttributeLabel('genders'))
+            Tables\Filters\SelectFilter::make('gender')->label(static::getAttributeLabel('gender'))
                 ->multiple()
-                ->relationship(name: 'genders', titleAttribute: 'name')
+                ->relationship(name: 'gender', titleAttribute: 'name')
                 ->preload(),
         ];
     }

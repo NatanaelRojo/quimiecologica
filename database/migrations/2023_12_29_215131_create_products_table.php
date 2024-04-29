@@ -3,6 +3,7 @@
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Gender;
+use App\Models\PrimaryClass;
 use App\Models\TypeSale;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,6 +20,9 @@ return new class extends Migration
             Schema::create('products', function (Blueprint $table) {
                 $table->id();
                 $table->foreignIdFor(Brand::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                $table->foreignIdFor(PrimaryClass::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                // $table->foreignIdFor(Category::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+                // $table->foreignIdFor(Gender::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->foreignIdFor(TypeSale::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->boolean('is_active');
                 $table->string('name');

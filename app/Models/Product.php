@@ -25,8 +25,10 @@ class Product extends Model
     ];
 
     protected $fillable = [
+        'brand_id',
         'primary_class_id',
-        // 'brand_id',
+        'category_id',
+        'gender_id',
         'type_sale_id',
         'unit_id',
         'is_active',
@@ -78,9 +80,19 @@ class Product extends Model
         return $this->belongsToMany(Brand::class);
     }
 
+    public function gender(): BelongsTo
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
     public function genders(): BelongsToMany
     {
-        return $this->belongsToMany(Gender::class);
+        return $this->belongsToMany(Gender::class,);
+    }
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function categories(): BelongsToMany
