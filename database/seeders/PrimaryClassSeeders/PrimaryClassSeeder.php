@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PrimaryClassSeeder extends Seeder
 {
     protected static array $primaryClasses = [
-        'Cosmeticos',
+        'Cosméticos',
         'Prendas',
     ];
 
