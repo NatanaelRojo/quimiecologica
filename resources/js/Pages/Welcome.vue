@@ -41,691 +41,177 @@ onMounted(async () => {
 
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
-            <!-- Sección 1 -->
-            <div class="container mx-auto flex flex-wrap pb-4">
-                <img :src="imagePath" class="rounded-lg w-full h-auto mx-auto mb-6" />
+            <!-- Navigation Toggle -->
+        <button type="button" class="text-gray-500 hover:text-gray-600" data-hs-overlay="#docs-sidebar" aria-controls="docs-sidebar" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle Navigation</span>
+        <svg class="flex-shrink-0 size-4" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        </button>
+        <!-- End Navigation Toggle -->
 
-                <div class="
-                        font-roboto
-                        w-full
-                        font-bold
-                        text-xl
-                        text-gray-800
-                        px-6
-                        text-center
-                    ">
-                    Fabricación de productos químicos
+        <!-- Sidebar -->
+        <div id="docs-sidebar" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800 dark:border-neutral-700">
+        <div class="px-6">
+            <a class="flex-none text-xl font-semibold dark:text-white" href="#" aria-label="Brand">Brand</a>
+        </div>
+        <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+            <ul class="space-y-1.5">
+            <li>
+                <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-700 dark:text-white" href="#">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                Dashboard
+                </a>
+            </li>
+
+            <li class="hs-accordion" id="users-accordion">
+                <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Users
+
+                <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                <svg class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <div id="users-accordion" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                <ul class="hs-accordion-group ps-3 pt-2" data-hs-accordion-always-open>
+                    <li class="hs-accordion" id="users-accordion-sub-1">
+                    <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
+                        Sub Menu 1
+
+                        <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                        <svg class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+
+                    <div id="users-accordion-sub-1" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                        <ul class="pt-2 ps-2">
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                            Link 1
+                            </a>
+                        </li>
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                            Link 2
+                            </a>
+                        </li>
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                            Link 3
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                    </li>
+                    <li class="hs-accordion" id="users-accordion-sub-2">
+                    <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
+                        Sub Menu 2
+
+                        <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                        <svg class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+
+                    <div id="users-accordion-sub-2" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden ps-2">
+                        <ul class="pt-2 ps-2">
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                            Link 1
+                            </a>
+                        </li>
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                            Link 2
+                            </a>
+                        </li>
+                        <li>
+                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                            Link 3
+                            </a>
+                        </li>
+                        </ul>
+                    </div>
+                    </li>
+                </ul>
                 </div>
+            </li>
 
-                <p class="
-                        font-roboto
-                        text-gray-800
-                        w-full
-                        text-xs
-                        md:text-sm
-                        px-6
-                        mt-6
-                        mb-4
-                        text-center
-                    ">
-                    Línea Facial BASTT®
-                </p>
-            </div>
-            <!-- Final Sección 1 -->
+            <li class="hs-accordion" id="account-accordion">
+                <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4-.9-.3"/><path d="m15.2 13.9-.9-.3"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.6 18.7-.4-1"/><path d="m16.8 12.3-.4-1"/><path d="m14.3 16.6 1-.4"/><path d="m20.7 13.8 1-.4"/></svg>
+                Account
 
-            <!-- Sección Productos -->
-            <section class="bg-white border-b py-3">
-                <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="
-                            font-montserrat
-                            w-full
-                            my-2 text-5xl
-                            font-black
-                            leading-tight
-                            text-center
-                            text-gray-800
-                        ">
-                        Productos
-                    </h2>
-                    <div class="w-full mb-4">
-                        <div class="
-                                gradient-green
-                                h-1
-                                mx-auto
-                                w-64
-                                opacity-75
-                                my-0
-                                py-0
-                                rounded-t
-                            "></div>
-                    </div>
+                <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
 
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
-                                Leche desmaquillante
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
-                                Tónico
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="font-roboto text-3xl text-gray-800 font-bold leading-none mb-6 mt-6">
-                                Exfoliante
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Crema humectante
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Protector Solar, FPS 30
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                                at ipsum eu nunc commodo posuere et sit amet ligula.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <Link :href="route('products')">
-                        <button class="
-                                    font-montserrat
-                                    gradient-green
-                                    mt-4
-                                    bg-blue-500
-                                    text-white
-                                    py-2 px-4
-                                    rounded-md
-                                    hover:bg-blue-600
-                                    focus:outline-none
-                                    focus:border-blue-700
-                                    focus:ring
-                                    focus:ring-blue-200
-                                    font-bold
-                                ">
-                            Ver todos
-                        </button>
-                        </Link>
-                    </div>
+                <svg class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <div id="account-accordion" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                <ul class="pt-2 ps-2">
+                    <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                        Link 1
+                    </a>
+                    </li>
+                    <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                        Link 2
+                    </a>
+                    </li>
+                    <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                        Link 3
+                    </a>
+                    </li>
+                </ul>
                 </div>
-            </section>
-            <!-- Final Sección Productos -->
+            </li>
 
-            <!-- Sección Servicios -->
-            <section class="bg-gray-100 border-b py-3">
-                <div class="container max-w-5xl mx-auto m-8">
-                    <h2 class="
-                            font-montserrat
-                            w-full
-                            my-2
-                            text-5xl
-                            font-black
-                            leading-tight
-                            text-center
-                            text-gray-800
-                        ">
-                        Servicios
-                    </h2>
-                    <div class="w-full mb-4">
-                        <div class="
-                                gradient-green
-                                h-1
-                                mx-auto
-                                w-64
-                                opacity-75
-                                my-0
-                                py-0
-                                rounded-t
-                            "></div>
-                    </div>
+            <li class="hs-accordion" id="projects-accordion">
+                <button type="button" class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 2H8.6c-.4 0-.8.2-1.1.5-.3.3-.5.7-.5 1.1v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8c.4 0 .8-.2 1.1-.5.3-.3.5-.7.5-1.1V6.5L15.5 2z"/><path d="M3 7.6v12.8c0 .4.2.8.5 1.1.3.3.7.5 1.1.5h9.8"/><path d="M15 2v5h5"/></svg>
+                Projects
 
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Planificación y diseño de cosméticos
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                ¡Anímate. Que sólo la intención ya no cuenta en
-                                éstos tiempos! Materializa con nosotros tus
-                                ideas y conviértelas en productos
-                                personalizados, a gusto tuyo o de tus clientes.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Fabricación a granel
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Cuenta con nosotros para fabricar a escala,
-                                aquello que deseas.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Asesorías
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Te orientamos en todas las etapas previas a
-                                comercializar tus productos o marca.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Análisis de muestras
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Si tienes el producto y desear registros de las
-                                propiedades químicas (pH, viscosidad, grado de
-                                alcohol, conductividad), también podemos
-                                ayudarte.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="servicios_analisis_muestras" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Pulverización
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Transforme en polvo cualquier sólido natural,
-                                utilizado como materia prima comestible o
-                                cosmético.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="servicios_pulverizacion" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="flex flex-wrap">
-                        <div class="sm:w-1/2 p-6">
-                            <h3 class="
-                                    font-roboto
-                                    text-3xl
-                                    text-gray-800
-                                    font-bold
-                                    leading-none
-                                    mb-6
-                                    mt-6
-                                ">
-                                Molienda
-                            </h3>
-                            <p class="font-montserrat text-justify">
-                                Reduzca el tamaño de las partículas de sólidos
-                                naturales, comestibles y cosméticos.
-                            </p>
-                        </div>
-                        <div class="sm:w-1/2">
-                            <img :src="productOne" class="w-80 h-auto mx-auto img-zoom">
-                        </div>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <Link :href="route('services')">
-                        <button class="
-                                    font-montserrat
-                                    gradient-green
-                                    mt-4
-                                    bg-blue-500
-                                    text-white
-                                    py-2 px-4
-                                    rounded-md
-                                    hover:bg-blue-600
-                                    focus:outline-none
-                                    focus:border-blue-700
-                                    focus:ring
-                                    focus:ring-blue-200
-                                    font-bold
-                                ">
-                            Ver todos
-                        </button>
-                        </Link>
-                    </div>
+                <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+
+                <svg class="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <div id="projects-accordion" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
+                <ul class="pt-2 ps-2">
+                    <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                        Link 1
+                    </a>
+                    </li>
+                    <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                        Link 2
+                    </a>
+                    </li>
+                    <li>
+                    <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                        Link 3
+                    </a>
+                    </li>
+                </ul>
                 </div>
-            </section>
-            <!-- Final Sección Servicios -->
+            </li>
 
-            <!-- Sección Opiniones de clientes -->
-            <section class="bg-white border-b py-3">
-                <div class="container max-w-5xl mx-auto m-8 font-montserrat">
-                    <h2 class="
-                            font-montserrat
-                            w-full
-                            my-2 text-5xl
-                            font-black
-                            leading-tight
-                            text-center
-                            text-gray-800
-                        ">
-                        ¡Nuestros clientes lo dicen todo!
-                    </h2>
-                    <div class="w-full mb-4">
-                        <div class="
-                                gradient-green
-                                h-1
-                                mx-auto
-                                w-64
-                                opacity-75
-                                my-0
-                                py-0
-                                rounded-t
-                            "></div>
-                    </div>
-                    <br>
-                    <div class="flex flex-wrap">
-                        <div class="-mx-3 md:flex items-start">
-                            <div class="px-3 md:w-1/3">
-                                <div class="
-                                        w-full
-                                        mx-auto
-                                        rounded-lg
-                                        bg-white
-                                        border
-                                        border-gray-200
-                                        p-5
-                                        text-gray-800
-                                        font-light
-                                        mb-6
-                                        img-zoom
-                                    ">
-                                    <div class="w-full flex mb-4 items-center">
-                                        <div class="
-                                                overflow-hidden
-                                                rounded-full
-                                                w-10
-                                                h-10
-                                                bg-gray-50
-                                                border
-                                                border-gray-200
-                                            ">
-                                            <img :src="profile_1" class="w-80 h-auto mx-auto img-zoom">
-                                        </div>
-                                        <div class="flex-grow pl-3">
-                                            <h6 class="
-                                                    font-bold
-                                                    text-sm
-                                                    uppercase
-                                                    text-gray-600
-                                                ">
-                                                Karla Parra.
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight text-justify">
-                                            "¡Los productos de cuidado personal
-                                            de esta tienda son increíbles! Mi
-                                            piel nunca ha lucido tan radiante y
-                                            saludable. ¡Definitivamente los
-                                            recomiendo!"
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="
-                                        w-full
-                                        mx-auto
-                                        rounded-lg
-                                        bg-white
-                                        border
-                                        border-gray-200
-                                        p-5
-                                        text-gray-800
-                                        font-light
-                                        mb-6
-                                        img-zoom
-                                    ">
-                                    <div class="w-full flex mb-4 items-center">
-                                        <div class="
-                                                overflow-hidden
-                                                rounded-full
-                                                w-10
-                                                h-10
-                                                bg-gray-50
-                                                border
-                                                border-gray-200
-                                            ">
-                                            <img :src="profile_2" class="w-80 h-auto mx-auto img-zoom">
-                                        </div>
-                                        <div class="flex-grow pl-3">
-                                            <h6 class="
-                                                    font-bold
-                                                    text-sm
-                                                    uppercase
-                                                    text-gray-600
-                                                ">
-                                                María Zerpa.
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight text-justify">
-                                            "Estoy encantada con los resultados
-                                            que he obtenido utilizando los
-                                            productos de esta marca. ¡Mi rutina
-                                            de cuidado personal nunca ha sido
-                                            tan efectiva y placentera!"
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="px-3 md:w-1/3">
-                                <div class="
-                                        w-full
-                                        mx-auto
-                                        rounded-lg
-                                        bg-white
-                                        border
-                                        border-gray-200
-                                        p-5
-                                        text-gray-800
-                                        font-light mb-6
-                                        img-zoom
-                                    ">
-                                    <div class="w-full flex mb-4 items-center">
-                                        <div class="
-                                                overflow-hidden
-                                                rounded-full
-                                                w-10
-                                                h-10
-                                                bg-gray-50
-                                                border
-                                                border-gray-200
-                                            ">
-                                            <img :src="profile_3" class="w-80 h-auto mx-auto img-zoom">
-                                        </div>
-                                        <div class="flex-grow pl-3">
-                                            <h6 class="
-                                                    font-bold
-                                                    text-sm
-                                                    uppercase
-                                                    text-gray-600
-                                                ">
-                                                Andrea Pérez.
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight text-justify">
-                                            "Desde que empecé a usar estos
-                                            productos, he notado una gran
-                                            mejoría en la textura y apariencia
-                                            de mi piel. ¡Son simplemente
-                                            maravillosos!"
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="
-                                        w-full
-                                        mx-auto
-                                        rounded-lg
-                                        bg-white
-                                        border
-                                        border-gray-200
-                                        p-5
-                                        text-gray-800
-                                        font-light
-                                        mb-6
-                                        img-zoom
-                                    ">
-                                    <div class="w-full flex mb-4 items-center">
-                                        <div class="
-                                                overflow-hidden
-                                                rounded-full
-                                                w-10
-                                                h-10
-                                                bg-gray-50
-                                                border
-                                                border-gray-200
-                                            ">
-                                            <img :src="profile_5" class="w-80 h-auto mx-auto img-zoom">
-                                        </div>
-                                        <div class="flex-grow pl-3">
-                                            <h6 class="
-                                                    font-bold
-                                                    text-sm
-                                                    uppercase
-                                                    text-gray-600
-                                                ">
-                                                Charlie Contreras.
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight text-justify">
-                                            "He probado innumerables productos
-                                            de cuidado personal, y ninguno se
-                                            compara a la calidad y efectividad
-                                            de los que ofrece esta tienda. ¡Para
-                                            mi ahora son imprescindibles!"
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="px-3 md:w-1/3">
-                                <div class="
-                                        w-full
-                                        mx-auto
-                                        rounded-lg
-                                        bg-white
-                                        border
-                                        border-gray-200
-                                        p-5
-                                        text-gray-800
-                                        font-light
-                                        mb-6
-                                        img-zoom
-                                    ">
-                                    <div class="w-full flex mb-4 items-center">
-                                        <div class="
-                                                overflow-hidden
-                                                rounded-full
-                                                w-10
-                                                h-10
-                                                bg-gray-50
-                                                border
-                                                border-gray-200
-                                            ">
-                                            <img :src="profile_6" class="w-80 h-auto mx-auto img-zoom">
-                                        </div>
-                                        <div class="flex-grow pl-3">
-                                            <h6 class="
-                                                    font-bold
-                                                    text-sm
-                                                    uppercase
-                                                    text-gray-600
-                                                ">
-                                                Nevada Páez.
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight text-justify">
-                                            "Mis expectativas han sido superadas
-                                            con creces desde que comencé a usar
-                                            estos productos. Mi piel se siente
-                                            renovada y luce más saludable que
-                                            nunca. ¡Gracias por crear productos
-                                            tan asombrosos!"
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="
-                                        w-full
-                                        mx-auto
-                                        rounded-lg
-                                        bg-white
-                                        border
-                                        border-gray-200
-                                        p-5
-                                        text-gray-800
-                                        font-light
-                                        mb-6
-                                        img-zoom
-                                    ">
-                                    <div class="w-full flex mb-4 items-center">
-                                        <div class="
-                                                overflow-hidden
-                                                rounded-full
-                                                w-10
-                                                h-10
-                                                bg-gray-50
-                                                border
-                                                border-gray-200
-                                            ">
-                                            <img :src="profile_4" class="w-80 h-auto mx-auto img-zoom">
-                                        </div>
-                                        <div class="flex-grow pl-3">
-                                            <h6 class="
-                                                    font-bold
-                                                    text-sm
-                                                    uppercase
-                                                    text-gray-600
-                                                ">
-                                                Kriss Guitierrez.
-                                            </h6>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="text-xl text-sm leading-tight text-justify">
-                                            "No suelo dejar testimonios, pero
-                                            estos productos realmente lo merecen.
-                                            Mi experiencia ha sido fantástica y
-                                            no puedo estar más satisfecha con
-                                            los resultados que he obtenido."
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Final Sección Opiniones de clientes -->
+            <li><a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+                Calendar
+            </a></li>
+            <li><a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300" href="#">
+                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                Documentation
+            </a></li>
+            </ul>
+        </nav>
+        </div>
+        <!-- End Sidebar -->
         </template>
     </MainLayout>
 </template>
