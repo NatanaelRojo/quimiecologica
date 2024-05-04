@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <!-- Footer -->
-    <footer class="gradient border-b py-8">
+    <footer class="gradient-brown border-b py-8">
         <div class="container mx-auto mt-8 px-8">
             <div class="w-full flex flex-col md:flex-row py-6">
                 <div class="flex-1 mb-6">
@@ -141,7 +141,7 @@ import { Link } from '@inertiajs/vue3';
                     hover:text-underline
                 "
             >
-                <Link :href="route('welcome')">Quimiecologi C.A.</Link>
+                <Link :href="route('welcome')">QUIMIECOLOGI C.A.</Link>
             </p>
         </div>
     </footer>

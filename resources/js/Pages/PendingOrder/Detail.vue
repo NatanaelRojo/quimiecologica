@@ -6,7 +6,7 @@
 
             <NavBar />
 
-            <section class="bg-white border-b py-12">
+            <section class="gradient border-b py-12">
                 <div class="container mx-auto">
                     <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
                         Detalle de la orden

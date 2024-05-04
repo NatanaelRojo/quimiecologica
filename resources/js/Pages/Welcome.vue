@@ -74,7 +74,7 @@ onMounted(async () => {
             <!-- Final Sección 1 -->
 
             <!-- Sección Opiniones de clientes -->
-            <section class="bg-white border-b py-3">
+            <section class="bg-white border-b py-3 gradient">
                 <div class="container max-w-5xl mx-auto m-8 font-montserrat">
                     <h2 class="
                             font-montserrat

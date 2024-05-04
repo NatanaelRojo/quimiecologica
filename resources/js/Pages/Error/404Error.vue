@@ -8,7 +8,7 @@ import { Head } from '@inertiajs/vue3'
         <template #main>
 
             <Head title="Recurso no encontrado" />
-            <section class="bg-white border-b py-3" style="min-height: 500px">
+            <section class="gradient border-b py-3" style="min-height: 500px">
                 <div class="container max-w-5xl mx-auto m-10">
                     <h2
                         class="

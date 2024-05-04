@@ -7,7 +7,7 @@
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
-            <section class="bg-white border-b py-3" style="min-height: 500px">
+            <section class="gradient border-b py-3" style="min-height: 500px">
                 <!-- Notificación del carrito -->
                 <Link :href="route('shopping-cart')">
                 <div v-if="arrayProducts.length > 0" class="container max-w-5xl mx-auto m-8" role="alert">

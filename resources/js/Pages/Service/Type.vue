@@ -42,7 +42,7 @@ onMounted(async () => {
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
-            <section class="bg-white border-b py-3">
+            <section class="gradient border-b py-3">
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
