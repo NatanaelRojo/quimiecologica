@@ -13,7 +13,8 @@
         <script src="{{ asset('toastr/toastr.min.js') }}" type="text/javascript"></script>
         <!-- Toastr CSS -->
         <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}" type="text/css"/>
-        <!-- Scripts -->
+        <!-- Flowbite CSS -->
+        <link rel="stylesheet" href="{{ asset('flowbite/flowbite.min.css') }}" type="text/css"/>
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         {{-- @vite('resources/js/app.js') --}}
@@ -21,5 +22,7 @@
     </head>
     <body class="gradient leading-relaxed tracking-wide flex flex-col font-sans antialiased">
         @inertia
+        <!-- Flowbite JS -->
+        <script src="{{ asset('flowbite/flowbite.min.js') }}" type="text/javascript"></script>
     </body>
 </html>
