@@ -1,6 +1,6 @@
 <template>
     <header>
-        <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 light:bg-gray-800 light:border-gray-700">
+        <nav class="fixed top-0 z-50 w-full gradient-green border-b border-gray-200 light:bg-gray-800 light:border-gray-700">
           <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
               <div class="flex items-center justify-start rtl:justify-end">
@@ -10,7 +10,7 @@
                        <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                     </svg>
                  </button>
-                <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                <a :href="route('welcome')" class="flex ms-2 md:me-24">
                     <img
                         :src="LogoQuimiecologi01"
                         class="w-40 inline-block img-zoom"
@@ -27,8 +27,8 @@
           </div>
         </nav>
 
-        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 light:bg-gray-800 light:border-gray-700" aria-label="Sidebar">
-           <div class="h-full px-3 pb-4 overflow-y-auto bg-white light:bg-gray-800">
+        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full gradient border-r border-gray-200 sm:translate-x-0 light:bg-gray-800 light:border-gray-700" aria-label="Sidebar">
+           <div class="h-full px-3 pb-4 overflow-y-auto gradient light:bg-gray-800">
               <ul class="space-y-2 font-medium">
                  <li>
                     <Link
