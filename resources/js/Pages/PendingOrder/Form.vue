@@ -4,7 +4,7 @@
 
             <Head title="Formulario de registro" />
 
-            <section class="bg-white border-b py-12">
+            <section class="gradient border-b py-12">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container mx-auto p-4">
                     <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">

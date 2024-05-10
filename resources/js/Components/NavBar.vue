@@ -1,189 +1,206 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
-const logoBrand = '/images/Logo-Quimiecologi-01.png';
+const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 </script>
 
 <template>
-    <!-- Barra de menú -->
-    <nav id="header" class="w-full z-30 top-0 text-white py-1 lg:py-6">
-        <div class="
-                w-full
-                container
-                mx-auto
-                flex
-                flex-wrap
-                items-center
-                justify-between
-                mt-0
-                px-2
-                py-2
-                lg:py-6
-            ">
-            <div class="pl-4 items-center">
-                <Link :href="route('welcome')" class="
-                        text-white
-                        no-underline
-                        hover:no-underline
-                        font-bold
-                        text-2xl
-                        lg:text-4xl
-                    ">
-                <img :src="logoBrand" alt="Quimiecologi C.A." class="w-60 mx-auto" />
-                </Link>
-            </div>
-
-            <div class="block lg:hidden pr-4">
-                <button id="nav-toggle" class="
-                        gradient-green
-                        flex
-                        items-center
-                        px-3
-                        py-2
-                        border
-                        rounded
-                        text-gray-500
-                        border-gray-600
-                        hover:text-gray-800
-                        hover:border-green-500
-                        appearance-none
-                        focus:outline-none
-                    ">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+    <nav class="fixed top-0 z-50 w-full gradient-green border-b border-gray-200 light:bg-gray-800 light:border-gray-700">
+          <div class="px-3 py-3 lg:px-5 lg:pl-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center justify-start rtl:justify-end">
+                <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 light:text-gray-400 light:hover:bg-gray-700 light:focus:ring-gray-600">
+                    <span class="sr-only">Open sidebar</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                       <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                     </svg>
-                </button>
+                 </button>
+                <a :href="route('welcome')" class="flex ms-2 md:me-24">
+                    <img
+                        :src="LogoQuimiecologi01"
+                        class="w-40 inline-block img-zoom"
+                        alt="Quimiecologi C.A."
+                    />
+                </a>
+              </div>
+              <div class="flex items-center">
+                  <div class="flex items-center ms-3">
+                    <span
+                        class="
+                            font-montserrat
+                            font-bold
+                        "
+                    >
+                        Diseño y desarrollo científico de alto nivel
+                    </span>
+                  </div>
+                </div>
             </div>
+          </div>
+        </nav>
 
-            <div class="
-                    w-full
-                    flex-grow
-                    lg:flex
-                    lg:items-center
-                    lg:w-auto
-                    hidden
-                    lg:block
-                    mt-2
-                    lg:mt-0
-                    text-black
-                    p-4
-                    lg:p-0 z-20
-                " id="nav-content">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center">
-                    <li class="mr-3">
-                        <Link :href="route('welcome')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>INICIO</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('about-us')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>CONÓCENOS</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('products')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>PRODUCTOS</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('services')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>SERVICIOS</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('pending_orders.create')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>DISEÑA TU PRODUCTO</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('posts.index')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>BLOG</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('contact')" class="
-                                font-montserrat
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <b>CONTACTO</b>
-                        </Link>
-                    </li>
-                    <li class="mr-3">
-                        <Link :href="route('shopping-cart')" class="
-                                inline-block
-                                text-black
-                                no-underline
-                                hover:text-gray-800
-                                hover:text-underline
-                                py-2
-                                px-2
-                            ">
-                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        </Link>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Final Barra de menú -->
+        <aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full gradient border-r border-gray-200 sm:translate-x-0 light:bg-gray-800 light:border-gray-700" aria-label="Sidebar">
+           <div class="h-full px-3 pb-4 overflow-y-auto gradient light:bg-gray-800">
+              <ul class="space-y-2 font-medium">
+                 <li>
+                    <Link
+                        :href="route('welcome')"
+                        class="
+                            font-montserrat
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">
+                            <b>
+                                INICIO
+                            </b>
+                        </span>
+                    </Link>
+                 </li>
+                 <li>
+                    <Link
+                        :href="route('about-us')"
+                        class="
+                            font-montserrat
+                            font-bold
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">CONÓCENOS</span>
+                    </Link>
+                 </li>
+                 <li>
+                    <Link
+                        :href="route('products')"
+                        class="
+                            font-montserrat
+                            font-bold
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">PRODUCTOS</span>
+                    </Link>
+                 </li>
+                 <li>
+                    <Link
+                        :href="route('services')"
+                        class="
+                            font-montserrat
+                            font-bold
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">SERVICIOS</span>
+                    </Link>
+                 </li>
+                 <li>
+                    <Link
+                        :href="route('posts.index')"
+                        class="
+                            font-montserrat
+                            font-bold
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">BLOG</span>
+                    </Link>
+                 </li>
+                 <li>
+                    <Link
+                        :href="route('contact')"
+                        class="
+                            font-montserrat
+                            font-bold
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">CONTÁCTANOS</span>
+                    </Link>
+                 </li>
+              </ul>
+           </div>
+        </aside>
 </template>
