@@ -61,7 +61,7 @@ onMounted(async () => {
                             text-gray-800
                         "
                     >
-                        Contacto
+                        Contáctanos
                     </h2>
                     <div class="w-full mb-4">
                         <div
@@ -84,10 +84,39 @@ onMounted(async () => {
                                     Mérida Edo. Mérida
                                 </div>
                                 <div class="mb-3">
+                                    <b>Horario de atención:</b> 8:00am a 3:30pm
+                                </div>
+                                <div class="mb-3">
                                     <b>Teléfono:</b> 0412-5347169
                                 </div>
-                                <div>
-                                    <b>Horario de atención:</b> 8:00am a 3:30pm
+                                <div class="mb-3">
+                                    <b>Email:</b> XXX
+                                </div>
+                                <div class="mb-3">
+                                    <a
+                                        href="https://www.instagram.com/basttvzla/"
+                                        target="__blank"
+                                    >
+                                        <b>Instagram:</b> basttvzla
+                                    </a>
+                                </div>
+                                <div class="mb-3">
+                                    <a
+                                        href="https://www.tiktok.com/@basttvzla"
+                                        target="__blank"
+                                    >
+                                        <b>TikTok:</b> @basttvzla
+                                    </a>
+                                </div>
+                                <div class="mb-3">
+                                    <a
+                                        href="
+                                            https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
+                                        "
+                                        target="__blank"
+                                    >
+                                        <b>Linkedin:</b> Quimiecolgi C.A.
+                                    </a>
                                 </div>
                             </div>
                         </div>

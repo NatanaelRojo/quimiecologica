@@ -18,9 +18,9 @@ const profile_6 = '/images/profile_6.png';
 const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 
 // Imágenes de los servicios
-const servicios_pulverizacion = 'images/servicios/servicios_pulverizacion.jpg';
-const servicios_analisis_muestras = 'images/servicios/servicios_analisis_muestras.jpg';
-const servicios_3 = 'images/servicios/servicios_3.jpg';
+const servicios_pulverizacion = 'images/servicios/servicios_pulverizacion.png';
+const servicios_analisis_muestras = 'images/servicios/servicios_analisis_muestras.png';
+const servicios_3 = 'images/servicios/servicios_3.png';
 
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
@@ -42,7 +42,7 @@ onMounted(async () => {
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección 3 imágenes -->
-            <section class="bg-white border-b py-3 gradient mt-6">
+            <section class="bg-white border-b py-3 gradient mt-8">
                 <div
                   class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
                 >

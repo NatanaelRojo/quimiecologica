@@ -81,45 +81,7 @@ onMounted(async () => {
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full text-justify">
                             <p class="font-montserrat mb-8">
-                                Somos una marca nacional que diseña y elabora
-                                productos de cuidado personal, nuestra
-                                estrategia es la innovación sustentable. Prestamos
-                                diversos servicios y asesorías a empresas y/o
-                                personas que lo requieran.
-                            </p>
-                            <p class="font-montserrat mb-8">
-                                Contamos con una marca registrada de alcance
-                                nacional, <b>BASTT</b>. Actualmente especializada
-                                en el cuidado preventivo del rostro y que está
-                                presente en los más importantes retailers del
-                                país, así como en tiendas particulares a nivel
-                                nacional.
-                            </p>
-                            <p class="font-montserrat mb-8">
-                                La línea <b>Fusión Elemental</b> tiene en cada
-                                uno de sus productos, al menos un ingrediente
-                                natural y un principio activo, los cuales
-                                permiten al consumidor no solo sentirse
-                                resplandeciente, sino también protegido,
-                                aliviado y colmado de frescura.
-                            </p>
-                            <p class="font-montserrat mb-8">
-                                Los desarrollos son avalados por laboratorios
-                                certificados, tales como laboratorios de la
-                                Universidad de Los Andes y otros de naturaleza
-                                privada.
-                            </p>
-                            <p class="
-                                    font-alexbrush
-                                    text-3xl
-                                    text-gray-700
-                                    text-center
-                                    img-zoom
-                                "
-                            >
-                                <b>"Diseña un mundo de cuidado, con el aliado
-                                    que te mereces."
-                                </b>
+                                El requerimiento dice "Historia de la empresa y una síntesis de la marca, con imagen" Se requiere ese texto y la imagen que va a ir aquí en esta página.
                             </p>
                         </div>
                     </div>

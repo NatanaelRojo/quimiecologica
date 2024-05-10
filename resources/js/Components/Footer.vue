@@ -6,7 +6,7 @@ import { Link } from '@inertiajs/vue3';
 <template>
     <!-- Footer -->
     <div class="p-4 sm:ml-64">
-        <footer class="gradient-brown border-b py-8">
+        <footer class="gradient-brown border-b py-1">
             <div class="container mx-auto mt-8 px-8">
                 <div class="w-full flex flex-col md:flex-row py-6">
                     <div class="flex-1 mb-6">
@@ -37,7 +37,7 @@ import { Link } from '@inertiajs/vue3';
                                     "
                                     target="__blank"
                                 >
-                                    <b>Instagram</b>
+                                    <b>Instagram:</b> basttvzla
                                 </a>
                             </li>
                             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -53,7 +53,7 @@ import { Link } from '@inertiajs/vue3';
                                     "
                                     target="__blank"
                                 >
-                                    <b>TikTok</b>
+                                    <b>TikTok:</b> @basttvzla
                                 </a>
                             </li>
                             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -71,7 +71,7 @@ import { Link } from '@inertiajs/vue3';
                                     "
                                     target="__blank"
                                 >
-                                    <b>Linkedin</b>
+                                    <b>Linkedin:</b> Quimiecolgi C.A.
                                 </a>
                             </li>
                         </ul>
@@ -125,7 +125,7 @@ import { Link } from '@inertiajs/vue3';
                                         hover:text-underline
                                     "
                                 >
-                                    <b>Contacto</b>
+                                    <b>Contáctanos</b>
                                 </Link>
                             </li>
                         </ul>
@@ -144,6 +144,7 @@ import { Link } from '@inertiajs/vue3';
                 >
                     <Link :href="route('welcome')">QUIMIECOLOGI C.A.</Link>
                 </p>
+                <br>
             </div>
         </footer>
     </div>
