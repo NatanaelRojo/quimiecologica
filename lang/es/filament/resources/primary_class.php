@@ -8,5 +8,5 @@ return [
     'is_active' => 'Activo',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
-    'brands' => 'Marcas',
+    'brands' => 'Marca(s)',
 ];

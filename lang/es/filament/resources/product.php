@@ -31,5 +31,5 @@ return [
     'retail_type_data' => 'Datos de la venta al detal/mayor',
     'wholesale_type_data' => 'Datos de la venta a granel',
     'unit' => 'Unidad',
-    'measures' => 'Medidas del producto',
+    'measures' => 'Presentaciones',
 ];

@@ -17,7 +17,7 @@ class PrimaryClassResource extends Resource
 {
     protected static ?string $model = PrimaryClass::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
-    // protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 1;
     protected static ?string $navigationGroup = 'Clasificacion';
 
     public static function getModelLabel(): string
@@ -64,6 +64,9 @@ class PrimaryClassResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\TextColumn::make('brands.name')
+                ->label(static::getAttributeLabel('brands'))
+                ->listWithLineBreaks(),
             Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {

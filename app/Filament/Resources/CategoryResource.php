@@ -17,7 +17,7 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
     protected static ?string $navigationIcon = 'heroicon-o-tag';
-    // protected static ?int $navigationSort = 1;
+    protected static ?int $navigationSort = 2;
     protected static ?string $navigationGroup = 'Clasificacion';
 
     public static function getModelLabel(): string
@@ -48,7 +48,7 @@ class CategoryResource extends Resource
                 ->columnSpan('full')
                 ->live(),
             Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
-                ->relationship(name: 'primaryClass', titleAttribute: 'name')
+                ->relationship(name: 'primaryClasses', titleAttribute: 'name')
                 ->preload()
                 ->searchable()
                 ->createOptionForm(PrimaryClassResource::inputForm())
@@ -61,7 +61,23 @@ class CategoryResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('primaryClass.name')->label(static::getAttributeLabel('primary_class')),
+            Tables\Columns\TextColumn::make('brands')
+                ->label(static::getAttributeLabel('brands'))
+                ->state(function (Category $record) {
+                    $name = '';
+                    $brands = [];
+                    $stringBrands = '';
+                    foreach ($record->primaryClasses as $primaryClass) {
+                        foreach ($primaryClass?->brands as $brand) {
+                            array_push($brands, "<p>{$brand->name}</p>");
+                        }
+                    }
+                    return implode('', $brands);
+                })
+                ->html(),
+            Tables\Columns\TextColumn::make('primaryClasses.name')
+                ->label(static::getAttributeLabel('primary_classes'))
+                ->listWithLineBreaks(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('name', 'like', "%{$search}%");

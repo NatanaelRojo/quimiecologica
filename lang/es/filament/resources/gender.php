@@ -7,5 +7,7 @@ return [
     'is_active' => 'Activo',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
-    'categories' => 'Subclases',
+    'brands' => 'Marca(s)',
+    'primary_classes' => 'Clase(s)',
+    'categories' => 'Subclase(s)',
 ];
