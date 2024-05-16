@@ -2,6 +2,7 @@
 
 namespace Database\Seeders\PrimaryClassSeeders;
 
+use App\Models\PrimaryClass;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -27,6 +28,9 @@ class PrimaryClassSeeder extends Seeder
                 'description' => '',
                 'created_at' => Carbon::now(),
             ]);
+        }
+        foreach (PrimaryClass::all() as $primaryClass) {
+            $primaryClass->brands()->attach([1]);
         }
     }
 }

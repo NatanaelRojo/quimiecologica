@@ -2,6 +2,8 @@
 
 namespace Database\Seeders\GenderSeeders;
 
+use App\Models\Category;
+use App\Models\Gender;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -28,10 +30,12 @@ class GenderSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ]);
         }
-        // for ($i = 0; $i < 5; $i++) {
-        //     DB::table('genders')->insert([
-        //         'name' => "Genero {$i}",
-        //     ]);
-        // }
+        foreach (Gender::all() as $gender) {
+            $categoriesIds = [];
+            foreach (Category::all() as $category) {
+                $categoriesIds[] = $category->id;
+            }
+            $gender->categories()->attach($categoriesIds);
+        }
     }
 }

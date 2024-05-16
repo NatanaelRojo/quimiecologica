@@ -47,7 +47,8 @@ class CategoryResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
-            Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
+            Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_classes'))
+                ->multiple()
                 ->relationship(name: 'primaryClasses', titleAttribute: 'name')
                 ->preload()
                 ->searchable()

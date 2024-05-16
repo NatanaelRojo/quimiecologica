@@ -193,9 +193,9 @@ class ProductResource extends Resource
                                 ->searchable()
                                 ->preload()
                                 ->createOptionForm(MeasureResource::inputForm()),
-                            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                                ->required()
-                                ->relationship(name: 'unit', titleAttribute: 'name'),
+                            // Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
+                            //     ->required()
+                            //     ->relationship(name: 'unit', titleAttribute: 'name'),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),

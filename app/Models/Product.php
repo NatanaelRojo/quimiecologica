@@ -30,7 +30,7 @@ class Product extends Model
         'category_id',
         'gender_id',
         'type_sale_id',
-        'unit_id',
+        // 'unit_id',
         'is_active',
         'name',
         'description',

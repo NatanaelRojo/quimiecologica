@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\BrandSeeders\BrandSeeder;
 use Database\Seeders\CategorySeeders\CategorySeeder;
 use Database\Seeders\GenderSeeders\GenderSeeder;
 use Database\Seeders\MeasureSeeders\MeasureSeeder;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            BrandSeeder::class,
             PrimaryClassSeeder::class,
             CategorySeeder::class,
             GenderSeeder::class,

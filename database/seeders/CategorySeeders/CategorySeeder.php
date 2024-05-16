@@ -2,6 +2,8 @@
 
 namespace Database\Seeders\CategorySeeders;
 
+use App\Models\Category;
+use App\Models\PrimaryClass;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -32,6 +34,13 @@ class CategorySeeder extends Seeder
                 'is_active' => true,
                 'created_at' => Carbon::now(),
             ]);
+        }
+        foreach (Category::all() as $category) {
+            $primaryClassesIds = [];
+            foreach (PrimaryClass::all() as $primaryClass) {
+                $primaryClassesIds[] = $primaryClass->id;
+            }
+            $category->primaryClasses()->attach($primaryClassesIds);
         }
     }
 }
