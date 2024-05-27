@@ -147,8 +147,34 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
                     >
                         <span class="ms-3">SERVICIOS</span>
                     </Link>
-                 </li>
-                 <li>
+                </li>
+                <li>
+                    <Link
+                        :href="route('services')"
+                        class="
+                            font-montserrat
+                            font-bold
+                            inline-block
+                            no-underline
+                            hover:text-gray-800
+                            hover:text-underline
+                            py-2
+                            px-2
+                            flex
+                            items-center
+                            p-2
+                            rounded-lg
+                            light:text-white
+                            hover:bg-gray-100
+                            light:hover:bg-gray-700
+                            group
+                        "
+                        style="color: #82675C;"
+                    >
+                        <span class="ms-3">SERVICIOS DE FORMULACIÓN</span>
+                    </Link>
+                </li>
+                <li>
                     <Link
                         :href="route('posts.index')"
                         class="
