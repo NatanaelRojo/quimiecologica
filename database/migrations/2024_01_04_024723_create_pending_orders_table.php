@@ -18,7 +18,8 @@ return new class extends Migration
     {
         if (!Schema::hasTable('pending_orders')) {
             Schema::create('pending_orders', function (Blueprint $table) {
-                $table->id();
+                // $table->id();
+                $table->uuid('id')->primary();
                 // $table->foreignIdFor(Service::class);
                 // $table->foreignIdFor(Gender::class);
                 // $table->foreignIdFor(Category::class);
@@ -32,6 +33,7 @@ return new class extends Migration
                 $table->string('owner_city');
                 $table->string('owner_address');
                 $table->string('owner_request');
+                $table->string('deadline');
                 $table->string('status', 20)->default('En espera');
                 $table->timestamps();
             });

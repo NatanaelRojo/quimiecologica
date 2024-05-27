@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GenderController;
 use App\Http\Controllers\HttpError\BadRequestController;
 use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PrimaryClassController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseOrderController;
@@ -41,13 +45,39 @@ Route::get('/about-us', function () {
     return Inertia::render('AboutUs');
 })->name('about-us');
 
-// Página de Productos
-Route::get('/products', function () {
-    return Inertia::render('Product/Index');
-})->name('products');
+// Página de Marcas
+Route::get('/brands', function () {
+    return Inertia::render('Product/Brand');
+})->name('brands');
+
+// Página de Productos por Parametros
+Route::get('/products', [ProductController::class, 'showAllByParameters'])
+    ->name('products');
+//     return Inertia::render('Product/Brand');
+// })->name('products');
+
+// Brand detail
+Route::get('/brands/{brand}', [BrandController::class, 'showDetail'])
+    ->name('brands.detail')
+    ->missing(fn (): Response => BadRequestController::show());
+
+// Primary class detail
+Route::get('/primary-classes/{primary_class}', [PrimaryClassController::class, 'showDetail'])
+    ->name('primary-classes.detail')
+    ->missing(fn (): Response => BadRequestController::show());
+
+// Category detail
+Route::get('/categories/{category}', [CategoryController::class, 'showDetail'])
+    ->name('categories.detail')
+    ->missing(fn (): Response => BadRequestController::show());
+
+// Gender detail
+Route::get('/genders/{gender}', [GenderController::class, 'showDetail'])
+    ->name('genders.detail')
+    ->missing(fn (): Response => BadRequestController::show());
 
 // Product detail
-Route::get('/products/{product}', [ProductController::class, 'showDetail'])
+Route::get('/products/detail/{product}', [ProductController::class, 'showDetail'])
     ->name('products.detail')
     ->missing(fn (): Response => BadRequestController::show());
 
@@ -105,15 +135,15 @@ Route::get('/mail', function () {
     Mail::to('rojonatanael99@gmail.com')->send(new TestMailable($purchaseOrder));
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 Route::fallback(function (): Response {
     return Inertia::render('Error/404Error');
 });

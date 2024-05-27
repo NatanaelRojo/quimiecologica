@@ -218,8 +218,10 @@ class ProductResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('category.name')->label(static::getAttributeLabel('category'))->searchable(),
-            Tables\Columns\TextColumn::make('gender.name')->label(static::getAttributeLabel('gender'))->searchable(),
+            Tables\Columns\TextColumn::make('brand.name')->label(static::getAttributeLabel('brand')),
+            Tables\Columns\TextColumn::make('primaryClass.name')->label(static::getAttributeLabel('primary_class')),
+            Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('category'))->searchable(),
+            Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('gender'))->searchable(),
             Tables\Columns\TextColumn::make('typeSale.name')->label(static::getAttributeLabel('type_sales'))->searchable(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
@@ -265,13 +267,23 @@ class ProductResource extends Resource
                 ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
             Tables\Filters\SelectFilter::make('type_sale')->label(static::getAttributeLabel('type_sales'))
                 ->relationship(name: 'typeSale', titleAttribute: 'name'),
-            Tables\Filters\SelectFilter::make('category')->label(static::getAttributeLabel('category'))
-                ->multiple()
-                ->relationship(name: 'category', titleAttribute: 'name')
+            Tables\Filters\SelectFilter::make('brand')
+                ->label(static::getAttributeLabel('brand'))
+                ->relationship(name: 'brand', titleAttribute: 'name')
                 ->preload(),
-            Tables\Filters\SelectFilter::make('gender')->label(static::getAttributeLabel('gender'))
+            Tables\Filters\SelectFilter::make('primary_class')
+                ->label(static::getAttributeLabel('primary_class'))
+                ->relationship(name: 'primaryClass', titleAttribute: 'name')
+                ->preload(),
+            Tables\Filters\SelectFilter::make('categories')
+                ->label(static::getAttributeLabel('category'))
                 ->multiple()
-                ->relationship(name: 'gender', titleAttribute: 'name')
+                ->relationship(name: 'categories', titleAttribute: 'name')
+                ->preload(),
+            Tables\Filters\SelectFilter::make('genders')
+                ->label(static::getAttributeLabel('gender'))
+                ->multiple()
+                ->relationship(name: 'genders', titleAttribute: 'name')
                 ->preload(),
         ];
     }

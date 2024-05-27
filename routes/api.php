@@ -3,12 +3,14 @@
 use App\Http\Controllers\AnalysisController;
 use App\Http\Controllers\AnalysisParameterController;
 use App\Http\Controllers\AnalysisTypeController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConditionController;
 use App\Http\Controllers\GenderController;
 use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\PendingOrderController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PrimaryClassController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseOrderController;
 use App\Http\Controllers\PurchaseRetailOrderController;
@@ -32,8 +34,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/services', ServiceController::class);
-Route::resource('/genders', GenderController::class);
-Route::resource('/categories', CategoryController::class);
 Route::resource('/analyses', AnalysisController::class);
 Route::resource('/analysis-types', AnalysisTypeController::class);
 Route::resource('/analysis-parameters', AnalysisParameterController::class);
@@ -42,6 +42,10 @@ Route::resource('/units', UnitController::class);
 Route::resource('/pending-orders',  PendingOrderController::class);
 Route::apiResource('/posts', PostController::class);
 Route::get('/products/filter/', [ProductController::class, 'filter'])->name('products.filter');
+Route::apiResource('/brands', BrandController::class);
+Route::apiResource('/primary-classes', PrimaryClassController::class);
+Route::apiResource('/categories', CategoryController::class);
+Route::apiResource('/genders', GenderController::class);
 Route::apiResource('/products', ProductController::class);
 Route::apiResource('/purchase-orders', PurchaseOrderController::class);
 Route::apiResource('/purchase-retail-orders', PurchaseRetailOrderController::class);

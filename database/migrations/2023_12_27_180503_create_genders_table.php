@@ -14,6 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('genders')) {
             Schema::create('genders', function (Blueprint $table) {
                 $table->id();
+                $table->string('slug')->unique()->nullable();
                 $table->boolean('is_active')->default(false);
                 $table->string('name', 20);
                 $table->timestamps();

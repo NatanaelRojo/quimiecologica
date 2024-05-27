@@ -285,6 +285,10 @@ import axios from 'axios';
 import TextInput from '@/Components/TextInput.vue';
 import ErrorList from '@/Components/ErrorList.vue';
 
+const props = defineProps({
+    products: { type: Array, required: true },
+});
+
 const isLoading = ref(false);
 const isFiltered = ref(false);
 const noStockMessage = ref(false);
@@ -298,7 +302,7 @@ const productName = ref('');
 const productPrice = ref(null);
 const fullPage = ref(true);
 const typeSales = ref([]);
-const products = ref([]);
+// const products = ref([]);
 const categories = ref([]);
 const genders = ref([]);
 const arrayProducts = ref(localStorage.arrayProducts
@@ -312,10 +316,9 @@ onBeforeMount(async () => {
 
 onMounted(async () => {
     try {
-        let response = await axios.get("/api/products");
-        products.value = response.data;
-        console.log(products.value)
-        response = await axios.get('/api/type-sales');
+        //let response = await axios.get("/api/products");
+        //products.value = response.data;
+        let response = await axios.get('/api/type-sales');
         typeSales.value = response.data;
         response = await axios.get('/api/categories');
         categories.value = response.data;

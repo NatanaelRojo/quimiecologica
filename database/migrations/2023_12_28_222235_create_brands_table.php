@@ -16,6 +16,7 @@ return new class extends Migration
         if (!Schema::hasTable('brands')) {
             Schema::create('brands', function (Blueprint $table) {
                 $table->id();
+                $table->string('slug')->unique()->nullable();
                 $table->boolean('is_active');
                 $table->string('logo_url');
                 $table->string('name');

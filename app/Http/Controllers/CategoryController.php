@@ -6,6 +6,8 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class CategoryController extends Controller
 {
@@ -37,6 +39,17 @@ class CategoryController extends Controller
         ]);
 
         return response()->json(new CategoryResource($newCategory), 201);
+    }
+
+    public function showDetail(Request $request, Category $category): Response
+    {
+        $category = Category::query()->where('id', $category->id)->with(['genders'])->first();
+        $filter_parameters = $request->query();
+        $filter_parameters['category'] = $category->name;
+        return Inertia::render('Category/Detail', [
+            'category' => $category,
+            'filter_parameters' => $filter_parameters,
+        ]);
     }
 
     /**

@@ -14,6 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('primary_classes')) {
             Schema::create('primary_classes', function (Blueprint $table) {
                 $table->id();
+                $table->string('slug')->unique()->nullable();
                 $table->boolean('is_active');
                 $table->string('name');
                 $table->string('description')->nullable();

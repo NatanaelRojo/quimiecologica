@@ -7,6 +7,7 @@ use App\Models\PrimaryClass;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Database\Seeders\CategorySeeders\BaseCategory;
 use Carbon\Carbon;
 
@@ -30,6 +31,7 @@ class CategorySeeder extends Seeder
             DB::table('categories')->updateOrInsert([
                 'name' => $category,
             ], [
+                'slug' => Str::slug($category),
                 'primary_class_id' => 1,
                 'is_active' => true,
                 'created_at' => Carbon::now(),

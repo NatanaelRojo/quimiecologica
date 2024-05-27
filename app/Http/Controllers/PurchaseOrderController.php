@@ -79,7 +79,7 @@ class PurchaseOrderController extends Controller
                 'record' => new PurchaseOrderResource($newPurchaseOrder),
                 'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
             ],
-            201
+            JsonResponse::HTTP_CREATED
         );
     }
 

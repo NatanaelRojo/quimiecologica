@@ -3,8 +3,12 @@
         <template #main>
 
             <Head title="Formulario de registro" />
+            <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <section class="gradient border-b py-12">
+                <a href="#" class="font-montserrat" @click.prevent="goBack">
+                    <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                </a>
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container mx-auto p-4">
                     <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
@@ -40,16 +44,18 @@
                         </div>
 
                         <!-- Número de teléfono del titular -->
-                        <div class="mb-4 flex items-center">
+                        <div class="mb-4">
                             <label for="owner_phone_number" class="block text-gray-700 text-sm font-bold mb-2">
-                                Número de teléfono del titular:
+                                Número de teléfono:
                             </label>
 
                             <!-- Selector de código de área -->
-                            <select class="mr-2 px-3 py-2 border rounded">
-                                <option value="+58">+58</option>
-                                <!-- Agrega más opciones según sea necesario -->
-                            </select>
+                            <div class="flex items-center">
+                                <select v-model="selectedPhoneCode" class="w-16 px-3 py-2 border rounded mr-2">
+                                    <option v-for="(code, index) in phoneCodes" :key="index" :value="code.value">
+                                        {{ code.label }} </option>
+                                </select>
+                            </div>
 
                             <!-- Campo de número de teléfono -->
                             <input v-model="pendingOrder.owner_phone_number" type="text" id="owner_phone_number"
@@ -84,15 +90,22 @@
                             <label for="owner_address" class="block text-gray-700 text-sm font-bold mb-2">
                                 Dirección de domicilio del titular:
                             </label>
-                            <input v-model="pendingOrder.owner_address" type="text" id="owner_address" name="owner_address"
-                                class="w-full px-3 py-2 border rounded">
+                            <input v-model="pendingOrder.owner_address" type="text" id="owner_address"
+                                name="owner_address" class="w-full px-3 py-2 border rounded">
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_request" class="block text-gray-700 text-sm font-bold mb-2">
                                 ¿Qué desea?
                             </label>
-                            <input v-model="pendingOrder.owner_request" type="text" id="owner_request" name="owner_request"
+                            <input v-model="pendingOrder.owner_request" type="text" id="owner_request"
+                                name="owner_request" class="w-full px-3 py-2 border rounded">
+                        </div>
+                        <div class="mb-4">
+                            <label for="deadline" class="block text-gray-700 text-sm font-bold mb-2">
+                                Tiempo estimado
+                            </label>
+                            <input v-model="pendingOrder.deadline" type="text" id="deadline" name="deadline"
                                 class="w-full px-3 py-2 border rounded">
                         </div>
 
@@ -114,9 +127,21 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import ErrorList from '@/Components/ErrorList.vue';
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
 
+const phoneCodes = ref([
+    { value: '+58 414', label: '0414' },
+    { value: '+58 424', label: '0424' },
+    { value: '+58 426', label: '0426' },
+    { value: '+58 416', label: '0416' },
+    { value: '+58 412', label: '0412' },
+]);
+const selectedPhoneCode = ref('');
+const isLoading = ref(false);
+const fullPage = ref(true);
 const form = ref(null);
 const pendingOrder = ref({
     owner_firstname: '',
@@ -128,9 +153,21 @@ const pendingOrder = ref({
     owner_city: '',
     owner_address: '',
     owner_request: '',
+    deadline: '',
 });
 
 const errors = ref([]);
+
+onBeforeMount(() => {
+    // Iniciar spinner de carga.
+    isLoading.value = true;
+});
+
+onMounted(() => {
+    // Finalizar spinner de carga.
+    isLoading.value = false;
+});
+
 
 /**
  * Método que desplaza la pantalla a la cabecera del formulario.
@@ -153,8 +190,10 @@ const clearErrors = () => {
  */
 const submitForm = async () => {
     try {
-        const response = await axios.post('/api/pending-orders', pendingOrder.value);
-        router.visit(route('pending_orders.detail', response.data.id));
+        pendingOrder.value.owner_phone_number = selectedPhoneCode.value + pendingOrder.value.owner_phone_number;
+        console.log(pendingOrder.value.owner_phone_number);
+        // const response = await axios.post('/api/pending-orders', pendingOrder.value);
+        // router.visit(route('pending_orders.detail', response.data.id));
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo()

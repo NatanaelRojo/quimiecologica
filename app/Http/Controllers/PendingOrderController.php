@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PendingOrder\StorePendingOrderRequest;
 use App\Http\Requests\PendingOrder\UpdatePendingOrderRequest;
 use App\Http\Resources\PendingOrderResource;
+use App\Mail\PendingOrderMailable;
 use App\Models\PendingOrder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Str;
 
 class PendingOrderController extends Controller
 {
@@ -36,17 +39,30 @@ class PendingOrderController extends Controller
      */
     public function store(StorePendingOrderRequest $request): JsonResponse
     {
-        $newPendingOrder = PendingOrder::create($request->validated());
+        $newPendingOrder = PendingOrder::query()->create($request->validated());
 
-        return response()->json(new PendingOrderResource($newPendingOrder), 201);
+        Mail::to($newPendingOrder->owner_email)
+            ->send(new PendingOrderMailable($newPendingOrder));
+
+        return response()->json([
+            'record' => new PendingOrderResource($newPendingOrder),
+            'redirect' => route('pending-orders.detail', $newPendingOrder->id),
+        ], JsonResponse::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      */
-    public function showDetail(PendingOrder $pending_order): Response
+    public function showDetail(Request $request): Response
     {
-        $pending_order = PendingOrder::where('id', $pending_order->id)->first();
+        $isValidId = Str::isUuid($request->purchase_order);
+
+        if (!$isValidId) {
+            return Inertia::render('Error/404Error');
+        }
+
+        $pending_order = PendingOrder::query()->find($request->purchase_order);
+
         return Inertia::render('PendingOrder/Detail', [
             'pendingOrder' => $pending_order,
         ]);

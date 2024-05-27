@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\GenderResource;
 use App\Models\Gender;
+use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class GenderController extends Controller
 {
@@ -17,6 +20,19 @@ class GenderController extends Controller
         $genders = Gender::all();
 
         return response()->json(GenderResource::collection($genders), 200);
+    }
+
+    public function showDetail(Request $request, Gender $gender): Response
+    {
+        $filter_parameters = $request->filter_parameters;
+        $filter_parameters['gender'] = $gender->name;
+        $query = Product::query()
+            ->applyParameters($filter_parameters)
+            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders']);
+        // dd($query->get()->toArray());
+        return Inertia::render('Product/Index', [
+            'products' => $query->get()->toArray(),
+        ]);
     }
 
     /**

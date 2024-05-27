@@ -82,6 +82,19 @@ class ProductController extends Controller
         return response()->json(new ProductResource($product));
     }
 
+    public function showAllByParameters(Request $request): Response
+    {
+        $products = Product::query()
+            ->applyParameters($request->all())
+            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders'])
+            ->get()
+            ->toArray();
+
+        return Inertia::render('Product/Index', [
+            'products' => $products,
+        ]);
+    }
+
     /**
      * Display the specified resource.
      */

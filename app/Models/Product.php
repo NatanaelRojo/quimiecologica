@@ -120,37 +120,60 @@ class Product extends Model
         return $this->belongsTo(TypeSale::class);
     }
 
-    public function scopeAllActive(Builder $query): void
+    public function scopeAllActive(Builder $query): Builder
     {
-        $query->where('is_active', true);
+        return $query->where('is_active', true);
     }
 
-    public function scopeFilterByName(Builder $query, ?string $searchTerm): void
+    public function scopeFilterByName(Builder $query, ?string $searchTerm): Builder
     {
-        $query->where('name', 'ilike', "%{$searchTerm}%");
+        return $query->where('name', 'ilike', "%{$searchTerm}%");
     }
 
-    public function scopeFilterBySaleType(?Builder $query, string $saleTypeName): void
+    public function scopeFilterBySaleType(?Builder $query, ?string $saleTypeName): Builder
     {
-        $query->where(function (Builder $query) use ($saleTypeName): void {
-            $query->whereHas('typeSale', function (Builder $q) use ($saleTypeName): void {
-                $q->where('name', $saleTypeName);
-            });
+        return             $query->whereHas('typeSale', function (Builder $q) use ($saleTypeName): Builder {
+            return $q->where('name', $saleTypeName);
         });
-        // $query->where(function (Builder $query) use ($saleTypeName): void {
-        //     $query->whereHas('typeSales', function (Builder $q) use ($saleTypeName): void {
-        //         $q->whereIn('name', [$saleTypeName]);
-        //     });
-        // });
     }
 
-    public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): void
+    public function scopeFilterByBrand(Builder $query, ?string $brand): Builder
+    {
+        return $query->whereHas('brand', function (Builder $q) use ($brand): Builder {
+            return $q->where('name', $brand);
+        });
+    }
+
+    public function scopeFilterByPrimaryClass(Builder $query, ?string $primaryClass): Builder
+    {
+        return $query->whereHas('primaryClass', function (Builder $q) use ($primaryClass): Builder {
+            return $q->where('name', $primaryClass);
+        });
+    }
+
+    public function scopeFilterByCategory(Builder $query, ?string $categories): Builder
+    {
+        $categories = $categories ? [$categories] : [];
+        return $query->whereHas('categories', function (Builder $q) use ($categories): Builder {
+            return $q->whereIn('name', $categories);
+        });
+    }
+
+    public function scopeFilterByGenders(Builder $query, ?string $genders): Builder
+    {
+        $genders = $genders ? [$genders] : [];
+        return $query->whereHas('genders', function (Builder $q) use ($genders): Builder {
+            return $q->whereIn('name', $genders);
+        });
+    }
+
+    public function scopeFilterByCategoryOrGender(Builder $query, ?string $categoriesString, ?string $gendersString): Builder
     {
         // $categories = $categoriesString ? explode(',', $categoriesString) : [];
         // $genders = $gendersString ? explode(',', $gendersString) : [];
         $categories = $categoriesString ? [$categoriesString] : [];
         $genders = $gendersString ? [$gendersString] : [];
-        $query->where(function (Builder $query) use ($categories, $genders): void {
+        return $query->where(function (Builder $query) use ($categories, $genders): void {
             foreach (['categories', 'genders'] as $type) {
                 if (!empty($$type)) {
                     $values = $$type;
@@ -162,10 +185,20 @@ class Product extends Model
         });
     }
 
-    public function scopeFilterByPrice(Builder $query, ?string $stringPrice, ?string $operator): void
+    public function scopeApplyParameters(Builder $query, ?array $filterParameters): void
+    {
+        $query->filterByBrand($filterParameters['brand'])
+            ->filterByPrimaryClass($filterParameters['primary_class'])
+            ->filterByCategory($filterParameters['category'])
+            ->filterByGenders($filterParameters['gender'])
+            // ->filterByCategoryOrGender($filterParameters['category'], $filterParameters['gender'])
+            ->allActive();
+    }
+
+    public function scopeFilterByPrice(Builder $query, ?string $stringPrice, ?string $operator): Builder
     {
         $productPrice = floatval($stringPrice);
-        $query->where('price', $operator, $productPrice * 100);
+        return $query->where('price', $operator, $productPrice * 100);
     }
 
     public function unit(): BelongsTo

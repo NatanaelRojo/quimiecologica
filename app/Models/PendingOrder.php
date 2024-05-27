@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class PendingOrder extends Model
 {
     use HasFactory;
+
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     protected $fillable = [
         // 'service_id',
@@ -24,7 +28,15 @@ class PendingOrder extends Model
         'owner_city',
         'owner_address',
         'owner_request',
+        'deadline',
     ];
+
+    protected static function booted(): void
+    {
+        static::creating(function (PendingOrder $model): void {
+            $model->id = Str::uuid();
+        });
+    }
 
     public function service(): BelongsTo
     {

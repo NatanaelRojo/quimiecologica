@@ -38,6 +38,7 @@ class StorePendingOrderRequest extends FormRequest
             'owner_city' => ['bail', 'required', 'string', 'min:5', 'max:20', 'regex:/^[a-zA-ZÁÉÍÓÚáéíóúñÑ\s]+$/'],
             'owner_address' => ['bail', 'required', 'string', 'min:5', 'max:255', 'regex:/^[a-zA-ZÁÉÍÓÚáéíóúñÑ0-9\,.\s]+$/'],
             'owner_request' => ['bail', 'required', 'string', 'regex:/^[a-zA-Z0-9ÁÉÍÓÚáéíóúñÑ\,.\s]+$/'],
+            'deadline' => ['bail', 'required', 'string']
         ];
     }
 

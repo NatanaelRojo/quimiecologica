@@ -7,6 +7,7 @@ use App\Models\Gender;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 
 class GenderSeeder extends Seeder
@@ -26,6 +27,7 @@ class GenderSeeder extends Seeder
             DB::table('genders')->updateOrInsert([
                 'name' => $gender,
             ], [
+                'slug' => Str::slug($gender),
                 'is_active' => true,
                 'created_at' => Carbon::now(),
             ]);

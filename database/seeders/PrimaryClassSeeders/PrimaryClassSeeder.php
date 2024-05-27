@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PrimaryClassSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class PrimaryClassSeeder extends Seeder
             DB::table('primary_classes')->updateOrInsert([
                 'name' => $primaryClass,
             ], [
+                'slug' => Str::slug($primaryClass),
                 'is_active' => true,
                 'description' => '',
                 'created_at' => Carbon::now(),
