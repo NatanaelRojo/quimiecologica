@@ -98,7 +98,7 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
                  </li>
                  <li>
                     <Link
-                        :href="route('products')"
+                        :href="route('brands')"
                         class="
                             font-montserrat
                             font-bold
