@@ -24,8 +24,8 @@ onBeforeMount(async () => {
 
 onMounted(async () => {
     try {
-        // const response = await axios.get('/api/services');
-        // services.value = response.data;
+        // const response = await axios.get('/api/service_type');
+        // service_type.value = response.data;
     } catch (error) {
         console.log(error);
     }
@@ -44,9 +44,9 @@ const truncateText = (text, maxLength) => {
     }
 }
 
-// const services = ref([]);
+// const service_type = ref([]);
 const props = defineProps({
-    services: { required: true, type: Object },
+    service_type: { required: true, type: Object },
 });
 </script>
 
@@ -74,7 +74,7 @@ const props = defineProps({
                             text-center
                             text-gray-800
                         ">
-                        Nuestros Servicios de {{ services[0].service_type_id }}
+                        Nuestros Servicios de {{ service_type.name }}
                     </h2>
                     <div class="w-full mb-4">
                         <div class="
@@ -92,11 +92,11 @@ const props = defineProps({
                     <br>
 
                     <!-- posts grid-->
-                    <div v-if="services.length > 0" class="
+                    <div v-if="service_type.services.length > 0" class="
                             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
                         ">
                         <!-- Iterate de servicios -->
-                        <template v-for="service in services" :key="service.id">
+                        <template v-for="(service, index) in service_type.services" :key="index">
                             <Link :href="route('services.detail', service.slug)">
                             <div class="
                                     bg-white

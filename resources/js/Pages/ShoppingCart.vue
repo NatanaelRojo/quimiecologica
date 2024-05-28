@@ -48,7 +48,10 @@ onMounted(() => {
             product_name: product.name,
             product_quantity: `${product.quantity}`,
             sale_type: product.type_sale.name,
-            product_unit: product.unit.name,
+            product_unit: product.measures[0].size !== '' ?
+                product.measures[0].size :
+                product.measures[0].quantity + product.measures[0].unit,
+            // product_unit: product.unit.name,
         }
         record.value.products_info.push(productData);
         if (product.type_sale.name === 'Detal') {

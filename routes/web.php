@@ -83,7 +83,8 @@ Route::get('/products/detail/{product}', [ProductController::class, 'showDetail'
 
 // Pending orders routes
 Route::get('/pending-orders/create', [PendingOrderController::class, 'create'])->name('pending_orders.create');
-Route::get('/pending-orders/{pending_order}', [PendingOrderController::class, 'showDetail'])->name('pending_orders.detail');
+Route::get('/pending-orders/{pending_order}', [PendingOrderController::class, 'showDetail'])
+    ->name('pending_orders.detail');
 
 // Purchase wholesale order routes
 Route::get('purchase-wholesale-orders/create', [PurchaseWholesaleOrderController::class, 'create'])->name('purchase_wholesale_orders.create');

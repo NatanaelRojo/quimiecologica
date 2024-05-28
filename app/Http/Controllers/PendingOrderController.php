@@ -46,7 +46,7 @@ class PendingOrderController extends Controller
 
         return response()->json([
             'record' => new PendingOrderResource($newPendingOrder),
-            'redirect' => route('pending-orders.detail', $newPendingOrder->id),
+            'redirect' => route('pending_orders.detail', $newPendingOrder->id),
         ], JsonResponse::HTTP_CREATED);
     }
 
@@ -55,13 +55,11 @@ class PendingOrderController extends Controller
      */
     public function showDetail(Request $request): Response
     {
-        $isValidId = Str::isUuid($request->purchase_order);
-
-        if (!$isValidId) {
+        if (!Str::isUuid($request->pending_order)) {
             return Inertia::render('Error/404Error');
         }
 
-        $pending_order = PendingOrder::query()->find($request->purchase_order);
+        $pending_order = PendingOrder::query()->find($request->pending_order);
 
         return Inertia::render('PendingOrder/Detail', [
             'pendingOrder' => $pending_order,
