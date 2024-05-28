@@ -31,7 +31,8 @@ class ProductResource extends JsonResource
             'genders' => GenderResource::collection($this->genders),
             'type_sale' => new TypeSaleResource($this->typeSale),
             'product_content' => $this->quantity,
-            'unit' => new UnitResource($this->unit),
+            'measures' => MeasureResource::collection($this->measures),
+            // 'unit' => new UnitResource($this->unit),
         ];
     }
 }

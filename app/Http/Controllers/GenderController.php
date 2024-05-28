@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\GenderResource;
+use App\Http\Resources\MeasureResource;
+use App\Http\Resources\ProductResource;
 use App\Models\Gender;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
@@ -24,13 +26,15 @@ class GenderController extends Controller
 
     public function showDetail(Request $request, Gender $gender): Response
     {
-        $filter_parameters = $request->filter_parameters;
+        $filter_parameters = $request->query();
         $filter_parameters['gender'] = $gender->name;
         $products = Product::query()
             ->applyParameters($filter_parameters)
-            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders'])
+            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
             ->get()
             ->toArray();
+        // ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
+        // ->toArray();
 
         return Inertia::render('Product/Index', [
             'products' => $products,
