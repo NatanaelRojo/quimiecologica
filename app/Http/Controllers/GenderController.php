@@ -26,12 +26,14 @@ class GenderController extends Controller
     {
         $filter_parameters = $request->filter_parameters;
         $filter_parameters['gender'] = $gender->name;
-        $query = Product::query()
+        $products = Product::query()
             ->applyParameters($filter_parameters)
-            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders']);
-        // dd($query->get()->toArray());
+            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders'])
+            ->get()
+            ->toArray();
+
         return Inertia::render('Product/Index', [
-            'products' => $query->get()->toArray(),
+            'products' => $products,
         ]);
     }
 

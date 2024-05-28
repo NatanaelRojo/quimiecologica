@@ -52,9 +52,14 @@ class ServiceTypeController extends Controller
 
     public function showServices(ServiceType $service_type): Response
     {
-        $services = $service_type->services()->allActive()->get();
+        $serviceType = ServiceType::query()
+            ->where('id', $service_type->id)
+            ->with(['services'])
+            ->first();
+        // $services = $service_type->services()->allActive()->get();
+        // dd()
         return Inertia::render('Service/Index', [
-            'services' => $services,
+            'service_type' => $serviceType,
         ]);
     }
 

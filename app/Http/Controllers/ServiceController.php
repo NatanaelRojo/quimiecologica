@@ -44,8 +44,11 @@ class ServiceController extends Controller
 
     public function showDetail(Service $service): Response
     {
-        $service = Service::where('id', $service->id)->with('conditions')->first();
-        // dd($service->name);
+        $service = Service::query()
+            ->where('id', $service->id)
+            ->with('conditions')
+            ->first();
+
         return Inertia::render('Service/Detail', [
             'service' => $service,
         ]);

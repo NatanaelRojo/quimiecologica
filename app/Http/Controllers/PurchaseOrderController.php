@@ -85,9 +85,7 @@ class PurchaseOrderController extends Controller
 
     public function showDetail(Request $request): Response
     {
-        $isValidId = Str::isUuid($request->purchase_order);
-
-        if (!$isValidId) {
+        if (!Str::isUuid($request->purchase_order)) {
             return Inertia::render('Error/404Error');
         }
 

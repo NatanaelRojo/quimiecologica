@@ -144,16 +144,16 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const form = ref(null);
 const pendingOrder = ref({
-    owner_firstname: '',
-    owner_lastname: '',
-    owner_id: '',
-    owner_email: '',
+    owner_firstname: 'Natanael David',
+    owner_lastname: 'Rojo Abreu',
+    owner_id: '26488388',
+    owner_email: 'rojonatanael99@gmail.com',
     owner_phone_number: '',
-    owner_state: '',
-    owner_city: '',
-    owner_address: '',
-    owner_request: '',
-    deadline: '',
+    owner_state: 'Merida',
+    owner_city: 'Merida',
+    owner_address: 'Merida',
+    owner_request: 'Todo y mas',
+    deadline: 'Una semana',
 });
 
 const errors = ref([]);
@@ -192,8 +192,9 @@ const submitForm = async () => {
     try {
         pendingOrder.value.owner_phone_number = selectedPhoneCode.value + pendingOrder.value.owner_phone_number;
         console.log(pendingOrder.value.owner_phone_number);
-        // const response = await axios.post('/api/pending-orders', pendingOrder.value);
-        // router.visit(route('pending_orders.detail', response.data.id));
+        console.log('final');
+        const response = await axios.post('/api/pending-orders', pendingOrder.value);
+        router.visit(response.data.redirect);
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo()

@@ -59,8 +59,7 @@
                             <p>{{ $pendingOrder->owner_request }}</p>
                             <p>Tiempo estimado por el cliente: {{ $pendingOrder->deadline }}</p>
                             <hr class="title-color">
-                            <h2 class="title-color">Total: ${{ $pendingOrder->total_price }}</h2>
-                            <p>Esta orden será despachada entre tres y ocho días hábiles a partir de la presente. Dependiendo de la disponibilidad de la empresa de envío.</p>
+                            <p>Esta solicitud está siendo procesada. En un máximo de tres días hábiles nos contactaremos con usted.</p>
                         </td>
                     </tr>
                     <!-- Final Email Body -->

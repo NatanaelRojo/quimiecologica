@@ -385,7 +385,7 @@ const truncateText = (text, maxLength) => {
 */
 const addProductToCart = (id) => {
     // Obtener los datos del producto con el id especificado
-    const productData = products.value.find(product => product.id === id);
+    const productData = props.products.find(product => product.id === id);
 
     // Verificar si hay algún producto en localStorage
     let cartProducts = JSON.parse(localStorage.arrayProducts || '[]');
