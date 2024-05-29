@@ -37,7 +37,8 @@ import { Link } from '@inertiajs/vue3';
                                     "
                                     target="__blank"
                                 >
-                                    <b>Instagram:</b> basttvzla
+                                    <i class="fa-brands fa-square-instagram"></i>
+                                    @basttvzla
                                 </a>
                             </li>
                             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -53,7 +54,7 @@ import { Link } from '@inertiajs/vue3';
                                     "
                                     target="__blank"
                                 >
-                                    <b>TikTok:</b> @basttvzla
+                                    <i class="fa-brands fa-tiktok"></i> @basttvzla
                                 </a>
                             </li>
                             <li class="mt-2 inline-block mr-2 md:block md:mr-0">
@@ -71,7 +72,7 @@ import { Link } from '@inertiajs/vue3';
                                     "
                                     target="__blank"
                                 >
-                                    <b>Linkedin:</b> Quimiecolgi C.A.
+                                    <i class="fa-brands fa-linkedin"></i> Quimiecolgi C.A.
                                 </a>
                             </li>
                         </ul>

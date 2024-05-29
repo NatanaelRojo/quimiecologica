@@ -7,6 +7,9 @@
         <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}" />
         <!-- Font-awesome CSS -->
         <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+        <!-- Font-awesome free 6 CSS -->
+        <link href="{{ asset('font-awesome-6/css/fontawesome.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('font-awesome-6/css/all.css') }}" rel="stylesheet" type="text/css">
         <!-- jquery JS -->
         <script src="{{ asset('toastr/jquery-2.1.1.min.js') }}" type="text/javascript"></script>
         <!-- Toastr JS -->

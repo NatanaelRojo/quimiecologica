@@ -81,23 +81,29 @@ onMounted(async () => {
                         <div class="mt-5 w-full">
                             <div class="font-montserrat mb-8">
                                 <div class="mb-3">
-                                    Mérida Edo. Mérida
+                                    <i class="fa-solid fa-location-dot"></i> Mérida Edo. Mérida
                                 </div>
                                 <div class="mb-3">
-                                    <b>Horario de atención:</b> 8:00am a 3:30pm
+                                    <i class="fa-solid fa-clock"></i>
+                                    Horario de atención:
+                                    8:00am a 3:30pm
                                 </div>
                                 <div class="mb-3">
-                                    <b>Teléfono:</b> 0412-5347169
+                                    <i class="fa-solid fa-phone"></i>
+                                    Telféfono:
+                                    0412-5347169
                                 </div>
                                 <div class="mb-3">
-                                    <b>Email:</b> XXX
+                                    <i class="fa-solid fa-envelope"></i>
+                                    XXX
                                 </div>
                                 <div class="mb-3">
                                     <a
                                         href="https://www.instagram.com/basttvzla/"
                                         target="__blank"
                                     >
-                                        <b>Instagram:</b> basttvzla
+                                        <i class="fa-brands fa-square-instagram"></i>
+                                        @basttvzla
                                     </a>
                                 </div>
                                 <div class="mb-3">
@@ -105,7 +111,7 @@ onMounted(async () => {
                                         href="https://www.tiktok.com/@basttvzla"
                                         target="__blank"
                                     >
-                                        <b>TikTok:</b> @basttvzla
+                                        <i class="fa-brands fa-tiktok"></i> @basttvzla
                                     </a>
                                 </div>
                                 <div class="mb-3">
@@ -115,7 +121,7 @@ onMounted(async () => {
                                         "
                                         target="__blank"
                                     >
-                                        <b>Linkedin:</b> Quimiecolgi C.A.
+                                        <i class="fa-brands fa-linkedin"></i> Quimiecolgi C.A.
                                     </a>
                                 </div>
                             </div>
