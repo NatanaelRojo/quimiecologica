@@ -15,7 +15,7 @@ const profile_3 = '/images/profile_3.png';
 const profile_4 = '/images/profile_4.png';
 const profile_5 = '/images/profile_5.png';
 const profile_6 = '/images/profile_6.png';
-const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
+const LogoQuimiecologi_brown = '/images/Logo-Quimiecologi-01-brown.png';
 
 // Imágenes de los servicios
 const servicios_pulverizacion = 'images/servicios/servicios_pulverizacion.png';
@@ -44,7 +44,16 @@ onMounted(async () => {
             <!-- Sección 3 imágenes -->
             <section class="bg-white border-b py-3 gradient mt-8">
                 <div
-                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                    class="flex justify-center items-center"
+                >
+                    <img
+                            :src="LogoQuimiecologi_brown"
+                            class="mb-4"
+                            alt="Quimiecologi C.A."
+                        />
+                </div>
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     <div>
                         <img :src="servicios_pulverizacion" class="w-80 h-auto mx-auto img-zoom">
