@@ -42,7 +42,7 @@ onMounted(async () => {
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección 3 imágenes -->
-            <section class="bg-white border-b py-3 gradient mt-8">
+            <section class="bg-white border-b py-3 gradient">
                 <div
                     class="flex justify-center items-center"
                 >
