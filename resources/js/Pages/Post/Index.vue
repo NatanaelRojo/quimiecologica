@@ -22,7 +22,7 @@
                             text-center
                             text-gray-800
                         ">
-                        Nuestras Publicaciones
+                        Nuestras publicaciones
                     </h2>
                     <div class="w-full mb-4">
                         <div class="
