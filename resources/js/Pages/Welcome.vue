@@ -70,7 +70,7 @@ onMounted(async () => {
 
             <!-- Sección Opiniones de clientes -->
             <section class="bg-white border-b py-3 gradient mt-2">
-                <div class="container max-w-5xl mx-auto m-8 font-montserrat">
+                <div class="container mx-auto m-8 font-montserrat">
                     <h2 class="
                             font-montserrat
                             w-full

@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <main class="p-4 sm:ml-64 mt-6">
+    <main class="p-6 mt-6">
         <slot name="main" />
     </main>
     <Footer />
