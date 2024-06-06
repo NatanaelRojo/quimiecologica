@@ -6,7 +6,7 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
 <template>
     <nav
         class="
-                fixed top-0 z-50 w-full gradient-green border-b border-gray-200
+                top-0 z-50 w-full gradient-green border-b border-gray-200
                 light:bg-gray-800 light:border-gray-700
             "
         >
@@ -77,7 +77,12 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
             background-color: #E5E1DF !important;
         "
     >
-        <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+        <h5
+            id="drawer-navigation-label"
+            class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
+        >
+            Menu
+        </h5>
         <button
             type="button"
             data-drawer-hide="drawer-navigation"
@@ -106,7 +111,6 @@ const LogoQuimiecologi01 = '/images/Logo-Quimiecologi-01.png';
         </button>
         <div class="py-4 overflow-y-auto">
             <ul class="space-y-2 font-medium">
-                <li><br></li>
                 <li>
                     <Link
                         :href="route('welcome')"
