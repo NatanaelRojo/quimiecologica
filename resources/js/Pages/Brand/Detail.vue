@@ -76,7 +76,7 @@ onMounted(async () => {
                     <div v-if="brand.primary_classes.length > 0" class="
                             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
                         ">
-                        <!-- Iterate de servicios -->
+                        <!-- Iterate -->
                         <template v-for="(primaryClass, index) in brand.primary_classes" :key="index">
                             <Link :href="route('primary-classes.detail', primaryClass.slug)"
                                 :data="{ ...filter_parameters, primary_class: primaryClass.name }">
@@ -92,10 +92,14 @@ onMounted(async () => {
                                 ">
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col items-start">
-                                    <img :src="`/storage/${brand.banner}`" alt="Imagen del servicio" class="
+                                    <img
+                                        :src="`/storage/${brand.banner}`"
+                                        alt="...."
+                                        class="
                                             w-full mb-4
                                                 rounded-md img-zoom
-                                            ">
+                                            "
+                                        >
                                     <div>
                                         <h3 class="
                                                         text-lg
@@ -110,7 +114,7 @@ onMounted(async () => {
                             </div>
                             </Link>
                         </template>
-                        <!-- Fin de la iteración de los servicios-->
+                        <!-- Fin de la iteración -->
                     </div>
                     <h2 v-else class="
                             w-full
@@ -119,7 +123,7 @@ onMounted(async () => {
                             leading-tight
                             text-center text-gray-800
                         ">
-                        No hay servicios disponibles
+                        ...
                     </h2>
                 </div>
             </section>
