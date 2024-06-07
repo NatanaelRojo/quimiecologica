@@ -78,7 +78,7 @@ onMounted(async () => {
                         ">
                         <!-- Iterate de servicios -->
                         <template v-for="(gender, index)     in category.genders" :key="index">
-                            <Link :href="route('genders.detail', gender.slug)"
+                            <Link :href="route('products.parameters', gender.slug)"
                                 :data="{ ...filter_parameters, gender: gender.name }">
                             <div class="
                                     bg-white

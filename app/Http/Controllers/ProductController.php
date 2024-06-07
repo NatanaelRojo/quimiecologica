@@ -84,11 +84,14 @@ class ProductController extends Controller
 
     public function showAllByParameters(Request $request): Response
     {
+        $filter_parameters = $request->query();
         $products = Product::query()
-            ->applyParameters($request->all())
-            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders'])
+            ->applyParameters($filter_parameters)
+            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
             ->get()
             ->toArray();
+        // ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
+        // ->toArray();
 
         return Inertia::render('Product/Index', [
             'products' => $products,

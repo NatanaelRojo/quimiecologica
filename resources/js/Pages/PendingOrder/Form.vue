@@ -190,10 +190,13 @@ const clearErrors = () => {
  */
 const submitForm = async () => {
     try {
-        pendingOrder.value.owner_phone_number = selectedPhoneCode.value + pendingOrder.value.owner_phone_number;
+        // pendingOrder.value.owner_phone_number = selectedPhoneCode.value + pendingOrder.value.owner_phone_number;
         console.log(pendingOrder.value.owner_phone_number);
         console.log('final');
-        const response = await axios.post('/api/pending-orders', pendingOrder.value);
+        const response = await axios.post('/api/pending-orders', {
+            ...pendingOrder.value,
+            owner_phone_number: selectedPhoneCode.value + pendingOrder.value.owner_phone_number,
+        });
         router.visit(response.data.redirect);
     } catch (error) {
         errors.value = error.response.data;

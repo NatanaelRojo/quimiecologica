@@ -101,9 +101,7 @@ const showMessage = (type) => {
                             border
                             rounded-lg
                             shadow-md
-                        "
-                        style="border: ridge 1px #93BC00;"
-                    >
+                        " style="border: ridge 1px #93BC00;">
                         <div class="mb-2 text-gray-800 text-lg">
                             <b>Nombres:</b> {{ purchase_order.owner_firstname }}
                         </div>
@@ -111,7 +109,7 @@ const showMessage = (type) => {
                             <b>Apellidos:</b> {{ purchase_order.owner_lastname }} {{ purchase_order.owner_lastname }}
                         </div>
                         <div class="mb-2 text-gray-800 text-lg">
-                            <b>Cédula de identidad:</b>s {{ purchase_order.owner_id }}
+                            <b>Cédula de identidad:</b> {{ purchase_order.owner_id }}
                         </div>
                         <div class="mb-2 text-gray-800 text-lg">
                             <b>Número de teléfono:</b> {{ purchase_order.owner_phone_number }}
@@ -132,7 +130,8 @@ const showMessage = (type) => {
                             <b>Numero de referencia del pago:</b> {{ purchase_order.reference_number }}
                         </div>
                         <div class="mb-2 text-gray-800 text-lg">
-                            <b>Fecha de creación:</b> {{ new Date(purchase_order.created_at).toLocaleDateString('en-GB') }}
+                            <b>Fecha de creación:</b> {{ new Date(purchase_order.created_at).toLocaleDateString('en-GB')
+                            }}
                         </div>
                         <div class="mb-2 text-gray-800 text-lg">
                             <b>Información de los Productos:</b>
@@ -142,19 +141,12 @@ const showMessage = (type) => {
                             <p>Cantidad: {{ product.product_quantity }}</p>
                             <p>Tipo de venta: {{ product.sale_type }}</p>
                             <p>Unidad del producto: {{ product.product_unit }}</p>
-                            <hr
-                                v-if="purchase_order.products_info.length > 1"
-                                class="mt-3 mb-5"
-                                style="border: ridge 1px #93BC00;"
-                            >
+                            <hr v-if="purchase_order.products_info.length > 1" class="mt-3 mb-5"
+                                style="border: ridge 1px #93BC00;">
                         </span>
-                        <hr
-                            v-if="purchase_order.products_info.length < 2"
-                            class="mt-3 mb-5"
-                            style="border: ridge 1px #93BC00;"
-                        >
-                        <span
-                            class="
+                        <hr v-if="purchase_order.products_info.length < 2" class="mt-3 mb-5"
+                            style="border: ridge 1px #93BC00;">
+                        <span class="
                                 mt-5
                                 gradient-green
                                 rounded
@@ -164,8 +156,7 @@ const showMessage = (type) => {
                                 text-4xl
                                 font-black
                                 text-gray-800
-                            "
-                        >
+                            ">
                             Total: ${{ purchase_order.total_price }}
                         </span>
                     </div>

@@ -95,7 +95,7 @@ class GenderResource extends Resource
                 ->listWithLineBreaks(),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
-                    return $query->where('name', 'like', "%{$search}%");
+                    return $query->where('name', 'ilike', "%{$search}%");
                 }),
         ];
     }

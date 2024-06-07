@@ -54,7 +54,7 @@ onMounted(() => {
             // product_unit: product.unit.name,
         }
         record.value.products_info.push(productData);
-        if (product.type_sale.name === 'Detal') {
+        if (product.type_sale.name === 'Detal/Mayor') {
             productsQuantity.value[index] = 1;
             record.value.total_price += product.price * 1;
         } else if (product.type_sale.name === 'Granel') {
@@ -72,12 +72,13 @@ onMounted(() => {
 const createPurchaseOrder = async () => {
     try {
         isLoading.value = true;
-        record.value.owner_phone_number = selectedPhoneCode.value + record.value.owner_phone_number;
+        //record.value.owner_phone_number = selectedPhoneCode.value + record.value.owner_phone_number;
         const form = new FormData();
 
         Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
         });
+        form.append('owner_phone_number', selectedPhoneCode.value + record.value.owner_phone_number);
 
         record.value.products_info.forEach(item => {
             form.append(`products_info[${item.product_id}]`, JSON.stringify(item));
@@ -146,8 +147,10 @@ const removeProductFromCart = (id) => {
 
     // Eliminar el producto del array de productos del carrito.
     if (index !== -1) {
-        if (arrayProducts.value[index].type_sale.name === 'Detal') {
-            record.value.total_price -= arrayProducts.value[index].price * productsQuantity.value[index];
+        if (arrayProducts.value[index].type_sale.name === 'Detal/Mayor') {
+            record.value.total_price -= productsQuantity.value[index] <= 5
+                ? arrayProducts.value[index].price * productsQuantity.value[index]
+                : arrayProducts.value[index].wholesale_price * productsQuantity.value[index];
         } else if (arrayProducts.value[index].type_sale.name === 'Granel') {
             record.value.total_price -= arrayProducts.value[index].price * productsQuantity.value[index];
         }
@@ -159,7 +162,7 @@ const removeProductFromCart = (id) => {
 }
 
 const validateProductQuantity = (quantity, product) => {
-    if (quantity > product.stock && product.type_sale.name === 'Detal') {
+    if (quantity > product.stock && product.type_sale.name === 'Detal/Mayor') {
         errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
         scrollMeTo();
         return false;
@@ -175,26 +178,31 @@ const calculateTotalPrice = (quantity, index) => {
         productsQuantity.value[index] = arrayProducts.value[index].stock;
         return;
     }
-    let totalPrice = 0;
-    arrayProducts.value.forEach((product, index) => {
-        if (product.type_sale.name === 'Detal') {
-            totalPrice += product.price * productsQuantity.value[index];
-        } else if (product.type_sale.name === 'Granel') {
-            totalPrice += product.price * productsQuantity.value[index];
-        }
-    });
+    // let totalPrice = 0;
+    // arrayProducts.value.forEach((product, index) => {
+    //     if (product.type_sale.name === 'Detal/Mayor') {
+    //         totalPrice += productsQuantity.value[index] <= 5 ?
+    //         product.price * productsQuantity.value[index] :
+    //         product.wholesale_price * productsQuantity.value[index];
+    //     } else if (product.type_sale.name === 'Granel') {
+    //         totalPrice += product.price * productsQuantity.value[index];
+    //     }
+    // });
 
-    // Iterar sobre todos los productos en el carrito.
-    // for (let i = 0; i < arrayProducts.value.length; i++) {
-    //     // Sumar el precio del producto actual al precio total.
-    //     // if ()
-    //     totalPrice += arrayProducts.value[i].price;
-    // }
+    // // Asignar el valor del total.
+    // record.value.total_price = totalPrice;
 
-    // Asignar el valor del total.
+    // // Devolver el precio total.
+    // return totalPrice;
+    const totalPrice = arrayProducts.value?.reduce((total, product, i) => {
+        const productPrice = product?.type_sale?.name === 'Detal/Mayor'
+            ? productsQuantity.value[i] <= 5 ? product?.price : product?.wholesale_price
+            : product?.price;
+        return total + productPrice * productsQuantity.value[i];
+    }, 0);
+
+    // Assign and return total price
     record.value.total_price = totalPrice;
-
-    // Devolver el precio total.
     return totalPrice;
 }
 
@@ -220,17 +228,50 @@ const increaseProductQuantity = (quantities, index) => {
         return;
     }
     quantities[index]++;
+    if (arrayProducts.value[index].type_sale.name === 'Detal/Mayor' &&
+        quantities[index] > 5) {
+        showMessage('wholesale', index);
+    }
     calculateTotalPrice(quantities[index], index);
 }
 
 const decreaseProductQuantity = (quantities, index) => {
     if (productsQuantity.value[index] - 1 === 0 && arrayProducts.value[index].type_sale.name === 'Detal/Mayor') {
         return;
-    } else if (productsQuantity.value[index] - 1 < arrayProducts.value[index].quantity && arrayProducts.value[index].type_sale.name === 'Granel') {
+    } else if (productsQuantity.value[index] - 1 < arrayProducts.value[index].quantity &&
+        arrayProducts.value[index].type_sale.name === 'Granel') {
         return;
     }
     quantities[index]--;
+    if (arrayProducts.value[index].type_sale.name === 'Detal/Mayor' &&
+        quantities[index] <= 5) {
+        showMessage('retail', index);
+    }
     calculateTotalPrice(quantities[index], index);
+}
+
+/**
+ * Método que muestra la notificación toastr luego de guardar la orden de compra.
+*/
+const showMessage = (type, index) => {
+    let options = {
+        closeButton: true,
+        progressBar: true,
+        timeOut: 5000,
+        extendedTimeOut: 1000,
+        preventDuplicates: true
+    };
+    if (type === 'wholesale') {
+        toastr.success(
+            `Como lleva mas de 5 unidades del producto ${arrayProducts.value[index].name} el tipo de la venta ahora es al mayor`,
+            options
+        );
+    } else if (type === 'retail') {
+        toastr.success(
+            `Como lleva menos de 5 unidades del producto ${arrayProducts.value[index].name} el tipo de la venta ahora es al detal`,
+            options
+        );
+    }
 }
 </script>
 
@@ -640,7 +681,7 @@ const decreaseProductQuantity = (quantities, index) => {
                             text-center text-gray-800
                             mt-8
                         ">
-                        No hay productos añadidos en el
+                        No hay productos añadidos en el carrito
                         <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                     </h2>
                     <br>
