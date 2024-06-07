@@ -47,6 +47,9 @@ class PrimaryClassResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
+            Forms\Components\FileUpload::make('logo_url')->label(static::getAttributeLabel('logo'))
+                ->required()
+                ->columnSpan('full'),
             Forms\Components\Select::make('brands')->label(static::getAttributeLabel('brands'))
                 ->required()
                 ->multiple()

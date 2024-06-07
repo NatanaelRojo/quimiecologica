@@ -18,6 +18,7 @@ class Category extends Model
     protected $fillable = [
         // 'primary_class_id',
         'is_active',
+        'logo_url',
         'name',
     ];
 

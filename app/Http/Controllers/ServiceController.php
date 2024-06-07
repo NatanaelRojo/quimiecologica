@@ -46,7 +46,6 @@ class ServiceController extends Controller
     {
         $service = Service::query()
             ->where('id', $service->id)
-            ->with('conditions')
             ->first();
 
         return Inertia::render('Service/Detail', [

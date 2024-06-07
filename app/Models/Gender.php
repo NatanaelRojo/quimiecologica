@@ -16,6 +16,7 @@ class Gender extends Model
 
     protected $fillable = [
         'is_active',
+        'logo_url',
         'name',
     ];
 
