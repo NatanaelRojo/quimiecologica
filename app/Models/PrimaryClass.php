@@ -17,6 +17,7 @@ class PrimaryClass extends Model
 
     protected $fillable = [
         'is_active',
+        'logo_url',
         'name',
         'description',
     ];

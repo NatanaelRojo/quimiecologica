@@ -82,12 +82,15 @@ onMounted(async () => {
                             <b>Precio:</b> ${{ service.price }}
                         </p>
                         <!-- Condiciones -->
-                        <div v-if="service.conditions && service.conditions.length > 0">
+                        <div v-if="service?.conditions && Object.keys(service.conditions).length > 0">
                             <h2>Condiciones:</h2>
                             <ul>
-                                <li v-for="(condition, index) in service.conditions" :key="index">
-                                    <b>{{ condition }}</b>
-                                </li>
+                                <template v-for="(description, condition) in service.conditions" :key="index">
+                                    <li>
+                                        <b>{{ condition }}:</b>
+                                        <p>{{ description }}</p>
+                                    </li>
+                                </template>
                             </ul>
                         </div>
                         <div v-else>

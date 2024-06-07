@@ -62,10 +62,10 @@ class Service extends Model
         return $this->hasMany(PurchaseOrder::class);
     }
 
-    public function conditions(): MorphMany
-    {
-        return $this->morphMany(Condition::class, 'conditionable');
-    }
+    // public function conditions(): MorphMany
+    // {
+    //     return $this->morphMany(Condition::class, 'conditionable');
+    // }
 
     public function scopeAllActive(Builder $query): void
     {

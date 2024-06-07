@@ -68,7 +68,8 @@ class ServiceResource extends Resource
                 ->required()->numeric()->minValue(1)
                 ->prefix('$')
                 ->columnSpan('full'),
-            Forms\Components\KeyValue::make('conditions')->label(static::getAttributeLabel('conditions'))
+            Forms\Components\KeyValue::make('conditions')
+                ->label(static::getAttributeLabel('conditions'))
                 ->keyLabel(static::getAttributeLabel('name'))->valueLabel(static::getAttributeLabel('description')),
         ];
     }
@@ -121,7 +122,7 @@ class ServiceResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ConditionsRelationManager::class,
+            //
         ];
     }
 
