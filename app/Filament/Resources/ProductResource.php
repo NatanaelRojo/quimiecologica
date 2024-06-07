@@ -250,9 +250,9 @@ class ProductResource extends Resource
         return [
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
                 ->required()->numeric()->minValue(1),
-            Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                ->required()
-                ->relationship(name: 'unit', titleAttribute: 'name'),
+            // Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
+            //     ->required()
+            //     ->relationship(name: 'unit', titleAttribute: 'name'),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price_by_unit'))
                 ->required()->numeric()->minValue(1)
