@@ -91,10 +91,10 @@ onMounted(async () => {
                                     hover:scale-105
                                 ">
                                 <!-- Información a la izquierda -->
-                                <div class="flex flex-col items-start">
+                                <div class="flex flex-col">
                                     <img
-                                        :src="`/storage/${brand.banner}`"
-                                        alt="...."
+                                        :src="`/storage/${primaryClass.logo_url}`"
+                                        alt="..."
                                         class="
                                             w-full mb-4
                                                 rounded-md img-zoom
@@ -102,11 +102,13 @@ onMounted(async () => {
                                         >
                                     <div>
                                         <h3 class="
-                                                        text-lg
-                                                        font-semibold
-                                                        mb-2
-                                                        text-gray-800
-                                                    ">
+                                                text-lg
+                                                font-semibold
+                                                mb-2
+                                                text-gray-800
+                                                text-center
+                                            "
+                                        >
                                             {{ primaryClass.name }}
                                         </h3>
                                     </div>

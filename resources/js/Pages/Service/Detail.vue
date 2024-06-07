@@ -67,26 +67,24 @@ onMounted(async () => {
 
                     <br>
 
-                    <div class="lg:w-1/2 lg:mr-8 mb-4">
+                    <div class="lg:w-1/2 lg:mr-8 mb-6">
                         <img :src="`/storage/${service.banner}`" alt="Imagen de portada"
                             class="w-full h-auto img-zoom" />
                     </div>
 
                     <!-- Detalles del servicio -->
-                    <div class="lg:w-1/2">
+                    <div class="">
                         <h1 class="text-3xl font-bold mb-2">{{ service.name }}</h1>
                         <p class="text-gray-600 mb-4 text-justify">
                             <span v-html="service.description"></span>
                         </p>
-                        <p class="text-gray-600 mb-4 text-justify">
-                            <b>Precio:</b> ${{ service.price }}
-                        </p>
                         <!-- Condiciones -->
                         <div v-if="service?.conditions && Object.keys(service.conditions).length > 0">
-                            <h2>Condiciones:</h2>
+                            <b>Condiciones:</b>
+                            <br class="mb-3">
                             <ul>
-                                <template v-for="(description, condition) in service.conditions" :key="index">
-                                    <li>
+                                <template v-for="(description, condition, index) in service.conditions" :key="index">
+                                    <li class="mb-2 text-gray-600">
                                         <b>{{ condition }}:</b>
                                         <p>{{ description }}</p>
                                     </li>
@@ -96,6 +94,10 @@ onMounted(async () => {
                         <div v-else>
                             No hay condiciones
                         </div>
+                        <hr class="mt-2 mb-2">
+                        <h1 class="text-gray-600 text-justify text-3xl font-bold">
+                            <b>Precio:</b> ${{ service.price }}
+                        </h1>
                     </div>
                 </div>
             </section>
