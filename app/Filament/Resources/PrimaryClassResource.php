@@ -70,7 +70,7 @@ class PrimaryClassResource extends Resource
             Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search) {
-                    return $query->where('name', 'like', "%{$search}%");
+                    return $query->where('name', 'ilike', "%{$search}%");
                 }),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))->limit(20),
         ];

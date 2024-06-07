@@ -52,7 +52,7 @@ Route::get('/brands', function () {
 
 // Página de Productos por Parametros
 Route::get('/products', [ProductController::class, 'showAllByParameters'])
-    ->name('products');
+    ->name('products.parameters');
 //     return Inertia::render('Product/Brand');
 // })->name('products');
 
