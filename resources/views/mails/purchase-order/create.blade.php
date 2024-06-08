@@ -33,7 +33,7 @@
                     <!-- Email Header -->
                     <tr style="background: #93BC00 !important">
                         <td class="header" align="center">
-                            <b>Quimiecologi C.A.</b>
+                            <b>QUIMIECOLOGICA.</b>
                         </td>
                     </tr>
                     <!-- Final Email Header -->

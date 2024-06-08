@@ -107,6 +107,7 @@ class ProductController extends Controller
             ->where('id', $product->id)
             ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
             ->first();
+        // dd($product->brand->name);
         return Inertia::render('Product/Detail', [
             'product' => $product,
         ]);
