@@ -103,7 +103,10 @@ class ProductController extends Controller
      */
     public function showDetail(Product $product): Response
     {
-        $product = Product::where('id', $product->id)->with(['categories', 'genders', 'typeSale'])->first();
+        $product = Product::query()
+            ->where('id', $product->id)
+            ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
+            ->first();
         return Inertia::render('Product/Detail', [
             'product' => $product,
         ]);
