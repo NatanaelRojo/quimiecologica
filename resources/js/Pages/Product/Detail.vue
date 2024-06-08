@@ -2,12 +2,25 @@
     <MainLayout>
         <template #main>
 
-            <Head title="Detalle del Producto" />
-
+            <Head :title="product.name" />
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
             <section class="gradient border-b py-3">
+                <!-- Notificación del carrito -->
+                <Link :href="route('shopping-cart')">
+                <div v-if="arrayProducts.length > 0" class="container max-w-5xl mx-auto m-8" role="alert">
+                    <div class="
+                                relative block w-full p-4 mb-4 text-base
+                                leading-5 text-white gradient-green rounded-lg
+                                opacity-100 font-regular
+                            ">
+                        <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                        Ha agregado Productos al carrito.
+                    </div>
+                </div>
+                </Link>
+                <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-7xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
@@ -53,6 +66,26 @@
                         <p class="text-gray-600 mb-4 text-justify">
                             <span v-html="product.description"></span>
                         </p>
+                        <div class="flex flex-col items-center">
+                            <button @click.prevent="addProductToCart(product)" class="
+                                                font-montserrat
+                                                gradient-green
+                                                mt-4
+                                                bg-blue-500
+                                                text-white
+                                                py-2 px-4
+                                                rounded-md
+                                                hover:bg-blue-600
+                                                focus:outline-none
+                                                focus:border-blue-700
+                                                focus:ring
+                                                focus:ring-blue-200
+                                                font-bold
+                                            ">
+                                <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                                Añadir al Carrito
+                            </button>
+                        </div>
                         <div class="flex space-x-2 mb-2">
                             <span>Marca: </span>
                             <span class="text-gray-600">
@@ -122,13 +155,18 @@
 
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
+import { Head, Link } from '@inertiajs/vue3';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
+import axios from 'axios';
+import ErrorList from '@/Components/ErrorList.vue';
 
 const isLoading = ref(false);
 const fullPage = ref(true);
+const errors = ref([]);
+const arrayProducts = ref(localStorage.arrayProducts
+    ? JSON.parse(localStorage.arrayProducts) : []);
 
 const props = defineProps({
     product: { type: Object, required: true },
@@ -146,8 +184,43 @@ onBeforeMount(async () => {
     isLoading.value = true;
 });
 
-onMounted(async () => {
+onMounted(() => {
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
+
+const addProductToCart = (product) => {
+    // Obtener los datos del producto con el id especificado
+    // const productData = props.products.find(product => product.id === id);
+
+    // Verificar si hay algún producto en localStorage
+    let cartProducts = JSON.parse(localStorage.arrayProducts || '[]');
+
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = cartProducts.findIndex(
+        cartProduct => cartProduct.id === product.id
+    );
+
+    if (existingProductIndex > -1 && product.stock > 0) {
+        // El producto ya existe en el carrito, actualizar cantidad
+        cartProducts[existingProductIndex].quantity++;
+    } else if (existingProductIndex === -1 && product.stock > 0) {
+        // Añadir los datos del producto al array de Productos del carrito
+        cartProducts.push({ ...product, quantity: 1 });
+    } else {
+        errors.value.push(`No se puede agregar el producto "${product.name}"al carrito por falta de disponibilidad`);
+        scrollMeTo();
+    }
+
+    // Almacenar el array de productos actualizado en localStorage
+    localStorage.arrayProducts = JSON.stringify(cartProducts);
+
+    // Actualizar arrayProducts con los nuevos datos de localStorage
+    // console.log(cartProducts);
+    arrayProducts.value = cartProducts;
+}
+
+const clearErrors = () => {
+    errors.value = []
+}
 </script>

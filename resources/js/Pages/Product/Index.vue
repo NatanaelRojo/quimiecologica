@@ -171,104 +171,85 @@
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
                                     <Link :href="route('products.detail', product.slug)">
-                                        <img
-                                            :src="`/storage/${product.image_urls[0]}`"
-                                            alt="Imagen del producto"
-                                            class="
+                                    <img :src="`/storage/${product.image_urls[0]}`" alt="Imagen del producto" class="
                                                 w-full h-50 object-cover mb-4
                                                 rounded-md img-zoom
-                                            "
-                                        >
-                                        <div>
-                                            <h3 class="
+                                            ">
+                                    <div>
+                                        <h3 class="
                                                     text-lg
                                                     font-semibold
                                                     mb-2
                                                     text-gray-800
-                                                "
-                                            >
-                                                {{ product.name }}
-                                            </h3>
-                                            <p
-                                                class="text-gray-600 mb-4 text-justify"
-                                            >
-                                                <span v-html="truncateText(product.description, 200)">
+                                                ">
+                                            {{ product.name }}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4 text-justify">
+                                            <span v-html="truncateText(product.description, 200)">
+                                            </span>
+                                        </p>
+                                        <div class="flex space-x-2 mb-2">
+                                            <span>Marca:</span>
+                                            <span class="text-gray-600">
+                                                {{ product.brand.name }}
+                                            </span>
+                                        </div>
+                                        <div class="flex space-x-2 mb-2">
+                                            <span>Clase:</span>
+                                            <span class="text-gray-600">
+                                                {{ product.primary_class.name }}
+                                            </span>
+                                        </div>
+                                        <div class="flex space-x-2">
+                                            <span>Subclase:</span>
+                                            <div v-for="(category, index) of product.categories" :key="index"
+                                                class="text-gray-600">
+                                                {{ category.name }}
+                                            </div>
+                                        </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <span>Cuota:</span>
+                                            <div v-for="(gender, index) of product.genders" :key="index"
+                                                class="text-gray-600">
+                                                {{ gender.name }}
+                                            </div>
+                                        </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <span>Presentación:</span>
+                                            <div v-for="(measure, index) of product.measures" :key="index"
+                                                class="text-gray-600">
+                                                <span v-if="measure.quantity > 0">
+                                                    {{ measure.quantity }}
                                                 </span>
-                                            </p>
-                                            <div class="flex space-x-2 mb-2">
-                                                <span>Marca:</span>
-                                                <span class="text-gray-600">
-                                                    {{ product.brand.name }}
-                                                </span>
+                                                {{ measure.unit }}
+                                                {{ measure.size }}
                                             </div>
-                                            <div class="flex space-x-2 mb-2">
-                                                <span>Clase:</span>
-                                                <span class="text-gray-600">
-                                                    {{ product.primary_class.name }}
-                                                </span>
-                                            </div>
-                                            <div class="flex space-x-2">
-                                                <span>Subclase:</span>
-                                                <div
-                                                    v-for="(category, index) of product.categories"
-                                                    :key="index"
-                                                    class="text-gray-600"
-                                                >
-                                                    {{ category.name }}
-                                                </div>
-                                            </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <span>Cuota:</span>
-                                                <div
-                                                    v-for="(gender, index) of product.genders"
-                                                    :key="index"
-                                                    class="text-gray-600"
-                                                >
-                                                    {{ gender.name }}
-                                                </div>
-                                            </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <span>Presentación:</span>
-                                                <div v-for="(measure, index) of product.measures"
-                                                    :key="index"
-                                                    class="text-gray-600"
-                                                >
-                                                    <span v-if="measure.quantity > 0">
-                                                        {{ measure.quantity }}
-                                                    </span>
-                                                    {{ measure.unit }}
-                                                    {{ measure.size }}
-                                                </div>
-                                            </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <span>Tipo de venta:</span>
-                                                <div class="text-gray-600">
-                                                    <span
-                                                        class="
+                                        </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <span>Tipo de venta:</span>
+                                            <div class="text-gray-600">
+                                                <span class="
                                                             gradient-green
                                                             rounded-full
                                                             px-3
                                                             py-1
                                                             text-sm
                                                             text-gray-700
-                                                        "
-                                                    >
-                                                        {{ product.type_sale.name }}
-                                                    </span>
-                                                </div>
+                                                        ">
+                                                    {{ product.type_sale.name }}
+                                                </span>
                                             </div>
                                         </div>
+                                    </div>
                                     </Link>
                                     <hr class="mt-4 mb-2">
                                     <!-- Precio y botón a la derecha -->
-                                    <p
-                                        class="
+                                    <p class="
                                             mt-2
                                             text-gray-700
                                             font-semibold
                                             text-xl
-                                        "
-                                    >
+                                        ">
                                         Precio: ${{ product.price }}
                                     </p>
                                     <div class="flex flex-col items-center">
@@ -433,7 +414,7 @@ const addProductToCart = (id) => {
     // Verificar si el producto ya está en el carrito
     const existingProductIndex = cartProducts.findIndex(p => p.id === id);
 
-    if (existingProductIndex > -1) {
+    if (existingProductIndex > -1 && productData.stock > 0) {
         // El producto ya existe en el carrito, actualizar cantidad
         cartProducts[existingProductIndex].quantity++;
     } else if (existingProductIndex === -1 && productData.stock > 0) {
