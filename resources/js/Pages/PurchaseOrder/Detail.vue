@@ -161,6 +161,29 @@ const showMessage = (type) => {
                         </span>
                     </div>
                 </div>
+                <h2 class="
+                            font-montserrat
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        ">
+                    Comunícate con nosotros
+                </h2>
+                <div class="
+                            p-4
+                            border
+                            rounded-lg
+                            shadow-md
+                        " style="border: ridge 1px #93BC00;">
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <p><b>04125347169</b></p>
+                        <p><b>02742635666</b></p>
+                    </div>
+                </div>
             </section>
         </template>
     </MainLayout>
