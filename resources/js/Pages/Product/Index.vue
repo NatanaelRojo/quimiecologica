@@ -223,9 +223,15 @@
                                             </div>
                                             <div class="flex space-x-2 mt-2">
                                                 <span>Presentación:</span>
-                                                <div v-for="(measure, index) of product.measures" :key="index"
-                                                    class="text-gray-600">
-                                                    {{ measure.quantity }} {{ measure.unit }}
+                                                <div v-for="(measure, index) of product.measures"
+                                                    :key="index"
+                                                    class="text-gray-600"
+                                                >
+                                                    <span v-if="measure.quantity > 0">
+                                                        {{ measure.quantity }}
+                                                    </span>
+                                                    {{ measure.unit }}
+                                                    {{ measure.size }}
                                                 </div>
                                             </div>
                                             <div class="flex space-x-2 mt-2">
