@@ -209,15 +209,21 @@
                                             </div>
                                             <div class="flex space-x-2">
                                                 <span>Subclase:</span>
-                                                <div v-for="(category, index) of product.categories" :key="index"
-                                                    class="text-gray-600">
+                                                <div
+                                                    v-for="(category, index) of product.categories"
+                                                    :key="index"
+                                                    class="text-gray-600"
+                                                >
                                                     {{ category.name }}
                                                 </div>
                                             </div>
                                             <div class="flex space-x-2 mt-2">
                                                 <span>Cuota:</span>
-                                                <div v-for="(gender, index) of product.genders" :key="index"
-                                                    class="text-gray-600">
+                                                <div
+                                                    v-for="(gender, index) of product.genders"
+                                                    :key="index"
+                                                    class="text-gray-600"
+                                                >
                                                     {{ gender.name }}
                                                 </div>
                                             </div>
@@ -237,14 +243,16 @@
                                             <div class="flex space-x-2 mt-2">
                                                 <span>Tipo de venta:</span>
                                                 <div class="text-gray-600">
-                                                    <span class="
-                                                                gradient-green
-                                                                rounded-full
-                                                                px-3
-                                                                py-1
-                                                                text-sm
-                                                                text-gray-700
-                                                            ">
+                                                    <span
+                                                        class="
+                                                            gradient-green
+                                                            rounded-full
+                                                            px-3
+                                                            py-1
+                                                            text-sm
+                                                            text-gray-700
+                                                        "
+                                                    >
                                                         {{ product.type_sale.name }}
                                                     </span>
                                                 </div>
@@ -253,12 +261,14 @@
                                     </Link>
                                     <hr class="mt-4 mb-2">
                                     <!-- Precio y botón a la derecha -->
-                                    <p class="
+                                    <p
+                                        class="
                                             mt-2
                                             text-gray-700
                                             font-semibold
                                             text-xl
-                                        ">
+                                        "
+                                    >
                                         Precio: ${{ product.price }}
                                     </p>
                                     <div class="flex flex-col items-center">
