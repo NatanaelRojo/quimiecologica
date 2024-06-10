@@ -140,7 +140,6 @@ const showMessage = (type) => {
                             <p>Nombre del producto: {{ product.product_name }}</p>
                             <p>Cantidad: {{ product.product_quantity }}</p>
                             <p>Tipo de venta: {{ product.sale_type }}</p>
-                            <p>Unidad del producto: {{ product.product_unit }}</p>
                             <hr v-if="purchase_order.products_info.length > 1" class="mt-3 mb-5"
                                 style="border: ridge 1px #93BC00;">
                         </span>

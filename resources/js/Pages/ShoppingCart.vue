@@ -48,12 +48,10 @@ onMounted(() => {
             product_name: product.name,
             product_quantity: `${product.quantity}`,
             sale_type: product.type_sale.name,
-            product_unit: product.measures[0].size !== '' ?
-                product.measures[0].size :
-                product.measures[0].quantity + product.measures[0].unit,
-            // product_unit: product.unit.name,
         }
+
         record.value.products_info.push(productData);
+
         if (product.type_sale.name === 'Detal/Mayor') {
             productsQuantity.value[index] = 1;
             record.value.total_price += product.price * 1;
@@ -78,6 +76,7 @@ const createPurchaseOrder = async () => {
         Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
         });
+
         form.append('owner_phone_number', selectedPhoneCode.value + record.value.owner_phone_number);
 
         record.value.products_info.forEach(item => {
@@ -438,9 +437,7 @@ const showMessage = (type, index) => {
                                                         ">+</button>
                                                 </div>
                                                 <div v-else-if="product.type_sale.name === 'Granel'">
-                                                    <label for="product-wholesale-quantity">{{ product.unit.name
-                                                        }}(s) del
-                                                        producto</label>
+                                                    <label for="product-wholesale-quantity">Cantidad:</label>
                                                     <input type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" :min="product.product_content"
                                                         v-model="productsQuantity[index]" @input="record.total_price =
@@ -710,7 +707,6 @@ const showMessage = (type, index) => {
                                 <p>Nombre del producto: {{ product.product_name }}</p>
                                 <p>Cantidad: {{ product.product_quantity }}</p>
                                 <p>Tipo de venta: {{ product.sale_type }}</p>
-                                <p>Unidad de producto: {{ product.product_unit }}</p>
                             </li>
                         </ul>
                     </div>

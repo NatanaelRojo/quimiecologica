@@ -22,7 +22,3 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
-
-/**
- * Métodos que permiten desplegar el menú cuando está en modo mobile.
-*/

@@ -58,7 +58,6 @@
                             <h2 class="title-color">Detalles de la compra</h2>
                             @foreach($purchaseOrder->products_info as $product)
                                 <p>Nombre del producto: {{ $product['product_name'] }}</p>
-                                <p>Cantidad: {{ $product['product_quantity'] }} {{ $product['product_unit'] }}</p>
                                 <p>Tipo de venta: {{ $product['sale_type'] }}</p>
                             @endforeach
                             <hr class="title-color">
