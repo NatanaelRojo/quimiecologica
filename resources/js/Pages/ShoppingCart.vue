@@ -43,15 +43,7 @@ const purchaseOrder = ref(null);
 
 onMounted(() => {
     arrayProducts.value.forEach((product, index) => {
-        const productData = {
-            product_id: product.id,
-            product_name: product.name,
-            product_quantity: `${product.quantity}`,
-            sale_type: product.type_sale.name,
-        }
-
-        record.value.products_info.push(productData);
-
+        record.value.products_info.push(product);
         if (product.type_sale.name === 'Detal/Mayor') {
             productsQuantity.value[index] = 1;
             record.value.total_price += product.price * 1;
@@ -67,20 +59,17 @@ onMounted(() => {
 /**
  * Método que permite enviar los datos de la orden de compra al api.
 */
-const createPurchaseOrder = async () => {
+const createPurchaseOrder = async (index) => {
     try {
         isLoading.value = true;
-        //record.value.owner_phone_number = selectedPhoneCode.value + record.value.owner_phone_number;
         const form = new FormData();
 
         Object.entries(record.value).forEach(([key, value]) => {
             form.append(key, value);
         });
-
         form.append('owner_phone_number', selectedPhoneCode.value + record.value.owner_phone_number);
-
         record.value.products_info.forEach(item => {
-            form.append(`products_info[${item.product_id}]`, JSON.stringify(item));
+            form.append(`products_info[${item.id}]`, JSON.stringify(item));
         });
 
         const response = await axios.post('/api/purchase-orders', form);
@@ -142,7 +131,7 @@ const truncateText = (text, maxLength) => {
 */
 const removeProductFromCart = (id) => {
     // Encontrar el índice del producto con el id especificado.
-    const index = arrayProducts.value.findIndex(product => product.id === id);
+    let index = arrayProducts.value.findIndex(product => product.id === id);
 
     // Eliminar el producto del array de productos del carrito.
     if (index !== -1) {
@@ -154,6 +143,11 @@ const removeProductFromCart = (id) => {
             record.value.total_price -= arrayProducts.value[index].price * productsQuantity.value[index];
         }
         arrayProducts.value.splice(index, 1);
+        let localStorageProducts = JSON.parse(localStorage.getItem('arrayProducts'));
+        localStorageProducts.splice(index, 1);
+        localStorage.setItem('arrayProducts', JSON.stringify(localStorageProducts));
+        index = record.value.products_info.findIndex(product => product.id === id);
+        record.value.products_info.splice(index, 1);
 
         // Actualizar el array de productos en localStorage.
         localStorage.arrayProducts = JSON.stringify(arrayProducts.value);
@@ -177,27 +171,11 @@ const calculateTotalPrice = (quantity, index) => {
         productsQuantity.value[index] = arrayProducts.value[index].stock;
         return;
     }
-    // let totalPrice = 0;
-    // arrayProducts.value.forEach((product, index) => {
-    //     if (product.type_sale.name === 'Detal/Mayor') {
-    //         totalPrice += productsQuantity.value[index] <= 5 ?
-    //         product.price * productsQuantity.value[index] :
-    //         product.wholesale_price * productsQuantity.value[index];
-    //     } else if (product.type_sale.name === 'Granel') {
-    //         totalPrice += product.price * productsQuantity.value[index];
-    //     }
-    // });
-
-    // // Asignar el valor del total.
-    // record.value.total_price = totalPrice;
-
-    // // Devolver el precio total.
-    // return totalPrice;
     const totalPrice = arrayProducts.value?.reduce((total, product, i) => {
         const productPrice = product?.type_sale?.name === 'Detal/Mayor'
-            ? productsQuantity.value[i] <= 5 ? product?.price : product?.wholesale_price
+            ? quantity <= 5 ? product?.price : product?.wholesale_price
             : product?.price;
-        return total + productPrice * productsQuantity.value[i];
+        return total + productPrice * quantity;
     }, 0);
 
     // Assign and return total price
@@ -227,11 +205,12 @@ const increaseProductQuantity = (quantities, index) => {
         return;
     }
     quantities[index]++;
+    record.value.products_info[index].quantity++;
     if (arrayProducts.value[index].type_sale.name === 'Detal/Mayor' &&
         quantities[index] > 5) {
         showMessage('wholesale', index);
     }
-    calculateTotalPrice(quantities[index], index);
+    calculateTotalPrice(record.value.products_info[index].quantity, index);
 }
 
 const decreaseProductQuantity = (quantities, index) => {
@@ -242,11 +221,12 @@ const decreaseProductQuantity = (quantities, index) => {
         return;
     }
     quantities[index]--;
+    record.value.products_info[index].quantity--;
     if (arrayProducts.value[index].type_sale.name === 'Detal/Mayor' &&
         quantities[index] <= 5) {
         showMessage('retail', index);
     }
-    calculateTotalPrice(quantities[index], index);
+    calculateTotalPrice(record.value.products_info[index].quantity, index);
 }
 
 /**
@@ -489,7 +469,7 @@ const showMessage = (type, index) => {
                                                     Precio: ${{ product.price }}
                                                 </p>
                                                 <div class="flex flex-col items-center">
-                                                    <button @click="removeProductFromCart(product.id)" class="
+                                                    <button @click.prevent="removeProductFromCart(product.id)" class="
                                                             font-montserrat
                                                             gradient-green
                                                             mt-4
@@ -705,7 +685,7 @@ const showMessage = (type, index) => {
                             <li v-for="(product, index) in purchaseOrder.products_info" :key="index">
                                 <p>Producto ID: {{ product.product_id }}</p>
                                 <p>Nombre del producto: {{ product.product_name }}</p>
-                                <p>Cantidad: {{ product.product_quantity }}</p>
+                                <p>Cantidad: {{ product.quantity }}</p>
                                 <p>Tipo de venta: {{ product.sale_type }}</p>
                             </li>
                         </ul>

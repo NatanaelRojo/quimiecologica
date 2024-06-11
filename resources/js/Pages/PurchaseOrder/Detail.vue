@@ -137,9 +137,9 @@ const showMessage = (type) => {
                             <b>Información de los Productos:</b>
                         </div>
                         <span v-for="(product, index) in purchase_order.products_info" :key="index">
-                            <p>Nombre del producto: {{ product.product_name }}</p>
-                            <p>Cantidad: {{ product.product_quantity }}</p>
-                            <p>Tipo de venta: {{ product.sale_type }}</p>
+                            <p>Nombre del producto: {{ product.name }}</p>
+                            <p>Cantidad: {{ product.quantity }}</p>
+                            <p>Tipo de venta: {{ product.type_sale.name }}</p>
                             <hr v-if="purchase_order.products_info.length > 1" class="mt-3 mb-5"
                                 style="border: ridge 1px #93BC00;">
                         </span>
