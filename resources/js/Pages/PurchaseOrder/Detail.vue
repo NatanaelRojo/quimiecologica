@@ -145,42 +145,55 @@ const showMessage = (type) => {
                         </span>
                         <hr v-if="purchase_order.products_info.length < 2" class="mt-3 mb-5"
                             style="border: ridge 1px #93BC00;">
-                        <span class="
+                        <br>
+                        <span
+                            class="
                                 mt-5
                                 gradient-green
                                 rounded
                                 px-5
-                                py-2
+                                py-3
                                 text-lg
                                 text-4xl
                                 font-black
                                 text-gray-800
-                            ">
+                            "
+                            style="padding: 25px;"
+                        >
                             Total: ${{ purchase_order.total_price }}
                         </span>
-                    </div>
-                </div>
-                <h2 class="
-                            font-montserrat
-                            w-full
-                            my-2
-                            text-5xl
-                            font-black
-                            leading-tight
-                            text-center
-                            text-gray-800
-                        ">
-                    Comunícate con nosotros
-                </h2>
-                <div class="
-                            p-4
-                            border
-                            rounded-lg
-                            shadow-md
-                        " style="border: ridge 1px #93BC00;">
-                    <div class="mb-2 text-gray-800 text-lg">
-                        <p><b>04125347169</b></p>
-                        <p><b>02742635666</b></p>
+                        <br>
+                        <br>
+                        <div
+                            class="
+                                p-4
+                                border
+                                rounded-lg
+                                shadow-md
+                                mt-4
+                            " style="border: ridge 1px #93BC00;"
+                        >
+                            <b
+                                class="
+                                    font-montserrat
+                                    w-full
+                                    my-2
+                                    text-3xl
+                                    font-black
+                                    leading-tight
+                                    text-center
+                                    text-gray-800
+                                "
+                            >
+                                Comunícate con nosotros
+                            </b>
+                            <div class="mb-2 text-gray-800 text-lg mt-3">
+                                <p>
+                                    <i class="fa-solid fa-phone"></i>
+                                    Teléfonos: 0412-5347169 / 0274-2635666
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
