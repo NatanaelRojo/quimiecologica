@@ -27,7 +27,7 @@ const record = ref({
     owner_firstname: 'Natanael',
     owner_lastname: 'Rojo',
     owner_id: '26488388',
-    owner_email: 'rojonatanael99@gmail.com',
+    owner_email: 'argenisosorio580@hotmail.com',
     owner_phone_number: '7453112',
     owner_state: 'Merida',
     owner_city: 'Merida',

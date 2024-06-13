@@ -91,11 +91,3 @@ el puerto 8000, para verificarlo puedes acceder a el enlace http://127.0.0.1:800
 ## Autenticarse con el usuario creado con filament
 
 Navegar a: http://127.0.0.1:8000/admin/login
-
-## Levantar las colas de Laravel para el envio de correos
-
-En una nueva consola ejecutar lo siguiente:
-
-```bash
-php artisan queue:work
-```

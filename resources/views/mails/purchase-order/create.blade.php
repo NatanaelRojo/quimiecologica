@@ -7,36 +7,45 @@
     <meta name="supported-color-schemes" content="light">
     <style>
         @media only screen and (max-width: 600px) {
-            .inner-body {
+            .wrapper {
                 width: 100% !important;
+            }
+            .content {
+                width: 100% !important;
+            }
+        }
+        @media only screen and (min-width: 601px) {
+            .wrapper {
+                width: 60% !important;
+            }
+            .content {
+                width: 60% !important;
             }
         }
         @media only screen and (max-width: 500px) {
             .button {
-            width: 100% !important;
+                width: 100% !important;
+            }
         }
-    }
-    p {
-        color: #82675C;
-    }
-    .title-color {
-        color: #93BC00;
-    }
-
+        p {
+            color: #82675C;
+        }
+        .title-color {
+            color: #93BC00;
+        }
     </style>
 </head>
 <body>
     <table
         class="wrapper"
-        width="60%"
         cellpadding="0"
         cellspacing="0"
         role="presentation"
-        style="font-size:14px;"
+        style="font-size:14px; width: 100%;"
     >
         <tr style="background: #E5E1DF !important">
             <td align="center">
-                <table class="content" width="100%" cellpadding="15" cellspacing="0" role="presentation">
+                <table class="content" width="100%" cellpadding="15" cellspacing="0" role="presentation" style="max-width: 600px;">
                     <!-- Email Header -->
                     <tr style="background: #93BC00 !important">
                         <td class="header" align="center">
@@ -55,12 +64,12 @@
                             <p>Apellidos: {{ $purchaseOrder->owner_lastname }}</p>
                             <p>Cédula de identidad: {{ $purchaseOrder->owner_id }}</p>
                             <p>Número de teléfono: {{ $purchaseOrder->owner_phone_number }}</p>
-                            <p>Correo electrónico:</b> {{ $purchaseOrder->owner_email }}</p>
-                            <p>Estado de procedencia:</b> {{ $purchaseOrder->owner_state }}</p>
-                            <p>Ciudad de procedencia:</b> {{ $purchaseOrder->owner_city }}</p>
-                            <p>Dirección de domicilio:</b> {{ $purchaseOrder->owner_address }}</p>
-                            <p>Numero de referencia del pago:</b> {{ $purchaseOrder->reference_number }}</p>
-                            <p>Fecha de creación:</b> {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }}</p>
+                            <p>Correo electrónico: {{ $purchaseOrder->owner_email }}</p>
+                            <p>Estado de procedencia: {{ $purchaseOrder->owner_state }}</p>
+                            <p>Ciudad de procedencia: {{ $purchaseOrder->owner_city }}</p>
+                            <p>Dirección de domicilio: {{ $purchaseOrder->owner_address }}</p>
+                            <p>Numero de referencia del pago: {{ $purchaseOrder->reference_number }}</p>
+                            <p>Fecha de creación: {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }}</p>
                             <hr class="title-color">
                             <h2 class="title-color">Detalles de la compra</h2>
                             @foreach($purchaseOrder->products_info as $product)
