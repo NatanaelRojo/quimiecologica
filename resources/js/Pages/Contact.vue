@@ -90,7 +90,7 @@ onMounted(async () => {
                                 </div>
                                 <div class="mb-3">
                                     <i class="fa-solid fa-phone"></i>
-                                    Telféfono:
+                                    Teléfono:
                                     0412-5347169
                                 </div>
                                 <div class="mb-3">

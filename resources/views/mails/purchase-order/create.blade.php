@@ -26,21 +26,28 @@
     </style>
 </head>
 <body>
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <table
+        class="wrapper"
+        width="60%"
+        cellpadding="0"
+        cellspacing="0"
+        role="presentation"
+        style="font-size:14px;"
+    >
         <tr style="background: #E5E1DF !important">
             <td align="center">
                 <table class="content" width="100%" cellpadding="15" cellspacing="0" role="presentation">
                     <!-- Email Header -->
                     <tr style="background: #93BC00 !important">
                         <td class="header" align="center">
-                            <b>QUIMIECOLOGICA.</b>
+                            <img src="https://raw.githubusercontent.com/argenisosorio/portafolio/master/static/img/Logo-Quimiecologi-01.png" width="200px" />
                         </td>
                     </tr>
                     <!-- Final Email Header -->
                     <!-- Email Body -->
                     <tr>
                         <td>
-                            <h1 class="title-color">Detalles de la Orden de compra</h1>
+                            <h1 class="title-color">Detalles de la Orden de Compra</h1>
                             <p>Estimado cliente, has generado la orden de compra código {{ $purchaseOrder->id }}, el día {{ date("d/m/Y", strtotime($purchaseOrder->created_at)) }} a la hora {{ now()->format('h:i A') }} con los siguientes datos:</p>
                             <h2 class="title-color">Detalles personales</h2>
                             <hr class="title-color">
