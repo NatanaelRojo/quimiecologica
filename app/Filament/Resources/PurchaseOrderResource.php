@@ -44,7 +44,7 @@ class PurchaseOrderResource extends Resource
 
     public static array $statusOptions = [
         'Aprobada' => 'Aprobada',
-        'En espea' => 'En espera',
+        'En espera' => 'En espera',
         'Rechazada' => 'Rechazada',
     ];
 
@@ -166,6 +166,12 @@ class PurchaseOrderResource extends Resource
                     ]),
                 Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('purchase_order'))
                     ->schema([
+                        Infolists\Components\TextEntry::make('id')
+                            ->label(static::getAttributeLabel('code'))
+                            ->copyable(),
+                        InfoLists\Components\TextEntry::make('created_at')
+                            ->label(static::getAttributeLabel('created_at'))
+                            ->date('d/m/Y'),
                         Infolists\Components\TextEntry::make('status')->label(static::getAttributeLabel('status')),
                         Infolists\Components\TextEntry::make('reference_number')->label(static::getAttributeLabel('reference_number'))
                             ->copyable(),
@@ -210,7 +216,11 @@ class PurchaseOrderResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('status')->label(static::getAttributeLabel('status')),
+            Tables\Columns\TextColumn::make('created_at')
+                ->label(static::getAttributeLabel('created_at'))
+                ->date('d/m/Y'),
+            Tables\Columns\TextColumn::make('status')
+                ->label(static::getAttributeLabel('status')),
             Tables\Columns\TextColumn::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_firstname', 'like', "%{$search}%");
@@ -250,14 +260,25 @@ class PurchaseOrderResource extends Resource
         return $infolist->schema(static::infolistEntries());
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\Filter::make('created_at')
+                ->query(
+                    fn (Builder $query): Builder => $query->oldest()
+                )
+                ->default(),
+            Tables\Filters\SelectFilter::make('status')
+                ->options(self::$statusOptions)
+                ->label(static::getAttributeLabel('status')),
+        ];
+    }
+
     public static function table(Table $table): Table
     {
         return $table
             ->columns(static::tableColumns())
-            ->filters([
-                Tables\Filters\SelectFilter::make('status')
-                    ->options(self::$statusOptions)->label(static::getAttributeLabel('status')),
-            ])
+            ->filters(static::tableFilters())
             ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
