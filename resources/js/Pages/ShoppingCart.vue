@@ -75,10 +75,10 @@ const createPurchaseOrder = async (index) => {
         const response = await axios.post('/api/purchase-orders', form);
 
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
-        purchaseOrder.value = response.data.record;
+        // purchaseOrder.value = response.data.record;
 
         isLoading.value = false;
-        router.get(response.data.redirect);
+        // router.get(response.data.redirect);
     } catch (error) {
         isLoading.value = true;
         errors.value = error.response.data;
@@ -252,6 +252,14 @@ const showMessage = (type, index) => {
         );
     }
 }
+
+const changeProductQuantityByInputAndCalculate = (quantity, index) => {
+    if (!validateProductQuantity(productsQuantity.value[index], arrayProducts.value[index])) {
+        productsQuantity.value[index] = arrayProducts.value[index].stock;
+    }
+    record.value.products_info[index].quantity = quantity;
+    calculateTotalPrice(record.value.products_info[index].quantity, index);
+}
 </script>
 
 <template>
@@ -378,8 +386,9 @@ const showMessage = (type, index) => {
                                                         producto</label>
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="1" :max="product.stock"
-                                                        v-model="productsQuantity[index]" @input="record.total_price =
-                                                            calculateTotalPrice(productsQuantity[index], index)">
+                                                        v-model="productsQuantity[index]" @input="
+                                                            changeProductQuantityByInputAndCalculate(productsQuantity[index], index);
+                                                        ">
                                                     <button
                                                         @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="

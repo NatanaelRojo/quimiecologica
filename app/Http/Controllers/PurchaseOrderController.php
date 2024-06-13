@@ -70,7 +70,7 @@ class PurchaseOrderController extends Controller
         }
 
         // Enviar el correo.
-        $mail->send(new PurchaseOrderMailable($newPurchaseOrder));
+        // $mail->send(new PurchaseOrderMailable($newPurchaseOrder));
 
         $this->discountProducts($newPurchaseOrder);
 
