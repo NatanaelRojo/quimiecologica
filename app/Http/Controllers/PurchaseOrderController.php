@@ -6,6 +6,8 @@ use App\Http\Requests\PurchaseOrder\StorePurchaseOrderRequest;
 use Illuminate\Support\Str;
 use App\Http\Resources\PurchaseOrderResource;
 use App\Mail\PurchaseOrderMailable;
+use App\Mail\PurchaseOrderMailable1;
+use App\Mail\PurchaseOrderMailable2;
 use App\Models\Product;
 use App\Models\PurchaseOrder;
 use Illuminate\Database\QueryException;
@@ -45,6 +47,9 @@ class PurchaseOrderController extends Controller
             array_push($products_info, json_decode($product));
         }
 
+        $mail_1 = env('MAIL_1');
+        $mail_2 = env('MAIL_2');
+
         $newPurchaseOrder = PurchaseOrder::query()->create([
             'owner_firstname' => $request->owner_firstname,
             'owner_lastname' => $request->owner_lastname,
@@ -57,30 +62,25 @@ class PurchaseOrderController extends Controller
             'reference_number' => $request->reference_number,
             'image' => $imageName,
             'total_price' => $request->total_price,
-            'products_info' => $products_info,
+            'products_info' => $products_info
         ]);
 
-        $listaCorreosENV = explode(',', env('LIST_EMAILS_RECEIVE_NOTIFICATION'));
-
+        // Enviar los 3 correos.
         $mail = Mail::to($newPurchaseOrder->owner_email);
-
-        // Agregar direcciones de correo electrónico adicionales como copias (CC)
-        foreach ($listaCorreosENV as $email) {
-            $mail->cc($email);
-        }
-
-        // Enviar el correo.
         $mail->send(new PurchaseOrderMailable($newPurchaseOrder));
+
+        $mail1 = Mail::to($mail_1);
+        $mail1->send(new PurchaseOrderMailable1($newPurchaseOrder));
+
+        $mail2 = Mail::to($mail_2);
+        $mail2->send(new PurchaseOrderMailable2($newPurchaseOrder));
 
         $this->discountProducts($newPurchaseOrder);
 
-        return response()->json(
-            [
-                'record' => new PurchaseOrderResource($newPurchaseOrder),
-                'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
-            ],
-            JsonResponse::HTTP_CREATED
-        );
+        return response()->json([
+            'record' => new PurchaseOrderResource($newPurchaseOrder),
+            'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
+        ], JsonResponse::HTTP_CREATED);
     }
 
     public function showDetail(Request $request): Response
