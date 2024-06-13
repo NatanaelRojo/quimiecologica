@@ -40,7 +40,7 @@
                     <!-- Email Header -->
                     <tr style="background: #93BC00 !important">
                         <td class="header" align="center">
-                            <b>QUIMIECOLOGICA.</b>
+                            <img <img src="https://raw.githubusercontent.com/argenisosorio/portafolio/master/static/img/Logo-Quimiecologi-01.png" width="200px" />
                         </td>
                     </tr>
                     <!-- Final Email Header -->
