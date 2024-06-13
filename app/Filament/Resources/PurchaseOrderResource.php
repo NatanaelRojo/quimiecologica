@@ -185,14 +185,21 @@ class PurchaseOrderResource extends Resource
                             ->schema([
                                 Infolists\Components\Section::make(static::getAttributeLabel('product_info'))
                                     ->schema([
-                                        Infolists\Components\TextEntry::make('product_name')
+                                        Infolists\Components\TextEntry::make('name')
                                             ->label(static::getAttributeLabel('product_name')),
-                                        Infolists\Components\TextEntry::make('product_quantity')
+                                        Infolists\Components\TextEntry::make('quantity')
                                             ->label(static::getAttributeLabel('product_quantity')),
-                                        Infolists\Components\TextEntry::make('sale_type')
+                                        Infolists\Components\TextEntry::make('type_sale.name')
                                             ->label(static::getAttributeLabel('sale_type')),
-                                        Infolists\Components\TextEntry::make('product_unit')
-                                            ->label(static::getAttributeLabel('product_unit')),
+                                        Infolists\Components\RepeatableEntry::make("measures")
+                                            ->label(static::getAttributeLabel('measures'))
+                                            ->schema([
+                                                Infolists\Components\TextEntry::make('quantity')
+                                                    ->label(static::getAttributeLabel('product_quantity')),
+                                                Infolists\Components\TextEntry::make('unit')
+                                                    ->label(static::getAttributeLabel('product_unit')),
+                                            ])
+                                            ->grid(2),
                                     ])->collapsible(),
                             ]),
                     ]),
