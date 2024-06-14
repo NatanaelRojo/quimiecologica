@@ -265,7 +265,7 @@ class PurchaseOrderResource extends Resource
         return [
             Tables\Filters\Filter::make('created_at')
                 ->query(
-                    fn (Builder $query): Builder => $query->oldest()
+                    fn (Builder $query): Builder => $query->latest()
                 )
                 ->default(),
             Tables\Filters\SelectFilter::make('status')
@@ -278,6 +278,7 @@ class PurchaseOrderResource extends Resource
     {
         return $table
             ->columns(static::tableColumns())
+            ->defaultSort('created_at', 'desc')
             ->filters(static::tableFilters())
             ->actions(static::tableActions())
             ->bulkActions([
