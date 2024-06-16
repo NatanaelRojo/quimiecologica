@@ -14,6 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('payment_types')) {
             Schema::create('payment_types', function (Blueprint $table) {
                 $table->id();
+                $table->boolean('is_active');
                 $table->string('name', 30);
                 $table->timestamps();
             });

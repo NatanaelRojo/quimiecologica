@@ -74,7 +74,19 @@
                             <h2 class="title-color">Detalles de la compra</h2>
                             @foreach($purchaseOrder->products_info as $product)
                                 <p>Nombre del producto: {{ $product['name'] }}</p>
-                                <p>Tipo de venta: {{ $product['type_sale']['name'] }}</p>
+                                @if($product['type_sale']['name'] == 'Detal/Mayor')
+                                <p>Cantidad: {{ $product['quantity'] }}</p>
+                                @if ($product['quantity'] <= 5)
+                                <p>Tipo de venta: Detal</p>
+                                <p>Precio: ${{ $product['price'] }}</p>
+                                @else
+                                <p>Tipo de venta: Al mayor</p>
+                                <p>Precio: ${{ $product['wholesale_price'] }}</p>
+                                @endif
+                                @else
+                                <p>Tipo de venta: Granel</p>
+                                <p>Precio: ${{ $product['price'] }}</p>
+                                @endif
                             @endforeach
                             <hr class="title-color">
                             <h2 class="title-color">Total: ${{ $purchaseOrder->total_price }}</h2>

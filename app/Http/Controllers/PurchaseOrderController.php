@@ -47,9 +47,6 @@ class PurchaseOrderController extends Controller
             array_push($products_info, json_decode($product));
         }
 
-        $mail_1 = env('MAIL_1');
-        $mail_2 = env('MAIL_2');
-
         $newPurchaseOrder = PurchaseOrder::query()->create([
             'owner_firstname' => $request->owner_firstname,
             'owner_lastname' => $request->owner_lastname,
@@ -65,18 +62,8 @@ class PurchaseOrderController extends Controller
             'products_info' => $products_info
         ]);
 
-        // Enviar los 3 correos.
-        $mail = Mail::to($newPurchaseOrder->owner_email);
-        $mail->send(new PurchaseOrderMailable($newPurchaseOrder));
-
-        $mail1 = Mail::to($mail_1);
-        $mail1->send(new PurchaseOrderMailable1($newPurchaseOrder));
-
-        $mail2 = Mail::to($mail_2);
-        $mail2->send(new PurchaseOrderMailable2($newPurchaseOrder));
-
+        $this->sendMails($newPurchaseOrder);
         $this->discountProducts($newPurchaseOrder);
-
         return response()->json([
             'record' => new PurchaseOrderResource($newPurchaseOrder),
             'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
@@ -133,5 +120,18 @@ class PurchaseOrderController extends Controller
                 }
             }
         });
+    }
+
+    private function sendMails(PurchaseOrder $purchaseOrder): void
+    {
+        $mail_1 = env('MAIL_1');
+        $mail_2 = env('MAIL_2');
+        // Enviar los 3 correos.
+        $mail = Mail::to($purchaseOrder->owner_email);
+        $mail->send(new PurchaseOrderMailable($purchaseOrder));
+        $mail1 = Mail::to($mail_1);
+        $mail1->send(new PurchaseOrderMailable1($purchaseOrder));
+        $mail2 = Mail::to($mail_2);
+        $mail2->send(new PurchaseOrderMailable2($purchaseOrder));
     }
 }

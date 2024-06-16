@@ -90,8 +90,7 @@ class ProductController extends Controller
             ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
             ->get()
             ->toArray();
-        // ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
-        // ->toArray();
+
 
         return Inertia::render('Product/Index', [
             'products' => $products,
@@ -129,7 +128,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return response()->json()->setStatusCode(204);
+        return response()->json()->setStatusCode(JsonResponse::HTTP_NO_CONTENT);
     }
 
     protected function parsePriceCriteria(?string $criteria): string

@@ -255,7 +255,7 @@ class ProductResource extends Resource
             //     ->relationship(name: 'unit', titleAttribute: 'name'),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price_by_unit'))
-                ->required()->numeric()->minValue(1)
+                ->required()->numeric()->minValue(0)
                 ->prefix('$'),
         ];
     }

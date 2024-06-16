@@ -38,6 +38,16 @@ class PaymentTypeResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Toggle::make('is_active')
+                ->label(function (?bool $state): string {
+                    if (!$state) {
+                        return static::getAttributeLabel('inactive');
+                    }
+                    return static::getAttributeLabel('active');
+                })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan('full')
+                ->live(),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))
                 ->autofocus()
                 ->required()
@@ -48,6 +58,8 @@ class PaymentTypeResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')
+                ->label(static::getAttributeLabel('is_active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
                     return $query->where('name', 'ilike', "%{$search}%");

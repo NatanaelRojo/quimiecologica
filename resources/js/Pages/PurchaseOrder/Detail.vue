@@ -134,20 +134,27 @@ const showMessage = (type) => {
                             }}
                         </div>
                         <div class="mb-2 text-gray-800 text-lg">
-                            <b>Información de los Productos:</b>
+                            <h2>Información de los Productos:</h2>
                         </div>
                         <span v-for="(product, index) in purchase_order.products_info" :key="index">
                             <p>Nombre del producto: {{ product.name }}</p>
                             <p>Cantidad: {{ product.quantity }}</p>
-                            <p>Tipo de venta: {{ product.type_sale.name }}</p>
+                            <p v-if="product.quantity <= 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de venta:
+                                Detal</p>
+                            <p v-else-if="product.quantity > 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de
+                                venta: Al mayor</p>
+                            <p v-else-if="product?.type_sale?.name === 'Granel'">Tipo de venta: Granel</p>
+                            <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity <= 5">Precio: {{
+                                product.price }}</p>
+                            <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity > 5">Precio: {{
+                                product.wholesale_price }}</p>
                             <hr v-if="purchase_order.products_info.length > 1" class="mt-3 mb-5"
                                 style="border: ridge 1px #93BC00;">
                         </span>
                         <hr v-if="purchase_order.products_info.length < 2" class="mt-3 mb-5"
                             style="border: ridge 1px #93BC00;">
                         <br>
-                        <span
-                            class="
+                        <span class="
                                 mt-5
                                 gradient-green
                                 rounded
@@ -157,24 +164,19 @@ const showMessage = (type) => {
                                 text-4xl
                                 font-black
                                 text-gray-800
-                            "
-                            style="padding: 25px;"
-                        >
+                            " style="padding: 25px;">
                             Total: ${{ purchase_order.total_price }}
                         </span>
                         <br>
                         <br>
-                        <div
-                            class="
+                        <div class="
                                 p-4
                                 border
                                 rounded-lg
                                 shadow-md
                                 mt-4
-                            " style="border: ridge 1px #93BC00;"
-                        >
-                            <b
-                                class="
+                            " style="border: ridge 1px #93BC00;">
+                            <b class="
                                     font-montserrat
                                     w-full
                                     my-2
@@ -183,8 +185,7 @@ const showMessage = (type) => {
                                     leading-tight
                                     text-center
                                     text-gray-800
-                                "
-                            >
+                                ">
                                 Comunícate con nosotros
                             </b>
                             <div class="mb-2 text-gray-800 text-lg mt-3">

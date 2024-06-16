@@ -1,6 +1,7 @@
 <script setup>
 import MainLayout from '@/Layouts/MainLayout.vue';
 import ErrorList from '@/Components/ErrorList.vue';
+import PaymentTypesList from '@/Components/PaymentTypesList.vue';
 import { Head, Link, router } from '@inertiajs/vue3';
 import { onMounted, onBeforeMount, ref } from 'vue';
 import Loading from 'vue-loading-overlay';
@@ -48,8 +49,9 @@ onMounted(() => {
             productsQuantity.value[index] = 1;
             record.value.total_price += product.price * 1;
         } else if (product.type_sale.name === 'Granel') {
-            productsQuantity.value[index] = product.product_content;
-            record.value.total_price += product.price * product.product_content;
+            // productsQuantity.value[index] = product.product_content;
+            productsQuantity.value[index] = 1;
+            record.value.total_price += product.price * 1;
         }
     });
     // Finalizar spinner de carga.
@@ -75,10 +77,10 @@ const createPurchaseOrder = async (index) => {
         const response = await axios.post('/api/purchase-orders', form);
 
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
-        // purchaseOrder.value = response.data.record;
+        purchaseOrder.value = response.data.record;
 
         isLoading.value = false;
-        // router.get(response.data.redirect);
+        router.get(response.data.redirect);
     } catch (error) {
         isLoading.value = true;
         errors.value = error.response.data;
@@ -175,7 +177,9 @@ const calculateTotalPrice = (quantity, index) => {
         const productPrice = product?.type_sale?.name === 'Detal/Mayor'
             ? quantity <= 5 ? product?.price : product?.wholesale_price
             : product?.price;
-        return total + productPrice * quantity;
+        return product?.type_sale.name === 'Detal/Mayor'
+            ? total + (productPrice * quantity)
+            : total + product.price;
     }, 0);
 
     // Assign and return total price
@@ -272,6 +276,7 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
 
             <!-- Sección -->
             <section class="gradient border-b py-3" style="min-height: 500px">
+                <PaymentTypesList />
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
