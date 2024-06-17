@@ -40,6 +40,15 @@ class MeasureResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('inactive');
+                }
+                return static::getAttributeLabel('active');
+            })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan('full')
+                ->live(),
             Forms\Components\Select::make('type')->label(static::getAttributeLabel('type'))
                 ->options([
                     'Tallas' => 'Tallas',
@@ -76,9 +85,11 @@ class MeasureResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
+
+            Tables\Columns\ToggleColumn::make('is_active')
+                ->label(static::getAttributeLabel('is_active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name')),
-            // Tables\Columns\TextColumn::make('quantity')->label(static::getAttributeLabel('quantity')),
-            // Tables\Columns\TextColumn::make('unit')->label(static::getAttributeLabel('unit')),
         ];
     }
 
@@ -91,6 +102,14 @@ class MeasureResource extends Resource
         ];
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
@@ -100,9 +119,7 @@ class MeasureResource extends Resource
     {
         return $table
             ->columns(static::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

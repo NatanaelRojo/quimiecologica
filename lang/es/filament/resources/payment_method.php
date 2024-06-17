@@ -6,6 +6,7 @@ return [
     'is_active' => 'Estado del método de pago',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
+    'all' => 'Todos',
     'name' => 'Nombre',
     'payment_type' => 'Plataforma',
     'data' => 'Beneficiario',

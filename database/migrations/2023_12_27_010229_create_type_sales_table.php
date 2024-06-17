@@ -14,6 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('type_sales')) {
             Schema::create('type_sales', function (Blueprint $table) {
                 $table->id();
+                $table->boolean('is_active')->default(true);
                 $table->string('name', 20);
                 $table->string('description')->nullable();
                 $table->boolean('deletable')->default(true);

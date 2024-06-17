@@ -146,56 +146,67 @@ class ProductResource extends Resource
                                 ->columnSpan('full'),
                             Forms\Components\Select::make('brand_id')->label(static::getAttributeLabel('brand'))
                                 ->required()
-                                ->relationship(name: 'brand', titleAttribute: 'name')
+                                ->relationship(
+                                    name: 'brand',
+                                    titleAttribute: 'name',
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                                )
                                 ->preload()
                                 ->searchable()
                                 ->createOptionForm(BrandResource::inputForm()),
                             Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_class'))
                                 ->required()
-                                ->relationship(name: 'primaryClass', titleAttribute: 'name')
+                                ->relationship(
+                                    name: 'primaryClass',
+                                    titleAttribute: 'name',
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                                )
                                 ->preload()
                                 ->searchable()
                                 ->createOptionForm(PrimaryClassResource::inputForm()),
-                            // Forms\Components\Select::make('category_id')->label(static::getAttributeLabel('category'))
-                            //     ->required()
-                            //     ->relationship('category', 'name')->searchable()->preload()
-                            //     ->createOptionForm(CategoryResource::inputForm()),
-                            // Forms\Components\Select::make('gender_id')->label(static::getAttributeLabel('gender'))
-                            //     ->required()
-                            //     ->relationship('gender', 'name')
-                            //     ->searchable()->preload()
-                            //     ->createOptionForm(GenderResource::inputForm()),
                             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                                 ->required()
                                 ->multiple()
-                                ->relationship('categories', 'name')->searchable()->preload()
+                                ->relationship(
+                                    name: 'categories',
+                                    titleAttribute: 'name',
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                                )
+                                ->searchable()
+                                ->preload()
                                 ->createOptionForm(CategoryResource::inputForm()),
                             Forms\Components\Select::make('genders')->label(static::getAttributeLabel('genders'))
                                 ->required()
                                 ->multiple()
-                                ->relationship('genders', 'name')
+                                ->relationship(
+                                    name: 'genders',
+                                    titleAttribute: 'name',
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                                )
                                 ->searchable()->preload()
                                 ->createOptionForm(GenderResource::inputForm()),
                             Forms\Components\Select::make('type_sale_id')->label(static::getAttributeLabel('type_sales'))
                                 ->required()
-                                ->relationship(name: 'typeSale', titleAttribute: 'name')
+                                ->relationship(
+                                    name: 'typeSale',
+                                    titleAttribute: 'name',
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                                )
                                 ->preload()
                                 ->createOptionForm(TypeSaleResource::inputForm())
                                 ->live(),
-                            Forms\Components\Select::make('measures')->label(static::getAttributeLabel('measures'))
+                            Forms\Components\Select::make('measures')
+                                ->label(static::getAttributeLabel('measures'))
                                 ->required()
                                 ->relationship(
                                     name: 'measures',
-                                    modifyQueryUsing: fn (Builder $query): Builder => $query->orderBy('id')
+                                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)->orderBy('id')
                                 )
                                 ->multiple()
                                 ->getOptionLabelFromRecordUsing(fn (Measure $record): string => $record->name)
                                 ->searchable()
                                 ->preload()
                                 ->createOptionForm(MeasureResource::inputForm()),
-                            // Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-                            //     ->required()
-                            //     ->relationship(name: 'unit', titleAttribute: 'name'),
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),
@@ -250,9 +261,6 @@ class ProductResource extends Resource
         return [
             Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
                 ->required()->numeric()->minValue(1),
-            // Forms\Components\Select::make('unit_id')->label(static::getAttributeLabel('unit'))
-            //     ->required()
-            //     ->relationship(name: 'unit', titleAttribute: 'name'),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price_by_unit'))
                 ->required()->numeric()->minValue(0)

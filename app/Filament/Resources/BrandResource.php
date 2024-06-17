@@ -78,6 +78,14 @@ class BrandResource extends Resource
         ];
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
@@ -87,9 +95,7 @@ class BrandResource extends Resource
     {
         return $table
             ->columns(static::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -9,7 +9,9 @@ return [
     'description' => 'Descripción',
     'price' => 'Precio',
     'service_type' => 'Tipo de servicio',
+    'is_active' => 'Estado del servicio',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
+    'all' => 'Todos',
     'conditions' => 'Condiciones',
 ];

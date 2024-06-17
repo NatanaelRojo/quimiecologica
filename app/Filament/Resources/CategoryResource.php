@@ -52,7 +52,11 @@ class CategoryResource extends Resource
                 ->columnSpan('full'),
             Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_classes'))
                 ->multiple()
-                ->relationship(name: 'primaryClasses', titleAttribute: 'name')
+                ->relationship(
+                    name: 'primaryClasses',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->allActive()
+                )
                 ->preload()
                 ->searchable()
                 ->createOptionForm(PrimaryClassResource::inputForm())
@@ -65,6 +69,7 @@ class CategoryResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
             Tables\Columns\TextColumn::make('brands')
                 ->label(static::getAttributeLabel('brands'))
                 ->state(function (Category $record) {
@@ -98,6 +103,14 @@ class CategoryResource extends Resource
         ];
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema(CategoryResource::inputForm());
@@ -107,9 +120,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns(CategoryResource::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(CategoryResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

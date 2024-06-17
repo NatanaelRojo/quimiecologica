@@ -59,6 +59,8 @@ class PaymentTypeResource extends Resource
     {
         return [
             Tables\Columns\ToggleColumn::make('is_active')
+                ->label(static::getAttributeLabel('active')),
+            Tables\Columns\ToggleColumn::make('is_active')
                 ->label(static::getAttributeLabel('is_active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
@@ -76,6 +78,14 @@ class PaymentTypeResource extends Resource
         ];
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
@@ -85,9 +95,7 @@ class PaymentTypeResource extends Resource
     {
         return $table
             ->columns(static::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

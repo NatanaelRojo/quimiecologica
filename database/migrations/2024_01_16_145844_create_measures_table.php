@@ -15,6 +15,7 @@ return new class extends Migration
         if (!Schema::hasTable('measures')) {
             Schema::create('measures', function (Blueprint $table) {
                 $table->id();
+                $table->boolean('is_active')->default(true);
                 // $table->string('name');
                 $table->string('size', 10)->default('');
                 $table->float('quantity')->default(0);

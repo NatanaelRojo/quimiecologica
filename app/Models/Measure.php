@@ -11,6 +11,7 @@ class Measure extends Model
     use HasFactory;
 
     protected $fillable = [
+        'is_active',
         'size',
         'quantity',
         'unit',

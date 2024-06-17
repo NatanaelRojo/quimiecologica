@@ -50,7 +50,11 @@ class ServiceResource extends Resource
                 ->live(),
             Forms\Components\Select::make('service_type_id')->label(static::getAttributeLabel('service_type'))
                 ->required()
-                ->relationship(name: 'serviceType', titleAttribute: 'name')
+                ->relationship(
+                    name: 'serviceType',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
                 ->preload()
                 ->createOptionForm(ServiceTypeResource::inputForm())
                 ->columnSpan('full'),
@@ -77,6 +81,7 @@ class ServiceResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
             Tables\Columns\TextColumn::make('serviceType.name')->label(static::getAttributeLabel('service_type')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name'))
                 ->searchable(query: function (Builder $query, string $search): Builder {
@@ -96,6 +101,14 @@ class ServiceResource extends Resource
             Tables\Actions\ViewAction::make(),
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make(),
+        ];
+    }
+
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
         ];
     }
 

@@ -38,6 +38,15 @@ class TypeSaleResource extends Resource
     public static function inputForm(): array
     {
         return [
+            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
+                if (!$state) {
+                    return static::getAttributeLabel('inactive');
+                }
+                return static::getAttributeLabel('active');
+            })->required()
+                ->onColor('success')->offColor('danger')
+                ->columnSpan('full')
+                ->live(),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()
                 ->columnSpan('full'),
@@ -49,6 +58,7 @@ class TypeSaleResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('is_active')),
             Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name')),
             Tables\Columns\TextColumn::make('description')->label(static::getAttributeLabel('description'))
                 ->words(20),
@@ -62,6 +72,14 @@ class TypeSaleResource extends Resource
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make()
                 ->hidden(fn (TypeSale $record): bool => !$record->deletable),
+        ];
+    }
+
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
         ];
     }
 

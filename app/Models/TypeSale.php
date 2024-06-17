@@ -12,6 +12,7 @@ class TypeSale extends Model
     use HasFactory;
 
     protected $fillable = [
+        'is_active',
         'name',
         'description',
     ];

@@ -53,7 +53,11 @@ class GenderResource extends Resource
             Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
                 ->required()
                 ->multiple()
-                ->relationship(name: 'categories', titleAttribute: 'name')
+                ->relationship(
+                    name: 'categories',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
                 ->preload()
                 ->createOptionForm(CategoryResource::inputForm())
                 ->columnSpan('full'),
@@ -65,6 +69,9 @@ class GenderResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')
+                ->label(static::getAttributeLabel('active')),
+
             Tables\Columns\TextColumn::make('brands')
                 ->label(static::getAttributeLabel('brands'))
                 ->state(function (Gender $record) {
@@ -112,6 +119,14 @@ class GenderResource extends Resource
         ];
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
+        ];
+    }
+
     public static function form(Form $form): Form
     {
         return $form->schema(GenderResource::inputForm());
@@ -121,9 +136,7 @@ class GenderResource extends Resource
     {
         return $table
             ->columns(GenderResource::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(GenderResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

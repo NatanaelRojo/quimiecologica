@@ -78,6 +78,7 @@ class PostResource extends Resource
     public static function tableColumns(): array
     {
         return [
+            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
             Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
             Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
             Tables\Columns\ToggleColumn::make('published')->label(static::getAttributeLabel('published')),
@@ -94,6 +95,26 @@ class PostResource extends Resource
             Tables\Actions\ViewAction::make()->modalAlignment(Alignment::Justify),
             Tables\Actions\EditAction::make(),
             Tables\Actions\DeleteAction::make(),
+        ];
+    }
+
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\TernaryFilter::make('published')
+                ->label(static::getAttributeLabel('is_published'))
+                ->trueLabel(static::getAttributeLabel('published'))->falseLabel(static::getAttributeLabel('non_published'))
+                ->placeholder(static::getAttributeLabel('all')),
+            Tables\Filters\SelectFilter::make('categories')
+                ->label(static::getAttributeLabel('categories'))
+                ->multiple()
+                ->relationship(name: 'categories', titleAttribute: 'name')
+                ->preload(),
+            Tables\Filters\SelectFilter::make('genders')
+                ->label(static::getAttributeLabel('genders'))
+                ->multiple()
+                ->relationship(name: 'genders', titleAttribute: 'name')
+                ->preload(),
         ];
     }
 
@@ -123,20 +144,7 @@ class PostResource extends Resource
     {
         return $table
             ->columns(PostResource::tableColumns())
-            ->filters([
-                Tables\Filters\TernaryFilter::make('published')->label(static::getAttributeLabel('is_published'))
-                    ->trueLabel(static::getAttributeLabel('published'))->falseLabel(static::getAttributeLabel('non_published'))
-                    ->placeholder(static::getAttributeLabel('all')),
-
-                Tables\Filters\SelectFilter::make('categories')->label(static::getAttributeLabel('categories'))
-                    ->multiple()
-                    ->relationship(name: 'categories', titleAttribute: 'name')
-                    ->preload(),
-                Tables\Filters\SelectFilter::make('genders')->label(static::getAttributeLabel('genders'))
-                    ->multiple()
-                    ->relationship(name: 'genders', titleAttribute: 'name')
-                    ->preload(),
-            ])
+            ->filters(static::tableFilters())
             ->actions(PostResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

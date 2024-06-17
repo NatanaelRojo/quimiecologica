@@ -50,7 +50,11 @@ class PaymentMethodResource extends Resource
                 ->autofocus(),
             Forms\Components\Select::make('payment_type_id')->label(static::getAttributeLabel('payment_type'))
                 ->required()
-                ->relationship(name: 'paymentType', titleAttribute: 'name')
+                ->relationship(
+                    name: 'paymentType',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
                 ->createOptionForm(PaymentTypeResource::inputForm()),
             Forms\Components\KeyValue::make('data')->label(static::getAttributeLabel('data'))
                 ->keyLabel(static::getAttributeLabel('key_label'))
@@ -77,6 +81,8 @@ class PaymentMethodResource extends Resource
     public static function tableFilters(): array
     {
         return [
+            Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))
+                ->trueLabel(static::getAttributeLabel('active'))->falseLabel(static::getAttributeLabel('inactive'))->placeholder(static::getAttributeLabel('all')),
             Tables\Filters\SelectFilter::make('payment_type')->label(static::getAttributeLabel('payment_type'))
                 ->relationship(name: 'paymentType', titleAttribute: 'name'),
             Tables\Filters\TernaryFilter::make('is_active')->label(static::getAttributeLabel('is_active'))

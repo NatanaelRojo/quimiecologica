@@ -6,5 +6,6 @@ return [
     'is_active' => 'Estado del tipo de pago',
     'active' => 'Activo',
     'inactive' => 'Inactivo',
+    'all' => 'Todos',
     'name' => 'Nombre',
 ];
