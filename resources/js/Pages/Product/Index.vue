@@ -421,6 +421,7 @@ const addProductToCart = (id) => {
         // Añadir los datos del producto al array de Productos del carrito
         cartProducts.push({ ...productData, quantity: 1 });
     } else {
+        // No hay disponibilidad del producto
         errors.value.push(`No se puede agregar el producto "${productData.name}"al carrito por falta de disponibilidad`);
         scrollMeTo();
     }

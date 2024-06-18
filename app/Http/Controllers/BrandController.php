@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -32,7 +34,13 @@ class BrandController extends Controller
 
     public function showDetail(Brand $brand): Response
     {
-        $brand = Brand::query()->where('slug', $brand->slug)->with(['primaryClasses'])->first();
+        $brand = Brand::query()
+            ->allActive()
+            ->where('id', $brand->id)
+            ->with(['primaryClasses' => function (EloquentBuilder $query): void {
+                $query->where('is_active', true);
+            }])
+            ->first();
         $filter_parameters = [];
         $filter_parameters['brand'] = $brand->name;
         return Inertia::render('Brand/Detail', [

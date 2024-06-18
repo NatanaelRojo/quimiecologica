@@ -91,7 +91,6 @@ class ProductController extends Controller
             ->get()
             ->toArray();
 
-
         return Inertia::render('Product/Index', [
             'products' => $products,
         ]);

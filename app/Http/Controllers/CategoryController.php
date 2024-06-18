@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -43,7 +44,12 @@ class CategoryController extends Controller
 
     public function showDetail(Request $request, Category $category): Response
     {
-        $category = Category::query()->where('id', $category->id)->with(['genders'])->first();
+        $category = Category::query()
+            ->where('id', $category->id)
+            ->with(['genders' => function (Builder $query): void {
+                $query->where('is_active', true);
+            }])
+            ->first();
         $filter_parameters = $request->query();
         $filter_parameters['category'] = $category->name;
         return Inertia::render('Category/Detail', [

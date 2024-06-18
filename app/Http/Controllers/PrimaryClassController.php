@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrimaryClass;
+use Illuminate\Contracts\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -31,7 +33,12 @@ class PrimaryClassController extends Controller
 
     public function showDetail(Request $request, PrimaryClass $primary_class)
     {
-        $primaryClass = PrimaryClass::query()->where('id', $primary_class->id)->with(['categories'])->first();
+        $primaryClass = PrimaryClass::query()
+            ->where('id', $primary_class->id)
+            ->with(['categories' => function (EloquentBuilder $query): void {
+                $query->where('is_active', true);
+            }])
+            ->first();
         $filter_parameters = $request->query();
         $filter_parameters['primary_class'] = $primary_class->name;
         return Inertia::render('PrimaryClass/Detail', [

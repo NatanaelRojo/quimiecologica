@@ -157,8 +157,8 @@ const removeProductFromCart = (id) => {
 }
 
 const validateProductQuantity = (quantity, product) => {
-    if (quantity > product.stock && product.type_sale.name === 'Detal/Mayor') {
-        errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
+    if (quantity > product.stock && (product?.type_sale.name === 'Detal/Mayor' || product?.type_sale.name === 'Granel')) {
+        // errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
         scrollMeTo();
         return false;
     }
@@ -170,7 +170,8 @@ const validateProductQuantity = (quantity, product) => {
 */
 const calculateTotalPrice = (quantity, index) => {
     if (!validateProductQuantity(quantity, arrayProducts.value[index])) {
-        productsQuantity.value[index] = arrayProducts.value[index].stock;
+        errors.value.push(`La cantidad solicitada para el producto "${arrayProducts.value[index].name}" no esta disponible`);
+        errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
         return;
     }
     const totalPrice = arrayProducts.value?.reduce((total, product, i) => {
@@ -179,7 +180,7 @@ const calculateTotalPrice = (quantity, index) => {
             : product?.price;
         return product?.type_sale.name === 'Detal/Mayor'
             ? total + (productPrice * quantity)
-            : total + product.price;
+            : total + (product.price * quantity);
     }, 0);
 
     // Assign and return total price
@@ -259,7 +260,9 @@ const showMessage = (type, index) => {
 
 const changeProductQuantityByInputAndCalculate = (quantity, index) => {
     if (!validateProductQuantity(productsQuantity.value[index], arrayProducts.value[index])) {
+        errors.value.push(`La cantidad solicitada para el producto "${arrayProducts.value[index].name}" no esta disponible`);
         productsQuantity.value[index] = arrayProducts.value[index].stock;
+        return;
     }
     record.value.products_info[index].quantity = quantity;
     calculateTotalPrice(record.value.products_info[index].quantity, index);
@@ -392,8 +395,8 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                                     <input type="number" id="product-retail-quantity"
                                                         name="product-retail-quantity" :min="1" :max="product.stock"
                                                         v-model="productsQuantity[index]" @input="
-                                                            changeProductQuantityByInputAndCalculate(productsQuantity[index], index);
-                                                        ">
+                                                            changeProductQuantityByInputAndCalculate(productsQuantity[index], index)
+                                                            ">
                                                     <button
                                                         @click.prevent="decreaseProductQuantity(productsQuantity, index)"
                                                         class="
@@ -433,9 +436,10 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                                 <div v-else-if="product.type_sale.name === 'Granel'">
                                                     <label for="product-wholesale-quantity">Cantidad:</label>
                                                     <input type="number" id="product-wholesale-quantity"
-                                                        name="product-wholesale-quantity" :min="product.product_content"
-                                                        v-model="productsQuantity[index]" @input="record.total_price =
-                                                            calculateTotalPrice(productsQuantity[index], index)">
+                                                        name="product-wholesale-quantity" min="1" :max="product.stock"
+                                                        v-model="productsQuantity[index]" @input="
+                                                            changeProductQuantityByInputAndCalculate(productsQuantity[index], index)
+                                                            ">
                                                     <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="

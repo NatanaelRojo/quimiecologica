@@ -84,6 +84,7 @@
                                 <p>Precio: ${{ $product['wholesale_price'] }}</p>
                                 @endif
                                 @else
+                                <p>Cantidad: {{ $product['quantity'] }}</p>
                                 <p>Tipo de venta: Granel</p>
                                 <p>Precio: ${{ $product['price'] }}</p>
                                 @endif

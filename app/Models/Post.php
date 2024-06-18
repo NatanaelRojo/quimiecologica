@@ -15,11 +15,8 @@ class Post extends Model
     use Sluggable,  SluggableScopeHelpers;
 
     protected $fillable = [
-        // 'category_id',
-        // 'gender_id',
         'published',
         'title',
-        // 'slug',
         'thumbnail',
         'body',
     ];

@@ -113,7 +113,7 @@ class PurchaseOrderController extends Controller
         DB::transaction(function () use ($purchaseOrder): void {
             foreach ($purchaseOrder->products_info as $data) {
                 $product = Product::query()->find($data['id']);
-                if ($data['type_sale']['name'] === 'Detal/Mayor') {
+                if ($data['type_sale']['name'] === 'Detal/Mayor' || $data['type_sale']['name'] === 'Granel') {
                     $product->update([
                         'stock' => $product->stock - $data['quantity'],
                     ]);

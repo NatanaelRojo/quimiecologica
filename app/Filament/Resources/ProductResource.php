@@ -259,7 +259,7 @@ class ProductResource extends Resource
     public static function wholesaleTypeForm(): array
     {
         return [
-            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('minimum_quantity'))
+            Forms\Components\TextInput::make('stock')->label(static::getAttributeLabel('stock'))
                 ->required()->numeric()->minValue(1),
             Forms\Components\TextInput::make('price')
                 ->label(static::getAttributeLabel('price_by_unit'))

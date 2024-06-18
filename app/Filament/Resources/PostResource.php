@@ -56,12 +56,23 @@ class PostResource extends Resource
             Forms\Components\FileUpload::make('thumbnail')->label(static::getAttributeLabel('thumbnail'))
                 ->image()
                 ->columnSpan(2),
-            Forms\Components\Select::make('category_id')->label(static::getAttributeLabel('categories'))
-                ->relationship(name: 'categories', titleAttribute: 'name')->preload()->searchable()
+            Forms\Components\Select::make('category_id')
+                ->label(static::getAttributeLabel('categories'))
+                ->relationship(
+                    name: 'categories',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
+                ->preload()->searchable()
                 ->multiple()
                 ->createOptionForm(CategoryResource::inputForm()),
             Forms\Components\Select::make('gender_id')->label(static::getAttributeLabel('genders'))
-                ->relationship(name: 'genders', titleAttribute: 'name')->preload()->searchable()
+                ->relationship(
+                    name: 'genders',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
+                ->preload()->searchable()
                 ->multiple()
                 ->createOptionForm(GenderResource::inputForm()),
             Forms\Components\TextInput::make('title')->label(static::getAttributeLabel('title'))->autofocus()
