@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Seleccione un método de pago:</p>
+        <p>Seleccione un tipo de pago:</p>
         <select v-model="selectedPaymentType" @change="getPaymentMethods(selectedPaymentType)">
             <option v-for="(type, index) in paymentTypes" :key="index">
                 {{ type.name }}

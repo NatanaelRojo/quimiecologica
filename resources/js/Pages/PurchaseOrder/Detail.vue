@@ -38,7 +38,7 @@ onMounted(() => {
 const cleanShoppingCart = () => {
     if (localStorage.arrayProducts) {
         localStorage.removeItem('arrayProducts');
-        location.reload();
+        // location.reload();
     }
 }
 
