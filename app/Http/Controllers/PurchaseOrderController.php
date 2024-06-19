@@ -64,6 +64,7 @@ class PurchaseOrderController extends Controller
 
         $this->sendMails($newPurchaseOrder);
         $this->discountProducts($newPurchaseOrder);
+
         return response()->json([
             'record' => new PurchaseOrderResource($newPurchaseOrder),
             'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),

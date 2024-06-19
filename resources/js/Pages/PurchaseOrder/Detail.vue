@@ -38,7 +38,7 @@ onMounted(() => {
 const cleanShoppingCart = () => {
     if (localStorage.arrayProducts) {
         localStorage.removeItem('arrayProducts');
-        location.reload();
+        // location.reload();
     }
 }
 
@@ -144,9 +144,9 @@ const showMessage = (type) => {
                             <p v-else-if="product.quantity > 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de
                                 venta: Al mayor</p>
                             <p v-else-if="product?.type_sale?.name === 'Granel'">Tipo de venta: Granel</p>
-                            <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity <= 5">Precio: {{
+                            <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity <= 5">Precio: ${{
                                 product.price }}</p>
-                            <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity > 5">Precio: {{
+                            <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity > 5">Precio: ${{
                                 product.wholesale_price }}</p>
                             <hr v-if="purchase_order.products_info.length > 1" class="mt-3 mb-5"
                                 style="border: ridge 1px #93BC00;">
