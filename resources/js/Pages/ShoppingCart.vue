@@ -344,27 +344,38 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                                     class="w-full h-40 object-cover mb-4 rounded-md img-zoom">
                                                 <div>
                                                     <h3 class="
-                                                                    text-lg
-                                                                    font-semibold
-                                                                    mb-2
-                                                                    text-gray-800
-                                                                ">
+                                                            text-lg
+                                                            font-semibold
+                                                            mb-2
+                                                            text-gray-800
+                                                        "
+                                                    >
                                                         {{ product.name }}
                                                     </h3>
-
                                                     <p class="text-gray-600 mb-4 text-justify">
                                                         <span v-html="truncateText(product.description, 200)"></span>
                                                     </p>
-
+                                                    <div class="flex space-x-2 mb-2">
+                                                        <span>Marca:</span>
+                                                        <span class="text-gray-600">
+                                                            {{ product.brand.name }}
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex space-x-2 mb-2">
+                                                        <span>Clase:</span>
+                                                        <span class="text-gray-600">
+                                                            {{ product.primary_class.name }}
+                                                        </span>
+                                                    </div>
                                                     <div class="flex space-x-2">
-                                                        <span>Categorías:</span>
+                                                        <span>Subclase:</span>
                                                         <div v-for="(category, index) of product.categories"
                                                             :key="index" class="text-gray-600">
                                                             {{ category.name }}
                                                         </div>
                                                     </div>
                                                     <div class="flex space-x-2 mt-2">
-                                                        <span>Géneros:</span>
+                                                        <span>Cuota:</span>
                                                         <div v-for="(gender, index) of product.genders" :key="index"
                                                             class="text-gray-600">
                                                             {{ gender.name }}
