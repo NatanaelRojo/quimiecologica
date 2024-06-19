@@ -219,10 +219,8 @@ const increaseProductQuantity = (quantities, index) => {
 }
 
 const decreaseProductQuantity = (quantities, index) => {
-    if (productsQuantity.value[index] - 1 === 0 && arrayProducts.value[index].type_sale.name === 'Detal/Mayor') {
-        return;
-    } else if (productsQuantity.value[index] - 1 < arrayProducts.value[index].quantity &&
-        arrayProducts.value[index].type_sale.name === 'Granel') {
+    if (productsQuantity.value[index] - 1 === 0
+        && (arrayProducts.value[index]?.type_sale.name === 'Detal/Mayor' || arrayProducts.value[index]?.type_sale.name === 'Granel')) {
         return;
     }
     quantities[index]--;
@@ -370,6 +368,15 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                                         <div v-for="(gender, index) of product.genders" :key="index"
                                                             class="text-gray-600">
                                                             {{ gender.name }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex space-x-2 mt-2">
+                                                        <span>Presentación:</span>
+                                                        <div v-for="(measure, index) of product.measures" :key="index"
+                                                            class="text-gray-600">
+                                                            {{ measure.type === 'Unidades'
+                                                                ? `${measure.quantity} ${measure.unit}(s)`
+                                                                : `${measure.size}` }}
                                                         </div>
                                                     </div>
                                                     <div class="flex space-x-2 mt-2 mb-2">

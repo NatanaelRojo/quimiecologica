@@ -201,7 +201,7 @@ class PurchaseOrderResource extends Resource
                                             ->label(static::getAttributeLabel('measures'))
                                             ->schema([
                                                 Infolists\Components\TextEntry::make('quantity')
-                                                    ->label(static::getAttributeLabel('product_quantity')),
+                                                    ->label(static::getAttributeLabel('product_content')),
                                                 Infolists\Components\TextEntry::make('unit')
                                                     ->label(static::getAttributeLabel('product_unit')),
                                             ])

@@ -73,7 +73,8 @@
                             <hr class="title-color">
                             <h2 class="title-color">Detalles de la compra</h2>
                             @foreach($purchaseOrder->products_info as $product)
-                                <p>Nombre del producto: {{ $product['name'] }}</p>
+                            <hr class="title-color">
+                                <h3 class="title-color">{{ $product['name'] }}</h3>
                                 @if($product['type_sale']['name'] == 'Detal/Mayor')
                                 <p>Cantidad: {{ $product['quantity'] }}</p>
                                 @if ($product['quantity'] <= 5)
@@ -81,15 +82,15 @@
                                 <p>Precio: ${{ $product['price'] }}</p>
                                 @else
                                 <p>Tipo de venta: Al mayor</p>
-                                <p>Precio: ${{ $product['wholesale_price'] }}</p>
+                                <p>Precio: ${{ $product['price'] }}</p>
                                 @endif
                                 @else
                                 <p>Cantidad: {{ $product['quantity'] }}</p>
                                 <p>Tipo de venta: Granel</p>
                                 <p>Precio: ${{ $product['price'] }}</p>
                                 @endif
+                                <hr class="title-color">
                             @endforeach
-                            <hr class="title-color">
                             <h2 class="title-color">Total: ${{ $purchaseOrder->total_price }}</h2>
                             <p>Esta orden será despachada entre tres y ocho días hábiles a partir de la presente. Dependiendo de la disponibilidad de la empresa de envío.</p>
                         </td>

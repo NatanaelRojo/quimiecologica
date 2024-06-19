@@ -23,6 +23,7 @@ return [
     'products_info' => 'Productos',
     'product_name' => 'Nombre del producto',
     'product_quantity' => 'Cantidad del producto',
+    'product_content' => 'Contenido',
     'sale_type' => 'Tipo del producto',
     'product_unit' => 'Unidad del producto',
     'search_message' => 'Buscar un producto',
