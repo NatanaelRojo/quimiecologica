@@ -1,25 +1,27 @@
 <template>
     <div>
-        <p>Seleccione un tipo de pago:</p>
-        <select v-model="selectedPaymentType" @change="getPaymentMethods(selectedPaymentType)">
+        <p>Seleccione un Tipo de pago:</p>
+        <select class="rounded" v-model="selectedPaymentType" @change="getPaymentMethods(selectedPaymentType)">
             <option v-for="(type, index) in paymentTypes" :key="index">
                 {{ type.name }}
             </option>
         </select>
         <br>
+        <br v-if="selectedPaymentType && paymentMethods.length > 0">
         <div v-if="selectedPaymentType && paymentMethods.length > 0">
-            <p>Seleccione un método de pago:</p>
-            <select v-model="selectedPaymentMethod" @change="getPaymentMethodData(selectedPaymentMethod)">
+            <p>Seleccione un Método de pago:</p>
+            <select class="rounded" v-model="selectedPaymentMethod" @change="getPaymentMethodData(selectedPaymentMethod)">
                 <option v-for="(method, index) in paymentMethods" :key="index">
                     {{ method.name }}
                 </option>
             </select>
             <br>
         </div>
+        <br v-if="selectedPaymentMethod && paymentMethodData">
         <div v-if="selectedPaymentMethod && paymentMethodData">
-            <h2>Datos de pago</h2>
+            <h2>Datos de pago:</h2>
             <template v-for="(value, key) in paymentMethodData" :key="key">
-                <p><b>{{ key }}:</b> {{ value }}</p>
+                <p>{{ key }}: {{ value }}</p>
             </template>
         </div>
     </div>

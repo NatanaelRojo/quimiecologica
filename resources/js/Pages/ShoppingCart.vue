@@ -277,7 +277,6 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
 
             <!-- Sección -->
             <section class="gradient border-b py-3" style="min-height: 500px">
-                <PaymentTypesList />
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
                 <div class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
@@ -308,12 +307,20 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                             "></div>
                     </div>
                     <!-- Inicio del formulario -->
-                    <form v-if="arrayProducts.length > 0" class="
-                            p-4 border
+                    <form
+                        v-if="arrayProducts.length > 0"
+                        class="
+                            p-4
+                            border
                             border-gray-200
                             rounded-lg
                             shadow-md
-                        " @submit.prevent="createPurchaseOrder" enctype="multipart/form-data" ref="form">
+                        "
+                        @submit.prevent="createPurchaseOrder"
+                        enctype="multipart/form-data"
+                        ref="form"
+                        style="background: #FFFFFF !important;"
+                    >
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
                             <div>
@@ -529,6 +536,8 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                     </template>
                                     <!-- Final del carrito de Compras -->
                                 </div>
+                                <hr class="mt-5 mb-5">
+                                <PaymentTypesList />
                                 <hr class="mt-5 mb-5">
                                 <h2 class="
                                         w-full
