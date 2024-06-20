@@ -53,8 +53,11 @@
 
                     <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
                         <!-- Thumbnail grande como portada del blog -->
-                        <img :src="`/storage/${post.thumbnail}`" alt="Thumbnail del Blog"
-                            class="w-full h-auto mb-6 rounded-lg max-h-96">
+                        <img
+                            :src="`/storage/${post.thumbnail}`"
+                            alt="Thumbnail del Blog"
+                            class="w-full h-auto img-zoom"
+                        >
 
                         <!-- Título del blogpost -->
                         <h1 class="text-3xl font-bold mb-4">{{ post.title }}</h1>

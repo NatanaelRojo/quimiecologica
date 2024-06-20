@@ -68,8 +68,11 @@ onMounted(async () => {
                     <br>
 
                     <div class="lg:w-1/2 lg:mr-8 mb-6">
-                        <img :src="`/storage/${service.banner}`" alt="Imagen de portada"
-                            class="w-full h-auto img-zoom" />
+                        <img
+                            :src="`/storage/${service.banner}`"
+                            alt="Imagen de portada"
+                            class="w-full h-auto img-zoom"
+                        />
                     </div>
 
                     <!-- Detalles del servicio -->
