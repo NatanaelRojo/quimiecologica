@@ -10,7 +10,8 @@
         <br v-if="selectedPaymentType && paymentMethods.length > 0">
         <div v-if="selectedPaymentType && paymentMethods.length > 0">
             <p>Seleccione un Método de pago:</p>
-            <select class="rounded" v-model="selectedPaymentMethod" @change="getPaymentMethodData(selectedPaymentMethod)">
+            <select class="rounded" v-model="selectedPaymentMethod"
+                @change="getPaymentMethodData(selectedPaymentMethod)">
                 <option v-for="(method, index) in paymentMethods" :key="index">
                     {{ method.name }}
                 </option>
@@ -31,11 +32,22 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 
+const emit = defineEmits([
+    'payment-type-selected',
+    'payment-method-selected',
+])
 const paymentTypes = ref([]);
 const paymentMethods = ref([]);
 const paymentMethodData = ref({});
 const selectedPaymentType = ref('');
 const selectedPaymentMethod = ref('');
+const test = ref('hola');
+
+defineExpose({
+    test: test.value,
+    selectedPaymentType: selectedPaymentType.value,
+    selectedPaymentMethod: selectedPaymentMethod.value,
+});
 
 onMounted(async () => {
     try {
@@ -49,6 +61,7 @@ onMounted(async () => {
 const getPaymentMethods = (paymentTypeName) => {
     const paymentType = paymentTypes.value.find(paymentType => paymentType.name === selectedPaymentType.value);
     paymentMethods.value = paymentType.payment_methods;
+    emit('payment-type-selected', paymentTypeName);
 
     return paymentType.payment_methods;
 }
@@ -56,6 +69,7 @@ const getPaymentMethods = (paymentTypeName) => {
 const getPaymentMethodData = (paymentMethodName) => {
     const paymentMethod = paymentMethods.value.find(paymentMethod => paymentMethod.name === paymentMethodName);
     paymentMethodData.value = paymentMethod.data;
+    emit('payment-method-selected', paymentMethodName);
 
     return paymentMethod.data;
 }

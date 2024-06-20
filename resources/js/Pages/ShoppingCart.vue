@@ -16,6 +16,8 @@ const phoneCodes = ref([
     { value: '+58 412', label: '0412' },
 ]);
 const selectedPhoneCode = ref('');
+const selectedPaymentType = ref('');
+const selectedPaymentMethod = ref('');
 const isLoading = ref(false);
 const fullPage = ref(true);
 const arrayProducts = ref(localStorage.arrayProducts
@@ -265,6 +267,14 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
     record.value.products_info[index].quantity = quantity;
     calculateTotalPrice(record.value.products_info[index].quantity, index);
 }
+
+const onPaymentTypeSelected = (paymentTypeName) => {
+    selectedPaymentType.value = paymentTypeName;
+}
+
+const onPaymentMethodSelected = (paymentMethodName) => {
+    selectedPaymentMethod.value = paymentMethodName;
+}
 </script>
 
 <template>
@@ -307,20 +317,15 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                             "></div>
                     </div>
                     <!-- Inicio del formulario -->
-                    <form
-                        v-if="arrayProducts.length > 0"
-                        class="
+                    <form v-if="arrayProducts.length > 0
+                    " class="
                             p-4
                             border
                             border-gray-200
                             rounded-lg
                             shadow-md
-                        "
-                        @submit.prevent="createPurchaseOrder"
-                        enctype="multipart/form-data"
-                        ref="form"
-                        style="background: #FFFFFF !important;"
-                    >
+                        " @submit.prevent="createPurchaseOrder" enctype="multipart/form-data" ref="form"
+                        style="background: #FFFFFF !important;">
                         <!-- Listado de Productos añadidos al carrito -->
                         <div class="flex flex-wrap">
                             <div>
@@ -355,8 +360,7 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                                             font-semibold
                                                             mb-2
                                                             text-gray-800
-                                                        "
-                                                    >
+                                                        ">
                                                         {{ product.name }}
                                                     </h3>
                                                     <p class="text-gray-600 mb-4 text-justify">
@@ -537,7 +541,8 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                     <!-- Final del carrito de Compras -->
                                 </div>
                                 <hr class="mt-5 mb-5">
-                                <PaymentTypesList />
+                                <PaymentTypesList @payment-type-selected="onPaymentTypeSelected"
+                                    @payment-method-selected="onPaymentMethodSelected" />
                                 <hr class="mt-5 mb-5">
                                 <h2 class="
                                         w-full
@@ -556,7 +561,7 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                         <br>
 
                         <!-- Datos del Comprador -->
-                        <div>
+                        <div v-if="selectedPaymentType && selectedPaymentMethod">
                             <!-- Nombres -->
                             <div class="mb-4">
                                 <label for="owner-firstname" class="block text-gray-700 text-sm font-bold mb-2">
@@ -653,8 +658,9 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                         <!-- Final de Datos del Comprador -->
 
                         <!-- Botón Limpiar -->
-                        <div class="text-center">
-                            <button @click="cleanForm()" v-if="arrayProducts.length > 0" class="
+                        <div v-if="arrayProducts.length > 0 && selectedPaymentType && selectedPaymentMethod"
+                            class="text-center">
+                            <button @click="cleanForm()" class="
                                     font-montserrat
                                     gradient-green
                                     mt-4
@@ -673,7 +679,7 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
                                 <i class="fa fa-remove fa-lg ollapsed"></i>
                                 LIMPIAR
                             </button>
-                            <button v-if="arrayProducts.length > 0" class="
+                            <button class="
                                     font-montserrat
                                     gradient-green
                                     mt-4
