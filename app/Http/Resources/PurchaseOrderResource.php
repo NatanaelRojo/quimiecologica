@@ -19,6 +19,7 @@ class PurchaseOrderResource extends JsonResource
             'owner_lastname' => $this->owner_lastname,
             'owner_id' => $this->owner_id,
             'owner_phone_number' => $this->owner_phone_number,
+            'owner_email' => $this->owner_email,
             'owner_state' => $this->owner_state,
             'owner_city' => $this->owner_city,
             'owner_address' => $this->owner_address,

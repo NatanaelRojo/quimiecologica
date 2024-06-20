@@ -791,7 +791,8 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                             <span v-for="(product, index) in purchaseOrder.products_info" :key="index">
                                 <p>Nombre del producto: {{ product.name }}</p>
                                 <p>Cantidad: {{ product.quantity }}</p>
-                                <p v-if="product.quantity <= 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de venta:
+                                <p v-if="product.quantity <= 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de
+                                    venta:
                                     Detal</p>
                                 <p v-else-if="product.quantity > 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de
                                     venta: Al mayor</p>
