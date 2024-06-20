@@ -66,26 +66,6 @@
                         <p class="text-gray-600 mb-4 text-justify">
                             <span v-html="product.description"></span>
                         </p>
-                        <div class="flex flex-col items-center">
-                            <button @click.prevent="addProductToCart(product)" class="
-                                                font-montserrat
-                                                gradient-green
-                                                mt-4
-                                                bg-blue-500
-                                                text-white
-                                                py-2 px-4
-                                                rounded-md
-                                                hover:bg-blue-600
-                                                focus:outline-none
-                                                focus:border-blue-700
-                                                focus:ring
-                                                focus:ring-blue-200
-                                                font-bold
-                                            ">
-                                <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                                Añadir al Carrito
-                            </button>
-                        </div>
                         <div class="flex space-x-2 mb-2">
                             <span>Marca: </span>
                             <span class="text-gray-600">
@@ -146,6 +126,26 @@
                             ">
                             Precio: ${{ product.price }}
                         </h2>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <button @click.prevent="addProductToCart(product)" class="
+                                            font-montserrat
+                                            gradient-green
+                                            mt-4
+                                            bg-blue-500
+                                            text-white
+                                            py-2 px-4
+                                            rounded-md
+                                            hover:bg-blue-600
+                                            focus:outline-none
+                                            focus:border-blue-700
+                                            focus:ring
+                                            focus:ring-blue-200
+                                            font-bold
+                                        ">
+                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                            Añadir al Carrito
+                        </button>
                     </div>
                 </div>
             </section>
