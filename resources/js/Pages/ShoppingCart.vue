@@ -81,8 +81,9 @@ const createPurchaseOrder = async (index) => {
         // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
         purchaseOrder.value = response.data.record;
 
+        cleanShoppingCart();
+
         isLoading.value = false;
-        router.get(response.data.redirect);
     } catch (error) {
         isLoading.value = true;
         errors.value = error.response.data;
@@ -201,6 +202,15 @@ const cleanForm = () => {
 }
 
 /**
+ * Limpiar el Carrito de compras.
+*/
+const cleanShoppingCart = () => {
+    if (localStorage.arrayProducts) {
+        localStorage.removeItem('arrayProducts');
+    }
+}
+
+/**
  * Regresar al componente anterior.
 */
 const goBack = () => {
@@ -288,7 +298,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
             <!-- Sección -->
             <section class="gradient border-b py-3" style="min-height: 500px">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
-                <div class="container max-w-5xl mx-auto m-8">
+                <div v-if="purchaseOrder == null" class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
@@ -712,34 +722,132 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                         No hay productos añadidos en el carrito
                         <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
                     </h2>
-                    <br>
-                    <div v-if="purchaseOrder">
+                </div>
+                <div v-if="purchaseOrder">
+                    <div class="container max-w-5xl mx-auto m-8">
+                        <a href="#" class="font-montserrat" @click.prevent="goBack">
+                            <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                        </a>
                         <h2 class="
+                                font-montserrat
                                 w-full
-                                text-2xl
+                                my-2
+                                text-5xl
                                 font-black
                                 leading-tight
-                                text-center text-gray-800
+                                text-center
+                                text-gray-800
                             ">
-                            Detalles de la Orden de Compra
+                            Detalles de tu Orden de compra
                         </h2>
-                        <p>Nombre del propietario: {{ purchaseOrder.owner_firstname }} {{ purchaseOrder.owner_lastname
-                            }}</p>
-                        <p>ID del propietario: {{ purchaseOrder.owner_id }}</p>
-                        <p>Número de teléfono: {{ purchaseOrder.owner_phone_number }}</p>
-                        <p>Estado: {{ purchaseOrder.owner_state }}</p>
-                        <p>Ciudad: {{ purchaseOrder.owner_city }}</p>
-                        <p>Dirección: {{ purchaseOrder.owner_address }}</p>
-                        <p>Precio total: ${{ purchaseOrder.total_price }}</p>
-                        <h3>Información de productos:</h3>
-                        <ul>
-                            <li v-for="(product, index) in purchaseOrder.products_info" :key="index">
-                                <p>Producto ID: {{ product.product_id }}</p>
-                                <p>Nombre del producto: {{ product.product_name }}</p>
+                        <div class="w-full mb-4">
+                            <div class="
+                                    gradient-green
+                                    h-1
+                                    mx-auto
+                                    w-64
+                                    opacity-75
+                                    my-0
+                                    py-0
+                                    rounded-t
+                                "></div>
+                        </div>
+                        <div class="
+                                p-4
+                                border
+                                rounded-lg
+                                shadow-md
+                            " style="border: ridge 1px #93BC00;">
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Nombres:</b> {{ purchaseOrder.owner_firstname }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Apellidos:</b> {{ purchaseOrder.owner_lastname }} {{ purchaseOrder.owner_lastname }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Cédula de identidad:</b> {{ purchaseOrder.owner_id }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Número de teléfono:</b> {{ purchaseOrder.owner_phone_number }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Correo electrónico:</b> {{ purchaseOrder.owner_email }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Estado de procedencia:</b> {{ purchaseOrder.owner_state }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Ciudad de procedencia:</b> {{ purchaseOrder.owner_city }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Dirección de domicilio:</b> {{ purchaseOrder.owner_address }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Numero de referencia del pago:</b> {{ purchaseOrder.reference_number }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <h2>Información de los Productos:</h2>
+                            </div>
+                            <span v-for="(product, index) in purchaseOrder.products_info" :key="index">
+                                <p>Nombre del producto: {{ product.name }}</p>
                                 <p>Cantidad: {{ product.quantity }}</p>
-                                <p>Tipo de venta: {{ product.sale_type }}</p>
-                            </li>
-                        </ul>
+                                <p v-if="product.quantity <= 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de venta:
+                                    Detal</p>
+                                <p v-else-if="product.quantity > 5 && product?.type_sale.name === 'Detal/Mayor'">Tipo de
+                                    venta: Al mayor</p>
+                                <p v-else-if="product?.type_sale?.name === 'Granel'">Tipo de venta: Granel</p>
+                                <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity <= 5">Precio: ${{
+                                    product.price }}</p>
+                                <p v-if="product?.type_sale.name === 'Detal/Mayor' && product.quantity > 5">Precio: ${{
+                                    product.wholesale_price }}</p>
+                                <hr v-if="purchaseOrder.products_info.length > 1" class="mt-3 mb-5"
+                                    style="border: ridge 1px #93BC00;">
+                            </span>
+                            <hr v-if="purchaseOrder.products_info.length < 2" class="mt-3 mb-5"
+                                style="border: ridge 1px #93BC00;">
+                            <br>
+                            <span class="
+                                    mt-5
+                                    gradient-green
+                                    rounded
+                                    px-5
+                                    py-3
+                                    text-lg
+                                    text-4xl
+                                    font-black
+                                    text-gray-800
+                                " style="padding: 25px;">
+                                Total: ${{ purchaseOrder.total_price }}
+                            </span>
+                            <br>
+                            <br>
+                            <div class="
+                                    p-4
+                                    border
+                                    rounded-lg
+                                    shadow-md
+                                    mt-4
+                                " style="border: ridge 1px #93BC00;">
+                                <b class="
+                                        font-montserrat
+                                        w-full
+                                        my-2
+                                        text-3xl
+                                        font-black
+                                        leading-tight
+                                        text-center
+                                        text-gray-800
+                                    ">
+                                    Comunícate con nosotros
+                                </b>
+                                <div class="mb-2 text-gray-800 text-lg mt-3">
+                                    <p>
+                                        <i class="fa-solid fa-phone"></i>
+                                        Teléfonos: 0412-5347169 / 0274-2635666
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

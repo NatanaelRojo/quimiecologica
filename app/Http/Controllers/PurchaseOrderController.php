@@ -67,7 +67,6 @@ class PurchaseOrderController extends Controller
 
         return response()->json([
             'record' => new PurchaseOrderResource($newPurchaseOrder),
-            'redirect' => route('purchaseOrders.detail', $newPurchaseOrder->id),
         ], JsonResponse::HTTP_CREATED);
     }
 
