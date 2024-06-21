@@ -88,7 +88,7 @@
                                     </option>
                                 </select>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <h2>Buscar por Categorías:</h2>
                                 <select class="w-full rounded" v-model="selectedCategories">
                                     <option value="" disabled selected>
@@ -109,8 +109,7 @@
                                         {{ gender.name }}
                                     </option>
                                 </select>
-                            </div>
-
+                            </div> -->
                         </div>
                         <button class="
                                 font-montserrat
@@ -323,7 +322,7 @@ const productName = ref('');
 const productPrice = ref(null);
 const fullPage = ref(true);
 const typeSales = ref([]);
-// const products = ref([]);
+const products = ref(props.products);
 const categories = ref([]);
 const genders = ref([]);
 const arrayProducts = ref(localStorage.arrayProducts
@@ -360,8 +359,8 @@ const filterProducts = async () => {
             name: productName.value,
             // categories: selectedCategories.value.join(','),
             // genders: selectedGenders.value.join(','),
-            categories: selectedCategories.value,
-            genders: selectedGenders.value,
+            // categories: selectedCategories.value,
+            // genders: selectedGenders.value,
             price: productPrice.value,
             priceFilter: selectedProductPriceFilter.value,
         }

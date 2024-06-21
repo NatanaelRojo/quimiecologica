@@ -20,6 +20,12 @@ class Gender extends Model
         'name',
     ];
 
+    /**
+     * The sluggable function in PHP returns an array with a key 'slug' and a value 'name'.
+     * 
+     * @return array An array with a key 'slug' and a value of an array with a key 'source' set to 'name'
+     * is being returned.
+     */
     public function sluggable(): array
     {
         return [
@@ -29,28 +35,49 @@ class Gender extends Model
         ];
     }
 
+    /**
+     * The getRouteKeyName function in PHP returns the string 'slug'.
+     * 
+     * @return string The method `getRouteKeyName()` is returning the string 'slug'.
+     */
     public function getRouteKeyName(): string
     {
         return 'slug';
     }
 
+    /**
+     * The function `categories` establishes a many-to-many relationship between the current model and the
+     * `Category` model in PHP using Laravel's Eloquent ORM.
+     * 
+     * @return BelongsToMany The `categories()` method is returning a BelongsToMany relationship. This
+     * method defines a many-to-many relationship between the current model and the `Category` model.
+     */
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
     }
 
+    /**
+     * The `posts` function defines a many-to-many relationship between the current model and the `Post`
+     * model in PHP using Laravel's Eloquent ORM.
+     * 
+     * @return BelongsToMany A BelongsToMany relationship is being returned. This method defines a
+     * many-to-many relationship between the current model and the Post model.
+     */
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);
     }
 
+    /**
+     * The products function establishes a many-to-many relationship between the current model and the
+     * Product model in PHP.
+     * 
+     * @return BelongsToMany A BelongsToMany relationship is being returned. This method defines a
+     * many-to-many relationship between the current model and the Product model.
+     */
     public function products(): BelongsToMany
     {
         return $this->belongsToMany(Product::class);
     }
-
-    // public function products(): HasMany
-    // {
-    //     return $this->hasMany(Product::class);
-    // }
 }

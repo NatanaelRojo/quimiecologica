@@ -47,7 +47,7 @@
                                 <input class="w-full rounded" type="text" v-model="postTitle" />
                             </div>
                             <div>
-                                <h2>Buscar por Categorías:</h2>
+                                <h2>Buscar por Subclases:</h2>
                                 <select class="w-full rounded" v-model="selectedCategories">
                                     <option value="" disabled selected>
                                         Seleccione...
@@ -58,7 +58,7 @@
                                 </select>
                             </div>
                             <div>
-                                <h2>Buscar por Géneros:</h2>
+                                <h2>Buscar por cuotas:</h2>
                                 <select class="w-full rounded" v-model="selectedGenders">
                                     <option value="" disabled selected>
                                         Seleccione...
@@ -130,44 +130,39 @@
                                     <Link :href="route(
                                         'posts.detail',
                                         post.slug
-                                        )
-                                    ">
-                                        <img :src="`/storage/${post.thumbnail}`"
-                                            alt="Imagen de la publicación"
-                                            class="
+                                    )
+                                        ">
+                                    <img :src="`/storage/${post.thumbnail}`" alt="Imagen de la publicación" class="
                                                 w-full h-40 mb-4
                                                 rounded-md img-zoom
                                             ">
-                                        <div>
-                                            <h3 class="
+                                    <div>
+                                        <h3 class="
                                                         text-lg
                                                         font-semibold
                                                         mb-2
                                                         text-gray-800
                                                     ">
-                                                {{ post.title }}
-                                            </h3>
-                                            <p class="text-gray-600 mb-4 text-justify">
-                                                <span v-html="truncateText(post.body, 200)"></span>
-                                            </p>
-                                            <div class="flex space-x-2">
-                                                <span>Categorías:</span>
-                                                <div
-                                                    v-for="(category, index) of post.categories"
-                                                    :key="index" class="text-gray-600"
-                                                >
-                                                    {{ category.name }}
-                                                </div>
-                                            </div>
-                                            <div class="flex space-x-2 mt-2">
-                                                <span>Géneros:</span>
-                                                <div v-for="(gender, index) of post.genders"
-                                                    :key="index" class="text-gray-600"
-                                                >
-                                                    {{ gender.name }}
-                                                </div>
+                                            {{ post.title }}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4 text-justify">
+                                            <span v-html="truncateText(post.body, 200)"></span>
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <span>Categorías:</span>
+                                            <div v-for="(category, index) of post.categories" :key="index"
+                                                class="text-gray-600">
+                                                {{ category.name }}
                                             </div>
                                         </div>
+                                        <div class="flex space-x-2 mt-2">
+                                            <span>Géneros:</span>
+                                            <div v-for="(gender, index) of post.genders" :key="index"
+                                                class="text-gray-600">
+                                                {{ gender.name }}
+                                            </div>
+                                        </div>
+                                    </div>
                                     </Link>
                                 </div>
                             </div>
@@ -182,8 +177,8 @@
                             text-center text-gray-800
                         ">
                         {{ isFiltered ?
-                'No hay coincidencias' :
-                        'No hay publicaciones disponibles' }}
+                            'No hay coincidencias' :
+                            'No hay publicaciones disponibles' }}
                     </h2>
 
                     <!-- End of grid posts -->
