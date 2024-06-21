@@ -25,6 +25,8 @@ class PurchaseOrderResource extends JsonResource
             'owner_address' => $this->owner_address,
             'total_price' => $this->total_price,
             'products_info' => $this->products_info,
+            'reference_number' => $this->reference_number,
+            'created_at' => $this->created_at,
         ];
     }
 }

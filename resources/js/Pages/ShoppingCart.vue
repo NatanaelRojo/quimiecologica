@@ -783,7 +783,10 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                 <b>Dirección de domicilio:</b> {{ purchaseOrder.owner_address }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
-                                <b>Numero de referencia del pago:</b> {{ record.reference_number }}
+                                <b>Numero de referencia del pago:</b> {{ purchaseOrder.reference_number }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Fecha de creación:</b> {{ new Date(purchaseOrder.created_at).toLocaleDateString('en-GB') }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
                                 <h2>Información de los Productos:</h2>
