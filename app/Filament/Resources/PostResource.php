@@ -89,7 +89,8 @@ class PostResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
+            Tables\Columns\ToggleColumn::make('published')
+                ->label(static::getAttributeLabel('is_published')),
             Tables\Columns\TextColumn::make('categories.name')->label(static::getAttributeLabel('categories'))->searchable(),
             Tables\Columns\TextColumn::make('genders.name')->label(static::getAttributeLabel('genders'))->searchable(),
             Tables\Columns\ToggleColumn::make('published')->label(static::getAttributeLabel('published')),
