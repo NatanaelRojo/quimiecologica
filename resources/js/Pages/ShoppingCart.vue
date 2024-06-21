@@ -44,6 +44,9 @@ const errors = ref([]);
 const form = ref(null);
 const purchaseOrder = ref(null);
 
+/**
+ * Method that gets the products from localStorage.
+ */
 onMounted(() => {
     arrayProducts.value.forEach((product, index) => {
         record.value.products_info.push(product);
@@ -51,17 +54,16 @@ onMounted(() => {
             productsQuantity.value[index] = 1;
             record.value.total_price += product.price * 1;
         } else if (product.type_sale.name === 'Granel') {
-            // productsQuantity.value[index] = product.product_content;
             productsQuantity.value[index] = 1;
             record.value.total_price += product.price * 1;
         }
     });
-    // Finalizar spinner de carga.
+    // ends loading spinner
     isLoading.value = false;
 });
 
 /**
- * Método que permite enviar los datos de la orden de compra al api.
+ * Method that creates a new purchase order.
 */
 const createPurchaseOrder = async (index) => {
     try {
@@ -75,12 +77,8 @@ const createPurchaseOrder = async (index) => {
         record.value.products_info.forEach(item => {
             form.append(`products_info[${item.id}]`, JSON.stringify(item));
         });
-
         const response = await axios.post('/api/purchase-orders', form);
-
-        // Aquí asignamos la respuesta JSON a la variable 'purchaseOrder'
         purchaseOrder.value = response.data.record;
-
         cleanShoppingCart();
 
         isLoading.value = false;
@@ -93,8 +91,7 @@ const createPurchaseOrder = async (index) => {
 }
 
 /**
- * Método que envia al usuario al principio del componente para ver los errores
- * del formulario.
+ * Method that scrolls to the begining of the component to show errors.
 */
 const scrollMeTo = () => {
     const top = form.offsetTop;
@@ -102,7 +99,7 @@ const scrollMeTo = () => {
 }
 
 /**
- * Método que limpia los errores del formulario.
+ * Method that clears errors.
 */
 const clearErrors = () => {
     errors.value = []
@@ -115,13 +112,16 @@ const handleFileChange = (event) => {
     record.value.image = event.target.files[0];
 };
 
+/**
+ * Starts loading spinner.
+ * /
 onBeforeMount(async () => {
     // Iniciar spinner de carga.
     isLoading.value = true;
 });
 
 /**
- * Truncar la cantidad de caracteres ded un texto que se muestran.
+ * Truncate the number of characters of a text that are displayed.
 */
 const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -132,13 +132,14 @@ const truncateText = (text, maxLength) => {
 }
 
 /**
- * Método que permite eliminar un producto del carrito.
+ * Method that removes a product from the cart.
+ * @param {number} id The id of the product.
+ * 
+ * @returns {void}
 */
 const removeProductFromCart = (id) => {
-    // Encontrar el índice del producto con el id especificado.
     let index = arrayProducts.value.findIndex(product => product.id === id);
 
-    // Eliminar el producto del array de productos del carrito.
     if (index !== -1) {
         if (arrayProducts.value[index].type_sale.name === 'Detal/Mayor') {
             record.value.total_price -= productsQuantity.value[index] <= 5
@@ -153,12 +154,17 @@ const removeProductFromCart = (id) => {
         localStorage.setItem('arrayProducts', JSON.stringify(localStorageProducts));
         index = record.value.products_info.findIndex(product => product.id === id);
         record.value.products_info.splice(index, 1);
-
-        // Actualizar el array de productos en localStorage.
         localStorage.arrayProducts = JSON.stringify(arrayProducts.value);
     }
 }
 
+/**
+ * Validates the quantity of a product.
+ * @param {number} quantity The quantity of the product.
+ * @param {object} product The product object.
+ * 
+ * @returns {boolean}
+ * /
 const validateProductQuantity = (quantity, product) => {
     if (quantity > product.stock && (product?.type_sale.name === 'Detal/Mayor' || product?.type_sale.name === 'Granel')) {
         // errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
@@ -169,12 +175,15 @@ const validateProductQuantity = (quantity, product) => {
 }
 
 /**
- * Método para calcular el precio total de todos los productos en el carrito.
+ * Calculates the total price of the products.
+ * @param {number} quantity The quantity of the product.
+ * @param {number} index The index of the product in the array.
+ * 
+ * @returns {number} The total price of the products.
 */
 const calculateTotalPrice = (quantity, index) => {
     if (!validateProductQuantity(quantity, arrayProducts.value[index])) {
         errors.value.push(`La cantidad solicitada para el producto "${arrayProducts.value[index].name}" no esta disponible`);
-        errors.value.push(`La cantidad solicitada para el producto "${product.name}" no esta disponible`);
         return;
     }
     const totalPrice = arrayProducts.value?.reduce((total, product, i) => {
@@ -182,17 +191,15 @@ const calculateTotalPrice = (quantity, index) => {
             ? quantity <= 5 ? product?.price : product?.wholesale_price
             : product?.price;
         return product?.type_sale.name === 'Detal/Mayor'
-            ? total + (productPrice * quantity)
-            : total + (product.price * quantity);
+            ? total + (productPrice * productsQuantity.value[i])
+            : total + (product.price * productsQuantity.value[i]);
     }, 0);
-
-    // Assign and return total price
     record.value.total_price = totalPrice;
     return totalPrice;
 }
 
 /**
- * Limpiar el Carrito de compras.
+ * Clean the form.
 */
 const cleanForm = () => {
     if (localStorage.arrayProducts) {
@@ -202,7 +209,7 @@ const cleanForm = () => {
 }
 
 /**
- * Limpiar el Carrito de compras.
+ * Clean the shopping cart.
 */
 const cleanShoppingCart = () => {
     if (localStorage.arrayProducts) {
@@ -211,12 +218,19 @@ const cleanShoppingCart = () => {
 }
 
 /**
- * Regresar al componente anterior.
+ * Method that returns to the previous page.
 */
 const goBack = () => {
     window.history.back();
 }
 
+/**
+ * Method that increases and decreases the quantity of a product.
+ * @param {number} quantities The quantity of the product.
+ * @param {number} index The index of the product in the array.
+ * 
+ * @returns {void}
+*/
 const increaseProductQuantity = (quantities, index) => {
     if (productsQuantity.value[index] + 1 > arrayProducts.value[index].stock) {
         return;
@@ -230,6 +244,13 @@ const increaseProductQuantity = (quantities, index) => {
     calculateTotalPrice(record.value.products_info[index].quantity, index);
 }
 
+/**
+ * Method that decreases the quantity of a product.
+ * @param {number} quantities The quantity of the product.
+ * @param {number} index The index of the product in the array.
+ * 
+ * @returns {void}
+*/
 const decreaseProductQuantity = (quantities, index) => {
     if (productsQuantity.value[index] - 1 === 0
         && (arrayProducts.value[index]?.type_sale.name === 'Detal/Mayor' || arrayProducts.value[index]?.type_sale.name === 'Granel')) {
@@ -245,7 +266,7 @@ const decreaseProductQuantity = (quantities, index) => {
 }
 
 /**
- * Método que muestra la notificación toastr luego de guardar la orden de compra.
+ * Method that shows a toastr message.
 */
 const showMessage = (type, index) => {
     let options = {
@@ -268,6 +289,13 @@ const showMessage = (type, index) => {
     }
 }
 
+/**
+ * Method that changes the quantity of a product and calculates the total price.
+ * @param {number} quantity The quantity of the product.
+ * @param {number} index The index of the product in the array.
+ * 
+ * @returns {void}
+*/
 const changeProductQuantityByInputAndCalculate = (quantity, index) => {
     if (!validateProductQuantity(productsQuantity.value[index], arrayProducts.value[index])) {
         errors.value.push(`La cantidad solicitada para el producto "${arrayProducts.value[index].name}" no esta disponible`);
@@ -278,10 +306,33 @@ const changeProductQuantityByInputAndCalculate = (quantity, index) => {
     calculateTotalPrice(record.value.products_info[index].quantity, index);
 }
 
+/**
+ * Method that validates the quantity of a product.
+ * @param {number} quantity The quantity of the product.
+ * @param {number} product The product.
+ * 
+ * @returns {boolean}
+*/
+const validateProductQuantity = (quantity, product) => {
+    return quantity <= product.stock;
+}
+
+/**
+ * Method that assigns the quantity of a product.
+ * @param {number} paymentTypeName The payment type name selected.
+ * 
+ * @returns {void}
+*/
 const onPaymentTypeSelected = (paymentTypeName) => {
     selectedPaymentType.value = paymentTypeName;
 }
 
+/**
+ * Method that assigns the quantity of a product.
+ * @param {number} paymentMethodName The payment method name selected.
+ * 
+ * @returns {void}
+ */
 const onPaymentMethodSelected = (paymentMethodName) => {
     selectedPaymentMethod.value = paymentMethodName;
 }
@@ -437,23 +488,6 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                                             changeProductQuantityByInputAndCalculate(productsQuantity[index], index)
                                                             ">
                                                     <button
-                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
-                                                        class="
-                                                            font-montserrat
-                                                            gradient-green
-                                                            mt-4
-                                                            bg-blue-500
-                                                            text-white
-                                                            py-2 px-4
-                                                            rounded-md
-                                                            hover:bg-blue-600
-                                                            focus:outline-none
-                                                            focus:border-blue-700
-                                                            focus:ring
-                                                            focus:ring-blue-200
-                                                            font-bold
-                                                        ">-</button>
-                                                    <button
                                                         @click.prevent="increaseProductQuantity(productsQuantity, index)"
                                                         class="
                                                             font-montserrat
@@ -471,9 +505,27 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                                             focus:ring-blue-200
                                                             font-bold
                                                         ">+</button>
+                                                    <button
+                                                        @click.prevent="decreaseProductQuantity(productsQuantity, index)"
+                                                        class="
+                                                            font-montserrat
+                                                            gradient-green
+                                                            mt-4
+                                                            bg-blue-500
+                                                            text-white
+                                                            py-2 px-4
+                                                            rounded-md
+                                                            hover:bg-blue-600
+                                                            focus:outline-none
+                                                            focus:border-blue-700
+                                                            focus:ring
+                                                            focus:ring-blue-200
+                                                            font-bold
+                                                        ">-</button>
                                                 </div>
                                                 <div v-else-if="product.type_sale.name === 'Granel'">
-                                                    <label for="product-wholesale-quantity">Cantidad:</label>
+                                                    <label for="product-wholesale-quantity">Cantidad del
+                                                        producto:</label>
                                                     <input type="number" id="product-wholesale-quantity"
                                                         name="product-wholesale-quantity" min="1" :max="product.stock"
                                                         v-model="productsQuantity[index]" @input="
@@ -786,7 +838,8 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                 <b>Numero de referencia del pago:</b> {{ purchaseOrder.reference_number }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
-                                <b>Fecha de creación:</b> {{ new Date(purchaseOrder.created_at).toLocaleDateString('en-GB') }}
+                                <b>Fecha de creación:</b> {{ new
+                                    Date(purchaseOrder.created_at).toLocaleDateString('en-GB') }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
                                 <h2>Información de los Productos:</h2>
