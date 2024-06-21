@@ -771,7 +771,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                 <b>Número de teléfono:</b> {{ purchaseOrder.owner_phone_number }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
-                                <b>Correo electrónico:</b> {{ purchaseOrder.owner_email }}
+                                <b>Correo electrónico:</b> {{ record.owner_email }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
                                 <b>Estado de procedencia:</b> {{ purchaseOrder.owner_state }}
@@ -783,7 +783,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                 <b>Dirección de domicilio:</b> {{ purchaseOrder.owner_address }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
-                                <b>Numero de referencia del pago:</b> {{ purchaseOrder.reference_number }}
+                                <b>Numero de referencia del pago:</b> {{ record.reference_number }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
                                 <h2>Información de los Productos:</h2>
