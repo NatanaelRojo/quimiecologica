@@ -771,7 +771,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                 <b>Número de teléfono:</b> {{ purchaseOrder.owner_phone_number }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
-                                <b>Correo electrónico:</b> {{ record.owner_email }}
+                                <b>Correo electrónico:</b> {{ purchaseOrder.owner_email }}
                             </div>
                             <div class="mb-2 text-gray-800 text-lg">
                                 <b>Estado de procedencia:</b> {{ purchaseOrder.owner_state }}
