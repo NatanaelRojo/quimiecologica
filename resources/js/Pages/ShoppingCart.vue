@@ -493,7 +493,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                                             font-montserrat
                                                             gradient-green
                                                             mt-4
-                                                            ml-2
+                                                            mr-2
                                                             bg-blue-500
                                                             text-white
                                                             py-2 px-4
@@ -513,7 +513,8 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                                             mt-4
                                                             bg-blue-500
                                                             text-white
-                                                            py-2 px-4
+                                                            py-2
+                                                            px-4
                                                             rounded-md
                                                             hover:bg-blue-600
                                                             focus:outline-none
@@ -584,7 +585,8 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                                                             mt-4
                                                             bg-blue-500
                                                             text-white
-                                                            py-2 px-4
+                                                            py-2
+                                                            px-4
                                                             rounded-md
                                                             hover:bg-blue-600
                                                             focus:outline-none

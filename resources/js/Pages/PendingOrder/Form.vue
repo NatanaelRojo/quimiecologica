@@ -2,24 +2,45 @@
     <MainLayout>
         <template #main>
 
-            <Head title="Formulario de registro" />
+            <Head title="Servicios de formulación" />
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
-            <section class="gradient border-b py-12">
-                <a href="#" class="font-montserrat" @click.prevent="goBack">
-                    <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
-                </a>
+            <section class="gradient border-b py-3" style="min-height: 500px">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
-                <div class="container mx-auto p-4">
-                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
-                        Formulario de Registro
+                <div class="container max-w-5xl mx-auto m-8">
+                    <a href="#" class="font-montserrat" @click.prevent="goBack">
+                        <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                    </a>
+                    <h2 class="
+                            font-montserrat
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        ">
+                        Servicios de formulación
                     </h2>
+                    <div class="w-full mb-4">
+                        <div class="
+                                gradient-green
+                                h-1
+                                mx-auto
+                                w-64
+                                opacity-75
+                                my-0
+                                py-0
+                                rounded-t
+                            "></div>
+                    </div>
                     <br>
                     <form @submit.prevent="submitForm" class="max-w-md mx-auto bg-white p-8 rounded shadow-md">
                         <!-- Nombre del titular -->
                         <div class="mb-4">
                             <label for="owner_firstname" class="block text-gray-700 text-sm font-bold mb-2">
-                                Nombre del Titular:
+                                Nombre del titular:
                             </label>
                             <input v-model="pendingOrder.owner_firstname" type="text" id="owner_firstname"
                                 name="owner_firstname" class="w-full px-3 py-2 border rounded">
@@ -28,7 +49,7 @@
                         <!-- Apellido del titular -->
                         <div class="mb-4">
                             <label for="owner_lastname" class="block text-gray-700 text-sm font-bold mb-2">
-                                Apellido del Titular:
+                                Apellido del titular:
                             </label>
                             <input v-model="pendingOrder.owner_lastname" type="text" id="owner_lastname"
                                 name="owner_lastname" class="w-full px-3 py-2 border rounded">
@@ -37,7 +58,7 @@
                         <!-- Cédula de identidad del titular -->
                         <div class="mb-4">
                             <label for="owner_id" class="block text-gray-700 text-sm font-bold mb-2">
-                                Cédula de Identidad:
+                                Cédula de identidad:
                             </label>
                             <input v-model="pendingOrder.owner_id" type="text" id="owner_id" name="owner_id"
                                 class="w-full px-3 py-2 border rounded">
@@ -55,6 +76,7 @@
                                     <option v-for="(code, index) in phoneCodes" :key="index" :value="code.value">
                                         {{ code.label }} </option>
                                 </select>
+                                <p>{{ selectedPhoneCode }}</p>
                             </div>
 
                             <!-- Campo de número de teléfono -->
@@ -64,7 +86,7 @@
 
                         <div class="mb-4">
                             <label for="owner_email" class="block text-gray-700 text-sm font-bold mb-2">
-                                Correo electrónico del Titular:
+                                Correo electrónico del titular:
                             </label>
                             <input v-model="pendingOrder.owner_email" type="text" id="owner_email" name="owner_email"
                                 class="w-full px-3 py-2 border rounded">
@@ -98,8 +120,9 @@
                             <label for="owner_request" class="block text-gray-700 text-sm font-bold mb-2">
                                 ¿Qué desea?
                             </label>
-                            <input v-model="pendingOrder.owner_request" type="text" id="owner_request"
-                                name="owner_request" class="w-full px-3 py-2 border rounded">
+                            <textarea id="owner_request" name="owner_request" v-model="pendingOrder.owner_request"
+                                rows="10" cols="50" class="w-full px-3 py-2 border rounded">
+                            </textarea>
                         </div>
                         <div class="mb-4">
                             <label for="deadline" class="block text-gray-700 text-sm font-bold mb-2">
@@ -110,10 +133,24 @@
                         </div>
 
                         <!-- Botón de enviar -->
-                        <div class="mt-6">
+                        <div>
                             <button type="submit" class="
-                        bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600
-                    ">
+                                    font-montserrat
+                                    gradient-green
+                                    mt-4
+                                    bg-blue-500
+                                    text-white
+                                    py-2
+                                    px-4
+                                    rounded-md
+                                    hover:bg-blue-600
+                                    focus:outline-none
+                                    focus:border-blue-700
+                                    focus:ring
+                                    focus:ring-blue-200
+                                    font-bold
+                                ">
+                                <i class="fa fa-check fa-lg ollapsed"></i>
                                 Enviar
                             </button>
                         </div>
@@ -189,7 +226,15 @@ const clearErrors = () => {
 }
 
 /**
- * Method that submits the form and redirects to the pending order detail.
+ * Method that returns to the previous page.
+*/
+const goBack = () => {
+    window.history.back();
+}
+
+/**
+ * Método que envía al api los datos del formulario y redirecciona a la vista
+ * que detalla el registro realizado.
  */
 const submitForm = async () => {
     try {
@@ -197,8 +242,6 @@ const submitForm = async () => {
             ...pendingOrder.value,
             owner_phone_number: selectedPhoneCode.value + pendingOrder.value.owner_phone_number,
         });
-        // window.location = response.data.redirect;
-        // await router.visit(response.data.redirect);
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo()
