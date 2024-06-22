@@ -79,6 +79,7 @@
                                     <option v-for="(code, index) in phoneCodes" :key="index" :value="code.value">
                                         {{ code.label }} </option>
                                 </select>
+                                <p>{{ selectedPhoneCode }}</p>
                             </div>
 
                             <!-- Campo de número de teléfono -->
@@ -122,8 +123,15 @@
                             <label for="owner_request" class="block text-gray-700 text-sm font-bold mb-2">
                                 ¿Qué desea?
                             </label>
-                            <input v-model="pendingOrder.owner_request" type="text" id="owner_request"
-                                name="owner_request" class="w-full px-3 py-2 border rounded">
+                            <textarea
+                                id="owner_request"
+                                name="owner_request"
+                                v-model="pendingOrder.owner_request"
+                                rows="10"
+                                cols="50"
+                                class="w-full px-3 py-2 border rounded"
+                            >
+                            </textarea>
                         </div>
                         <div class="mb-4">
                             <label for="deadline" class="block text-gray-700 text-sm font-bold mb-2">
@@ -208,7 +216,6 @@ onMounted(() => {
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
-
 
 /**
  * Método que desplaza la pantalla a la cabecera del formulario.
