@@ -5,52 +5,98 @@
             <Head title="Detalle de la solicitud" />
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
-            <section class="gradient border-b py-12">
-                <div class="container mx-auto">
-                    <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">
-                        Detalle de la solicitud
-                    </h2>
-                    <br>
-                    <h1>Solicitud de formulación</h1>
-                    <h2>Datos personales</h2>
-                    <h3>Titular:</h3>
-                    <p>{{ `${pendingOrder.owner_firstname} ${pendingOrder.owner_lastname}` }}</p>
-                    <h3>Contactos:</h3>
-                    <p><strong>E-mail: </strong>{{ `${pendingOrder.owner_email}` }}</p>
-                    <p><strong>Teléfono: </strong>{{ `${pendingOrder.owner_phone_number}` }}</p>
-                    <h3>Dirección:</h3>
-                    <p>{{ `${pendingOrder.owner_state}, ${pendingOrder.owner_city}, ${pendingOrder.owner_address}` }}
-                    </p>
-                    <h2>Datos de la solicitud</h2>
-                    <p><strong>¿Qué desea?</strong></p>
-                    <p>{{ pendingOrder.owner_request }}</p>
-                    <p><strong>Tiempo estimado por el cliente: </strong>{{ pendingOrder.deadline }}</p>
-                    <p><strong>Código de la solicitud:</strong>{{ pendingOrder.id }}</p>
-                </div>
-                <h2 class="
-                            font-montserrat
-                            w-full
-                            my-2
-                            text-5xl
-                            font-black
-                            leading-tight
-                            text-center
-                            text-gray-800
-                        ">
-                    Comunícate con nosotros
+            <div class="container max-w-5xl mx-auto m-8">
+                <a href="#" class="font-montserrat" @click.prevent="goBack">
+                    <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                </a>
+                <h2
+                    class="
+                        font-montserrat
+                        w-full
+                        my-2
+                        text-5xl
+                        font-black
+                        leading-tight
+                        text-center
+                        text-gray-800
+                    "
+                >
+                    Detalle de la solicitud de formulación
                 </h2>
+                <div class="w-full mb-4">
+                    <div class="
+                            gradient-green
+                            h-1
+                            mx-auto
+                            w-64
+                            opacity-75
+                            my-0
+                            py-0
+                            rounded-t
+                        "></div>
+                </div>
+                <br>
                 <div class="
+                        p-4
+                        border
+                        rounded-lg
+                        shadow-md
+                    " style="border: ridge 1px #93BC00;"
+                >
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>Nombre y Apellido del titular:</b> {{ `${pendingOrder.owner_firstname} ${pendingOrder.owner_lastname}` }}
+                    </div>
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>Correo electrónico:</b> {{ `${pendingOrder.owner_email}` }}
+                    </div>
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>Teléfono: </b> {{ `${pendingOrder.owner_phone_number}` }}
+                    </div>
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>Dirección:</b> {{ `${pendingOrder.owner_state}, ${pendingOrder.owner_city}, ${pendingOrder.owner_address}` }}
+                    </div>
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>¿Qué desea?:</b> {{ pendingOrder.owner_request }}
+                    </div>
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>Tiempo estimado por el cliente:</b> {{ pendingOrder.deadline }}
+                    </div>
+                    <div class="mb-2 text-gray-800 text-lg">
+                        <b>Código de la solicitud:</b> {{ pendingOrder.id }}
+                    </div>
+                    <br>
+                    <div
+                        class="
                             p-4
                             border
                             rounded-lg
                             shadow-md
-                        " style="border: ridge 1px #93BC00;">
-                    <div class="mb-2 text-gray-800 text-lg">
-                        <p><b>04125347169</b></p>
-                        <p><b>02742635666</b></p>
+                        "
+                        style="border: ridge 1px #93BC00;"
+                    >
+                        <b
+                            class="
+                                font-montserrat
+                                w-full
+                                my-2
+                                text-3xl
+                                font-black
+                                leading-tight
+                                text-center
+                                text-gray-800
+                            "
+                        >
+                            Comunícate con nosotros
+                        </b>
+                        <div class="mb-2 text-gray-800 text-lg mt-3">
+                            <p>
+                                <i class="fa-solid fa-phone"></i>
+                                Teléfonos: 0412-5347169 / 0274-2635666
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </template>
     </MainLayout>
 </template>
