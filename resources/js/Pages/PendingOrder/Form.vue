@@ -158,19 +158,23 @@ const pendingOrder = ref({
 
 const errors = ref([]);
 
+/**
+ * Starts loading spinner.
+ */
 onBeforeMount(() => {
-    // Iniciar spinner de carga.
     isLoading.value = true;
 });
 
+/**
+ * Ends loading spinner.
+ */
 onMounted(() => {
     // Finalizar spinner de carga.
     isLoading.value = false;
 });
 
-
 /**
- * Método que desplaza la pantalla a la cabecera del formulario.
+ * Method scrolls to the top form.
  */
 const scrollMeTo = () => {
     const top = form.offsetTop;
@@ -178,26 +182,23 @@ const scrollMeTo = () => {
 }
 
 /**
- * Método que limpia los errores del formulario.
+ * Clean errors in the form.
  */
 const clearErrors = () => {
     errors.value = []
 }
 
 /**
- * Método que envía al api los datos del formulario y redirecciona a la vista
- * que detalla el registro realizado.
+ * Method that submits the form and redirects to the pending order detail.
  */
 const submitForm = async () => {
     try {
-        // pendingOrder.value.owner_phone_number = selectedPhoneCode.value + pendingOrder.value.owner_phone_number;
-        console.log(pendingOrder.value.owner_phone_number);
-        console.log('final');
-        const response = await axios.post('/api/pending-orders', {
+        router.post('/api/pending-orders', {
             ...pendingOrder.value,
             owner_phone_number: selectedPhoneCode.value + pendingOrder.value.owner_phone_number,
         });
-        router.visit(response.data.redirect);
+        // window.location = response.data.redirect;
+        // await router.visit(response.data.redirect);
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo()

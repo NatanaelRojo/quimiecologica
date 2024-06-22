@@ -36,6 +36,4 @@ return [
     'personal_data_description' => 'Datos personales del titular de la órden',
     'location_data_description' => 'Datos de ubicación del titular para envío',
     'measures' => 'Presentación(s)',
-    'product_quantity' => 'Cantidad del producto',
-    'product_unit' => 'Unidad del producto',
 ];

@@ -33,6 +33,11 @@ class Service extends Model
         'conditions' => 'array',
     ];
 
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
     public function sluggable(): array
     {
         return [
@@ -42,11 +47,22 @@ class Service extends Model
         ];
     }
 
+    /**
+     * The getRouteKeyName function in PHP returns the key name 'slug'.
+     * 
+     * @return string The method `getRouteKeyName()` is returning the string 'slug'.
+     */
     public function getRouteKeyName(): string
     {
         return 'slug';
     }
 
+    /**
+     * The function `serviceType` defines a relationship where the current model belongs to a ServiceType model.
+     * 
+     * @return BelongsTo A BelongsTo relationship is being returned. This indicates that the current model
+     * belongs to a ServiceType model.
+     */
     public function serviceType(): BelongsTo
     {
         return $this->belongsTo(ServiceType::class);
@@ -62,11 +78,12 @@ class Service extends Model
         return $this->hasMany(PurchaseOrder::class);
     }
 
-    // public function conditions(): MorphMany
-    // {
-    //     return $this->morphMany(Condition::class, 'conditionable');
-    // }
-
+    /**
+     * The function `allActive` returns all active services in the database using a scope called `allActive`.
+     * 
+     * @param  Builder  $query The query builder object.
+     * @return void
+     */
     public function scopeAllActive(Builder $query): void
     {
         $query->where('is_active', true);

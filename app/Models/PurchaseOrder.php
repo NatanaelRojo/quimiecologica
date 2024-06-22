@@ -35,20 +35,16 @@ class PurchaseOrder extends Model
         'products_info' => 'array',
     ];
 
+    /**
+     * The `booted` method of the model will be called shortly after the model is instantiated and
+     * made visible to the application.
+     * 
+     * @return void
+     */
     protected static function booted(): void
     {
         static::creating(function (PurchaseOrder $model): void {
             $model->id = Str::uuid();
         });
-    }
-
-    // public function getRouteKeyName(): string
-    // {
-    //     return 'uuid';
-    // }
-
-    public function purchaseOrderItems(): BelongsToMany
-    {
-        return $this->belongsToMany(PurchaseOrderItem::class);
     }
 }

@@ -37,17 +37,15 @@ class PendingOrderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePendingOrderRequest $request): JsonResponse
+    public function store(StorePendingOrderRequest $request)
     {
-        $newPendingOrder = PendingOrder::query()->create($request->validated());
+        $newPendingOrder = PendingOrder::query()
+            ->create($request->validated());
 
         Mail::to($newPendingOrder->owner_email)
             ->send(new PendingOrderMailable($newPendingOrder));
-
-        return response()->json([
-            'record' => new PendingOrderResource($newPendingOrder),
-            'redirect' => route('pending_orders.detail', $newPendingOrder->id),
-        ], JsonResponse::HTTP_CREATED);
+        // dd(route('pending_orders.detail', $newPendingOrder->id));
+        return to_route('pending_orders.detail', $newPendingOrder->id);
     }
 
     /**
@@ -58,6 +56,7 @@ class PendingOrderController extends Controller
         if (!Str::isUuid($request->pending_order)) {
             return Inertia::render('Error/404Error');
         }
+        // dd('entra');
 
         $pending_order = PendingOrder::query()->find($request->pending_order);
 

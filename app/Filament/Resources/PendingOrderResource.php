@@ -7,6 +7,8 @@ use App\Filament\Resources\PendingOrderResource\RelationManagers;
 use App\Models\PendingOrder;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -35,6 +37,64 @@ class PendingOrderResource extends Resource
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/pending_order.{$attribute}");
+    }
+
+    public static function infolistEntries(): array
+    {
+        return [
+            Infolists\Components\Tabs::make('tabs')
+                ->tabs([
+                    Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('owner'))
+                        ->schema([
+                            Infolists\Components\Section::make(static::getAttributeLabel('personal_data'))
+                                ->description(static::getAttributeLabel('personal_data_description'))
+                                ->schema([
+                                    Infolists\Components\TextEntry::make('owner_firstname')
+                                        ->label(static::getAttributeLabel('owner_firstname')),
+                                    Infolists\Components\TextEntry::make('owner_lastname')
+                                        ->label(static::getAttributeLabel('owner_lastname')),
+                                    Infolists\Components\TextEntry::make('owner_id')
+                                        ->label(static::getAttributeLabel('owner_id')),
+                                    Infolists\Components\TextEntry::make('owner_email')
+                                        ->label(static::getAttributeLabel('owner_email'))
+                                        ->copyable(),
+                                    Infolists\Components\TextEntry::make('owner_phone_number')
+                                        ->label(static::getAttributeLabel('owner_phone_number'))
+                                        ->copyable(),
+                                ])->collapsible(),
+                            Infolists\Components\Section::make(static::getAttributeLabel('location_data'))
+                                ->description(static::getAttributeLabel('location_data_description'))
+                                ->schema([
+                                    Infolists\Components\TextEntry::make('owner_state')->label(static::getAttributeLabel('owner_state')),
+                                    Infolists\Components\TextEntry::make('owner_city')->label(static::getAttributeLabel('owner_city')),
+                                    Infolists\Components\TextEntry::make('owner_address')->label(static::getAttributeLabel('owner_address'))
+                                ])->collapsible(),
+                        ]),
+                    Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('pending_order'))
+                        ->schema([
+                            Infolists\Components\TextEntry::make('id')
+                                ->label(static::getAttributeLabel('code'))
+                                ->copyable(),
+                            InfoLists\Components\TextEntry::make('created_at')
+                                ->label(static::getAttributeLabel('created_at'))
+                                ->date('d/m/Y'),
+                            Infolists\Components\TextEntry::make('status')->label(static::getAttributeLabel('status')),
+                        ]),
+                    Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('requirements'))
+                        ->schema([
+                            Infolists\Components\TextEntry::make('owner_request')
+                                ->label(static::getAttributeLabel('owner_request')),
+                            Infolists\Components\TextEntry::make('deadline')
+                                ->label(static::getAttributeLabel('deadline')),
+                        ]),
+                ]),
+        ];
+    }
+
+    public static function infoList(Infolist $infolist): Infolist
+    {
+        return $infolist
+            ->schema(static::infolistEntries());
     }
 
     public static function inputForm(): array
@@ -160,6 +220,7 @@ class PendingOrderResource extends Resource
         return [
             'index' => Pages\ListPendingOrders::route('/'),
             'create' => Pages\CreatePendingOrder::route('/create'),
+            'view' => Pages\ViewPendingOrder::route('/{record}'),
             'edit' => Pages\EditPendingOrder::route('/{record}/edit'),
         ];
     }
