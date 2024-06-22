@@ -201,7 +201,7 @@ const pendingOrder = ref({
     owner_state: 'Merida',
     owner_city: 'Merida',
     owner_address: 'Merida',
-    owner_request: 'Todo y mas',
+    owner_request: '',
     deadline: 'Una semana',
 });
 

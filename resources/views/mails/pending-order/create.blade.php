@@ -7,33 +7,49 @@
     <meta name="supported-color-schemes" content="light">
     <style>
         @media only screen and (max-width: 600px) {
-            .inner-body {
+            .wrapper {
                 width: 100% !important;
+            }
+            .content {
+                width: 100% !important;
+            }
+        }
+        @media only screen and (min-width: 601px) {
+            .wrapper {
+                width: 60% !important;
+            }
+            .content {
+                width: 60% !important;
             }
         }
         @media only screen and (max-width: 500px) {
             .button {
-            width: 100% !important;
+                width: 100% !important;
+            }
         }
-    }
-    p {
-        color: #82675C;
-    }
-    .title-color {
-        color: #93BC00;
-    }
-
+        p {
+            color: #82675C;
+        }
+        .title-color {
+            color: #93BC00;
+        }
     </style>
 </head>
 <body>
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+    <table
+        class="wrapper"
+        cellpadding="0"
+        cellspacing="0"
+        role="presentation"
+        style="font-size:14px; width: 100%;"
+    >
         <tr style="background: #E5E1DF !important">
             <td align="center">
-                <table class="content" width="100%" cellpadding="15" cellspacing="0" role="presentation">
+                <table class="content" width="100%" cellpadding="15" cellspacing="0" role="presentation" style="max-width: 600px;">
                     <!-- Email Header -->
                     <tr style="background: #93BC00 !important">
                         <td class="header" align="center">
-                            <b>QUIMIECOLOGICA.</b>
+                            <img src="https://raw.githubusercontent.com/argenisosorio/portafolio/master/static/img/Logo-Quimiecologi-01.png" width="200px" />
                         </td>
                     </tr>
                     <!-- Final Email Header -->
