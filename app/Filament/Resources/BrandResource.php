@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-check-badge';
     protected static ?string $navigationGroup = 'Clasificacion';
     protected static ?int $navigationSort = 0;
 

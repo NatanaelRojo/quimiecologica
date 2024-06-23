@@ -21,9 +21,15 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PurchaseOrderResource extends Resource
 {
+    public static array $statusOptions = [
+        'Aprobada' => 'Aprobada',
+        'En espera' => 'En espera',
+        'Rechazada' => 'Rechazada',
+    ];
+
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = PurchaseOrder::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
     protected static ?string $navigationGroup = 'Órdenes';
     protected static ?string $navigationLabel = 'General';
 
@@ -39,14 +45,8 @@ class PurchaseOrderResource extends Resource
 
     public static function getNavigationBadgeTooltip(): ?string
     {
-        return __('filament/resources/purchase_order.navigation_tooltip');
+        return static::getAttributeLabel('navigation_tooltip');
     }
-
-    public static array $statusOptions = [
-        'Aprobada' => 'Aprobada',
-        'En espera' => 'En espera',
-        'Rechazada' => 'Rechazada',
-    ];
 
     public static function getModelLabel(): string
     {
@@ -68,11 +68,7 @@ class PurchaseOrderResource extends Resource
         return [
             Forms\Components\Select::make('status')->label(static::getAttributeLabel('status'))
                 ->required()
-                ->options([
-                    'Aprobada' => 'Aprobada',
-                    'En espera' => 'En espera',
-                    'Rechazada' => 'Rechazada',
-                ])
+                ->options(self::$statusOptions)
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))->autofocus()
                 ->required()->maxLength(30),
@@ -148,12 +144,17 @@ class PurchaseOrderResource extends Resource
                         Infolists\Components\Section::make(static::getAttributeLabel('personal_data'))
                             ->description(static::getAttributeLabel('personal_data_description'))
                             ->schema([
-                                Infolists\Components\TextEntry::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname')),
-                                Infolists\Components\TextEntry::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname')),
-                                Infolists\Components\TextEntry::make('owner_id')->label(static::getAttributeLabel('owner_id')),
-                                Infolists\Components\TextEntry::make('owner_email')->label(static::getAttributeLabel('owner_email'))
+                                Infolists\Components\TextEntry::make('owner_firstname')
+                                    ->label(static::getAttributeLabel('owner_firstname')),
+                                Infolists\Components\TextEntry::make('owner_lastname')
+                                    ->label(static::getAttributeLabel('owner_lastname')),
+                                Infolists\Components\TextEntry::make('owner_id')
+                                    ->label(static::getAttributeLabel('owner_id')),
+                                Infolists\Components\TextEntry::make('owner_email')
+                                    ->label(static::getAttributeLabel('owner_email'))
                                     ->copyable(),
-                                Infolists\Components\TextEntry::make('owner_phone_number')->label(static::getAttributeLabel('owner_phone_number'))
+                                Infolists\Components\TextEntry::make('owner_phone_number')
+                                    ->label(static::getAttributeLabel('owner_phone_number'))
                                     ->copyable(),
                             ])->collapsible(),
                         Infolists\Components\Section::make(static::getAttributeLabel('location_data'))
@@ -225,15 +226,18 @@ class PurchaseOrderResource extends Resource
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_firstname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
+            Tables\Columns\TextColumn::make('owner_lastname')
+                ->label(static::getAttributeLabel('owner_lastname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_lastname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_id')->label(static::getAttributeLabel('owner_id'))
+            Tables\Columns\TextColumn::make('owner_id')
+                ->label(static::getAttributeLabel('owner_id'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_id', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('reference_number')->label(static::getAttributeLabel('reference_number'))
+            Tables\Columns\TextColumn::make('reference_number')
+                ->label(static::getAttributeLabel('reference_number'))
                 ->copyable(),
             Tables\Columns\TextColumn::make('total_price')->label(static::getAttributeLabel('total_price'))
                 ->money('USD')
@@ -263,11 +267,6 @@ class PurchaseOrderResource extends Resource
     public static function tableFilters(): array
     {
         return [
-            Tables\Filters\Filter::make('created_at')
-                ->query(
-                    fn (Builder $query): Builder => $query->latest()
-                )
-                ->default(),
             Tables\Filters\SelectFilter::make('status')
                 ->options(self::$statusOptions)
                 ->label(static::getAttributeLabel('status')),

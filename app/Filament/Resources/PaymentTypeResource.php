@@ -17,7 +17,7 @@ class PaymentTypeResource extends Resource
 {
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = PaymentType::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
     protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string

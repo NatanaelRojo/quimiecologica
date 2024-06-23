@@ -32,7 +32,7 @@ return new class extends Migration
                 $table->string('owner_state');
                 $table->string('owner_city');
                 $table->string('owner_address');
-                $table->string('owner_request');
+                $table->longText('owner_request');
                 $table->string('deadline');
                 $table->string('status', 20)->default('En espera');
                 $table->timestamps();

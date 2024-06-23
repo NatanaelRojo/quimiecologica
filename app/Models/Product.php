@@ -405,4 +405,39 @@ class Product extends Model
     {
         return $this->belongsToMany(ProductType::class);
     }
+
+    /**
+     * The function `arrayAttribteIsDirty` checks if an array attribute is dirty or not.
+     * 
+     * @param array $attribute The array attribute to check.
+     * @return bool True if the array attribute is dirty, false otherwise.
+     */
+    public function arrayAttributeIsDirty(array $attribute): bool
+    {
+        $originalAttribute = $this->getOriginal('image_urls');
+        $currentAttribute = $this->getAttribute('image_urls');
+
+        if (!is_array($originalAttribute) || !is_array($currentAttribute)) {
+            return false;
+        }
+        return $originalAttribute !== $currentAttribute;
+    }
+
+    /**
+     * The function `dirtyArrayElements` returns an array of elements that are dirty in an array attribute.
+     * 
+     * @param array $attribute The array attribute to check.
+     * @return array The array of elements that are dirty in the array attribute.
+     */
+    public function dirtyArrayElements(array $attribute): array
+    {
+        $originalAttribute = $this->getOriginal('image_urls');
+        $currentAttribute = $this->getAttribute('image_urls');
+        $dirtyElements = [];
+        if (!is_array($originalAttribute) || !is_array($currentAttribute)) {
+            return $dirtyElements;
+        }
+        $dirtyElements = array_diff($originalAttribute, $currentAttribute);
+        return $dirtyElements;
+    }
 }

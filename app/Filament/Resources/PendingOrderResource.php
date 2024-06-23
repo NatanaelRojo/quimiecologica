@@ -17,12 +17,33 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PendingOrderResource extends Resource
 {
+    public static array $statusOptions = [
+        'Aprobada' => 'Aprobada',
+        'En espera' => 'En espera',
+        'Rechazada' => 'Rechazada',
+    ];
+
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = PendingOrder::class;
     protected static ?int $navigationSort = 2;
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-check';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox';
     protected static ?string $navigationLabel = 'Pendientes';
     protected static ?string $navigationGroup = 'Órdenes';
+
+    public static function getNavigationBadge(): ?string
+    {
+        return count(static::getModel()::query()->where('status', 'En espera')->get());
+    }
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'info';
+    }
+
+    public static function getNavigationBadgeTooltip(): ?string
+    {
+        return static::getAttributeLabel('purchase_order.navigation_tooltip');
+    }
 
     public static function getModelLabel(): string
     {
@@ -78,7 +99,8 @@ class PendingOrderResource extends Resource
                             InfoLists\Components\TextEntry::make('created_at')
                                 ->label(static::getAttributeLabel('created_at'))
                                 ->date('d/m/Y'),
-                            Infolists\Components\TextEntry::make('status')->label(static::getAttributeLabel('status')),
+                            Infolists\Components\TextEntry::make('status')
+                                ->label(static::getAttributeLabel('status')),
                         ]),
                     Infolists\Components\Tabs\Tab::make(static::getAttributeLabel('requirements'))
                         ->schema([
@@ -100,30 +122,10 @@ class PendingOrderResource extends Resource
     public static function inputForm(): array
     {
         return [
-            // Forms\Components\Select::make('service_id')->label('Service')
-            //     ->relationship(
-            //         name: 'service',
-            //         titleAttribute: 'name'
-            //     )->preload()
-            //     ->searchable()
-            //     ->required()
-            //     ->createOptionForm(ServiceResource::inputForm()),
-            // Forms\Components\Select::make('gender_id')->label('Gender ')
-            //     ->relationship(
-            //         name: 'gender',
-            //         titleAttribute: 'name'
-            //     )->preload()
-            //     ->searchable()
-            //     ->required()
-            //     ->createOptionForm(GenderResource::inputForm()),
-            // Forms\Components\Select::make('category_id')->label('Category')
-            //     ->relationship(
-            //         name: 'category',
-            //         titleAttribute: 'name'
-            //     )->preload()
-            //     ->searchable()
-            //     ->required()
-            //     ->createOptionForm(CategoryResource::inputForm()),
+            Forms\Components\Select::make('status')->label(static::getAttributeLabel('status'))
+                ->required()
+                ->options(self::$statusOptions)
+                ->columnSpan('full'),
             Forms\Components\TextInput::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))->autofocus()
                 ->required()->maxLength(30),
             Forms\Components\TextInput::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
@@ -142,39 +144,38 @@ class PendingOrderResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('owner_request')->label(static::getAttributeLabel('owner_request'))
                 ->required(),
-            // Forms\Components\Select::make('product_id')
-            //     ->label('Product')
-            //     ->relationship(
-            //         name: 'product',
-            //         titleAttribute: 'name',
-            //     )->preload()
-            //     ->searchable()
-            //     ->required(),
         ];
     }
 
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\TextColumn::make('owner_firstname')->label(static::getAttributeLabel('owner_firstname'))
+            Tables\Columns\TextColumn::make('created_at')
+                ->label(static::getAttributeLabel('created_at'))
+                ->date('d/m/Y'),
+            Tables\Columns\TextColumn::make('status')
+                ->label(static::getAttributeLabel('status')),
+            Tables\Columns\TextColumn::make('owner_firstname')
+                ->label(static::getAttributeLabel('owner_firstname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_firstname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_lastname')->label(static::getAttributeLabel('owner_lastname'))
+            Tables\Columns\TextColumn::make('owner_lastname')
+                ->label(static::getAttributeLabel('owner_lastname'))
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_lastname', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_id')->label(static::getAttributeLabel('owner_id'))
+            Tables\Columns\TextColumn::make('owner_id')
+                ->label(static::getAttributeLabel('owner_id'))
                 ->copyable()
                 ->searchable(query: function (Builder $query, string $search) {
                     return $query->where('owner_id', 'like', "%{$search}%");
                 }),
-            Tables\Columns\TextColumn::make('owner_email')->label(static::getAttributeLabel('owner_email'))
-                ->copyable()
-                ->searchable(query: function (Builder $query, string $search) {
-                    return $query->where('owner_email', 'like', "%{$search}%");
-                }),
-            Tables\Columns\TextColumn::make('owner_request')->label(static::getAttributeLabel('owner_request'))->words(10),
+            Tables\Columns\TextColumn::make('deadline')
+                ->label(static::getAttributeLabel('deadline')),
+            Tables\Columns\TextColumn::make('owner_request')
+                ->label(static::getAttributeLabel('owner_request'))
+                ->words(10),
         ];
     }
 
@@ -193,13 +194,20 @@ class PendingOrderResource extends Resource
             ->schema(PendingOrderResource::inputForm());
     }
 
+    public static function tableFilters(): array
+    {
+        return [
+            Tables\Filters\SelectFilter::make('status')
+                ->options(self::$statusOptions)
+                ->label(static::getAttributeLabel('status')),
+        ];
+    }
+
     public static function table(Table $table): Table
     {
         return $table
             ->columns(PendingOrderResource::tableColumns())
-            ->filters([
-                //
-            ])
+            ->filters(static::tableFilters())
             ->actions(PendingOrderResource::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

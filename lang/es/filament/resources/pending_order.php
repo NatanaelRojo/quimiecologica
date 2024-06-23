@@ -1,11 +1,12 @@
 <?php
 
 return [
-    'label' => "Orden de pedido",
-    'plural_label' => "Órdenes de pedido",
-    'latest_purchase_orders' => 'Ultimas ordenes de compra',
-    'navigation_tooltip' => 'órdenes de compra por aprobar',
+    'label' => 'Solicitud de formulación',
+    'plural_label' => 'Solicitudes  de formulación',
+    'latest_pending_orders' => 'Ultimas solicitudes de formulacion recibidas',
+    'navigation_tooltip' => 'Solicitudes de formulacion por aprobar',
     'code' => 'Código',
+    'status' => 'Estado de la solicitud',
     'owner_firstname' => 'Nombre del titular',
     'owner_lastname' => 'Apellido del titular',
     'owner_id' => 'Cédula de identidad del titular',
@@ -14,9 +15,9 @@ return [
     'owner_state' => 'Estado de procedencia del titular',
     'owner_city' => 'Ciudad de procedencia del titular',
     'owner_address' => 'Dirección de domicilio del titular',
-    'owner_request' => 'Requerimientos del cliente',
+    'owner_request' => 'Requerimientos',
     'deadline' => 'Fecha de entrega estimada por el titular',
-    'created_at' => 'Fecha de la orden',
+    'created_at' => 'Fecha de la solicitud',
     'owner' => 'Titular',
     'pending_order' => 'Datos de la solicitud',
     'requirements' => 'Requerimientos del titular',

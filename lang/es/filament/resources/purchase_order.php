@@ -4,7 +4,7 @@ return [
     'label' => "Orden de compra",
     'plural_label' => "Órdenes de compra",
     'latest_purchase_orders' => 'Ultimas ordenes de compra',
-    'navigation_tooltip' => 'órdenes de compra por aprobar',
+    'navigation_tooltip' => 'Ordenes de compra por aprobar',
     'code' => 'Código',
     'owner_firstname' => 'Nombre del titular',
     'owner_lastname' => 'Apellido del titular',

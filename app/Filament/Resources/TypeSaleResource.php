@@ -17,7 +17,7 @@ class TypeSaleResource extends Resource
 {
     protected static bool $hasTitleCaseModelLabel = false;
     protected static ?string $model = TypeSale::class;
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-wallet';
     protected static ?string $navigationGroup = 'Carga Inicial';
 
     public static function getModelLabel(): string

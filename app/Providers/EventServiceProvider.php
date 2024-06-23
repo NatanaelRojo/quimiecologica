@@ -2,6 +2,20 @@
 
 namespace App\Providers;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Gender;
+use App\Models\PrimaryClass;
+use App\Models\Product;
+use App\Models\Service;
+use App\Models\ServiceType;
+use App\Observers\BrandObserver;
+use App\Observers\CategoryObserver;
+use App\Observers\GenderObserver;
+use App\Observers\PrimaryClassObserver;
+use App\Observers\ProductObserver;
+use App\Observers\ServiceObserver;
+use App\Observers\ServiceTypeObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -25,7 +39,13 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Brand::observe(BrandObserver::class);
+        PrimaryClass::observe(PrimaryClassObserver::class);
+        Category::observe(CategoryObserver::class);
+        Gender::observe(GenderObserver::class);
+        ServiceType::observe(ServiceTypeObserver::class);
+        Service::observe(ServiceObserver::class);
+        Product::observe(ProductObserver::class);
     }
 
     /**
