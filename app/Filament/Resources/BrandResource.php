@@ -47,8 +47,15 @@ class BrandResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
-            Forms\Components\FileUpload::make('logo_url')->label(static::getAttributeLabel('logo'))
+            Forms\Components\FileUpload::make('logo_url')
+                ->label(static::getAttributeLabel('logo'))
                 ->required()
+                ->acceptedFileTypes([
+                    'image/png',
+                    'image/jpeg',
+                    'image/jpg',
+                    'image/svg+xml',
+                ])
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20),

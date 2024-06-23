@@ -58,8 +58,14 @@ class ServiceResource extends Resource
                 ->preload()
                 ->createOptionForm(ServiceTypeResource::inputForm())
                 ->columnSpan('full'),
-            Forms\Components\FileUpload::make('banner')->label(static::getAttributeLabel('banner'))
-                ->image()
+            Forms\Components\FileUpload::make('banner')
+                ->label(static::getAttributeLabel('banner'))
+                ->acceptedFileTypes([
+                    'image/png',
+                    'image/jpeg',
+                    'image/jpg',
+                    'image/svg+xml',
+                ])
                 ->columnSpan('full'),
             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                 ->autofocus()

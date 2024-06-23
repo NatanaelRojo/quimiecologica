@@ -53,8 +53,14 @@ class PostResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan(2)
                 ->live(),
-            Forms\Components\FileUpload::make('thumbnail')->label(static::getAttributeLabel('thumbnail'))
-                ->image()
+            Forms\Components\FileUpload::make('thumbnail')
+                ->label(static::getAttributeLabel('thumbnail'))
+                ->acceptedFileTypes([
+                    'image/png',
+                    'image/jpeg',
+                    'image/jpg',
+                    'image/svg+xml',
+                ])
                 ->columnSpan(2),
             Forms\Components\Select::make('category_id')
                 ->label(static::getAttributeLabel('categories'))

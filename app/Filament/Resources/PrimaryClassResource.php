@@ -49,7 +49,12 @@ class PrimaryClassResource extends Resource
                 ->live(),
             Forms\Components\FileUpload::make('logo_url')
                 ->label(static::getAttributeLabel('logo'))
-                ->required()
+                ->acceptedFileTypes([
+                    'image/png',
+                    'image/jpeg',
+                    'image/jpg',
+                    'image/svg+xml',
+                ])
                 ->columnSpan('full'),
             Forms\Components\Select::make('brands')->label(static::getAttributeLabel('brands'))
                 ->required()

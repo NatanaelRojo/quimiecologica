@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Gender;
+use App\Models\Post;
 use App\Models\PrimaryClass;
 use App\Models\Product;
 use App\Models\Service;
@@ -12,6 +13,7 @@ use App\Models\ServiceType;
 use App\Observers\BrandObserver;
 use App\Observers\CategoryObserver;
 use App\Observers\GenderObserver;
+use App\Observers\PostObserver;
 use App\Observers\PrimaryClassObserver;
 use App\Observers\ProductObserver;
 use App\Observers\ServiceObserver;
@@ -46,6 +48,7 @@ class EventServiceProvider extends ServiceProvider
         ServiceType::observe(ServiceTypeObserver::class);
         Service::observe(ServiceObserver::class);
         Product::observe(ProductObserver::class);
+        Post::observe(PostObserver::class);
     }
 
     /**

@@ -88,8 +88,10 @@ class PurchaseOrderResource extends Resource
                 ->required(),
             Forms\Components\TextInput::make('reference_number')->label(static::getAttributeLabel('reference_number'))
                 ->required(),
-            Forms\Components\FileUpload::make('image')->label(static::getAttributeLabel('baucher'))
-                ->acceptedFileTypes(['application/pdf', 'image/png', 'image/jpeg', 'image/jpg']),
+            Forms\Components\FileUpload::make('image')
+                ->label(static::getAttributeLabel('baucher'))
+                ->acceptedFileTypes(['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'])
+                ->downloadable(),
             Forms\Components\TextInput::make('total_price')->label(static::getAttributeLabel('total_price'))
                 ->required()->numeric()->minValue(1)
                 ->prefix('$'),
@@ -178,7 +180,8 @@ class PurchaseOrderResource extends Resource
                             ->copyable(),
                         Infolists\Components\TextEntry::make('total_price')->label(static::getAttributeLabel('total_price'))
                             ->prefix('$'),
-                        Infolists\Components\ImageEntry::make('image')->label(static::getAttributeLabel('baucher'))
+                        Infolists\Components\ImageEntry::make('image')
+                            ->label(static::getAttributeLabel('baucher'))
                             ->height(800)
                             ->square()
                             ->extraImgAttributes([
