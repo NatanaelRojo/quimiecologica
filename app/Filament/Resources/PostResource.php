@@ -24,21 +24,42 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
     protected static ?string $navigationGroup = 'Registros';
 
+    /**
+     * Get the displayable singular label of the resource.
+     * 
+     * @return string
+     */
     public static function getModelLabel(): string
     {
         return __('filament/resources/post.label');
     }
 
+    /**
+     * Get the displayable plural label of the resource.
+     * 
+     * @return string
+     */
     public static function getPluralModelLabel(): string
     {
         return __('filament/resources/post.plural_label');
     }
 
+    /**
+     * Get the label for the given attribute.
+     * 
+     * @param  string  $attribute
+     * @return string
+     */
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/post.{$attribute}");
     }
 
+    /**
+     * Get the form fields displayed by the resource.
+     *
+     * @return array
+     */
     public static function inputForm(): array
     {
         return [
@@ -92,6 +113,11 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * Get the table columns displayed by the resource.
+     *
+     * @return array
+     */
     public static function tableColumns(): array
     {
         return [
@@ -107,6 +133,11 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the table.
+     *
+     * @return array
+     */
     public static function tableActions(): array
     {
         return [
@@ -116,6 +147,11 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * Get the filters available for the resource.
+     *
+     * @return array
+     */
     public static function tableFilters(): array
     {
         return [
@@ -136,28 +172,56 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * Show the form for creating or editing a resource.
+     * 
+     * @param  Form  $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form->schema(PostResource::inputForm());
         // ->columns(1);
     }
 
+    /**
+     * Get the infolist entries for the resource.
+     * 
+     * @return array
+     */
+    public static function infolistEntries(): array
+    {
+        return [
+            Infolists\Components\ImageEntry::make('thumbnail')->label('')
+                ->height(350)
+                ->width(1200)
+                ->square(),
+            Infolists\Components\TextEntry::make('title')->label('')
+                ->columnSpan('full'),
+            Infolists\Components\TextEntry::make('body')->label('')
+                ->columnSpan('full')
+                ->html(),
+        ];
+    }
+
+    /**
+     * Show the infolist for viewing a resource.
+     * 
+     * @param  Infolist  $infolist
+     * @return Infolist
+     */
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
-            ->schema([
-                Infolists\Components\ImageEntry::make('thumbnail')->label('')
-                    ->height(350)
-                    ->width(1200)
-                    ->square(),
-                Infolists\Components\TextEntry::make('title')->label('')
-                    ->columnSpan('full'),
-                Infolists\Components\TextEntry::make('body')->label('')
-                    ->columnSpan('full')
-                    ->html(),
-            ]);
+            ->schema(static::infolistEntries());
     }
 
+    /**
+     * Display the table for the resource.
+     * 
+     * @param  Table  $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -178,6 +242,11 @@ class PostResource extends Resource
         ];
     }
 
+    /**
+     * Get the pages available for the resource.
+     * 
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

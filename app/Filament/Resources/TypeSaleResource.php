@@ -20,21 +20,42 @@ class TypeSaleResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-wallet';
     protected static ?string $navigationGroup = 'Carga Inicial';
 
+    /**
+     * Get the displayable singular label of the resource.
+     * 
+     * @return string
+     */
     public static function getModelLabel(): string
     {
         return __('/filament/resources/type_sale.label');
     }
 
+    /**
+     * Get the displayable plural label of the resource.
+     * 
+     * @return string
+     */
     public static function getPluralModelLabel(): string
     {
         return __('/filament/resources/type_sale.plural_label');
     }
 
+    /**
+     * Get the label for the given attribute.
+     * 
+     * @param  string  $attribute
+     * @return string
+     */
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/type_sale.{$attribute}");
     }
 
+    /**
+     * Get the form fields displayed by the resource.
+     *
+     * @return array
+     */
     public static function inputForm(): array
     {
         return [
@@ -55,6 +76,11 @@ class TypeSaleResource extends Resource
         ];
     }
 
+    /**
+     * Get the table columns displayed by the resource.
+     *
+     * @return array
+     */
     public static function tableColumns(): array
     {
         return [
@@ -65,6 +91,11 @@ class TypeSaleResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the resource.
+     *
+     * @return array
+     */
     public static function tableActions(): array
     {
         return [
@@ -75,6 +106,11 @@ class TypeSaleResource extends Resource
         ];
     }
 
+    /**
+     * Get the filters available for the resource.
+     *
+     * @return array
+     */
     public static function tableFilters(): array
     {
         return [
@@ -83,11 +119,23 @@ class TypeSaleResource extends Resource
         ];
     }
 
+    /**
+     * Get the form for creating or editing a resource.
+     * 
+     * @param Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
     }
 
+    /**
+     * Get the table for the resource.
+     * 
+     * @param Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -110,6 +158,11 @@ class TypeSaleResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the resource.
+     * 
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

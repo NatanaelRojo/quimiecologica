@@ -21,21 +21,42 @@ class ServiceTypeResource extends Resource
     protected static ?string $navigationGroup = 'Carga Inicial';
 
 
+    /**
+     * Get the displayable singular label of the resource.
+     * 
+     * @return string
+     */
     public static function getModelLabel(): string
     {
         return __('filament/resources/service_type.label');
     }
 
+    /**
+     * Get the displayable plural label of the resource.
+     * 
+     * @return string
+     */
     public static function getPluralModelLabel(): string
     {
         return __('filament/resources/service_type.plural_label');
     }
 
+    /**
+     * Get the label for the given attribute.
+     * 
+     * @param  string  $attribute
+     * @return string
+     */
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/service_type.{$attribute}");
     }
 
+    /**
+     * Get the form fields displayed by the resource.
+     *
+     * @return array
+     */
     public static function inputForm(): array
     {
         return [
@@ -65,6 +86,11 @@ class ServiceTypeResource extends Resource
         ];
     }
 
+    /**
+     * Get the table columns displayed by the resource.
+     *
+     * @return array
+     */
     public static function tableColumns(): array
     {
         return [
@@ -76,6 +102,11 @@ class ServiceTypeResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the resource.
+     *
+     * @return array
+     */
     public static function tableActions(): array
     {
         return [
@@ -85,6 +116,11 @@ class ServiceTypeResource extends Resource
         ];
     }
 
+    /**
+     * Get the filters available for the resource.
+     *
+     * @return array
+     */
     public static function tableFilters(): array
     {
         return [
@@ -95,11 +131,23 @@ class ServiceTypeResource extends Resource
         ];
     }
 
+    /**
+     * Get the form for creating or editing a resource.
+     * 
+     * @param  Form $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
     }
 
+    /**
+     * Get the table for the resource.
+     * 
+     * @param  Table $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -120,6 +168,11 @@ class ServiceTypeResource extends Resource
         ];
     }
 
+    /** 
+     * Get the pages available for the resource.
+     * 
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

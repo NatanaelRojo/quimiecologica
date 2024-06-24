@@ -20,21 +20,42 @@ class CategoryResource extends Resource
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationGroup = 'Clasificacion';
 
+    /**
+     * Get the displayable singular label of the resource.
+     * 
+     * @return string
+     */
     public static function getModelLabel(): string
     {
         return __('filament/resources/category.label');
     }
 
+    /**
+     * Get the displayable plural label of the resource.
+     * 
+     * @return string
+     */
     public static function getPluralModelLabel(): string
     {
         return __('filament/resources/category.plural_label');
     }
 
+    /**
+     * Get the label for the given attribute.
+     * 
+     * @param  string  $attribute
+     * @return string
+     */
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/category.{$attribute}");
     }
 
+    /**
+     * Get the form fields displayed by the resource.
+     *
+     * @return array
+     */
     public static function inputForm(): array
     {
         return [
@@ -72,6 +93,11 @@ class CategoryResource extends Resource
         ];
     }
 
+    /**
+     * Get the table columns that should be displayed.
+     *
+     * @return array
+     */
     public static function tableColumns(): array
     {
         return [
@@ -100,6 +126,11 @@ class CategoryResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the table.
+     *
+     * @return array
+     */
     public static function tableActions(): array
     {
         return [
@@ -109,6 +140,11 @@ class CategoryResource extends Resource
         ];
     }
 
+    /**
+     * Get the filters available for the resource.
+     *
+     * @return array
+     */
     public static function tableFilters(): array
     {
         return [
@@ -117,11 +153,21 @@ class CategoryResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the resource.
+     * 
+     * @return array
+     * /
     public static function form(Form $form): Form
     {
         return $form->schema(CategoryResource::inputForm());
     }
 
+    /**
+     * Get the table records to be displayed.
+     * 
+     * @return array
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -142,6 +188,11 @@ class CategoryResource extends Resource
         ];
     }
 
+    /**
+     * Get the pages available for the resource.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

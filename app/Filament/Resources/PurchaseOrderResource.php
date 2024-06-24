@@ -33,36 +33,72 @@ class PurchaseOrderResource extends Resource
     protected static ?string $navigationGroup = 'Órdenes';
     protected static ?string $navigationLabel = 'General';
 
+    /**
+     * Get the number of pending orders with the `En espera` status.
+     * 
+     * @return string
+     */
     public static function getNavigationBadge(): ?string
     {
         return count(static::getModel()::query()->where('status', 'En espera')->get());
     }
 
+    /**
+     * Get the navigation badge color.
+     * 
+     * @return string
+     */
     public static function getNavigationBadgeColor(): ?string
     {
         return 'info';
     }
 
+    /**
+     * Get the navigation tooltip.
+     * 
+     * @return string
+     */
     public static function getNavigationBadgeTooltip(): ?string
     {
         return static::getAttributeLabel('navigation_tooltip');
     }
 
+    /**
+     * Get the displayable singular label of the resource.
+     * 
+     * @return string
+     */
     public static function getModelLabel(): string
     {
         return __('filament/resources/purchase_order.label');
     }
 
+    /**
+     * Get the displayable plural label of the resource.
+     * 
+     * @return string
+     */
     public static function getPluralModelLabel(): string
     {
         return __('filament/resources/purchase_order.plural_label');
     }
 
+    /**
+     * Get the label for the given attribute.
+     * 
+     * @param  string  $attribute
+     * @return string
+     */
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/purchase_order.{$attribute}");
     }
 
+    /**
+     * Get the form fields.
+     * 
+     * @return array
+     */
     public static function inputForm(): array
     {
         return [
@@ -137,6 +173,11 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    /**
+     * Get the infolist entries.
+     * 
+     * @return array
+     */
     public static function infolistEntries(): array
     {
         return [
@@ -217,6 +258,11 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    /**
+     * Get the table columns.
+     * 
+     * @return array
+     */
     public static function tableColumns(): array
     {
         return [
@@ -248,6 +294,11 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    /**
+     * Get the table actions for the resource.
+     * 
+     * @return array
+     */
     public static function tableActions(): array
     {
         return [
@@ -257,6 +308,11 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    /**
+     * Get the form schema for the resource.
+     * 
+     * @return array
+     */
     public static function form(Form $form): Form
     {
         return $form->schema(static::inputForm());
@@ -267,6 +323,11 @@ class PurchaseOrderResource extends Resource
         return $infolist->schema(static::infolistEntries());
     }
 
+    /**
+     * Get the filters available for the resource.
+     *
+     * @return array
+     */
     public static function tableFilters(): array
     {
         return [
@@ -276,6 +337,12 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    /**
+     * Get the table for the resource.
+     * 
+     * @param  Table  $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -297,6 +364,11 @@ class PurchaseOrderResource extends Resource
         ];
     }
 
+    /**
+     * Get the pages available for the resource.
+     * 
+     * @return array
+     */
     public static function getPages(): array
     {
         return [

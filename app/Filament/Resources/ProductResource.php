@@ -29,21 +29,45 @@ class ProductResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
     protected static ?string $navigationGroup = 'Registros';
 
+    /**
+     * Get the displayable singular label of the resource.
+     * 
+     * @return string
+     */
     public static function getModelLabel(): string
     {
         return __('filament/resources/product.label');
     }
 
+    /**
+     * Get the displayable plural label of the resource.
+     * 
+     * @return string
+     */
     public static function getPluralModelLabel(): string
     {
         return __('filament/resources/product.plural_label');
     }
 
+    /**
+     * Get the label for the given attribute.
+     * 
+     * @param  string  $attribute
+     * @return string
+     */
     public static function getAttributeLabel(string $attribute): string
     {
         return __("filament/resources/product.{$attribute}");
     }
 
+    /**
+     * Get the correct schema for the given Livewire instance (create or edit).
+     * 
+     * @param  Get  $get
+     * @param  mixed  $livewire
+     * @param  ?Model  $record
+     * @return array
+     */
     public static function tabSchema(Get $get, $livewire, ?Model $record): array
     {
         if ($livewire instanceof Pages\CreateProduct) {
@@ -64,6 +88,14 @@ class ProductResource extends Resource
         };
     }
 
+    /**
+     * Get the correct visibility for the given Livewire instance (create or edit).
+     * 
+     * @param  Get  $get
+     * @param  mixed  $livewire
+     * @param  ?Model  $record
+     * @return bool
+     */
     public static function showRetailTab(Get $get, $livewire, ?Model $record): bool
     {
         if ($livewire instanceof Pages\CreateProduct) {
@@ -84,6 +116,14 @@ class ProductResource extends Resource
         };
     }
 
+    /**
+     * Get the correct visibility for the given Livewire instance (create or edit).
+     * 
+     * @param  Get  $get
+     * @param  mixed  $livewire
+     * @param  ?Model  $record
+     * @return bool
+     */
     public static function showWholesaleTab(Get $get, $livewire, ?Model $record): bool
     {
         if ($livewire instanceof Pages\CreateProduct) {
@@ -120,6 +160,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Get the form fields displayed by the resource.
+     * 
+     * @return array
+     */
     public static function inputForm(): array
     {
         return [
@@ -226,6 +271,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Get the table columns displayed by the resource.
+     * 
+     * @return array
+     */
     public static function tableColumns(): array
     {
         return [
@@ -247,6 +297,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Get the actions available for the resource.
+     *
+     * @return array
+     */
     public static function tableActions(): array
     {
         return [
@@ -256,6 +311,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Get the form schema for wholesale products
+     * 
+     * @return array
+     */
     public static function wholesaleTypeForm(): array
     {
         return [
@@ -268,6 +328,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Get the filters available for the resource.
+     * 
+     * @return array
+     */
     public static function tableFilters(): array
     {
         return [
@@ -296,11 +361,23 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Display the form for creating or editing a resource.
+     * 
+     * @param  Form  $form
+     * @return Form
+     */
     public static function form(Form $form): Form
     {
         return $form->schema(ProductResource::inputForm());
     }
 
+    /**
+     * Display the table for the resource.
+     * 
+     * @param  Table  $table
+     * @return Table
+     */
     public static function table(Table $table): Table
     {
         return $table
@@ -321,6 +398,11 @@ class ProductResource extends Resource
         ];
     }
 
+    /**
+     * Get the pages available for the resource.
+     *
+     * @return array
+     */
     public static function getPages(): array
     {
         return [
