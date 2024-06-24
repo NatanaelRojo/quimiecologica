@@ -92,10 +92,16 @@ onMounted(async () => {
                                 ">
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col items-start">
-                                    <!-- <img :src="`/storage/${primary_class.banner}`" alt="Imagen del servicio" class="
-                                            w-full mb-4
-                                                rounded-md img-zoom
-                                            "> -->
+                                    <img
+                                        :src="`/storage/${category.logo_url}`"
+                                        alt="Imagen"
+                                        class="
+                                            w-full
+                                            mb-4
+                                            rounded-md
+                                            img-zoom
+                                        "
+                                    >
                                     <div>
                                         <h3 class="
                                                         text-lg
