@@ -77,7 +77,8 @@ class PrimaryClassResource extends Resource
                     'image/svg+xml',
                 ])
                 ->columnSpan('full'),
-            Forms\Components\Select::make('brands')->label(static::getAttributeLabel('brands'))
+            Forms\Components\Select::make('brands')
+                ->label(static::getAttributeLabel('brands'))
                 ->required()
                 ->multiple()
                 ->relationship(

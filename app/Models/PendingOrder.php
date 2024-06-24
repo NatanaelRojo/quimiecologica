@@ -15,6 +15,7 @@ class PendingOrder extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
+        'status',
         'owner_firstname',
         'owner_lastname',
         'owner_id',

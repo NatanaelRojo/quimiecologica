@@ -9,6 +9,7 @@ return [
     'all' => 'Todos',
     'quantity' => 'Cantidad',
     'unit' => 'Unidad',
+    'size' => 'Talla',
     'name' => 'Nombre',
     'type' => 'Tipo',
 ];

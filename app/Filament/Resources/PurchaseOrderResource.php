@@ -5,11 +5,16 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PurchaseOrderResource\Pages;
 use App\Filament\Resources\PurchaseOrderResource\RelationManagers;
 use App\Filament\Resources\PurchaseOrderResource\RelationManagers\PurchaseOrderItemsRelationManager;
+use App\Models\Measure;
 use App\Models\Product;
 use App\Models\PurchaseOrder;
+use App\Models\Size;
+use App\Models\TypeSale;
 use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\KeyValueEntry;
@@ -94,6 +99,159 @@ class PurchaseOrderResource extends Resource
         return __("filament/resources/purchase_order.{$attribute}");
     }
 
+    public static function createProductSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('id')
+                ->label(static::getAttributeLabel('product_id'))
+                ->required()
+                ->readonly(),
+            Forms\Components\Select::make('name')
+                ->label(static::getAttributeLabel('product_name'))
+                ->required()
+                ->options(function (): array {
+                    $options = [];
+                    foreach (Product::all(['id', 'name']) as $product) {
+                        $options[$product->name] = $product->name;
+                    }
+                    return $options;
+                })
+                ->searchable()
+                ->live()
+                ->afterStateUpdated(function (Get $get, Set $set): void {
+                    $product = Product::query()
+                        ->where('name', $get('name'))
+                        ->first(['id']);
+                    $set('id', $product->id);
+                }),
+            Forms\Components\Select::make('type_sale.name')
+                ->label(static::getAttributeLabel('sale_type'))
+                ->required()
+                ->searchable()
+                ->options(function (): array {
+                    $options = [];
+                    foreach (TypeSale::all(['name']) as $typeSale) {
+                        $options[$typeSale->name] = $typeSale->name;
+                    }
+                    return $options;
+                }),
+            Forms\Components\TextInput::make('quantity')
+                ->label(static::getAttributeLabel('product_quantity'))
+                ->required()
+                ->numeric()
+                ->minValue(1),
+            Forms\Components\Repeater::make('measures')
+                ->label(static::getAttributeLabel('measures'))
+                ->schema([
+                    Forms\Components\TextInput::make('quantity')
+                        ->label(static::getAttributeLabel('product_content'))
+                        ->required()
+                        ->numeric()
+                        ->minValue(1),
+                    Forms\Components\Select::make('unit')
+                        ->label(static::getAttributeLabel('product_unit'))
+                        ->options(function (): array {
+                            $options = [];
+                            foreach (Unit::all(['name']) as $unit) {
+                                $options[$unit->name] = $unit->name;
+                            }
+                            $options['No aplica'] = 'No aplica';
+                            return $options;
+                        })
+                        ->searchable(),
+                    Forms\Components\Select::make('size')
+                        ->label(static::getAttributeLabel('product_size'))
+                        ->options(function (): array {
+                            $options = [];
+                            foreach (Measure::all(['size']) as $measure) {
+                                if ($measure->size) {
+                                    $options[$measure->size] = $measure->size;
+                                }
+                            }
+                            $options['No aplica'] = 'No aplica';
+                            return $options;
+                        })
+                        ->searchable(),
+                ]),
+        ];
+    }
+
+    public static function editProductSchema(): array
+    {
+        return [
+            Forms\Components\TextInput::make('id')
+                ->label(static::getAttributeLabel('product_id'))
+                ->required()
+                ->readonly(),
+            Forms\Components\Select::make('name')
+                ->label(static::getAttributeLabel('product_name'))
+                ->required()
+                ->options(function (): array {
+                    $options = [];
+                    foreach (Product::all(['name']) as $product) {
+                        $options[$product->name] = $product->name;
+                    }
+                    return $options;
+                })
+                ->searchable(),
+            Forms\Components\Select::make('type_sale.name')
+                ->label(static::getAttributeLabel('sale_type'))
+                ->required()
+                ->options(function (): array {
+                    $options = [];
+                    foreach (TypeSale::all(['name']) as $typeSale) {
+                        $options[$typeSale->name] = $typeSale->name;
+                    }
+                    return $options;
+                })
+                ->searchable(),
+            Forms\Components\TextInput::make('quantity')
+                ->label(static::getAttributeLabel('product_quantity'))
+                ->required()
+                ->numeric()
+                ->minValue(1),
+            Forms\Components\Repeater::make('measures')
+                ->label(static::getAttributeLabel('measures'))
+                ->schema([
+                    Forms\Components\TextInput::make('quantity')
+                        ->label(static::getAttributeLabel('product_content'))
+                        ->required()
+                        ->numeric(),
+                    Forms\Components\Select::make('unit')
+                        ->label(static::getAttributeLabel('product_unit'))
+                        ->options(function (): array {
+                            $options = [];
+                            foreach (Unit::all('name') as $unit) {
+                                $options[$unit->name] = $unit->name;
+                            }
+                            $options['No aplica'] = 'No aplica';
+                            return $options;
+                        }),
+                    Forms\Components\Select::make('size')
+                        ->label(static::getAttributeLabel('product_size'))
+                        ->options(function (): array {
+                            $options = [];
+                            foreach (Measure::all(['size']) as $measure) {
+                                if ($measure->size) {
+                                    $options[$measure->size] = $measure->size;
+                                }
+                            }
+                            $options['No aplica'] = 'No aplica';
+                            return $options;
+                        })
+                        ->searchable(),
+                ]),
+        ];
+    }
+
+    public static function productSchema($livewire): array
+    {
+        if ($livewire instanceof Pages\CreatePurchaseOrder) {
+            return static::createProductSchema();
+        }
+        return static::editProductSchema();
+    }
+
     /**
      * Get the form fields.
      * 
@@ -128,46 +286,19 @@ class PurchaseOrderResource extends Resource
                 ->label(static::getAttributeLabel('baucher'))
                 ->acceptedFileTypes(['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'])
                 ->downloadable(),
-            Forms\Components\TextInput::make('total_price')->label(static::getAttributeLabel('total_price'))
-                ->required()->numeric()->minValue(1)
+            Forms\Components\TextInput::make('total_price')
+                ->label(static::getAttributeLabel('total_price'))
+                ->required()
+                ->numeric()
+                ->minValue(1)
                 ->prefix('$'),
-            // Forms\Components\CheckboxList::make('items')->label(static::getAttributeLabel('products'))
-            //     ->relationship(name: 'purchaseOrderItems', titleAttribute: 'product_name')
-            //     ->searchable()->noSearchResultsMessage(static::getAttributeLabel('not_found'))->SearchPrompt(static::getAttributeLabel('search_message'))
-            //     ->columns(2)
-            //     ->bulkToggleable(),
-            Forms\Components\Repeater::make('products_info')->label(static::getAttributeLabel('products_info'))
+            Forms\Components\Repeater::make('products_info')
+                ->label(static::getAttributeLabel('products_info'))
+                ->schema(fn ($livewire): array => static::productSchema($livewire))
                 ->required()
                 ->columnSpan('full')
-                ->schema([
-                    Forms\Components\Select::make('product_id')->label(static::getAttributeLabel('product_name'))
-                        ->options(function (): array {
-                            $options = array();
-                            foreach (Product::all(['id', 'name']) as $product) {
-                                $options[$product->id] = $product->name;
-                            }
-                            return $options;
-                        }),
-                    Forms\Components\TextInput::make('product_quantity')->label(static::getAttributeLabel('product_quantity'))
-                        ->required()
-                        ->numeric()->minValue(1),
-                    Forms\Components\Select::make('sale_type')->label(static::getAttributeLabel('sale_type'))
-                        ->required()
-                        ->options([
-                            'Al detal' => 'Al detal',
-                            'Al mayor' => 'Al mayor',
-                        ]),
-                    Forms\Components\Select::make('product_unit')->label(static::getAttributeLabel('product_unit'))
-                        ->required()
-                        ->options(function (): array {
-                            $options = array();
-                            foreach (Unit::all('name') as $unit) {
-                                $options[$unit->name] = $unit->name;
-                            }
-                            $options['No aplica'] = 'No aplica';
-                            return $options;
-                        }),
-                ])->reorderable(false)->collapsible()
+                ->reorderable(false)
+                ->collapsible()
                 ->minItems(1)
                 ->grid(2),
         ];
@@ -247,6 +378,8 @@ class PurchaseOrderResource extends Resource
                                             ->schema([
                                                 Infolists\Components\TextEntry::make('quantity')
                                                     ->label(static::getAttributeLabel('product_content')),
+                                                Infolists\Components\TextEntry::make('size')
+                                                    ->label(static::getAttributeLabel('product_size')),
                                                 Infolists\Components\TextEntry::make('unit')
                                                     ->label(static::getAttributeLabel('product_unit')),
                                             ])

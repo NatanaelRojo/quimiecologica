@@ -79,12 +79,12 @@ class CategoryResource extends Resource
                     'image/svg+xml',
                 ])
                 ->columnSpan('full'),
-            Forms\Components\Select::make('primary_class_id')->label(static::getAttributeLabel('primary_classes'))
+            Forms\Components\Select::make('primary_classes')->label(static::getAttributeLabel('primary_classes'))
                 ->multiple()
                 ->relationship(
                     name: 'primaryClasses',
                     titleAttribute: 'name',
-                    modifyQueryUsing: fn (Builder $query): Builder => $query->allActive()
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
                 )
                 ->preload()
                 ->searchable()

@@ -70,19 +70,27 @@ class MeasureResource extends Resource
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
-            Forms\Components\Select::make('type')->label(static::getAttributeLabel('type'))
+            Forms\Components\TextInput::make('name')
+                ->label(static::getAttributeLabel('name'))
+                ->required()
+                ->readOnly(),
+            Forms\Components\Select::make('type')
+                ->label(static::getAttributeLabel('type'))
                 ->options([
                     'Tallas' => 'Tallas',
                     'Unidades' => 'Unidades',
                 ])
                 ->live(),
-            Forms\Components\TextInput::make('quantity')->label(static::getAttributeLabel('quantity'))->autofocus()
+            Forms\Components\TextInput::make('quantity')
+                ->label(static::getAttributeLabel('quantity'))->autofocus()
                 ->required()->numeric()
                 ->minValue(0)
                 ->live()
                 ->afterStateUpdated(fn (Get $get, Set $set, ?string $state) => $set('name', "{$get('quantity')} {$get('unit')}"))
                 ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false),
-            Forms\Components\Select::make('unit')->label(static::getAttributeLabel('unit'))
+            Forms\Components\Select::make('unit')
+                ->label(static::getAttributeLabel('unit'))
+                ->required()
                 ->options(function (): array {
                     $options = array();
                     $units = Unit::query()->orderBy('name')->get();
@@ -100,6 +108,14 @@ class MeasureResource extends Resource
                     $set('name', "{$get('quantity')} {$presentationName}");
                 })
                 ->visible(fn (Get $get): bool => $get('type') === 'Unidades' ? true : false),
+            Forms\Components\TextInput::make('size')
+                ->label(static::getAttributeLabel('size'))
+                ->required()
+                ->live()
+                ->afterStateUpdated(function (Get $get, Set $set, ?string $state): void {
+                    $set('name', $state);
+                })
+                ->visible(fn (Get $get): bool => $get('type') === 'Tallas' ? true : false),
         ];
     }
 
@@ -111,11 +127,10 @@ class MeasureResource extends Resource
     public static function tableColumns(): array
     {
         return [
-            Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
-
             Tables\Columns\ToggleColumn::make('is_active')
                 ->label(static::getAttributeLabel('is_active')),
-            Tables\Columns\TextColumn::make('name')->label(static::getAttributeLabel('name')),
+            Tables\Columns\TextColumn::make('name')
+                ->label(static::getAttributeLabel('name')),
         ];
     }
 
