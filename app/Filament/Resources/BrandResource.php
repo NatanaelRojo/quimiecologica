@@ -137,7 +137,8 @@ class BrandResource extends Resource
      */
     public static function form(Form $form): Form
     {
-        return $form->schema(static::inputForm());
+        return $form
+            ->schema(static::inputForm());
     }
 
     /**

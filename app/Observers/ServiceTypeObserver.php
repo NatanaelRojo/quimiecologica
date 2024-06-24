@@ -20,9 +20,7 @@ class ServiceTypeObserver
      */
     public function saved(ServiceType $serviceType): void
     {
-        if ($serviceType->isDirty('logo_url')) {
-            Storage::disk('public')->delete($serviceType->getOriginal('logo_url'));
-        }
+        //
     }
 
     /**
@@ -30,7 +28,9 @@ class ServiceTypeObserver
      */
     public function updated(ServiceType $serviceType): void
     {
-        //
+        if ($serviceType->isDirty('logo_url')) {
+            Storage::disk('public')->delete($serviceType->getOriginal('logo_url'));
+        }
     }
 
     /**

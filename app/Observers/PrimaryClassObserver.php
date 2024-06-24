@@ -20,10 +20,7 @@ class PrimaryClassObserver
      */
     public function saved(PrimaryClass $primaryClass): void
     {
-        if ($primaryClass->isDirty('logo_url')) {
-            // dd($primaryClass->getOriginal('logo_url'));
-            Storage::disk('public')->delete($primaryClass->getOriginal('logo_url'));
-        }
+        //
     }
 
     /**
@@ -31,7 +28,9 @@ class PrimaryClassObserver
      */
     public function updated(PrimaryClass $primaryClass): void
     {
-        //
+        if ($primaryClass->isDirty('logo_url')) {
+            Storage::disk('public')->delete($primaryClass->getOriginal('logo_url'));
+        }
     }
 
     /**

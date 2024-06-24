@@ -20,9 +20,7 @@ class PostObserver
      */
     public function saved(Post $post): void
     {
-        if ($post->isDirty('thumbnail')) {
-            Storage::disk('public')->delete($post->getOriginal('thumbnail'));
-        }
+        //
     }
 
     /**
@@ -30,7 +28,9 @@ class PostObserver
      */
     public function updated(Post $post): void
     {
-        //
+        if ($post->isDirty('thumbnail')) {
+            Storage::disk('public')->delete($post->getOriginal('thumbnail'));
+        }
     }
 
     /**

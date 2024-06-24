@@ -18,7 +18,9 @@ return new class extends Migration
                 $table->boolean('is_active');
                 $table->foreignIdFor(ServiceType::class)->constrained()->cascadeOnUpdate()->cascadeOnDelete();
                 $table->string('name', 20);
-                $table->string('banner')->nullable();
+                $table->string('banner')
+                    ->nullable()
+                    ->default('');
                 $table->string('slug')->unique()->nullable();
                 $table->text('description')->nullable();
                 $table->unsignedBigInteger('price');

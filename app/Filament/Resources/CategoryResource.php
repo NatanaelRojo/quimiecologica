@@ -59,12 +59,14 @@ class CategoryResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
-                if (!$state) {
-                    return static::getAttributeLabel('inactive');
-                }
-                return static::getAttributeLabel('active');
-            })->required()
+            Forms\Components\Toggle::make('is_active')
+                ->label(function (?bool $state): string {
+                    if (!$state) {
+                        return static::getAttributeLabel('inactive');
+                    }
+                    return static::getAttributeLabel('active');
+                })
+                ->required()
                 ->onColor('success')->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
@@ -88,7 +90,8 @@ class CategoryResource extends Resource
                 ->searchable()
                 ->createOptionForm(PrimaryClassResource::inputForm())
                 ->columnSpan('full'),
-            Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
+            Forms\Components\TextInput::make('name')->autofocus()
+                ->label(static::getAttributeLabel('name'))
                 ->required()->maxLength(20),
         ];
     }
@@ -157,10 +160,11 @@ class CategoryResource extends Resource
      * Get the actions available for the resource.
      * 
      * @return array
-     * /
+     */
     public static function form(Form $form): Form
     {
-        return $form->schema(CategoryResource::inputForm());
+        return $form
+            ->schema(static::inputForm());
     }
 
     /**
@@ -171,9 +175,9 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns(CategoryResource::tableColumns())
+            ->columns(static::tableColumns())
             ->filters(static::tableFilters())
-            ->actions(CategoryResource::tableActions())
+            ->actions(static::tableActions())
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

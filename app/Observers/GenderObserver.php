@@ -20,9 +20,7 @@ class GenderObserver
      */
     public function saved(Gender $gender): void
     {
-        if ($gender->isDirty('logo_url')) {
-            Storage::disk('public')->delete($gender->getOriginal('logo_url'));
-        }
+        //
     }
 
     /**
@@ -30,7 +28,9 @@ class GenderObserver
      */
     public function updated(Gender $gender): void
     {
-        //
+        if ($gender->isDirty('logo_url')) {
+            Storage::disk('public')->delete($gender->getOriginal('logo_url'));
+        }
     }
 
     /**

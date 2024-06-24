@@ -20,9 +20,7 @@ class CategoryObserver
      */
     public function saved(Category $category): void
     {
-        if ($category->isDirty('logo_url')) {
-            Storage::disk('public')->delete($category->getOriginal('logo_url'));
-        }
+        //
     }
 
     /**
@@ -30,7 +28,9 @@ class CategoryObserver
      */
     public function updated(Category $category): void
     {
-        //
+        if ($category->isDirty('logo_url')) {
+            Storage::disk('public')->delete($category->getOriginal('logo_url'));
+        }
     }
 
     /**

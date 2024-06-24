@@ -15,7 +15,8 @@ return new class extends Migration
             Schema::create('service_types', function (Blueprint $table) {
                 $table->id();
                 $table->boolean('is_active');
-                $table->string('logo_url')->nullable();
+                $table->string('logo_url')
+                    ->default('');
                 $table->string('name');
                 $table->string('slug')->unique()->nullable();
                 $table->timestamps();

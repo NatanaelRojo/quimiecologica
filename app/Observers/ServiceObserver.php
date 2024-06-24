@@ -20,9 +20,7 @@ class ServiceObserver
      */
     public function saved(Service $service): void
     {
-        if ($service->isDirty('banner')) {
-            Storage::disk('public')->delete($service->getOriginal('banner'));
-        }
+        //
     }
 
     /**
@@ -30,7 +28,9 @@ class ServiceObserver
      */
     public function updated(Service $service): void
     {
-        //
+        if ($service->isDirty('banner')) {
+            Storage::disk('public')->delete($service->getOriginal('banner'));
+        }
     }
 
     /**

@@ -18,7 +18,8 @@ return new class extends Migration
                 $table->id();
                 $table->string('slug')->unique()->nullable();
                 $table->boolean('is_active');
-                $table->string('logo_url')->default('');
+                $table->string('logo_url')
+                    ->default('');
                 $table->string('name');
                 $table->text('description')->nullable();
                 $table->timestamps();

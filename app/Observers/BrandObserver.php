@@ -20,9 +20,7 @@ class BrandObserver
      */
     public function saved(Brand $brand): void
     {
-        if ($brand->isDirty('logo_url')) {
-            Storage::disk('public')->delete($brand->getOriginal('logo_url'));
-        }
+        //
     }
 
     /**
@@ -30,7 +28,9 @@ class BrandObserver
      */
     public function updated(Brand $brand): void
     {
-        //
+        if ($brand->isDirty('logo_url')) {
+            Storage::disk('public')->delete($brand->getOriginal('logo_url') ?? '');
+        }
     }
 
     /**
