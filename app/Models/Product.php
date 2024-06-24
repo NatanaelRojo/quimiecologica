@@ -434,9 +434,11 @@ class Product extends Model
         $originalAttribute = $this->getOriginal('image_urls');
         $currentAttribute = $this->getAttribute('image_urls');
         $dirtyElements = [];
+
         if (!is_array($originalAttribute) || !is_array($currentAttribute)) {
             return $dirtyElements;
         }
+
         $dirtyElements = array_diff($originalAttribute, $currentAttribute);
         return $dirtyElements;
     }

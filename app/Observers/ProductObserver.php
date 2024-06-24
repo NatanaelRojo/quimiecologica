@@ -41,7 +41,7 @@ class ProductObserver
     public function deleted(Product $product): void
     {
         if (!is_null($product->image_urls) && count($product->image_urls) > 0) {
-            foreach ($product->dirtyArrayElements($product->image_urls) as $image_url) {
+            foreach ($product->image_urls as $image_url) {
                 Storage::disk('public')->delete($image_url);
             }
         }
