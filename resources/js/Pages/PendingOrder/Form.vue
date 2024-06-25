@@ -40,7 +40,7 @@
                         <!-- Nombre del titular -->
                         <div class="mb-4">
                             <label for="owner_firstname" class="block text-gray-700 text-sm font-bold mb-2">
-                                Nombre del titular:
+                                Nombre del titular: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_firstname" type="text" id="owner_firstname"
                                 name="owner_firstname" class="w-full px-3 py-2 border rounded">
@@ -49,7 +49,7 @@
                         <!-- Apellido del titular -->
                         <div class="mb-4">
                             <label for="owner_lastname" class="block text-gray-700 text-sm font-bold mb-2">
-                                Apellido del titular:
+                                Apellido del titular: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_lastname" type="text" id="owner_lastname"
                                 name="owner_lastname" class="w-full px-3 py-2 border rounded">
@@ -58,7 +58,7 @@
                         <!-- Cédula de identidad del titular -->
                         <div class="mb-4">
                             <label for="owner_id" class="block text-gray-700 text-sm font-bold mb-2">
-                                Cédula de identidad:
+                                Cédula de identidad: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_id" type="text" id="owner_id" name="owner_id"
                                 class="w-full px-3 py-2 border rounded">
@@ -67,7 +67,7 @@
                         <!-- Número de teléfono del titular -->
                         <div class="mb-4">
                             <label for="owner_phone_number" class="block text-gray-700 text-sm font-bold mb-2">
-                                Número de teléfono:
+                                Número de teléfono: <span style="color: red;">*</span>
                             </label>
 
                             <!-- Selector de código de área -->
@@ -80,13 +80,19 @@
                             </div>
 
                             <!-- Campo de número de teléfono -->
-                            <input v-model="pendingOrder.owner_phone_number" type="text" id="owner_phone_number"
-                                name="owner_phone_number" class="w-full px-3 py-2 border rounded">
+                            <input
+                                v-model="pendingOrder.owner_phone_number"
+                                type="number"
+                                id="owner_phone_number"
+                                oninput="this.value=this.value.replace(/[^0-9]/g,'');"
+                                name="owner_phone_number"
+                                class="w-full px-3 py-2 border rounded"
+                            >
                         </div>
 
                         <div class="mb-4">
                             <label for="owner_email" class="block text-gray-700 text-sm font-bold mb-2">
-                                Correo electrónico del titular:
+                                Correo electrónico del titular: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_email" type="text" id="owner_email" name="owner_email"
                                 class="w-full px-3 py-2 border rounded">
@@ -94,7 +100,7 @@
 
                         <div class="mb-4">
                             <label for="owner_state" class="block text-gray-700 text-sm font-bold mb-2">
-                                Estado de procedencia del titular:
+                                Estado de procedencia del titular: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_state" type="text" id="owner_state" name="owner_state"
                                 class="w-full px-3 py-2 border rounded">
@@ -102,7 +108,7 @@
 
                         <div class="mb-4">
                             <label for="owner_city" class="block text-gray-700 text-sm font-bold mb-2">
-                                Ciudad de procedencia del titular:
+                                Ciudad de procedencia del titular: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_city" type="text" id="owner_city" name="owner_city"
                                 class="w-full px-3 py-2 border rounded">
@@ -110,7 +116,7 @@
 
                         <div class="mb-4">
                             <label for="owner_address" class="block text-gray-700 text-sm font-bold mb-2">
-                                Dirección de domicilio del titular:
+                                Dirección de domicilio del titular: <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.owner_address" type="text" id="owner_address"
                                 name="owner_address" class="w-full px-3 py-2 border rounded">
@@ -118,7 +124,7 @@
 
                         <div class="mb-4">
                             <label for="owner_request" class="block text-gray-700 text-sm font-bold mb-2">
-                                ¿Qué desea?
+                                ¿Qué desea? <span style="color: red;">*</span>
                             </label>
                             <textarea id="owner_request" name="owner_request" v-model="pendingOrder.owner_request"
                                 rows="10" cols="50" class="w-full px-3 py-2 border rounded">
@@ -126,7 +132,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="deadline" class="block text-gray-700 text-sm font-bold mb-2">
-                                Tiempo estimado
+                                Tiempo estimado <span style="color: red;">*</span>
                             </label>
                             <input v-model="pendingOrder.deadline" type="text" id="deadline" name="deadline"
                                 class="w-full px-3 py-2 border rounded">
