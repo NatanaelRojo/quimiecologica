@@ -49,7 +49,6 @@ const purchaseOrder = ref(null);
  */
 onMounted(() => {
     arrayProducts.value.forEach((product, index) => {
-        console.log(product);
         record.value.products_info.push(product);
         if (product.type_sale.name === 'Detal/Mayor') {
             productsQuantity.value[index] = 1;
