@@ -25,6 +25,7 @@ class PendingOrderResource extends JsonResource
             'owner_city' => $this->owner_city,
             'owner_address' => $this->owner_address,
             'owner_request' => $this->owner_request,
+            'deadline' => $this->deadline,
             'created_at' => $this->created_at,
         ];
     }
