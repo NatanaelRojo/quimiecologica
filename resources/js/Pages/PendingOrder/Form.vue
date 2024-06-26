@@ -7,7 +7,7 @@
 
             <section class="gradient border-b py-3" style="min-height: 500px">
                 <ErrorList v-if="errors.length > 0" :errors="errors" @clear-errors="clearErrors" />
-                <div class="container max-w-5xl mx-auto m-8">
+                <div v-if="dataRecord == null" class="container max-w-5xl mx-auto m-8">
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
@@ -162,6 +162,111 @@
                         </div>
                     </form>
                 </div>
+                <div v-else>
+                    <div class="container max-w-5xl mx-auto m-8">
+                        <a href="#" class="font-montserrat" @click.prevent="goBack">
+                            <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
+                        </a>
+                        <h2
+                            class="
+                                font-montserrat
+                                w-full
+                                my-2
+                                text-5xl
+                                font-black
+                                leading-tight
+                                text-center
+                                text-gray-800
+                            "
+                        >
+                            Detalle de la solicitud de formulación
+                        </h2>
+                        <div class="w-full mb-4">
+                            <div class="
+                                    gradient-green
+                                    h-1
+                                    mx-auto
+                                    w-64
+                                    opacity-75
+                                    my-0
+                                    py-0
+                                    rounded-t
+                                "></div>
+                        </div>
+                        <br>
+                        <div class="
+                                p-4
+                                border
+                                rounded-lg
+                                shadow-md
+                            " style="border: ridge 1px #93BC00;"
+                        >
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>
+                                    Nombre y Apellido del titular:
+                                </b>
+                                {{ dataRecord.owner_firstname}} {{ dataRecord.owner_lastname }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Correo electrónico:</b>
+                                {{ dataRecord.owner_email }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Teléfono:</b>
+                                {{ dataRecord.owner_phone_number }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Dirección:</b>
+                                {{ dataRecord.owner_state }}, {{ dataRecord.owner_city }}, {{ dataRecord.owner_address }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>¿Qué desea?:</b>
+                                <div>
+                                    {{ dataRecord.owner_request }}
+                                </div>
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Tiempo estimado por el cliente:</b>
+                                {{ dataRecord.deadline }}
+                            </div>
+                            <div class="mb-2 text-gray-800 text-lg">
+                                <b>Código de la solicitud:</b>
+                                {{ dataRecord.id }}
+                            </div>
+                            <br>
+                            <div
+                                class="
+                                    p-4
+                                    border
+                                    rounded-lg
+                                    shadow-md
+                                "
+                                style="border: ridge 1px #93BC00;"
+                            >
+                                <b
+                                    class="
+                                        font-montserrat
+                                        w-full
+                                        my-2
+                                        text-3xl
+                                        font-black
+                                        leading-tight
+                                        text-center
+                                        text-gray-800
+                                    "
+                                >
+                                    Comunícate con nosotros
+                                </b>
+                                <div class="mb-2 text-gray-800 text-lg mt-3">
+                                    <p>
+                                        <i class="fa-solid fa-phone"></i>
+                                        Teléfonos: 0412-5347169 / 0274-2635666
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </template>
     </MainLayout>
@@ -190,16 +295,17 @@ const pendingOrder = ref({
     owner_firstname: 'Natanael David',
     owner_lastname: 'Rojo Abreu',
     owner_id: '26488388',
-    owner_email: 'rojonatanael99@gmail.com',
-    owner_phone_number: '',
+    owner_email: 'argenisosorio580@hotmail.com',
+    owner_phone_number: '7713032',
     owner_state: 'Merida',
     owner_city: 'Merida',
     owner_address: 'Merida',
-    owner_request: '',
+    owner_request: 'ZZZZZZZZ',
     deadline: 'Una semana',
 });
 
 const errors = ref([]);
+const dataRecord = ref(null);
 
 /**
  * Starts loading spinner.
@@ -244,10 +350,11 @@ const goBack = () => {
  */
 const submitForm = async () => {
     try {
-        router.post('/api/pending-orders', {
+        const response = await axios.post('/api/pending-orders', {
             ...pendingOrder.value,
             owner_phone_number: selectedPhoneCode.value + pendingOrder.value.owner_phone_number,
         });
+        dataRecord.value = response.data.record;
     } catch (error) {
         errors.value = error.response.data;
         scrollMeTo()

@@ -44,8 +44,11 @@ class PendingOrderController extends Controller
 
         Mail::to($newPendingOrder->owner_email)
             ->send(new PendingOrderMailable($newPendingOrder));
-        // dd(route('pending_orders.detail', $newPendingOrder->id));
-        return to_route('pending_orders.detail', $newPendingOrder->id);
+
+        //return to_route('pending_orders.detail', $newPendingOrder->id);
+        return response()->json([
+            'record' => new PendingOrderResource($newPendingOrder),
+        ], JsonResponse::HTTP_CREATED);
     }
 
     /**
