@@ -225,7 +225,8 @@ class PostResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->columns(PostResource::tableColumns())
+            ->defaultSort('create_at', 'desc')
+            ->defaultSort('created_at', 'desc')
             ->filters(static::tableFilters())
             ->actions(PostResource::tableActions())
             ->bulkActions([

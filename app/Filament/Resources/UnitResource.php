@@ -115,7 +115,9 @@ class UnitResource extends Resource
      */
     public static function table(Table $table): Table
     {
-        return $table->columns(static::tableColumns())
+        return $table
+            ->defaultSort('created_at', 'desc')
+            ->columns(static::tableColumns())
             ->filters([
                 //
             ])
