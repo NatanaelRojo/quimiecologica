@@ -8,6 +8,8 @@ import 'vue-loading-overlay/dist/css/index.css';
 const isLoading = ref(false);
 const fullPage = ref(true);
 
+const Logo_Q_black = '/images/Logo-Q-black.png';
+
 const props = defineProps({
     brand: { type: Object, required: true },
     filter_parameters: { type: Object, required: true },
@@ -92,14 +94,26 @@ onMounted(async () => {
                                 ">
                                 <!-- Información a la izquierda -->
                                 <div class="flex flex-col">
-                                    <img
-                                        :src="`/storage/${primaryClass.logo_url}`"
-                                        alt="..."
-                                        class="
-                                            w-full mb-4
-                                                rounded-md img-zoom
-                                            "
+                                    <div v-if="primaryClass.logo_url">
+                                        <img
+                                            :src="`/storage/${primaryClass.logo_url}`"
+                                            alt="..."
+                                            class="
+                                                w-full mb-4
+                                                    rounded-md img-zoom
+                                                "
                                         >
+                                    </div>
+                                    <div v-else>
+                                        <img
+                                            :src="Logo_Q_black"
+                                            alt="..."
+                                            class="
+                                                w-full mb-4
+                                                    rounded-md img-zoom
+                                                "
+                                        >
+                                    </div>
                                     <div>
                                         <h3 class="
                                                 text-lg

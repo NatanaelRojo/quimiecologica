@@ -12,6 +12,8 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const brands = ref([]);
 
+const Logo_Q_black = '/images/Logo-Q-black.png';
+
 /**
  * Regresar al componente anterior.
 */
@@ -50,7 +52,8 @@ onMounted(async () => {
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
-                    <h2 class="
+                    <h2
+                        class="
                         font-montserrat
                         w-full
                         my-2
@@ -59,7 +62,8 @@ onMounted(async () => {
                         leading-tight
                         text-center
                         text-gray-800
-                        ">
+                        "
+                    >
                         Nuestras marcas
                     </h2>
                     <div class="w-full mb-4">
@@ -75,13 +79,17 @@ onMounted(async () => {
                         "></div>
                     </div>
                     <br>
-                    <div class="
+                    <div
+                        class="
                             grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
-                        ">
-                        <div v-for="(brand, index)
-                                in brands" :key="index" style="
-                                max-width: 200px;
-                            " class="
+                        "
+                    >
+                        <div
+                            v-for="(brand, index)
+                                in brands"
+                            :key="index"
+                            style="max-width: 200px;"
+                            class="
                                 bg-white
                                 p-4 border
                                 border-gray-200
@@ -90,23 +98,40 @@ onMounted(async () => {
                                 transition-transform
                                 hover:transform
                                 hover:scale-105
-                            ">
+                            "
+                        >
                             <Link :href="route('brands.detail', brand.slug)">
-                            <img :src="`/storage/${brand.logo_url}`" class="
-                                    w-full h-50 object-cover mb-4
-                                    rounded-md img-zoom
-                                    ">
-                            <div>
-                                <h3 class="
-                                        text-lg
-                                        font-semibold
-                                        mb-2
-                                        text-gray-800
-                                        text-center
-                                    ">
-                                    {{ brand.name }}
-                                </h3>
-                            </div>
+                                <div v-if="brand.logo_url">
+                                    <img
+                                        :src="`/storage/${brand.logo_url}`"
+                                        class="
+                                            w-full h-50 object-cover mb-4
+                                            rounded-md img-zoom
+                                        "
+                                    >
+                                </div>
+                                <div v-else>
+                                    <img
+                                        :src="Logo_Q_black"
+                                        class="
+                                            w-full h-50 object-cover mb-4
+                                            rounded-md img-zoom
+                                        "
+                                    >
+                                </div>
+                                <div>
+                                    <h3
+                                        class="
+                                            text-lg
+                                            font-semibold
+                                            mb-2
+                                            text-gray-800
+                                            text-center
+                                        "
+                                    >
+                                        {{ brand.name }}
+                                    </h3>
+                                </div>
                             </Link>
                         </div>
                     </div>

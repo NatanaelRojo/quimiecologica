@@ -8,6 +8,8 @@ import 'vue-loading-overlay/dist/css/index.css';
 const isLoading = ref(false);
 const fullPage = ref(true);
 
+const Logo_Q_black = '/images/Logo-Q-black.png';
+
 const props = defineProps({
     category: { type: Object, required: true },
     filter_parameters: { type: Object, required: true },
@@ -78,9 +80,11 @@ onMounted(async () => {
                         ">
                         <!-- Iterate de servicios -->
                         <template v-for="(gender, index)     in category.genders" :key="index">
-                            <Link :href="route('products.parameters', gender.slug)"
-                                :data="{ ...filter_parameters, gender: gender.name }">
-                            <div class="
+                            <Link
+                                :href="route('products.parameters', gender.slug)"
+                                :data="{ ...filter_parameters, gender: gender.name }"
+                            >
+                                <div class="
                                     bg-white
                                     p-4 border
                                     border-gray-200
@@ -90,30 +94,46 @@ onMounted(async () => {
                                     hover:transform
                                     hover:scale-105
                                 ">
-                                <!-- Información a la izquierda -->
-                                <div class="flex flex-col items-start">
-                                    <img
-                                        :src="`/storage/${gender.logo_url}`"
-                                        alt="Imagen"
-                                        class="
-                                            w-full
-                                            mb-4
-                                            rounded-md
-                                            img-zoom
-                                        "
-                                    >
-                                    <div>
-                                        <h3 class="
-                                                        text-lg
-                                                        font-semibold
-                                                        mb-2
-                                                        text-gray-800
-                                                    ">
-                                            {{ gender.name }}
-                                        </h3>
+                                    <!-- Información a la izquierda -->
+                                    <div class="flex flex-col items-start">
+                                        <div v-if="gender.logo_url">
+                                            <img
+                                                :src="`/storage/${gender.logo_url}`"
+                                                alt="Imagen"
+                                                class="
+                                                    w-full
+                                                    mb-4
+                                                    rounded-md
+                                                    img-zoom
+                                                "
+                                            >
+                                        </div>
+                                        <div v-else>
+                                            <img
+                                                :src="Logo_Q_black"
+                                                alt="Imagen"
+                                                class="
+                                                    w-full
+                                                    mb-4
+                                                    rounded-md
+                                                    img-zoom
+                                                "
+                                            >
+                                        </div>
+                                        <div>
+                                            <h3
+                                                class="
+                                                    text-lg
+                                                    font-semibold
+                                                    mb-2
+                                                    text-gray-800
+                                                "
+                                            >
+                                                {{ gender.name }}
+                                            </h3>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             </Link>
                         </template>
                         <!-- Fin de la iteración de los servicios-->

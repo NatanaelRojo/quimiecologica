@@ -39,9 +39,7 @@ onMounted(async () => {
 <template>
     <MainLayout>
         <template #main>
-
             <Head title="Nuestras Marcas" />
-
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección -->
@@ -50,17 +48,19 @@ onMounted(async () => {
                     <a href="#" class="font-montserrat" @click.prevent="goBack">
                         <i class="fa fa-chevron-left fa-lg ollapsed"></i> Atrás
                     </a>
-                    <h2 class="
-                        font-montserrat
-                        w-full
-                        my-2
-                        text-5xl
-                        font-black
-                        leading-tight
-                        text-center
-                        text-gray-800
-                        ">
-                        Nuestras marcas
+                    <h2
+                        class="
+                            font-montserrat
+                            w-full
+                            my-2
+                            text-5xl
+                            font-black
+                            leading-tight
+                            text-center
+                            text-gray-800
+                        "
+                    >
+                        Nuestras marcass
                     </h2>
                     <div class="w-full mb-4">
                         <div class="
@@ -72,16 +72,21 @@ onMounted(async () => {
                             my-0
                             py-0
                             rounded-t
-                        "></div>
+                            "
+                        ></div>
                     </div>
                     <br>
-                    <div class="
-                            grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
-                        ">
-                        <div v-for="(brand, index)
-                                in brands" :key="index" style="
-                                max-width: 200px;
-                            " class="
+                    <div
+                        class="
+                            grid grid-cols-1 sm:grid-cols-2
+                            lg:grid-cols-3 gap-8
+                        "
+                    >
+                        <div
+                            v-for="(brand, index) in brands"
+                            :key="index"
+                            style="max-width: 200px;"
+                            class="
                                 bg-white
                                 p-4 border
                                 border-gray-200
@@ -90,23 +95,29 @@ onMounted(async () => {
                                 transition-transform
                                 hover:transform
                                 hover:scale-105
-                            ">
+                            "
+                        >
                             <Link :href="route('brands.detail', brand.slug)">
-                            <img :src="`/storage/${brand.logo_url}`" class="
-                                    w-full h-50 object-cover mb-4
-                                    rounded-md img-zoom
-                                    ">
-                            <div>
-                                <h3 class="
-                                        text-lg
-                                        font-semibold
-                                        mb-2
-                                        text-gray-800
-                                        text-center
-                                    ">
-                                    {{ brand.name }}
-                                </h3>
-                            </div>
+                                <img
+                                    :src="`/storage/${brand.logo_url}`"
+                                    class="
+                                        w-full h-50 object-cover mb-4
+                                        rounded-md img-zoom
+                                    "
+                                >
+                                <div>
+                                    <h3
+                                        class="
+                                            text-lg
+                                            font-semibold
+                                            mb-2
+                                            text-gray-800
+                                            text-center
+                                        "
+                                    >
+                                        {{ brand.name }}
+                                    </h3>
+                                </div>
                             </Link>
                         </div>
                     </div>
