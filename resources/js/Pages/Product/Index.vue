@@ -17,7 +17,7 @@
                                 opacity-100 font-regular
                             ">
                         <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                        Ha agregado Productos al carrito.
+                        Ha agregado productos al carrito. Presione aquí para seguir con el proceso de compra
                     </div>
                 </div>
                 </Link>
@@ -352,6 +352,7 @@ onMounted(async () => {
 });
 
 const filterProducts = async () => {
+    console.log('hola');
     try {
         isFiltered.value = true
         const queryParams = {

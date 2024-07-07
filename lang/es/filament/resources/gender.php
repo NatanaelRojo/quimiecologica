@@ -3,7 +3,7 @@
 return [
     'label' => "Cuota",
     'plural_label' => "Cuotas",
-    'name' => 'Nombre',
+    'name' => 'Cuota',
     'is_active' => 'Activo',
     'logo' => 'Logo',
     'active' => 'Activo',

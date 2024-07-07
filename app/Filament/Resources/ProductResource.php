@@ -179,7 +179,8 @@ class ProductResource extends Resource
                                 }
                                 return static::getAttributeLabel('active');
                             })->required()
-                                ->onColor('success')->offColor('danger')
+                                ->onColor('success')
+                                ->offColor('danger')
                                 ->columnSpan('full')
                                 ->live(),
                             Forms\Components\FileUpload::make('image_urls')->label(static::getAttributeLabel('images'))
@@ -255,7 +256,8 @@ class ProductResource extends Resource
                             Forms\Components\TextInput::make('name')->autofocus()->label(static::getAttributeLabel('name'))
                                 ->required()->unique(ignoreRecord: true)->maxLength(255)->minLength(4)
                                 ->columnSpan('full'),
-                            Forms\Components\RichEditor::make('description')->label(static::getAttributeLabel('description'))
+                            Forms\Components\RichEditor::make('description')
+                                ->label(static::getAttributeLabel('description'))
                                 ->required()
                                 ->columnSpan('full'),
                         ])->columns(2),

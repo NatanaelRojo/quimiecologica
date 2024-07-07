@@ -84,9 +84,10 @@ class ProductController extends Controller
 
     public function showAllByParameters(Request $request): Response
     {
-        $filter_parameters = $request->query();
+        $filterParameters = $request->query();
+
         $products = Product::query()
-            ->applyParameters($filter_parameters)
+            ->applyParameters($filterParameters)
             ->with(['typeSale', 'brand', 'primaryClass', 'categories', 'genders', 'measures'])
             ->get()
             ->toArray();

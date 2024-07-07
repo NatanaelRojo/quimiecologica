@@ -39,8 +39,8 @@ class AdminPanelProvider extends PanelProvider
                 'secondary' => '#93BC00',
             ])
             ->favicon(asset('/images/favicon.png'))
-            ->brandLogo(asset('/images/Logo-Quimiecologi-01 (copia).png'))
-            ->brandLogoHeight('2rem')
+            ->brandLogo(asset('images/Logo-Quimiecologi-01-brown.png'))
+            ->brandLogoHeight('5rem')
             ->font('Roboto')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

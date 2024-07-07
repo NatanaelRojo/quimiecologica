@@ -58,6 +58,29 @@ class Brand extends Model
     }
 
     /**
+     * The `categories` function defines a many-to-many relationship in PHP using Laravel's Eloquent
+     * ORM.
+     * 
+     * @return BelongsToMany A BelongsToMany relationship is being returned. This method defines a
+     * many-to-many relationship between the current model and the Category model.
+     */
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    /**
+     * The `genders` function defines a many-to-many relationship in PHP using Laravel's Eloquent ORM.
+     * 
+     * @return BelongsToMany A BelongsToMany relationship is being returned. This method defines a
+     * many-to-many relationship between the current model and the Gender model.
+     */
+    public function genders(): BelongsToMany
+    {
+        return $this->belongsToMany(Gender::class);
+    }
+
+    /**
      * The scopeAllActive function filters query results to only include records that are marked as active.
      * 
      * @param Builder query The `` parameter in the `scopeAllActive` function is an instance of the

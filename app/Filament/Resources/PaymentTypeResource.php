@@ -66,7 +66,8 @@ class PaymentTypeResource extends Resource
                     }
                     return static::getAttributeLabel('active');
                 })->required()
-                ->onColor('success')->offColor('danger')
+                ->onColor('success')
+                ->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
             Forms\Components\TextInput::make('name')->label(static::getAttributeLabel('name'))

@@ -59,13 +59,15 @@ class BrandResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
-                if (!$state) {
-                    return static::getAttributeLabel('inactive');
-                }
-                return static::getAttributeLabel('active');
-            })->required()
-                ->onColor('success')->offColor('danger')
+            Forms\Components\Toggle::make('is_active')
+                ->label(function (?bool $state): string {
+                    if (!$state) {
+                        return static::getAttributeLabel('inactive');
+                    }
+                    return static::getAttributeLabel('active');
+                })->required()
+                ->onColor('success')
+                ->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
             Forms\Components\FileUpload::make('logo_url')
@@ -150,7 +152,7 @@ class BrandResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('name', 'asc',)
             ->columns(static::tableColumns())
             ->filters(static::tableFilters())
             ->actions(static::tableActions())

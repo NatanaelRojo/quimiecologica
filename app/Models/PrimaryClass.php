@@ -49,6 +49,18 @@ class PrimaryClass extends Model
     }
 
     /**
+     * The brands function returns a BelongsToMany relationship with the Brand model in PHP.
+     * 
+     * @return BelongsToMany The `brands()` method is returning a BelongsToMany relationship between the
+     * current model and the `Brand` model. This indicates a many-to-many relationship where the current
+     * model can be associated with multiple `Brand` models and vice versa.
+     */
+    public function brands(): BelongsToMany
+    {
+        return $this->belongsToMany(Brand::class);
+    }
+
+    /**
      * The function `categories()` establishes a many-to-many relationship between the current model and
      * the `Category` model in PHP using Laravel's Eloquent ORM.
      * 
@@ -61,15 +73,15 @@ class PrimaryClass extends Model
     }
 
     /**
-     * The brands function returns a BelongsToMany relationship with the Brand model in PHP.
+     * The function `genders()` establishes a many-to-many relationship between the current model and
+     * the `Gender` model in PHP using Laravel's Eloquent ORM.
      * 
-     * @return BelongsToMany The `brands()` method is returning a BelongsToMany relationship between the
-     * current model and the `Brand` model. This indicates a many-to-many relationship where the current
-     * model can be associated with multiple `Brand` models and vice versa.
+     * @return BelongsToMany The `genders()` method is returning a BelongsToMany relationship. This
+     * method defines a many-to-many relationship between the current model and the `Gender` model.
      */
-    public function brands(): BelongsToMany
+    public function genders(): BelongsToMany
     {
-        return $this->belongsToMany(Brand::class);
+        return $this->belongsToMany(Gender::class);
     }
 
     /**

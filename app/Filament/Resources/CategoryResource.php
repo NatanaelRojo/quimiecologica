@@ -4,9 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\PrimaryClass;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -65,9 +68,9 @@ class CategoryResource extends Resource
                         return static::getAttributeLabel('inactive');
                     }
                     return static::getAttributeLabel('active');
-                })
-                ->required()
-                ->onColor('success')->offColor('danger')
+                })->required()
+                ->onColor('success')
+                ->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
             Forms\Components\FileUpload::make('logo_url')
@@ -79,7 +82,21 @@ class CategoryResource extends Resource
                     'image/svg+xml',
                 ])
                 ->columnSpan('full'),
-            Forms\Components\Select::make('primary_classes')->label(static::getAttributeLabel('primary_classes'))
+            Forms\Components\Select::make('brands')
+                ->label(static::getAttributeLabel('brands'))
+                ->required()
+                ->multiple()
+                ->relationship(
+                    name: 'brands',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
+                ->preload()
+                ->searchable()
+                ->createOptionForm(BrandResource::inputForm()),
+            Forms\Components\Select::make('primary_classes')
+                ->label(static::getAttributeLabel('primary_classes'))
+                ->required()
                 ->multiple()
                 ->relationship(
                     name: 'primaryClasses',
@@ -105,20 +122,9 @@ class CategoryResource extends Resource
     {
         return [
             Tables\Columns\ToggleColumn::make('is_active')->label(static::getAttributeLabel('active')),
-            Tables\Columns\TextColumn::make('brands')
+            Tables\Columns\TextColumn::make('brands.name')
                 ->label(static::getAttributeLabel('brands'))
-                ->state(function (Category $record) {
-                    $name = '';
-                    $brands = [];
-                    $stringBrands = '';
-                    foreach ($record->primaryClasses as $primaryClass) {
-                        foreach ($primaryClass?->brands as $brand) {
-                            array_push($brands, "<p>{$brand->name}</p>");
-                        }
-                    }
-                    return implode('', $brands);
-                })
-                ->html(),
+                ->listWithLineBreaks(),
             Tables\Columns\TextColumn::make('primaryClasses.name')
                 ->label(static::getAttributeLabel('primary_classes'))
                 ->listWithLineBreaks(),
@@ -175,7 +181,7 @@ class CategoryResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('created_at', 'desc')
+            ->defaultSort('name', 'asc',)
             ->columns(static::tableColumns())
             ->filters(static::tableFilters())
             ->actions(static::tableActions())

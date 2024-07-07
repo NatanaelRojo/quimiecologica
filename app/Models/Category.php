@@ -53,6 +53,18 @@ class Category extends Model
     }
 
     /**
+     * The function `brands()` establishes a many-to-many relationship between the current model and the
+     * `Brand` model in PHP using Laravel's Eloquent ORM.
+     * 
+     * @return BelongsToMany The `brands()` method is returning a BelongsToMany relationship. This method
+     * defines a many-to-many relationship between the current model and the `Brand` model.
+     */
+    public function brands(): BelongsToMany
+    {
+        return $this->belongsToMany(Brand::class);
+    }
+
+    /**
      * The function `primaryClasses()` defines a many-to-many relationship in PHP using Laravel's Eloquent
      * ORM.
      * 

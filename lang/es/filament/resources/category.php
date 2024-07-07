@@ -3,7 +3,8 @@
 return [
     'label' => "Subclase",
     'plural_label' => "Subclases",
-    'name' => 'Nombre',
+    'schema' => 'Esquema',
+    'name' => 'Subclase',
     'is_active' => 'Estado de la subclase',
     'logo' => 'Logo',
     'active' => 'Activo',

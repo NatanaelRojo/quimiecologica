@@ -3,7 +3,7 @@
 return [
     'label' => 'Clase',
     'plural_label' => 'Clases',
-    'name' => 'Nombre',
+    'name' => 'Clase',
     'description' => 'Descripción',
     'is_active' => 'Estado de la clase',
     'logo' => 'Logo',

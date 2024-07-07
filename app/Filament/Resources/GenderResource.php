@@ -4,9 +4,11 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\GenderResource\Pages;
 use App\Filament\Resources\GenderResource\RelationManagers;
+use App\Models\Category;
 use App\Models\Gender;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -59,13 +61,15 @@ class GenderResource extends Resource
     public static function inputForm(): array
     {
         return [
-            Forms\Components\Toggle::make('is_active')->label(function (?bool $state): string {
-                if (!$state) {
-                    return static::getAttributeLabel('inactive');
-                }
-                return static::getAttributeLabel('active');
-            })->required()
-                ->onColor('success')->offColor('danger')
+            Forms\Components\Toggle::make('is_active')
+                ->label(function (?bool $state): string {
+                    if (!$state) {
+                        return static::getAttributeLabel('inactive');
+                    }
+                    return static::getAttributeLabel('active');
+                })->required()
+                ->onColor('success')
+                ->offColor('danger')
                 ->columnSpan('full')
                 ->live(),
             Forms\Components\FileUpload::make('logo_url')
@@ -77,7 +81,32 @@ class GenderResource extends Resource
                     'image/svg+xml',
                 ])
                 ->columnSpan('full'),
-            Forms\Components\Select::make('categories')->label(static::getAttributeLabel('categories'))
+            Forms\Components\Select::make('brands')
+                ->label(static::getAttributeLabel('brands'))
+                ->required()
+                ->multiple()
+                ->relationship(
+                    name: 'brands',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
+                ->preload()
+                ->searchable()
+                ->createOptionForm(BrandResource::inputForm()),
+            Forms\Components\Select::make('primary_classes')
+                ->label(static::getAttributeLabel('primary_classes'))
+                ->required()
+                ->multiple()
+                ->relationship(
+                    name: 'primaryClasses',
+                    titleAttribute: 'name',
+                    modifyQueryUsing: fn (Builder $query): Builder => $query->where('is_active', true)
+                )
+                ->preload()
+                ->searchable()
+                ->createOptionForm(PrimaryClassResource::inputForm()),
+            Forms\Components\Select::make('categories')
+                ->label(static::getAttributeLabel('categories'))
                 ->required()
                 ->multiple()
                 ->relationship(
@@ -103,35 +132,12 @@ class GenderResource extends Resource
         return [
             Tables\Columns\ToggleColumn::make('is_active')
                 ->label(static::getAttributeLabel('active')),
-
-            Tables\Columns\TextColumn::make('brands')
+            Tables\Columns\TextColumn::make('brands.name')
                 ->label(static::getAttributeLabel('brands'))
-                ->state(function (Gender $record) {
-                    $brands = [];
-                    $stringBrands = '';
-                    foreach ($record?->categories as $category) {
-                        foreach ($category?->primaryClasses as $primaryClass) {
-                            foreach ($primaryClass?->brands as $brand) {
-                                array_push($brands, "<p>{$brand?->name}</p>");
-                            }
-                        }
-                    }
-                    return implode('', $brands);
-                })
-                ->html(),
-            Tables\Columns\TextColumn::make('primary_class')
+                ->listWithLineBreaks(),
+            Tables\Columns\TextColumn::make('primaryClasses.name')
                 ->label(static::getAttributeLabel('primary_classes'))
-                ->state(function (Gender $record) {
-                    $primaryClasses = [];
-                    $stringPrimaryClasses = '';
-                    foreach ($record?->categories as $category) {
-                        foreach ($category?->primaryClasses as $primaryClass) {
-                            array_push($primaryClasses, "<p>{$primaryClass?->name}</p>");
-                        }
-                    }
-                    return implode('', $primaryClasses);
-                })
-                ->html(),
+                ->listWithLineBreaks(),
             Tables\Columns\TextColumn::make('categories.name')
                 ->label(static::getAttributeLabel('categories'))
                 ->listWithLineBreaks(),
@@ -189,8 +195,8 @@ class GenderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->defaultSort('created_at', 'desc')
-            ->columns(GenderResource::tableColumns())
+            ->defaultSort('name', 'asc',)
+            ->columns(static::tableColumns())
             ->filters(static::tableFilters())
             ->actions(GenderResource::tableActions())
             ->bulkActions([

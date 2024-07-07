@@ -342,7 +342,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
     <MainLayout>
         <template #main>
 
-            <Head title="Productos en el Carrito" />
+            <Head title="Tu compra" />
 
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
@@ -363,7 +363,7 @@ const onPaymentMethodSelected = (paymentMethodName) => {
                             text-center
                             text-gray-800
                         ">
-                        Productos en el Carrito
+                        Tu compra
                     </h2>
                     <div class="w-full mb-4">
                         <div class="

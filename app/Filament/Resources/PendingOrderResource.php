@@ -27,7 +27,7 @@ class PendingOrderResource extends Resource
     protected static ?string $model = PendingOrder::class;
     protected static ?int $navigationSort = 2;
     protected static ?string $navigationIcon = 'heroicon-o-inbox';
-    protected static ?string $navigationLabel = 'Pendientes';
+    protected static ?string $navigationLabel = 'Consultas del cliente';
     protected static ?string $navigationGroup = 'Órdenes';
 
     /**
