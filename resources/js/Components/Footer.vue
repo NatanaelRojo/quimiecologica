@@ -8,7 +8,7 @@ import { Link } from '@inertiajs/vue3';
     <div>
         <footer class="gradient-brown border-b py-1">
             <div class="container mx-auto mt-8 px-8">
-                <div class="w-full flex flex-col md:flex-row py-6">
+                <div class="w-full flex flex-col md:flex-row">
                     <div class="flex-1 mb-6 ml-14">
                         <a href="/">
                             <img
