@@ -66,7 +66,7 @@
                         </button>
                         <a href="/" class="flex ms-2 md:me-24">
                             <img
-                                src="/images/Logo-Quimiecologi-01.png"
+                                src="/images/Logo-Quimiecologi-01-brown.png"
                                 class="w-40 inline-block img-zoom"
                                 alt="Quimiecologi C.A."
                             />
