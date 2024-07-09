@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <!-- Footer -->
-    <div class="p-4">
+    <div>
         <footer class="gradient-brown border-b py-1">
             <div class="container mx-auto mt-8 px-8">
                 <div class="w-full flex flex-col md:flex-row py-6">
