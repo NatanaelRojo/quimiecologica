@@ -67,21 +67,22 @@
                         <a href="/" class="flex ms-2 md:me-24">
                             <img
                                 src="/images/Logo-Quimiecologi-01-brown.png"
-                                class="w-40 inline-block img-zoom"
+                                class="inline-block"
                                 alt="Quimiecologi C.A."
+                                width="400px"
                             />
                         </a>
                     </div>
                     <div class="flex items-center">
                         <div class="flex items-center ms-3">
-                        <span
-                            class="
-                                font-montserrat
-                                font-bold
-                            "
-                        >
-                            Diseño y desarrollo científico de alto nivel
-                        </span>
+                            <span
+                                class="
+                                    font-montserrat
+                                    font-bold
+                                "
+                            >
+                                Diseño y desarrollo científico de alto nivel
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -130,7 +131,10 @@
                 </svg>
                 <span class="sr-only">Close menu</span>
             </button>
-            <div class="py-4 overflow-y-auto">
+            <div
+                class="overflow-y-auto"
+                style="margin-top: 60px;"
+            >
                 <ul class="space-y-2 font-medium">
                     <li><br></li>
                     <li>
