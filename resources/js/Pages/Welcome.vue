@@ -44,16 +44,6 @@ onMounted(async () => {
             <!-- Sección 3 imágenes -->
             <section class="bg-white border-b py-3 gradient">
                 <div
-                    class="flex justify-center items-center"
-                >
-                    <img
-                        :src="LogoQuimiecologi_brown"
-                        class="mb-4"
-                        alt="Quimiecologi C.A."
-                        style="width: 1000px;"
-                    />
-                </div>
-                <div
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     <div>
