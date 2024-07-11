@@ -95,7 +95,7 @@ onMounted(async () => {
                                 </div>
                                 <div class="mb-3">
                                     <i class="fa-solid fa-envelope"></i>
-                                    XXX
+                                    quimiecologica.llcv@gmail.com
                                 </div>
                                 <div class="mb-3">
                                     <a
