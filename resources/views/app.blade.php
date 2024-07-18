@@ -30,28 +30,30 @@
                     top-0 z-50 w-full gradient-green border-b border-gray-200
                     light:bg-gray-800 light:border-gray-700
                 "
+            style="padding: 50px;"
             >
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center justify-start rtl:justify-end">
                         <button
                             class="
-                                    text-white bg-blue-700 hover:bg-blue-800
-                                    focus:ring-4 focus:ring-blue-300 font-medium
-                                    rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600
-                                    dark:hover:bg-blue-700 focus:outline-none
-                                    dark:focus:ring-blue-800
-                                "
+                                text-white bg-blue-700 hover:bg-blue-800
+                                focus:ring-4 focus:ring-blue-300 font-medium
+                                rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600
+                                dark:hover:bg-blue-700 focus:outline-none
+                                dark:focus:ring-blue-800
+                            "
                             type="button"
                             data-drawer-target="drawer-navigation"
                             data-drawer-show="drawer-navigation"
                             aria-controls="drawer-navigation"
                             style="
                                 background-color: rgb(147, 188, 0) !important;
+                                padding: 40px 40px;
                             "
                         >
                             <svg
-                                class="w-6 h-6"
+                                class="w-8 h-8" /* Aumenta el tamaño del ícono */
                                 aria-hidden="true"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
@@ -66,10 +68,10 @@
                         </button>
                         <a href="/" class="flex ms-2 md:me-24">
                             <img
-                                src="/images/Logo-Quimiecologi-01-brown.png"
+                                src="/images/Logo-Quimiecologi-01-white-rif.png"
                                 class="inline-block"
                                 alt="Quimiecologi C.A."
-                                width="400px"
+                                width="800px"
                             />
                         </a>
                     </div>
@@ -79,9 +81,11 @@
                                 class="
                                     font-montserrat
                                     font-bold
+                                    text-white
                                 "
+                                style="font-size: 35px;"
                             >
-                                Diseño y desarrollo científico de alto nivel
+                                Formulaciones de alto nivel
                             </span>
                         </div>
                     </div>
@@ -92,7 +96,20 @@
         <!-- drawer component -->
         <div
             id="drawer-navigation"
-            class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white dark:bg-gray-800"
+            class="
+                fixed
+                top-0
+                left-0
+                z-40
+                w-64
+                h-screen
+                p-4
+                overflow-y-auto
+                transition-transform
+                -translate-x-full
+                bg-white
+                dark:bg-gray-800
+            "
             tabindex="-1"
             aria-labelledby="drawer-navigation-label"
             style="
@@ -133,7 +150,7 @@
             </button>
             <div
                 class="overflow-y-auto"
-                style="margin-top: 60px;"
+                style="margin-top: 280px;"
             >
                 <ul class="space-y-2 font-medium">
                     <li><br></li>
