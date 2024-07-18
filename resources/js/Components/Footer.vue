@@ -6,7 +6,7 @@ import { Link } from '@inertiajs/vue3';
 <template>
     <!-- Footer -->
     <div>
-        <footer class="gradient-brown border-b py-1">
+        <footer class="gradient-brown border-b py-1" style="font-size: 20px;">
             <div class="mx-auto mt-8 px-8">
                 <div class="w-full flex flex-col md:flex-row">
                     <div class="flex-1 mb-6 ml-14">
@@ -23,7 +23,7 @@ import { Link } from '@inertiajs/vue3';
                             class="
                                 font-montserrat
                                 inline-block
-                                text-black
+                                text-white-brand
                                 no-underline
                             "
                         >
@@ -31,12 +31,10 @@ import { Link } from '@inertiajs/vue3';
                                 <i class="fa-solid fa-location-dot"></i>
                                 Mérida - Venezuela
                             </p>
-                            <br>
                             <p>
                                 <i class="fa-solid fa-phone"></i>
                                 (+58) 274-2635666
                             </p>
-                            <br>
                             <p>
                                 <i class="fa-solid fa-envelope"></i>
                                 quimiecologica.llcv@gmail.com
@@ -52,7 +50,7 @@ import { Link } from '@inertiajs/vue3';
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -62,13 +60,13 @@ import { Link } from '@inertiajs/vue3';
                                     <b>Conócenos</b>
                                 </Link>
                             </li>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     href="/brands"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -78,13 +76,13 @@ import { Link } from '@inertiajs/vue3';
                                     <b>Productos</b>
                                 </Link>
                             </li>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     href="/services"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -94,13 +92,13 @@ import { Link } from '@inertiajs/vue3';
                                     <b>Servicios</b>
                                 </Link>
                             </li>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     href="/pending-orders/create"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -110,13 +108,13 @@ import { Link } from '@inertiajs/vue3';
                                     <b>Servicios de formulación</b>
                                 </Link>
                             </li>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     :href="route('posts.index')"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -125,13 +123,13 @@ import { Link } from '@inertiajs/vue3';
                                     <b>Blog</b>
                                 </Link>
                             </li>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     :href="route('contact')"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -145,13 +143,13 @@ import { Link } from '@inertiajs/vue3';
 
                     <div class="flex-1">
                         <ul class="list-reset mb-6">
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <a
                                     href="https://www.instagram.com/basttvzla/"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -162,14 +160,13 @@ import { Link } from '@inertiajs/vue3';
                                     @basttvzla
                                 </a>
                             </li>
-                            <br>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <a
                                     href="https://www.tiktok.com/@basttvzla"
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -179,8 +176,7 @@ import { Link } from '@inertiajs/vue3';
                                     <i class="fa-brands fa-tiktok"></i> @basttvzla
                                 </a>
                             </li>
-                            <br>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <a
                                     href="
                                         https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
@@ -188,7 +184,7 @@ import { Link } from '@inertiajs/vue3';
                                     class="
                                         font-montserrat
                                         inline-block
-                                        text-black
+                                        text-white-brand
                                         no-underline
                                         hover:text-gray-800
                                         hover:text-underline
@@ -206,23 +202,20 @@ import { Link } from '@inertiajs/vue3';
                             flex-1
                             font-montserrat
                             inline-block
-                            text-black
+                            text-white-brand
                             no-underline
                         "
                     >
                         <ul class="list-reset mb-6">
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <i class="fa-solid fa-clock"></i>
                                 Horario Laboral
                                 <br>
-                                <br>
                                 Lunes - Viernes 7:30am - 3:30pm
                             </li>
-                            <br>
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0">
                                 <i class="fa-solid fa-clock"></i>
                                 Redes (Atención al cliente)
-                                <br>
                                 <br>
                                 Lunes - Sábado 8:00am - 9:00pm
                                 <br>
@@ -231,20 +224,6 @@ import { Link } from '@inertiajs/vue3';
                         </ul>
                     </div>
                 </div>
-                <p
-                    class="
-                        font-montserrat
-                        text-center
-                        font-bold
-                        text-xl
-                        px-6
-                        hover:text-gray-800
-                        hover:text-underline
-                    "
-                >
-                    <Link :href="route('welcome')">QUIMIECOLOGI C.A.</Link>
-                </p>
-                <br>
             </div>
         </footer>
     </div>

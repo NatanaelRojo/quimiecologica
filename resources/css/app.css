@@ -112,3 +112,7 @@ button,
   -webkit-transform:scale(1.2);
   -o-transform:scale(1.2);
 }
+
+.text-white-brand {
+  color: #E5E1DF;
+}
