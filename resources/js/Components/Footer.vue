@@ -6,10 +6,10 @@ import { Link } from '@inertiajs/vue3';
 <template>
     <!-- Footer -->
     <div>
-        <footer class="gradient-brown border-b py-1" style="font-size: 20px;">
+        <footer class="gradient-brown border-b py-1 justify-between" style="font-size: 20px;">
             <div class="mx-auto mt-8 px-8">
                 <div class="w-full flex flex-col md:flex-row">
-                    <div class="flex-1 mb-6 ml-14">
+                    <div class="flex-1 mb-6 ml-100 text-center">
                         <a href="/">
                             <img
                                 :src="LogoQwhite"
@@ -42,9 +42,9 @@ import { Link } from '@inertiajs/vue3';
                         </div>
                     </div>
 
-                    <div class="flex-1">
+                    <div class="flex-1 text-center">
                         <ul class="list-reset mb-6">
-                            <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                            <li class="mt-8 inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     :href="route('about-us')"
                                     class="
@@ -141,9 +141,10 @@ import { Link } from '@inertiajs/vue3';
                         </ul>
                     </div>
 
-                    <div class="flex-1">
+                    <div class="flex-1 text-center">
                         <ul class="list-reset mb-6">
-                            <li class="inline-block mr-2 md:block md:mr-0">
+                            <br>
+                            <li class="inline-block mr-2 md:block md:mr-0 mt-12">
                                 <a
                                     href="https://www.instagram.com/basttvzla/"
                                     class="
@@ -204,10 +205,11 @@ import { Link } from '@inertiajs/vue3';
                             inline-block
                             text-white-brand
                             no-underline
+                            text-center
                         "
                     >
                         <ul class="list-reset mb-6">
-                            <li class="inline-block mr-2 md:block md:mr-0">
+                            <li class="inline-block mr-2 md:block md:mr-0 mt-11">
                                 <i class="fa-solid fa-clock"></i>
                                 Horario Laboral
                                 <br>
