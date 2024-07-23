@@ -1,5 +1,5 @@
 <script setup>
-const LogoQblack = '/images/Logo-Q-black.png';
+const LogoQwhite = '/images/Logo-Q-white.png';
 import { Link } from '@inertiajs/vue3';
 </script>
 
@@ -12,7 +12,7 @@ import { Link } from '@inertiajs/vue3';
                     <div class="flex-1 mb-6 ml-14">
                         <a href="/">
                             <img
-                                :src="LogoQblack"
+                                :src="LogoQwhite"
                                 class="w-32 inline-block img-zoom"
                                 alt="Quimiecologi C.A."
                             />
