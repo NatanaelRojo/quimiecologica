@@ -47,13 +47,25 @@ onMounted(async () => {
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     <div>
-                        <img :src="servicios_pulverizacion" class="w-80 h-auto mx-auto img-zoom">
+                        <img
+                            :src="servicios_pulverizacion"
+                            class="h-auto mx-auto img-zoom"
+                            style="width: 500px;"
+                        >
                     </div>
                     <div>
-                        <img :src="servicios_analisis_muestras" class="w-80 h-auto mx-auto img-zoom">
+                        <img
+                            :src="servicios_analisis_muestras"
+                            class="h-auto mx-auto img-zoom"
+                            style="width: 500px;"
+                        >
                     </div>
                     <div>
-                        <img :src="servicios_3" class="w-80 h-auto mx-auto img-zoom">
+                        <img
+                            :src="servicios_3"
+                            class="h-auto mx-auto img-zoom"
+                            style="width: 500px;"
+                        >
                     </div>
                 </div>
             </section>

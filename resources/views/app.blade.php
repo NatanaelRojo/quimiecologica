@@ -50,14 +50,17 @@
                             style="
                                 background-color: rgb(147, 188, 0) !important;
                                 padding: 40px 40px;
+                                border: ridge 1px #e3dfda;
+                                margin-right: -50px;
                             "
                         >
                             <svg
-                                class="w-8 h-8" /* Aumenta el tamaño del ícono */
+                                class="w-8"
                                 aria-hidden="true"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
+                                style="width: 6rem;"
                             >
                                 <path
                                     clip-rule="evenodd"
@@ -85,7 +88,9 @@
                                 "
                                 style="font-size: 35px;"
                             >
-                                Formulaciones de alto nivel
+                                <i>
+                                    Formulaciones de alto nivel
+                                </i>
                             </span>
                         </div>
                     </div>
