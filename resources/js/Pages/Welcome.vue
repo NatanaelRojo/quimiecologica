@@ -42,28 +42,28 @@ onMounted(async () => {
             <loading :active="isLoading" :is-full-page="fullPage" color="#82675C"></loading>
 
             <!-- Sección 3 imágenes -->
-            <section class="bg-white border-b py-3 gradient">
+            <section class="bg-white container mx-auto border-b py-3 gradient">
                 <div
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     <div>
                         <img
                             :src="servicios_pulverizacion"
-                            class="h-auto mx-auto img-zoom"
+                            class="h-auto mx-auto"
                             style="width: 500px;"
                         >
                     </div>
                     <div>
                         <img
                             :src="servicios_analisis_muestras"
-                            class="h-auto mx-auto img-zoom"
+                            class="h-auto mx-auto"
                             style="width: 500px;"
                         >
                     </div>
                     <div>
                         <img
                             :src="servicios_3"
-                            class="h-auto mx-auto img-zoom"
+                            class="h-auto mx-auto"
                             style="width: 500px;"
                         >
                     </div>

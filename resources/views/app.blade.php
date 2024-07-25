@@ -51,8 +51,10 @@
                             style="
                                 background-color: rgb(147, 188, 0) !important;
                                 padding: 40px 40px;
-                                /*border: ridge 1px #e3dfda;*/
+                                /*border: ridge 1px red;*/
                                 margin-right: -50px;
+                                margin-left: 70px;
+                                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                             "
                         >
                             <svg
@@ -70,22 +72,18 @@
                                 ></path>
                             </svg>
                         </button>
-                        <a
-                            href="#" class="flex ms-2 md:me-24"
-                        >
-                            <img
-                                src="/images/Logo-Quimiecologi-01-white-rif.png"
-                                class="inline-block logo-navbar"
-                                alt="Quimiecologi C.A."
-                                width="600px"
-                                style="
-                                    margin-left: 80px;
-                                "
-                            />
-                        </a>
+                        <img
+                            src="/images/Logo-Quimiecologi-01-white-rif.png"
+                            class="inline-block logo-navbar"
+                            alt="Quimiecologi C.A."
+                            style="
+                                width: 600px;
+                                margin-left: 80px;
+                            "
+                        />
                     </div>
-                    <div class="flex items-center">
-                        <div class="flex items-center ms-3">
+                    <div class="flex">
+                        <div class="ms-3">
                             <span
                                 class="
                                     text-navbar
@@ -93,10 +91,15 @@
                                     font-bold
                                     text-white
                                 "
-                                style="font-size: 35px;"
+                                style="
+                                    font-size: 30px;
+                                    margin-right: 200px;
+                                "
                             >
                                 <i>
-                                    Formulaciones de alto nivel
+                                    Formulaciones de
+                                    <br>
+                                    alto nivel
                                 </i>
                             </span>
                         </div>

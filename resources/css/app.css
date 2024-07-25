@@ -116,11 +116,11 @@ button,
 .text-white-brand {
   color: #E5E1DF;
 }
-
+/*
 @media (max-width: 420px) {
   .hambuerger-button {
     padding: 0px 0px !important;
-    margin-left: -33px;
+    margin-left: -500px;
   }
   .text-navbar {
     display: none;
@@ -130,3 +130,15 @@ button,
     width: 200px;
   }
 }
+*/
+/*
+@media (min-width: 865px) {
+  .logo-navbar  {
+    margin-left: 60px;
+
+  }
+  .text-navbar {
+    font-size: 30px !important;
+  }
+}
+*/
