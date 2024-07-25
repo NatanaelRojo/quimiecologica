@@ -37,6 +37,7 @@
                     <div class="flex items-center justify-start rtl:justify-end">
                         <button
                             class="
+                                hambuerger-button
                                 text-white bg-blue-700 hover:bg-blue-800
                                 focus:ring-4 focus:ring-blue-300 font-medium
                                 rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600
@@ -50,7 +51,7 @@
                             style="
                                 background-color: rgb(147, 188, 0) !important;
                                 padding: 40px 40px;
-                                border: ridge 1px #e3dfda;
+                                /*border: ridge 1px #e3dfda;*/
                                 margin-right: -50px;
                             "
                         >
@@ -69,12 +70,17 @@
                                 ></path>
                             </svg>
                         </button>
-                        <a href="/" class="flex ms-2 md:me-24">
+                        <a
+                            href="#" class="flex ms-2 md:me-24"
+                        >
                             <img
                                 src="/images/Logo-Quimiecologi-01-white-rif.png"
-                                class="inline-block"
+                                class="inline-block logo-navbar"
                                 alt="Quimiecologi C.A."
-                                width="800px"
+                                width="600px"
+                                style="
+                                    margin-left: 80px;
+                                "
                             />
                         </a>
                     </div>
@@ -82,6 +88,7 @@
                         <div class="flex items-center ms-3">
                             <span
                                 class="
+                                    text-navbar
                                     font-montserrat
                                     font-bold
                                     text-white
