@@ -209,19 +209,22 @@ import { Link } from '@inertiajs/vue3';
                         "
                     >
                         <ul class="list-reset mb-6">
-                            <li class="inline-block mr-2 md:block md:mr-0 mt-11">
+                            <li class="inline-block mr-2 md:block md:mr-0 mt-4">
                                 <i class="fa-solid fa-clock"></i>
-                                Horario Laboral
+                                <b style="font-size: 22px;">&nbsp;Planta</b>
                                 <br>
-                                Lunes - Viernes 7:30am - 3:30pm
+                                Lunes - Viernes: 7:30 am - 3:30 pm
                             </li>
+                            <hr class="mt-2 mb-2 w-1/2 mx-auto">
                             <li class="inline-block mr-2 md:block md:mr-0">
                                 <i class="fa-solid fa-clock"></i>
-                                Redes (Atención al cliente)
+                                <b style="font-size: 22px;">&nbsp;RRSS</b>
                                 <br>
-                                Lunes - Sábado 8:00am - 9:00pm
+                                Lunes - Viernes: 7:30 am - 3:30 pm
                                 <br>
-                                Domingo 10:00am – 3:00pm
+                                Sábados 8:00 am - 9:00 pm
+                                <br>
+                                Domingos: 10:00 am - 3:00 pm
                             </li>
                         </ul>
                     </div>
