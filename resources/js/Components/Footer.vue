@@ -44,7 +44,7 @@ import { Link } from '@inertiajs/vue3';
 
                     <div class="flex-1 text-center">
                         <ul class="list-reset mb-6">
-                            <li class="mt-8 inline-block mr-2 md:block md:mr-0">
+                            <li class="mt-5 inline-block mr-2 md:block md:mr-0">
                                 <Link
                                     :href="route('about-us')"
                                     class="
@@ -78,6 +78,22 @@ import { Link } from '@inertiajs/vue3';
                             </li>
                             <li class="inline-block mr-2 md:block md:mr-0">
                                 <Link
+                                    href="#"
+                                    class="
+                                        font-montserrat
+                                        inline-block
+                                        text-white-brand
+                                        no-underline
+                                        hover:text-gray-800
+                                        hover:text-underline
+                                    "
+
+                                >
+                                    <b>BASTT</b>
+                                </Link>
+                            </li>
+                            <li class="inline-block mr-2 md:block md:mr-0">
+                                <Link
                                     href="/services"
                                     class="
                                         font-montserrat
@@ -105,7 +121,7 @@ import { Link } from '@inertiajs/vue3';
                                     "
 
                                 >
-                                    <b>Servicios de formulación</b>
+                                    <b>Formulación</b>
                                 </Link>
                             </li>
                             <li class="inline-block mr-2 md:block md:mr-0">
