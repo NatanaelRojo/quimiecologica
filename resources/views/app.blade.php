@@ -30,7 +30,7 @@
                     top-0 z-50 w-full gradient-green border-b border-gray-200
                     light:bg-gray-800 light:border-gray-700
                 "
-            style="padding: 50px;"
+            style="padding: 24px;"
             >
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
@@ -50,7 +50,7 @@
                             aria-controls="drawer-navigation"
                             style="
                                 background-color: rgb(147, 188, 0) !important;
-                                padding: 40px 40px;
+                                padding: 20px 20px;
                                 /*border: ridge 1px red;*/
                                 margin-right: -50px;
                                 margin-left: 70px;
