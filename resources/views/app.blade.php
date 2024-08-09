@@ -30,7 +30,6 @@
                     top-0 z-50 w-full gradient-green border-b border-gray-200
                     light:bg-gray-800 light:border-gray-700
                 "
-            style="padding: 24px;"
             >
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
@@ -54,7 +53,6 @@
                                 /*border: ridge 1px red;*/
                                 margin-right: -50px;
                                 margin-left: 70px;
-                                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
                             "
                         >
                             <svg
@@ -99,7 +97,7 @@
                                 <i>
                                     Formulaciones de
                                     <br>
-                                    alto nivel
+                                    alta calidad
                                 </i>
                             </span>
                         </div>
@@ -165,7 +163,7 @@
             </button>
             <div
                 class="overflow-y-auto"
-                style="margin-top: 280px;"
+                style="margin-top: 180px;"
             >
                 <ul class="space-y-2 font-medium">
                     <li><br></li>
