@@ -292,16 +292,16 @@ const isLoading = ref(false);
 const fullPage = ref(true);
 const form = ref(null);
 const pendingOrder = ref({
-    owner_firstname: 'Natanael David',
-    owner_lastname: 'Rojo Abreu',
-    owner_id: '26488388',
-    owner_email: 'argenisosorio580@hotmail.com',
-    owner_phone_number: '7713032',
-    owner_state: 'Merida',
-    owner_city: 'Merida',
-    owner_address: 'Merida',
-    owner_request: 'ZZZZZZZZ',
-    deadline: 'Una semana',
+    owner_firstname: '',
+    owner_lastname: '',
+    owner_id: '',
+    owner_email: '',
+    owner_phone_number: '',
+    owner_state: '',
+    owner_city: '',
+    owner_address: '',
+    owner_request: '',
+    deadline: '',
 });
 
 const errors = ref([]);

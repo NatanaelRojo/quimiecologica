@@ -156,7 +156,7 @@
                                             </div>
                                         </div>
                                         <div class="flex space-x-2 mt-2">
-                                            <span>Géneros:</span>
+                                            <span>Cuota:</span>
                                             <div v-for="(gender, index) of post.genders" :key="index"
                                                 class="text-gray-600">
                                                 {{ gender.name }}

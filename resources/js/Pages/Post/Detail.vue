@@ -25,6 +25,7 @@
                             font-montserrat
                             w-full
                             my-2
+                            mt-4
                             text-5xl
                             font-black
                             leading-tight
@@ -51,12 +52,12 @@
 
                     <br>
 
-                    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+                    <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-md">
                         <!-- Thumbnail grande como portada del blog -->
                         <img
                             :src="`/storage/${post.thumbnail}`"
                             alt="Thumbnail del Blog"
-                            class="w-full h-auto img-zoom"
+                            class="w-full h-auto img-zoom mb-4"
                         >
 
                         <!-- Título del blogpost -->
@@ -79,7 +80,7 @@
 
                         <!-- Géneros del blogpost -->
                         <div class="mb-6">
-                            <span class="text-gray-600">Géneros: </span>
+                            <span class="text-gray-600">Cuota: </span>
                             <span
                                 v-for="(gender, index) in post.genders"
                                 :key="index"
