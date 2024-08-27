@@ -81,7 +81,36 @@ onMounted(async () => {
                     <div class="flex flex-wrap">
                         <div class="mt-5 w-full text-justify">
                             <p class="font-montserrat mb-8">
-                                El requerimiento dice "Historia de la empresa y una síntesis de la marca, con imagen" Se requiere ese texto y la imagen que va a ir aquí en esta página.
+                                <b>
+                                    Diseña un mundo de cuidado, con el aliado que te mereces
+                                </b>
+                                <br>
+                                <br>
+                                <p>
+                                    Somos una empresa nacional que diseña y elabora
+                                    productos de cuidado personal; además,
+                                    prestamos servicios diversos y asesorías a
+                                    empresas o personas que lo requieran.
+                                </p>
+                                <br>
+                                <p>
+                                    Contamos con una marca registrada de alcance
+                                    nacional: BASTT. Actualmente especializada
+                                    en el cuidado preventivo del rostro.
+                                </p>
+                                <br>
+                                <p>
+                                    <b>
+                                        ¿Por qué elegirnos?
+                                    </b>
+                                    <br>
+                                    <br>
+                                    <ul>
+                                        <li>• Asesoría exclusiva, considerando tus deseos</li>
+                                        <li>• Nos adaptamos a tus necesidades</li>
+                                        <li>• Diseño y fabricación de tus productos, con profesionalismo y calidad</li>
+                                    </ul>
+                                </p>
                             </p>
                         </div>
                     </div>
