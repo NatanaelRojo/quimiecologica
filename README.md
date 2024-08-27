@@ -21,12 +21,12 @@
     php-cli
     php-curl
     php-pgsql
+    php-intl
+    php-bcmath
     postgresql
     curl
     zip
     unzip
-    intl
-    bcmath
 
 ## Instalar las dependencias de php del proyecto:
 
