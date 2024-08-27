@@ -60,7 +60,7 @@ onMounted(async () => {
                             text-gray-800
                         "
                     >
-                        Nuestras marcass
+                        Nuestras marcas
                     </h2>
                     <div class="w-full mb-4">
                         <div class="

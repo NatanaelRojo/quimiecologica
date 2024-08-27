@@ -9,6 +9,7 @@ import 'vue-loading-overlay/dist/css/index.css';
 const isLoading = ref(false);
 const fullPage = ref(true);
 const serviceTypes = ref([]);
+const Logo_Q_black = '/images/Logo-Q-black.png';
 
 /**
  * Regresar al componente anterior.
@@ -99,12 +100,23 @@ onMounted(async () => {
                             <Link
                                 :href="route('serviceType', serviceType.slug)"
                             >
-                                <img :src="`/storage/${serviceType.logo_url}`"
-                                    class="
-                                    w-full h-50 object-cover mb-4
-                                    rounded-md img-zoom
-                                    "
-                                >
+                                <div v-if="serviceType.logo_url">
+                                    <img :src="`/storage/${serviceType.logo_url}`"
+                                        class="
+                                        w-full h-50 object-cover mb-4
+                                        rounded-md img-zoom
+                                        "
+                                    >
+                                </div>
+                                <div v-else>
+                                    <img
+                                        :src="Logo_Q_black"
+                                        class="
+                                        w-full h-50 object-cover mb-4
+                                        rounded-md img-zoom
+                                        "
+                                    >
+                                </div>
                                 <div>
                                     <h3 class="
                                         text-lg
