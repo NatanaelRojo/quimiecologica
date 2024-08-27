@@ -119,7 +119,7 @@ onMounted(async () => {
                                         "
                                     >
                                 </div>
-                                <div>
+                                <!--div>
                                     <h3
                                         class="
                                             text-lg
@@ -131,7 +131,7 @@ onMounted(async () => {
                                     >
                                         {{ brand.name }}
                                     </h3>
-                                </div>
+                                </div-->
                             </Link>
                         </div>
                     </div>

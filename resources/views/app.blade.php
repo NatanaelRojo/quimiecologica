@@ -49,7 +49,6 @@
                             aria-controls="drawer-navigation"
                             style="
                                 background-color: rgb(147, 188, 0) !important;
-                                padding: 20px 20px;
                                 /*border: ridge 1px red;*/
                                 margin-right: -50px;
                                 margin-left: 70px;
@@ -61,7 +60,7 @@
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg"
-                                style="width: 6rem;"
+                                style="width: 3rem;"
                             >
                                 <path
                                     clip-rule="evenodd"
@@ -75,7 +74,7 @@
                             class="inline-block logo-navbar"
                             alt="Quimiecologi C.A."
                             style="
-                                width: 600px;
+                                width: 400px;
                                 margin-left: 80px;
                             "
                         />
