@@ -49,9 +49,8 @@
                             aria-controls="drawer-navigation"
                             style="
                                 background-color: rgb(147, 188, 0) !important;
-                                /*border: ridge 1px red;*/
                                 margin-right: -50px;
-                                margin-left: 70px;
+                                margin-left: 6px;
                             "
                         >
                             <svg
@@ -126,7 +125,7 @@
             aria-labelledby="drawer-navigation-label"
             style="
                 background-color: #E5E1DF !important;
-                width: 210px;
+                width: 200px;
             "
         >
             <h5
@@ -164,7 +163,7 @@
             <div
                 class="overflow-y-auto"
                 style="
-                    margin-top: 180px;
+                    margin-top: 90px;
                 "
             >
                 <ul class="space-y-2 font-medium">
@@ -178,11 +177,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
@@ -208,11 +206,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
@@ -234,11 +231,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
@@ -260,11 +256,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
@@ -286,11 +281,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
@@ -312,11 +306,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
@@ -338,11 +331,10 @@
                                 no-underline
                                 hover:text-gray-800
                                 hover:text-underline
-                                py-2
                                 px-2
                                 flex
                                 items-center
-                                p-2
+                                p-1
                                 rounded-lg
                                 light:text-white
                                 hover:bg-gray-100
