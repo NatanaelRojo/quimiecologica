@@ -126,6 +126,7 @@
             aria-labelledby="drawer-navigation-label"
             style="
                 background-color: #E5E1DF !important;
+                width: 210px;
             "
         >
             <h5
@@ -162,7 +163,9 @@
             </button>
             <div
                 class="overflow-y-auto"
-                style="margin-top: 180px;"
+                style="
+                    margin-top: 180px;
+                "
             >
                 <ul class="space-y-2 font-medium">
                     <li><br></li>
