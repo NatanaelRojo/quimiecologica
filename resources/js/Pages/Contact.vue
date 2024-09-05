@@ -41,7 +41,7 @@ onMounted(async () => {
 
             <!-- Sección -->
             <section class="gradient border-b py-3" style="min-height: 500px">
-                <div class="container max-w-5xl mx-auto m-8">
+                <div class="container max-w-6xl mx-auto m-8">
                     <a
                         href="#"
                         class="font-montserrat"
@@ -78,14 +78,14 @@ onMounted(async () => {
                         ></div>
                     </div>
                     <div
-                        class="flex flex-wrap mt-10"
+                        class="flex flex-wrap"
+                        style="padding: 50px"
                     >
                         <div class="mt-5 w-full">
                             <div
                                 class="
                                     grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
                                 "
-                                style="border:ridge 1px red;"
 
                             >
                                 <div
@@ -93,8 +93,7 @@ onMounted(async () => {
                                     style="
                                         font-size: 18px;
                                         color: #82675C;
-                                        border:ridge 1px blue;
-                                        width: 700px;
+                                        width: 150%;
                                     "
                                 >
                                     <div class="grid grid-cols-3 gap-4">
@@ -103,7 +102,6 @@ onMounted(async () => {
                                             style="
                                                 color: #82675C;
                                                 font-size: 20px;
-                                                border:ridge 1px green;
                                             "
                                         >
                                         <i class="fa-solid fa-phone"></i>
@@ -113,8 +111,6 @@ onMounted(async () => {
                                             style="
                                                 font-size: 20px;
                                                 color: #82675C;
-                                                border:ridge 1px red;
-                                                margin-left: -300px;
                                             "
                                         >
                                             A. Cliente: 0412-5347169
@@ -141,7 +137,6 @@ onMounted(async () => {
                                 </div>
                                 <div
                                     style="
-                                        border:ridge 1px blue;
                                     "
                                 ></div>
                                 <div
