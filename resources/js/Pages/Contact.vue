@@ -77,52 +77,156 @@ onMounted(async () => {
                             "
                         ></div>
                     </div>
-                    <div class="flex flex-wrap">
+                    <div
+                        class="flex flex-wrap mt-10"
+                    >
                         <div class="mt-5 w-full">
-                            <div class="font-montserrat mb-8">
-                                <div class="mb-3">
-                                    <i class="fa-solid fa-location-dot"></i> Mérida Edo. Mérida
+                            <div
+                                class="
+                                    grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8
+                                "
+                                style="border:ridge 1px red;"
+
+                            >
+                                <div
+                                    class="font-montserrat mb-8"
+                                    style="
+                                        font-size: 18px;
+                                        color: #82675C;
+                                        border:ridge 1px blue;
+                                        width: 700px;
+                                    "
+                                >
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div
+                                            class="text-center"
+                                            style="
+                                                color: #82675C;
+                                                font-size: 20px;
+                                                border:ridge 1px green;
+                                            "
+                                        >
+                                        <i class="fa-solid fa-phone"></i>
+                                        </div>
+                                        <div
+                                            class="font-montserrat text-center col-span-2 ..."
+                                            style="
+                                                font-size: 20px;
+                                                color: #82675C;
+                                                border:ridge 1px red;
+                                                margin-left: -300px;
+                                            "
+                                        >
+                                            A. Cliente: 0412-5347169
+                                        </div>
+                                        <div
+                                            class="text-center"
+                                            style="
+                                                color: #82675C;
+                                                font-size: 20px;
+                                            "
+                                        >
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </div>
+                                        <div
+                                            class="font-montserrat text-center col-span-2 ..."
+                                            style="
+                                                font-size: 20px;
+                                                color: #82675C;
+                                            "
+                                        >
+                                            quimiecologica.llcv@gmail.com
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="mb-3">
-                                    <i class="fa-solid fa-clock"></i>
-                                    Horario de atención:
-                                    8:00am a 3:30pm
-                                </div>
-                                <div class="mb-3">
-                                    <i class="fa-solid fa-phone"></i>
-                                    Teléfono:
-                                    0412-5347169
-                                </div>
-                                <div class="mb-3">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    quimiecologica.llcv@gmail.com
-                                </div>
-                                <div class="mb-3">
-                                    <a
-                                        href="https://www.instagram.com/basttvzla/"
-                                        target="__blank"
-                                    >
-                                        <i class="fa-brands fa-square-instagram"></i>
-                                        @basttvzla
-                                    </a>
-                                </div>
-                                <div class="mb-3">
-                                    <a
-                                        href="https://www.tiktok.com/@basttvzla"
-                                        target="__blank"
-                                    >
-                                        <i class="fa-brands fa-tiktok"></i> @basttvzla
-                                    </a>
-                                </div>
-                                <div class="mb-3">
-                                    <a
-                                        href="
-                                            https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
-                                        "
-                                        target="__blank"
-                                    >
-                                        <i class="fa-brands fa-linkedin"></i> Quimiecolgi C.A.
-                                    </a>
+                                <div
+                                    style="
+                                        border:ridge 1px blue;
+                                    "
+                                ></div>
+                                <div
+                                    class="font-montserrat mb-8"
+                                    style="
+                                        font-size: 20px;
+                                        color: #82675C;
+                                    "
+                                >
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div
+                                            class="text-center"
+                                            style="
+                                                color: #82675C;
+                                                font-size: 20px;
+                                            "
+                                        >
+                                            <i class="fa-brands fa-square-instagram"></i>
+                                        </div>
+                                        <div
+                                            class="font-montserrat text-center col-span-2 ..."
+                                            style="
+                                                font-size: 20px;
+                                                color: #82675C;
+                                                margin-left: -100px;
+                                            "
+                                        >
+                                            <a
+                                                href="https://www.instagram.com/basttvzla/"
+                                                target="__blank"
+                                            >
+                                                @basttvzla
+                                            </a>
+                                        </div>
+                                        <div
+                                            class="text-center"
+                                            style="
+                                                color: #82675C;
+                                                font-size: 20px;
+                                            "
+                                        >
+                                            <i class="fa-brands fa-tiktok"></i>
+                                        </div>
+                                        <div
+                                            class="font-montserrat text-center col-span-2 ..."
+                                            style="
+                                                font-size: 20px;
+                                                color: #82675C;
+                                                margin-left: -100px;
+                                            "
+                                        >
+                                            <a
+                                                href="https://www.tiktok.com/@basttvzla"
+                                                target="__blank"
+                                            >
+                                                @basttvzla
+                                            </a>
+                                        </div>
+                                        <div
+                                            class="text-center"
+                                            style="
+                                                color: #82675C;
+                                                font-size: 20px;
+                                            "
+                                        >
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </div>
+                                        <div
+                                            class="font-montserrat text-center col-span-2 ..."
+                                            style="
+                                                font-size: 20px;
+                                                color: #82675C;
+                                                margin-left: -100px;
+                                            "
+                                        >
+                                            <a
+                                                href="
+                                                    https://www.linkedin.com/company/laboratorio-quimiecologi-c-a-l%C3%ADnea-facial-bastt%C2%AE
+                                                "
+                                                target="__blank"
+                                            >
+                                                Quimiecolgi C.A.
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
