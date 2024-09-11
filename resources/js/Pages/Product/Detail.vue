@@ -55,10 +55,9 @@
 
                     <div
                         class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2"
-                        style="border:ridge 1px red;"
                     >
                         <!-- Columna izquierda -->
-                        <div style="border:ridge 1px blue;">
+                        <div>
                             <img
                                 v-for="(imageUrl, index) in product.image_urls"
                                 :key="index" :src="`/storage/${imageUrl}`"
@@ -70,39 +69,47 @@
                         <!-- Final de Columna izquierda -->
 
                         <!-- Columna derecha -->
-                        <div style="border:ridge 1px orange; padding: 10px;">
+                        <div
+                            style="
+                                padding: 10px;
+                                color: #82675C;
+                            "
+                        >
                             <!-- Detalles del producto -->
                             <h1 class="text-3xl font-bold mb-2">{{ product.name }}</h1>
-                            <p class="text-gray-600 mb-4 text-justify">
-                                <span v-html="product.description"></span>
+                            <p class="mb-4 text-justify" style="">
+                                <span
+                                    v-html="product.description"
+                                    style="line-height: 1.2em;"
+                                ></span>
                             </p>
-                            <div class="flex space-x-2 mb-2">
+                            <div class="flex space-x-2" style="line-height: 1.2em;">
                                 <span>Marca: </span>
-                                <span class="text-gray-600">
+                                <span>
                                     {{ product?.brand.name }}
                                 </span>
                             </div>
-                            <div class="flex space-x-2 mb-2">
+                            <div class="flex space-x-2" style="line-height: 1.2em;">
                                 <span>Clase:</span>
-                                <span class="text-gray-600">
+                                <span>
                                     {{ product?.primary_class.name }}
                                 </span>
                             </div>
-                            <div class="flex space-x-2">
+                            <div class="flex space-x-2" style="line-height: 1.2em;">
                                 <span>Subclase:</span>
-                                <div v-for="(category, index) of product.categories" :key="index" class="text-gray-600">
+                                <div v-for="(category, index) of product.categories" :key="index">
                                     {{ category.name }}
                                 </div>
                             </div>
-                            <div class="flex space-x-2 mt-2">
+                            <div class="flex space-x-2" style="line-height: 1.2em;">
                                 <span>Cuota:</span>
-                                <div v-for="(gender, index) of product.genders" :key="index" class="text-gray-600">
+                                <div v-for="(gender, index) of product.genders" :key="index">
                                     {{ gender.name }}
                                 </div>
                             </div>
-                            <div class="flex space-x-2 mt-2">
+                            <div class="flex space-x-2" style="line-height: 1.2em;">
                                 <span>Presentación:</span>
-                                <div v-for="(measure, index) of product.measures" :key="index" class="text-gray-600">
+                                <div v-for="(measure, index) of product.measures" :key="index">
                                     <span v-if="measure.quantity > 0">
                                         {{ measure.quantity }}
                                     </span>
@@ -110,55 +117,47 @@
                                     {{ measure.size }}
                                 </div>
                             </div>
-                            <div class="flex space-x-2 mt-2">
+                            <div class="flex space-x-2" style="line-height: 1.2em;">
                                 <span>Tipo de venta:</span>
-                                <div class="text-gray-600">
-                                    <span class="
-                                            gradient-green
-                                            rounded-full
-                                            px-3
-                                            py-1
-                                            text-sm
-                                            text-gray-700
-                                        ">
-                                        {{ product.type_sale.name }}
-                                    </span>
-                                </div>
+                                <span>
+                                    {{ product.type_sale.name }}
+                                </span>
                             </div>
-                            <hr class="mt-5 mb-5">
                             <h2 class="
                                     w-full
                                     my-2
                                     text-3xl
                                     font-black
                                     leading-tight
-                                    text-gray-800
                                 ">
                                 Precio: ${{ product.price }}
                             </h2>
+                            <div class="flex flex-col">
+                                <button
+                                    @click.prevent="addProductToCart(product)"
+                                    class="
+                                        font-montserrat
+                                        gradient-green
+                                        mt-1
+                                        bg-blue-500
+                                        text-white
+                                        py-2 px-4
+                                        rounded-md
+                                        hover:bg-blue-600
+                                        focus:outline-none
+                                        focus:border-blue-700
+                                        focus:ring
+                                        focus:ring-blue-200
+                                        font-bold
+                                    "
+                                    style="width: 250px;"
+                                >
+                                    <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
+                                    Añadir al Carrito
+                                </button>
+                            </div>
                         </div>
                         <!-- Final Columna derecha -->
-                    </div>
-
-                    <div class="flex flex-col items-center">
-                        <button @click.prevent="addProductToCart(product)" class="
-                                            font-montserrat
-                                            gradient-green
-                                            mt-4
-                                            bg-blue-500
-                                            text-white
-                                            py-2 px-4
-                                            rounded-md
-                                            hover:bg-blue-600
-                                            focus:outline-none
-                                            focus:border-blue-700
-                                            focus:ring
-                                            focus:ring-blue-200
-                                            font-bold
-                                        ">
-                            <i class="fa fa-shopping-cart fa-lg ollapsed"></i>
-                            Añadir al Carrito
-                        </button>
                     </div>
                 </div>
             </section>
